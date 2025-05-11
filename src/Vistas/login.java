@@ -3,6 +3,7 @@ package Vistas;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
@@ -92,13 +93,13 @@ public class login {
         lblNewLabel_3.setBounds(20, 219, 193, 41);
         panel_1.add(lblNewLabel_3);
         
-        textField = new JTextField();//panel de texto del correo electronico
-        textField.setBackground(new Color(204, 204, 204));
-        textField.setFont(new Font("Anton", Font.PLAIN, 12));
-        textField.setBounds(20, 271, 389, 30);
-        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        panel_1.add(textField);
-        textField.setColumns(10);
+        JTextField cuadro_txt_correo = new JTextField();//panel de texto del correo electronico
+        cuadro_txt_correo.setBackground(new Color(204, 204, 204));
+        cuadro_txt_correo.setFont(new Font("Anton", Font.PLAIN, 12));
+        cuadro_txt_correo.setBounds(20, 271, 389, 30);
+        cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        panel_1.add(cuadro_txt_correo);
+        cuadro_txt_correo.setColumns(10);
         
         JLabel lblNewLabel_4 = new JLabel("");//cuadro de la imaegen del login 
         lblNewLabel_4.setBounds(439, 0, 615, 629);
@@ -113,27 +114,27 @@ public class login {
 		lblNewLabel_5.setBounds(20, 323, 193, 41);
 		panel_1.add(lblNewLabel_5);
 		
-		textField_1 = new JTextField();//panel de texto de la contraseña
-		textField_1.setBackground(new Color(204, 204, 204));
-		textField_1.setFont(new Font("Anton", Font.PLAIN, 12));
-		textField_1.setBounds(20, 375, 389, 30);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		JPasswordField cuadro_txt_contraseña = new JPasswordField();//panel de texto de la contraseña
+		cuadro_txt_contraseña.setBackground(new Color(204, 204, 204));
+		cuadro_txt_contraseña.setFont(new Font("Anton", Font.PLAIN, 12));
+		cuadro_txt_contraseña.setBounds(20, 375, 389, 30);
+		cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		panel_1.add(cuadro_txt_contraseña);
+		cuadro_txt_contraseña.setColumns(10);
 		
-		JButton btnNewButton = new JButton("INICIAR SESION");//boton de inicio de sesion
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(0, 143, 57));
-		btnNewButton.setFont(new Font("Anton", Font.PLAIN, 20));
-		btnNewButton.setBounds(80, 445, 279, 56);
-		panel_1.add(btnNewButton);
+		JButton boton_inicio_sesion = new JButton("INICIAR SESION");//boton de inicio de sesion
+		boton_inicio_sesion.setForeground(new Color(255, 255, 255));
+		boton_inicio_sesion.setBackground(new Color(0, 143, 57));
+		boton_inicio_sesion.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_inicio_sesion.setBounds(80, 445, 279, 56);
+		panel_1.add(boton_inicio_sesion);
 		
-		JButton btnNewButton_1 = new JButton("REGISTRARSE");//Boton de registro
-		btnNewButton_1.setBackground(new Color(255, 205, 17));
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setFont(new Font("Anton", Font.PLAIN, 20));
-		btnNewButton_1.setBounds(80, 530, 279, 56);
-		panel_1.add(btnNewButton_1);
+		JButton boton_registro = new JButton("REGISTRARSE");//Boton de registro
+		boton_registro.setBackground(new Color(255, 205, 17));
+		boton_registro.setForeground(new Color(0, 0, 0));
+		boton_registro.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_registro.setBounds(80, 530, 279, 56);
+		panel_1.add(boton_registro);
         
         
     }
