@@ -69,6 +69,7 @@ public class login {
         panel.setLayout(null);
         
         JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(255, 255, 255));
         panel_1.setBounds(15, 16, 1054, 629);
         panel.add(panel_1);
         panel_1.setLayout(null);

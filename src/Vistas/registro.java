@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class registro {
 
@@ -66,6 +68,7 @@ public class registro {
         panel.setLayout(null);
         
         JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(255, 255, 255));
         panel_1.setBounds(15, 16, 1054, 629);
         panel.add(panel_1);
         panel_1.setLayout(null);
@@ -133,6 +136,10 @@ public class registro {
 		cuadro_txt_confirmar_contraseña.setColumns(10);
 		
 		JButton boton_registro = new JButton("REGISTRARSE");//Boton de registro
+		boton_registro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		boton_registro.setBackground(new Color(255, 205, 17));
 		boton_registro.setForeground(new Color(0, 0, 0));
 		boton_registro.setFont(new Font("Anton", Font.PLAIN, 20));
