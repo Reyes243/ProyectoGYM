@@ -15,5 +15,13 @@ public AuthControllers() {
 		
 		vista.login();
 	}
+	public void registro() {
+		
+		vista.registro();
+	}
+	public void Panel_inicio() {
+		
+		vista.Panel_inicio();
+	}
 
 }
