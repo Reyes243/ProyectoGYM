@@ -1,5 +1,28 @@
 package models;
 
-public class ConectionModel {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConectionModel{
+	
+	public ConectionModel(){
+		
+		Connection conn = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gymprueba", "root", "root");
+			System.out.println("Se establecio la conexion correctamente");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error al cargar el controlador");
+			e.printStackTrace();
+			
+		} catch (SQLException e) {
+			System.out.println("Error en la conexion");
+			
+		}
+	}
 
 }
