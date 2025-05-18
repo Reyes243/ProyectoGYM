@@ -1,29 +1,57 @@
 package Vistas;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class Clases {
+import Vistas.Clientes.ButtonEditor;
+import Vistas.Clientes.ButtonRenderer;
 
-	private JFrame frame;
-	private JTable table;
+public class Clientes {
 	private DefaultTableModel model;
+	private JTable table;
+	private JFrame frame;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				Clases window = new Clases();
-				window.frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Clientes window = new Clientes();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
 
-	public Clases() {
+	/**
+	 * Create the application.
+	 */
+	public Clientes() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -96,11 +124,11 @@ public class Clases {
 
 		// Datos de ejemplo
 		Object[][] data = {
-			{1, "Carlos", "Ramírez", "Luquin", "1234567890", "carlos@mail.com", "", ""},
-			{2, "Laura", "Martínez", "Lopez", "0987654321", "laura@mail.com", "", ""}
+			{1, "Carlos", "Ramírez", "1234567890", "carlos@mail.com", "", ""},
+			{2, "Laura", "Martínez", "0987654321", "laura@mail.com", "", ""}
 		};
 
-		String[] columnNames = {"ID", "Nombre", "Apellido","Segundo apellido", "Teléfono", "Correo", "Consulta", "Eliminar"};
+		String[] columnNames = {"ID", "Nombre", "Primer Apellido", "Teléfono", "Correo", "Consulta", "Eliminar"};
 
 		model = new DefaultTableModel(data, columnNames) {
 			@Override
@@ -110,6 +138,7 @@ public class Clases {
 		};
 
 		table = new JTable(model);
+		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
 		table.setRowHeight(30);
 		JTableHeader header = table.getTableHeader();
@@ -191,12 +220,12 @@ public class Clases {
 	        // Cargar icono según etiqueta
 	        if (label.equals("Consulta")) {
 	            setIcon(loadIcon("Imagenes/editar.png"));
-	            setBackground(new Color(255, 205, 17)); // Amarillo
+	            setBackground(new Color(255, 205, 17)); 
 	        } else if (label.equals("Eliminar")) {
 	            setIcon(loadIcon("Imagenes/eliminar.png"));
-	            setBackground(new Color(205, 0, 0)); // Rojo
+	            setBackground(new Color(205, 0, 0)); 
 	        }
-	        setText(null);  // No mostrar texto
+	        setText(null);  
 	    }
 
 	    private ImageIcon loadIcon(String path) {
