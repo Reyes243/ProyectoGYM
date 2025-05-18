@@ -150,7 +150,7 @@ public class Informacion_de_cliente {
 		
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(235, 310, 117, 22);
+		lblNewLabel_8.setBounds(235, 310, 67, 22);
 		panel_2.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_7 = new JLabel("Clases inscritas:");
