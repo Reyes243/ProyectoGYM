@@ -3,10 +3,10 @@ package controllers;
 import views.AuthView;
 
 public class AuthControllers {
-	
+
 	private AuthView vista;
 	
-public AuthControllers() { 
+	public AuthControllers() { 
 		
 		vista = new AuthView();
 	}
@@ -19,9 +19,6 @@ public AuthControllers() {
 		
 		vista.registro();
 	}
-	public void Panel_inicio() {
-		
-		vista.Panel_inicio();
-	}
+
 
 }

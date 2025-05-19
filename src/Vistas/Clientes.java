@@ -209,7 +209,7 @@ public class Clientes {
 	}
 
 	// Renderer para mostrar botones en tabla
-	class ButtonRenderer extends JButton implements TableCellRenderer {
+	public class ButtonRenderer extends JButton implements TableCellRenderer {
 	    public ButtonRenderer(String label) {
 	        setOpaque(true);
 	        setForeground(Color.BLACK);
@@ -242,7 +242,7 @@ public class Clientes {
 	}
 
 	// Editor para que los botones con imagen funcionen en tabla
-	class ButtonEditor extends DefaultCellEditor {
+	public class ButtonEditor extends DefaultCellEditor {
 	    protected JButton button;
 	    private String label;
 	    private boolean clicked;

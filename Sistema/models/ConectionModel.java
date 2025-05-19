@@ -2,27 +2,32 @@ package models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-public class ConectionModel{
+public class ConectionModel {
 	
-	public ConectionModel(){
-		
-		Connection conn = null;
-		
+	private Connection conn;
+
+	public ConectionModel() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gymprueba", "root", "root");
-			System.out.println("Se establecio la conexion correctamente");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Error al cargar el controlador");
+			conn = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_ProyectoGYM",
+					"freedb_CarlosLuquin", "sXYz68y3@ts6$@E");
+		} catch (Exception e) {
 			e.printStackTrace();
-			
-		} catch (SQLException e) {
-			System.out.println("Error en la conexion");
-			
 		}
 	}
 
+	public Connection getConnection() {
+		return conn;
+	}
+
+	public void close() {
+		try {
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
