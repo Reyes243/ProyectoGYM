@@ -118,8 +118,7 @@ public class Historial_de_pagos {
 		panel_3.add(lblNewLabel);
 		
 		Object[][] data = {
-				{2, "Laura", "Martínez", "0987654321", "laura@mail.com"}
-			};
+				{2, "Laura", "Martínez", "0987654321", "laura@mail.com"}};
 		
 		String[] columnas ={"ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico"};
 		

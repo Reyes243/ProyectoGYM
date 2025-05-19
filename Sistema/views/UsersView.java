@@ -148,6 +148,13 @@ public class UsersView {
 		boton_Añadir_cliente.setBackground(new Color(0, 143, 57));
 		boton_Añadir_cliente.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_Añadir_cliente.setBounds(763, 522, 145, 31);
+		boton_Añadir_cliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.Añadir_cliente();
+			}
+		});
 		panel_2.add(boton_Añadir_cliente);
 		// <-- Sin ActionListener para deshabilitar funcionalidad --
 
@@ -175,6 +182,13 @@ public class UsersView {
 		boton_TARIFAS.setBackground(new Color(255, 205, 17));
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
+		boton_TARIFAS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+			}
+		});
 		panel.add(boton_TARIFAS);
 
 		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");
@@ -457,7 +471,7 @@ public class UsersView {
 		panel_2.add(lblNewLabel_14);
 		
 		//informacion del usuario ////////////////////////////////////////////////////////////
-		JLabel Info_ID = new JLabel("2");
+		JLabel Info_ID = new JLabel("1");
 		Info_ID.setFont(new Font("Anton", Font.PLAIN, 20));
 		Info_ID.setBounds(321, 92, 46, 28);
 		panel_2.add(Info_ID);
@@ -537,8 +551,8 @@ public class UsersView {
 		boton_editar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				 UsersController controller = new UsersController();
-		         controller.Edicion_de_informacion_de_cliente();
+				UsersController controller = new UsersController();
+		        controller.Edicion_de_informacion_de_cliente();
 				
 			}
 		});
@@ -550,7 +564,9 @@ public class UsersView {
 		boton_historial_asistencias.setBounds(217, 501, 160, 32);
 		boton_historial_asistencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.HIstorial_de_asistencias();
 			}
 		});
 		panel_2.add(boton_historial_asistencias);
@@ -561,6 +577,9 @@ public class UsersView {
 		boton_historial_pagos.setBounds(47, 501, 160, 32);
 		boton_historial_pagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.Historial_de_pagos();;
 				
 			}
 		});
@@ -595,6 +614,9 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
@@ -840,8 +862,8 @@ public class UsersView {
 		boton_descargar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				 UsersController controller = new UsersController();
-		         controller.Informacion_de_cliente(0);
+				UsersController controller = new UsersController();
+		        controller.Informacion_de_cliente(0);
 				
 			}
 		});
@@ -928,6 +950,744 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+			}
+		});
+		boton_TARIFAS.setBounds(10, 250, 136, 71);
+		panel.add(boton_TARIFAS);
+		
+		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
+		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INSTRUCTORES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
+		panel.add(boton_INSTRUCTORES);
+		
+		JButton boton_CLASES = new JButton("CLASES");//boton de clases 
+		boton_CLASES.setBackground(new Color(255, 205, 17));
+		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CLASES.setBounds(10, 414, 136, 71);
+		panel.add(boton_CLASES);
+		
+		JButton boton_CHECADOR = new JButton("CHECADOR");//boton de checador
+		boton_CHECADOR.setBackground(new Color(255, 205, 17));
+		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		panel.add(boton_CHECADOR);
+		
+		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");//boton de cerrar sesion 
+		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
+		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
+		
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
+	public void Historial_de_pagos() {
+		try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.put("Button.arc", 8); // Esquinas redondeadas
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		initialize3();
+	}
+
+	private void initialize3() {
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 1100, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(204, 204, 204));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 1084, 75);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 11, 53, 53);
+		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
+		Image portada2= portada1.getImage();
+		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
+		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
+		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
+		lblNewLabel_2.setBounds(73, 11, 128, 35);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
+		lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(73, 42, 107, 22);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
+		lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
+		lblNewLabel_4.setBounds(407, 11, 270, 53);
+		panel_1.add(lblNewLabel_4);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(156, 86, 918, 564);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 0, 0));
+		panel_3.setBounds(0, 0, 918, 50);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("HISTORIAL DE PAGO");//titulo de inicio 
+		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(60, 11, 309, 28);
+		panel_3.add(lblNewLabel);
+		
+		Object[][] data = {
+				{1, "Jose", "Lopez", "612187000", "JoseLg@hotmai.com"}};
+		
+		String[] columnas ={"ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico"};
+		
+		JScrollPane scrollPane_Usuario = new JScrollPane();//tabla del usario
+		scrollPane_Usuario.setBounds(10, 61, 898, 50);
+		panel_2.add(scrollPane_Usuario);
+		JTable table = new JTable(data, columnas);
+		table.setFont(new Font("Anton", Font.PLAIN, 12));
+		table.setBackground(new Color(204, 204, 204));
+		scrollPane_Usuario.setViewportView(table);
+		
+		JTableHeader header = table.getTableHeader();
+		header.setBackground(Color.BLACK);
+		header.setForeground(Color.WHITE);
+		header.setFont(new Font("Anton", Font.PLAIN, 14));
+		header.setReorderingAllowed(false);
+		scrollPane_Usuario.setViewportView(table);
+		
+		Object[][] data2 = {
+				{15632948, "PREMIUM", "600.00", "16/08/2024"}
+			};
+		
+		String[] columnas2 ={"ID Pago", "Plan", "Tarifa", "Fecha"};
+		
+		JScrollPane scrollPane_Pagos = new JScrollPane();//tabla de pagos
+		scrollPane_Pagos.setBounds(10, 122, 898, 168);
+		panel_2.add(scrollPane_Pagos);
+		JTable table_1 = new JTable(data2,columnas2);
+		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
+		table_1.setBackground(new Color(204, 204, 204));
+		scrollPane_Pagos.setViewportView(table_1);
+		
+		JTableHeader header2 = table_1.getTableHeader();
+		header2.setBackground(Color.BLACK);
+		header2.setForeground(Color.WHITE);
+		header2.setFont(new Font("Anton", Font.PLAIN, 14));
+		header2.setReorderingAllowed(false);
+		scrollPane_Pagos.setViewportView(table_1);
+		
+		JButton boton_regresar = new JButton("Regresar");//boton regresar
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(724, 503, 184, 50);
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.Informacion_de_cliente(0);
+			}
+		});
+		panel_2.add(boton_regresar);
+		
+		JButton boton_INICIO= new JButton("INICIO");
+		boton_INICIO.setBackground(new Color(255, 205, 17));
+		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INICIO.setBounds(10, 86, 136, 71);
+		boton_INICIO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_inicio();
+			}
+		});
+		panel.add(boton_INICIO);
+		
+		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
+		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLIENTES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	
+			}
+		});
+		boton_CLIENTES.setBounds(10, 168, 136, 71);
+		panel.add(boton_CLIENTES);
+		
+		JButton boton_TARIFAS = new JButton("TARIFAS");//boton de tarifas
+		boton_TARIFAS.setBackground(new Color(255, 205, 17));
+		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_TARIFAS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+			}
+		});
+		boton_TARIFAS.setBounds(10, 250, 136, 71);
+		panel.add(boton_TARIFAS);
+		
+		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
+		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INSTRUCTORES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
+		panel.add(boton_INSTRUCTORES);
+		
+		JButton boton_CLASES = new JButton("CLASES");
+		boton_CLASES.setBackground(new Color(255, 205, 17));
+		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLASES.setBounds(10, 414, 136, 71);
+		panel.add(boton_CLASES);
+		
+		JButton boton_CHECADOR = new JButton("CHECADOR");//boton de checador
+		boton_CHECADOR.setBackground(new Color(255, 205, 17));
+		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		panel.add(boton_CHECADOR);
+		
+		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");//boton de cerrar sesion 
+		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
+		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
+		
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
+	public void HIstorial_de_asistencias() {
+		try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.put("Button.arc", 8); // Esquinas redondeadas
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		initialize4();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize4() {
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 1100, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(204, 204, 204));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 1084, 75);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 11, 53, 53);
+		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
+		Image portada2= portada1.getImage();
+		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
+		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
+		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
+		lblNewLabel_2.setBounds(73, 11, 128, 35);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
+		lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(73, 42, 107, 22);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
+		lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
+		lblNewLabel_4.setBounds(407, 11, 270, 53);
+		panel_1.add(lblNewLabel_4);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(156, 86, 918, 564);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 0, 0));
+		panel_3.setBounds(0, 0, 918, 50);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("HISTORIAL DE ASISTENCIA");//titulo de inicio 
+		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(60, 11, 309, 28);
+		panel_3.add(lblNewLabel);
+		
+		Object[][] data = {
+				{1, "Jose", "Lopez", "612187000", "JoseLg@hotmai.com"}
+			};
+		
+		String[] columnas ={"ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico"};
+		
+		JScrollPane scrollPane_Usuario = new JScrollPane();//tabla del usario
+		scrollPane_Usuario.setBounds(10, 61, 898, 50);
+		panel_2.add(scrollPane_Usuario);
+		JTable table = new JTable(data, columnas);
+		table.setFont(new Font("Anton", Font.PLAIN, 12));
+		table.setBackground(new Color(204, 204, 204));
+		scrollPane_Usuario.setViewportView(table);
+		
+		JTableHeader header = table.getTableHeader();
+		header.setBackground(Color.BLACK);
+		header.setForeground(Color.WHITE);
+		header.setFont(new Font("Anton", Font.PLAIN, 14));
+		header.setReorderingAllowed(false);
+		scrollPane_Usuario.setViewportView(table);
+		
+		Object[][] data2 = {
+				{"15", "06", "2024", "3:50 pm"}
+			};
+		
+		String[] columnas2 ={"Dia", "Mes", "Año", "Hora de entrada"};
+		
+		JScrollPane scrollPane_Pagos = new JScrollPane();//tabla de pagos
+		scrollPane_Pagos.setBounds(10, 122, 898, 168);
+		panel_2.add(scrollPane_Pagos);
+		JTable table_1 = new JTable(data2,columnas2);
+		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
+		table_1.setBackground(new Color(204, 204, 204));
+		scrollPane_Pagos.setViewportView(table_1);
+		
+		JTableHeader header2 = table_1.getTableHeader();
+		header2.setBackground(Color.BLACK);
+		header2.setForeground(Color.WHITE);
+		header2.setFont(new Font("Anton", Font.PLAIN, 14));
+		header2.setReorderingAllowed(false);
+		scrollPane_Pagos.setViewportView(table_1);
+		
+		JButton boton_regresar = new JButton("Regresar");//boton regresar
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(724, 503, 184, 50);
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.Informacion_de_cliente(0);
+			}
+		});
+		panel_2.add(boton_regresar);
+		
+		JButton boton_INICIO= new JButton("INICIO");
+		boton_INICIO.setBackground(new Color(255, 205, 17));
+		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INICIO.setBounds(10, 86, 136, 71);
+		boton_INICIO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomeController hc = new HomeController();
+				hc.Panel_inicio();
+				
+			}
+		});
+		panel.add(boton_INICIO);
+		
+		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
+		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLIENTES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CLIENTES.setBounds(10, 168, 136, 71);
+		panel.add(boton_CLIENTES);
+		
+		JButton boton_TARIFAS = new JButton("TARIFAS");//boton de tarifas
+		boton_TARIFAS.setBackground(new Color(255, 205, 17));
+		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_TARIFAS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+			}
+		});
+		boton_TARIFAS.setBounds(10, 250, 136, 71);
+		panel.add(boton_TARIFAS);
+		
+		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
+		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INSTRUCTORES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
+		panel.add(boton_INSTRUCTORES);
+		
+		JButton boton_CLASES = new JButton("CLASES");
+		boton_CLASES.setBackground(new Color(255, 205, 17));
+		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLASES.setBounds(10, 414, 136, 71);
+		panel.add(boton_CLASES);
+		
+		JButton boton_CHECADOR = new JButton("CHECADOR");//boton de checador
+		boton_CHECADOR.setBackground(new Color(255, 205, 17));
+		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		panel.add(boton_CHECADOR);
+		
+		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");//boton de cerrar sesion 
+		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
+		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
+		
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
+	public void Añadir_cliente() {
+		try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.put("Button.arc", 8); // Esquinas redondeadas
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		initialize6();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize6() {
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 1100, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(204, 204, 204));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 1084, 75);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 11, 53, 53);
+		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
+		Image portada2= portada1.getImage();
+		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
+		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
+		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
+		lblNewLabel_2.setBounds(73, 11, 128, 35);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
+		lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(73, 42, 107, 22);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
+		lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
+		lblNewLabel_4.setBounds(407, 11, 270, 53);
+		panel_1.add(lblNewLabel_4);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(156, 86, 918, 564);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 0, 0));
+		panel_3.setBounds(0, 0, 918, 50);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Añadir Clientes");//titulo de inicio 
+		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(60, 11, 309, 28);
+		panel_3.add(lblNewLabel);
+		
+		JLabel Imagen_de_usuario = new JLabel("");
+		Imagen_de_usuario.setBounds(15, 115, 132, 180);
+		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
+		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
+		ImageIcon p1 =new ImageIcon("Imagenes/imagen credencial.png");
+		Image p2= p1.getImage();
+		Image p3=p2.getScaledInstance(80, 100,Image.SCALE_SMOOTH);
+		Imagen_de_usuario .setIcon(new ImageIcon(p3));
+		panel_2.add(Imagen_de_usuario);
+		
+		JLabel lblNewLabel_5 = new JLabel("Datos del nuevo miembro:");
+		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_5.setBounds(15, 61, 223, 32);
+		panel_2.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_11 = new JLabel("Nombre:");
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_11.setBounds(230, 115, 60, 22);
+		panel_2.add(lblNewLabel_11);
+		
+		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_10.setBounds(230, 170, 104, 22);
+		panel_2.add(lblNewLabel_10);
+		
+		JLabel lblNewLabel_9 = new JLabel("Segundo apellido:");
+		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_9.setBounds(230, 225, 117, 22);
+		panel_2.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
+		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_8.setBounds(230, 280, 117, 22);
+		panel_2.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
+		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_7.setBounds(15, 351, 132, 28);
+		panel_2.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
+		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_6.setBounds(499, 280, 60, 22);
+		panel_2.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_12 = new JLabel("Confirmar contraseña:");
+		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_12.setBounds(499, 225, 152, 22);
+		panel_2.add(lblNewLabel_12);
+		
+		JLabel lblNewLabel_13 = new JLabel("Contraseña: ");
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_13.setBounds(499, 170, 85, 22);
+		panel_2.add(lblNewLabel_13);
+		
+		JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
+		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_14.setBounds(499, 115, 142, 22);
+		panel_2.add(lblNewLabel_14);
+		
+		//informacion del usuario ////////////////////////////////////////////////////////////
+		JTextField Info_nombre= new JTextField("");
+		Info_nombre.setBackground(new Color(204, 204, 204));
+		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_nombre.setBounds(357, 115, 132, 22);
+		panel_2.add(Info_nombre);
+		
+		JTextField Info_primer_apellido = new JTextField("");
+		Info_primer_apellido.setBackground(new Color(204, 204, 204));
+		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_primer_apellido.setBounds(357, 170, 132, 22);
+		panel_2.add(Info_primer_apellido);
+		
+		JTextField Info_segundo_apellido = new JTextField("");
+		Info_segundo_apellido.setBackground(new Color(204, 204, 204));
+		Info_segundo_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_segundo_apellido.setBounds(357, 225, 132, 22);
+		panel_2.add(Info_segundo_apellido);
+		
+		JTextField Info_telefono = new JTextField("");
+		Info_telefono.setBackground(new Color(204, 204, 204));
+		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_telefono.setBounds(357, 280, 132, 22);
+		panel_2.add(Info_telefono);
+		
+		JTextField Info_correo = new JTextField("");
+		Info_correo.setBackground(new Color(204, 204, 204));
+		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_correo.setBounds(157, 351, 167, 28);
+		panel_2.add(Info_correo);
+		
+		JTextField Info_contra = new JTextField("");
+		Info_contra.setBackground(new Color(204, 204, 204));
+		Info_contra.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_contra.setBounds(649, 170, 161, 22);
+		panel_2.add(Info_contra);
+		
+		JTextField Info_confirmar_contra = new JTextField("");
+		Info_confirmar_contra.setBackground(new Color(204, 204, 204));
+		Info_confirmar_contra.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_confirmar_contra.setBounds(649, 225, 159, 22);
+		panel_2.add(Info_confirmar_contra);
+		
+		//botones de accion para el cliente ///////////////////////////////////////////////////////////////////////
+		JButton boton_registar = new JButton("Registrar usuario");
+		boton_registar.setForeground(new Color(255, 255, 255));
+		boton_registar.setBackground(new Color(0, 206, 82));
+		boton_registar.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_registar.setBounds(727, 483, 160, 50);
+		boton_registar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		panel_2.add(boton_registar);
+		
+		JButton boton_cancelar = new JButton("Cancelar / volver");
+		boton_cancelar.setForeground(new Color(255, 255, 255));
+		boton_cancelar.setBackground(new Color(255, 0, 0));
+		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_cancelar.setBounds(556, 483, 161, 50);
+		boton_cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+		        controller.Clientes();
+			}
+		});
+		panel_2.add(boton_cancelar);
+		
+		JButton btnNewButton = new JButton("Cargar foto");
+		btnNewButton.setBackground(new Color(255, 205, 17));
+		btnNewButton.setFont(new Font("Anton", Font.PLAIN, 12));
+		btnNewButton.setBounds(15, 296, 132, 32);
+		panel_2.add(btnNewButton);
+		
+		
+		//combox de usario////////////////////////////////////////////////////////////////////////
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
+		JComboBox comboBox_dias = new JComboBox();
+		comboBox_dias.setBackground(new Color(204, 204, 204));
+		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_dias.setBounds(651, 115, 60, 22);
+		for (int i = 1; i <= 31; i++) {
+		    comboBox_dias.addItem(String.valueOf(i));
+		}
+		panel_2.add(comboBox_dias);
+		
+		JComboBox comboBox_meses = new JComboBox();
+		comboBox_meses.setBackground(new Color(204, 204, 204));
+		comboBox_meses.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_meses.setBounds(709, 115, 117, 22);
+		String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+		for (String mes : meses) {
+		  comboBox_meses.addItem(mes);
+		}
+		panel_2.add(comboBox_meses);
+		
+		JComboBox comboBox_año = new JComboBox();
+		comboBox_año.setBackground(new Color(204, 204, 204));
+		comboBox_año.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_año.setBounds(823, 115, 85, 22);
+		for (int año = 1950; año <= 2025; año++) {
+		    comboBox_año.addItem(String.valueOf(año));
+		}
+		panel_2.add(comboBox_año);
+		
+		JComboBox comboBox_Tarifas = new JComboBox();
+		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
+		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_Tarifas.setBounds(649, 283, 161, 22);
+		String[] tarifas = {"NINGUNA", "ESTANDAR", "PREMIUM", "FAMILIAR"};
+		for (String tarifa : tarifas) {
+		    comboBox_Tarifas.addItem(tarifa);
+		}
+		panel_2.add(comboBox_Tarifas);
+		
+		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
+		JButton boton_INICIO= new JButton("INICIO");//boton de inicio
+		boton_INICIO.setBackground(new Color(255, 205, 17));
+		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INICIO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomeController hc = new HomeController();
+				hc.Panel_inicio();
+				
+			}
+		});
+		boton_INICIO.setBounds(10, 86, 136, 71);
+		panel.add(boton_INICIO);
+		
+		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
+		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLIENTES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_CLIENTES.setBounds(10, 168, 136, 71);
+		panel.add(boton_CLIENTES);
+		
+		JButton boton_TARIFAS = new JButton("TARIFAS");//boton de tarifas
+		boton_TARIFAS.setBackground(new Color(255, 205, 17));
+		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_TARIFAS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);

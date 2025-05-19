@@ -15,6 +15,9 @@ public class HomeController {
 		
 		vista.Panel_inicio();
 	}
+	public void Tarifas() {
+		vista.Tarifas();
+	}
 		
 	
 

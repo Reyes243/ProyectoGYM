@@ -110,7 +110,7 @@ public class Añadir_cliente {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("EDITAR INFORMACIÓN");//titulo de inicio 
+		JLabel lblNewLabel = new JLabel("Añadir Clientes");//titulo de inicio 
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);

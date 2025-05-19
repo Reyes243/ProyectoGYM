@@ -21,4 +21,13 @@ public class UsersController {
 	public void Edicion_de_informacion_de_cliente() {
 		vista.Edicion_de_informacion_de_cliente();
 	}
+	public void Historial_de_pagos() {
+		vista.Historial_de_pagos();
+	}
+	public void HIstorial_de_asistencias() {
+		vista.HIstorial_de_asistencias();
+	}
+	public void Añadir_cliente() {
+		vista.Añadir_cliente();
+	}
 }
