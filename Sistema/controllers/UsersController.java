@@ -30,4 +30,16 @@ public class UsersController {
 	public void Añadir_cliente() {
 		vista.Añadir_cliente();
 	}
+	public void Editar_tarifas() {
+		vista.Editar_tarifas();
+	}
+	public void Editar_tarifas2() {
+		vista.Editar_tarifas_2();
+	}
+	public void Añadir_tarifa() {
+		vista.Añadir_tarifa();
+	}
+	public void Clientes_con_tarifa_PREMIUM() {
+		vista.Clientes_con_tarifa_PREMIUM();
+	}
 }

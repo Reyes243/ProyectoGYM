@@ -429,6 +429,14 @@ public class HomeView {
 			Image q2= q1.getImage();
 			Image q3=q2.getScaledInstance(30, 30,Image.SCALE_SMOOTH);
 			boton_plan_instcibsion_premium .setIcon(new ImageIcon(q3));
+			boton_plan_instcibsion_premium.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					UsersController uc = new  UsersController();
+					uc.Clientes_con_tarifa_PREMIUM();
+					
+				}
+			});
 			plan_premium.add(boton_plan_instcibsion_premium);
 			
 			JButton boton_inf_plan_familiar = new JButton("");
@@ -453,6 +461,14 @@ public class HomeView {
 			boton_editar_tarifas.setBackground(new Color(255, 205, 17));
 			boton_editar_tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
 			boton_editar_tarifas.setBounds(754, 513, 136, 40);
+			boton_editar_tarifas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					UsersController uc = new  UsersController();
+					uc.Editar_tarifas();
+					
+				}
+			});
 			panel_2.add(boton_editar_tarifas);
 			
 			
