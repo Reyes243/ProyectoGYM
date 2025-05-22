@@ -1144,7 +1144,6 @@ public class HomeView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Panel_checador();
-				
 
 			}
 		});
@@ -1838,7 +1837,7 @@ public class HomeView {
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
 		panel.add(boton_CERRAR_SESION);
-		
+
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();

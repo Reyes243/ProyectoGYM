@@ -37,7 +37,7 @@ public class AuthView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -280,12 +280,12 @@ public class AuthView {
 					frame.dispose();
 					AuthView av = new AuthView();
 					av.login();
-					
+
 				} else {
 					JOptionPane.showMessageDialog(frame, "Error al guardar los datos.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			}
 		});
 
