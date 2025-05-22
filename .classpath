@@ -8,6 +8,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Recursos/flatlaf-3.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC WHITE WOLF/OneDrive/Escritorio/ProyectoGYM/Files/flatlaf-3.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC WHITE WOLF/OneDrive/Escritorio/ProyectoGYM/Files/mysql-connector-j-9.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
