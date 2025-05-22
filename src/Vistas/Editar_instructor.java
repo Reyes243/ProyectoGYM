@@ -11,16 +11,17 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class Credencial_usuario {
+public class Editar_instructor {
 
 	private JFrame frame;
 
@@ -31,7 +32,7 @@ public class Credencial_usuario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Credencial_usuario window = new Credencial_usuario();
+					Editar_instructor window = new Editar_instructor();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +44,7 @@ public class Credencial_usuario {
 	/**
 	 * Create the application.
 	 */
-	public Credencial_usuario() {
+	public Editar_instructor() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -108,15 +109,15 @@ public class Credencial_usuario {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Credencial");//titulo de inicio 
+		JLabel lblNewLabel = new JLabel("FICHA DE INSTRUCTOR");//titulo de inicio 
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 		
 		JLabel Imagen_de_usuario = new JLabel("");
-		Imagen_de_usuario.setBounds(70, 140, 200, 300);
-		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		Imagen_de_usuario.setBounds(49, 92, 173, 252);
+		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
 		ImageIcon p1 =new ImageIcon("Imagenes/imagen credencial.png");
@@ -125,79 +126,108 @@ public class Credencial_usuario {
 		Imagen_de_usuario .setIcon(new ImageIcon(p3));
 		panel_2.add(Imagen_de_usuario);
 		
-		JLabel lblNewLabel_5 = new JLabel("MIEMBRO");
-		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 32));
-		lblNewLabel_5.setBounds(70, 61, 147, 68);
-		panel_2.add(lblNewLabel_5);
-		
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(340, 160, 84, 32);
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
 		
-		JLabel lblNewLabel_10 = new JLabel("Fecha de nacimiento:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_10.setBounds(340, 230, 200, 32);
+		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_10.setBounds(272, 165, 91, 22);
 		panel_2.add(lblNewLabel_10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vigencia hasta: ");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_6.setBounds(340, 370, 144, 32);
-		panel_2.add(lblNewLabel_6);
+		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
+		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_9.setBounds(272, 267, 104, 22);
+		panel_2.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_13 = new JLabel("No. Identificador: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_13.setBounds(688, 160, 155, 32);
-		panel_2.add(lblNewLabel_13);
+		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
+		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_8.setBounds(272, 315, 67, 22);
+		panel_2.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_14 = new JLabel("Plan actual: ");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_14.setBounds(340, 300, 108, 32);
-		panel_2.add(lblNewLabel_14);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBounds(779, 370, 100, 100);
-		lblNewLabel_7.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon s1 =new ImageIcon("Imagenes/logo ginmasio.png");
-		Image s2= s1.getImage();
-		Image s3=s2.getScaledInstance(100, 100,Image.SCALE_SMOOTH);
-		lblNewLabel_7 .setIcon(new ImageIcon(s3));
+		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
+		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_7.setBounds(272, 362, 132, 28);
 		panel_2.add(lblNewLabel_7);
 		
-		//info de usuario/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre= new JLabel("Jose Lopez");
-		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_nombre.setBounds(420, 162, 118, 29);
+		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_13.setBounds(272, 217, 147, 22);
+		panel_2.add(lblNewLabel_13);
+		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JTextField Info_nombre= new JTextField("Laura Mendez");
+		Info_nombre.setBackground(new Color(204, 204, 204));
+		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_nombre.setBounds(328, 119, 186, 21);
 		panel_2.add(Info_nombre);
 		
-		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_fecha_nacimiento.setBounds(532, 230, 127, 32);
-		panel_2.add(Info_fecha_nacimiento);
+		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
+		Info_especialidad.setBackground(new Color(204, 204, 204));
+		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_especialidad.setBounds(361, 165, 236, 22);
+		panel_2.add(Info_especialidad);
 		
-		JLabel Info_plan = new JLabel("PREMIUM");
-		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_plan.setBounds(444, 300, 118, 32);
-		panel_2.add(Info_plan);
 		
-		JLabel Info_identificador = new JLabel("2");
-		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_identificador.setBounds(843, 160, 36, 32);
-		panel_2.add(Info_identificador);
+		JTextField Info_telefono = new JTextField("612 187 0000");
+		Info_telefono.setBackground(new Color(204, 204, 204));
+		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_telefono.setBounds(334, 315, 152, 22);
+		panel_2.add(Info_telefono);
 		
-		JLabel Info_Vigencia= new JLabel("09/06/2025");
-		Info_Vigencia.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_Vigencia.setBounds(478, 370, 138, 32);
-		panel_2.add(Info_Vigencia);
+		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
+		Info_correo.setBackground(new Color(204, 204, 204));
+		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_correo.setBounds(405, 362, 255, 28);
+		panel_2.add(Info_correo);
 		
-		//botones de accion para el cliente ///////////////////////////////////////////////////////////////////////
-		JButton boton_descraga_credencial = new JButton("Descargar ");
-		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
-		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
-		boton_descraga_credencial.setBounds(740, 494, 147, 39);
-		panel_2.add(boton_descraga_credencial);
+		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
+		Info_horarrio.setBackground(new Color(204, 204, 204));
+		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_horarrio.setBounds(422, 217, 468, 22);
+		panel_2.add(Info_horarrio);
+		
+		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
+		JComboBox comboBox_clases = new JComboBox();
+		comboBox_clases.setBackground(new Color(204, 204, 204));
+		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_clases.setBounds(386, 267, 200, 22);
+		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
+		for (String clase : clases) {
+			comboBox_clases.addItem(clase);
+		}
+		panel_2.add(comboBox_clases);
+		
+		//botones de accion para el instructor ///////////////////////////////////////////////////////////////////////
+		JButton boton_guardar = new JButton("Guardar");
+		boton_guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_guardar.setForeground(new Color(255, 255, 255));
+		boton_guardar.setBackground(new Color(0, 206, 82));
+		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 18));
+		boton_guardar.setBounds(748, 510, 160, 43);
+		panel_2.add(boton_guardar);
+		
+		JButton boton_cancelar = new JButton("Cancelar");
+		boton_cancelar.setForeground(new Color(255, 255, 255));
+		boton_cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 18));
+		boton_cancelar.setBackground(new Color(255, 0, 0));
+		boton_cancelar.setBounds(554, 510, 160, 43);
+		panel_2.add(boton_cancelar);
+		
+		JButton boton_cargargar_foto = new JButton("Cargar foto");
+		boton_cargargar_foto.setFont(new Font("Anton", Font.PLAIN, 11));
+		boton_cargargar_foto.setBackground(new Color(255, 205, 17));
+		boton_cargargar_foto.setBounds(80, 355, 104, 22);
+		panel_2.add(boton_cargargar_foto);
 		
 		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO= new JButton("INICIO");//boton de inicio
@@ -211,7 +241,7 @@ public class Credencial_usuario {
 		panel.add(boton_INICIO);
 		
 		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
-		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setBackground(new Color(255, 205, 17));
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -231,7 +261,7 @@ public class Credencial_usuario {
 		panel.add(boton_TARIFAS);
 		
 		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
-		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setBackground(new Color(255, 255, 255));
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

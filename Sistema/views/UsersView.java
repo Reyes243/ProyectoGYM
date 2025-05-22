@@ -33,6 +33,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import Vistas.Clientes.ButtonEditor;
 import Vistas.Clientes.ButtonRenderer;
+import Vistas.Instructores.ButtonEditor2;
+import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
 
@@ -49,10 +51,6 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		initialize();
-	}
-
-	private void initialize() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -143,7 +141,7 @@ public class UsersView {
 		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer("Eliminar"));
 		table.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), "Eliminar", table));
 
-		// Botón Añadir cliente sin funcionalidad
+		// Botón Añadir cliente 
 		JButton boton_Añadir_cliente = new JButton("Añadir cliente");
 		boton_Añadir_cliente.setForeground(new Color(255, 255, 255));
 		boton_Añadir_cliente.setBackground(new Color(0, 143, 57));
@@ -157,7 +155,6 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_Añadir_cliente);
-		// <-- Sin ActionListener para deshabilitar funcionalidad --
 
 		// Botones laterales de la ventana
 		JButton boton_INICIO = new JButton("INICIO");
@@ -222,7 +219,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	// Renderer para mostrar botones en tabla
+	// Renderer para mostrar botones en tabla clientes
 	public class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer(String label) {
 			setOpaque(true);
@@ -255,7 +252,7 @@ public class UsersView {
 		}
 	}
 
-	// Editor para que los botones con imagen funcionen en tabla
+	// Editor para que los botones con imagen funcionen en tabla clientes
 	public class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
 		private String label;
@@ -346,11 +343,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize3(idCliente);
-	}
 
-	
-	private void initialize3(int idCliente) {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -524,7 +517,7 @@ public class UsersView {
 		JButton boton_descraga_credencial = new JButton("Descargar credencial");
 		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_descraga_credencial.setBounds(727, 501, 160, 32);
+		boton_descraga_credencial.setBounds(736, 501, 160, 32);
 		boton_descraga_credencial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -532,10 +525,10 @@ public class UsersView {
 		});
 		panel_2.add(boton_descraga_credencial);
 		
-		JButton boton_descargar_info = new JButton("Descargar información");
+		JButton boton_descargar_info = new JButton("Descargar");
 		boton_descargar_info.setBackground(new Color(255, 205, 17));
 		boton_descargar_info.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_descargar_info.setBounds(557, 501, 160, 32);
+		boton_descargar_info.setBounds(626, 501, 100, 32);
 		boton_descargar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -543,10 +536,10 @@ public class UsersView {
 		});
 		panel_2.add(boton_descargar_info);
 		
-		JButton boton_editar_info = new JButton("Editar información");
+		JButton boton_editar_info = new JButton("Editar ");
 		boton_editar_info.setBackground(new Color(255, 205, 17));
 		boton_editar_info.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_editar_info.setBounds(387, 501, 160, 32);
+		boton_editar_info.setBounds(531, 501, 85, 32);
 		boton_editar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -560,7 +553,7 @@ public class UsersView {
 		JButton boton_historial_asistencias = new JButton("Historial de asistencia");
 		boton_historial_asistencias.setBackground(new Color(255, 205, 17));
 		boton_historial_asistencias.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_historial_asistencias.setBounds(217, 501, 160, 32);
+		boton_historial_asistencias.setBounds(362, 501, 160, 32);
 		boton_historial_asistencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -573,7 +566,7 @@ public class UsersView {
 		JButton boton_historial_pagos = new JButton("Historial de pagos");
 		boton_historial_pagos.setBackground(new Color(255, 205, 17));
 		boton_historial_pagos.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_historial_pagos.setBounds(47, 501, 160, 32);
+		boton_historial_pagos.setBounds(192, 501, 160, 32);
 		boton_historial_pagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -583,6 +576,16 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_historial_pagos);
+		
+		JButton boton_regresar = new JButton("Regresar");
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(22, 501, 160, 32);
+		panel_2.add(boton_regresar);
 		
 		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO= new JButton("INICIO");//boton de inicio
@@ -675,10 +678,6 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize2();
-	}
-
-	private void initialize2() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -1009,10 +1008,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize3();
-	}
-
-	private void initialize3() {
+	
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -1209,13 +1205,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize4();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize4() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -1412,11 +1402,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize6();
-	}
-
 	
-	private void initialize6() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -1735,6 +1721,7 @@ public class UsersView {
 		frame.revalidate();
 		frame.setVisible(true);
 	}
+	
 	public void Editar_tarifas() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());
@@ -1742,13 +1729,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize5();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize5() {
+	
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -2061,11 +2042,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize7();
-	}
-
-
-	private void initialize7() {
+	
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -2318,10 +2295,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize8();
-	}
 
-	private void initialize8() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -2571,10 +2545,7 @@ public class UsersView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize9();
-	}
 
-	private void initialize9() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -2745,5 +2716,7 @@ public class UsersView {
 		frame.revalidate();
 		frame.setVisible(true);
 	}
+	
+	
 	
 }

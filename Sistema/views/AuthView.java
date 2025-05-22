@@ -37,10 +37,7 @@ public class AuthView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		initialize();
-	}
-
-	private void initialize() {
+		
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -177,10 +174,6 @@ public class AuthView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		initialize2();
-	}
-
-	private void initialize2() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);

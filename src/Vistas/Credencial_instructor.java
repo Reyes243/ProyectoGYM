@@ -16,11 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class Credencial_usuario {
+public class Credencial_instructor {
 
 	private JFrame frame;
 
@@ -31,7 +30,7 @@ public class Credencial_usuario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Credencial_usuario window = new Credencial_usuario();
+					Credencial_instructor window = new Credencial_instructor();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +42,7 @@ public class Credencial_usuario {
 	/**
 	 * Create the application.
 	 */
-	public Credencial_usuario() {
+	public Credencial_instructor() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -125,34 +124,24 @@ public class Credencial_usuario {
 		Imagen_de_usuario .setIcon(new ImageIcon(p3));
 		panel_2.add(Imagen_de_usuario);
 		
-		JLabel lblNewLabel_5 = new JLabel("MIEMBRO");
+		JLabel lblNewLabel_5 = new JLabel("INSTRUCTOR");
 		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 32));
 		lblNewLabel_5.setBounds(70, 61, 147, 68);
 		panel_2.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(340, 160, 84, 32);
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_11.setBounds(325, 160, 84, 32);
 		panel_2.add(lblNewLabel_11);
 		
-		JLabel lblNewLabel_10 = new JLabel("Fecha de nacimiento:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_10.setBounds(340, 230, 200, 32);
+		JLabel lblNewLabel_10 = new JLabel("Especialidad:");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_10.setBounds(325, 230, 127, 32);
 		panel_2.add(lblNewLabel_10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vigencia hasta: ");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_6.setBounds(340, 370, 144, 32);
-		panel_2.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_13 = new JLabel("No. Identificador: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_13.setBounds(688, 160, 155, 32);
-		panel_2.add(lblNewLabel_13);
-		
-		JLabel lblNewLabel_14 = new JLabel("Plan actual: ");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_14.setBounds(340, 300, 108, 32);
+		JLabel lblNewLabel_14 = new JLabel("Horarios: ");
+		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_14.setBounds(325, 300, 152, 32);
 		panel_2.add(lblNewLabel_14);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
@@ -167,30 +156,20 @@ public class Credencial_usuario {
 		panel_2.add(lblNewLabel_7);
 		
 		//info de usuario/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre= new JLabel("Jose Lopez");
-		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_nombre.setBounds(420, 162, 118, 29);
+		JLabel Info_nombre= new JLabel("Laura Mendez ");
+		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
+		Info_nombre.setBounds(399, 162, 152, 29);
 		panel_2.add(Info_nombre);
 		
-		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_fecha_nacimiento.setBounds(532, 230, 127, 32);
+		JLabel Info_fecha_nacimiento = new JLabel("Pilates y Yoga");
+		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 20));
+		Info_fecha_nacimiento.setBounds(435, 230, 136, 32);
 		panel_2.add(Info_fecha_nacimiento);
 		
-		JLabel Info_plan = new JLabel("PREMIUM");
-		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_plan.setBounds(444, 300, 118, 32);
+		JLabel Info_plan = new JLabel("Lunes, Miércoles y Viernes - 8:00 am a 12:00 pm");
+		Info_plan.setFont(new Font("Anton", Font.PLAIN, 20));
+		Info_plan.setBounds(325, 327, 461, 32);
 		panel_2.add(Info_plan);
-		
-		JLabel Info_identificador = new JLabel("2");
-		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_identificador.setBounds(843, 160, 36, 32);
-		panel_2.add(Info_identificador);
-		
-		JLabel Info_Vigencia= new JLabel("09/06/2025");
-		Info_Vigencia.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_Vigencia.setBounds(478, 370, 138, 32);
-		panel_2.add(Info_Vigencia);
 		
 		//botones de accion para el cliente ///////////////////////////////////////////////////////////////////////
 		JButton boton_descraga_credencial = new JButton("Descargar ");
@@ -198,6 +177,12 @@ public class Credencial_usuario {
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_descraga_credencial.setBounds(740, 494, 147, 39);
 		panel_2.add(boton_descraga_credencial);
+		
+		JButton boton_descraga_credencial_1 = new JButton("Regresar");
+		boton_descraga_credencial_1.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_descraga_credencial_1.setBackground(new Color(255, 205, 17));
+		boton_descraga_credencial_1.setBounds(583, 494, 147, 39);
+		panel_2.add(boton_descraga_credencial_1);
 		
 		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO= new JButton("INICIO");//boton de inicio
@@ -211,7 +196,7 @@ public class Credencial_usuario {
 		panel.add(boton_INICIO);
 		
 		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
-		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setBackground(new Color(255, 205, 17));
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -231,7 +216,7 @@ public class Credencial_usuario {
 		panel.add(boton_TARIFAS);
 		
 		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
-		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setBackground(new Color(255, 255, 255));
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -233,32 +233,42 @@ public class Informacion_de_cliente {
 		JButton boton_descraga_credencial = new JButton("Descargar credencial");
 		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_descraga_credencial.setBounds(727, 501, 160, 32);
+		boton_descraga_credencial.setBounds(736, 501, 160, 32);
 		panel_2.add(boton_descraga_credencial);
 		
-		JButton boton_descargar_info = new JButton("Descargar información");
+		JButton boton_descargar_info = new JButton("Descargar");
 		boton_descargar_info.setBackground(new Color(255, 205, 17));
 		boton_descargar_info.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_descargar_info.setBounds(557, 501, 160, 32);
+		boton_descargar_info.setBounds(626, 501, 100, 32);
 		panel_2.add(boton_descargar_info);
 		
-		JButton boton_editar_info = new JButton("Editar información");
+		JButton boton_editar_info = new JButton("Editar ");
 		boton_editar_info.setBackground(new Color(255, 205, 17));
 		boton_editar_info.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_editar_info.setBounds(387, 501, 160, 32);
+		boton_editar_info.setBounds(531, 501, 85, 32);
 		panel_2.add(boton_editar_info);
 		
 		JButton boton_historial_asistencias = new JButton("Historial de asistencia");
 		boton_historial_asistencias.setBackground(new Color(255, 205, 17));
 		boton_historial_asistencias.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_historial_asistencias.setBounds(217, 501, 160, 32);
+		boton_historial_asistencias.setBounds(362, 501, 160, 32);
 		panel_2.add(boton_historial_asistencias);
 		
 		JButton boton_historial_pagos = new JButton("Historial de pagos");
 		boton_historial_pagos.setBackground(new Color(255, 205, 17));
 		boton_historial_pagos.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_historial_pagos.setBounds(47, 501, 160, 32);
+		boton_historial_pagos.setBounds(192, 501, 160, 32);
 		panel_2.add(boton_historial_pagos);
+		
+		JButton boton_regresar = new JButton("Regresar");
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(22, 501, 160, 32);
+		panel_2.add(boton_regresar);
 		
 		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO= new JButton("INICIO");//boton de inicio

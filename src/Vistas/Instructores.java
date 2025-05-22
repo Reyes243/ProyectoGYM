@@ -26,8 +26,10 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import Vistas.Clientes.ButtonEditor;
 import Vistas.Clientes.ButtonRenderer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Clientes {
+public class Instructores {
 	private DefaultTableModel model;
 	private JTable table;
 	private JFrame frame;
@@ -39,7 +41,7 @@ public class Clientes {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Clientes window = new Clientes();
+					Instructores window = new Instructores();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +53,7 @@ public class Clientes {
 	/**
 	 * Create the application.
 	 */
-	public Clientes() {
+	public Instructores() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -65,6 +67,7 @@ public class Clientes {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -112,10 +115,10 @@ public class Clientes {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("CLIENTES");
+		JLabel lblNewLabel = new JLabel("INSTRUCTORES");
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(60, 11, 105, 28);
+		lblNewLabel.setBounds(60, 11, 205, 28);
 		panel_3.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -124,16 +127,16 @@ public class Clientes {
 
 		// Datos de ejemplo
 		Object[][] data = {
-			{1, "Carlos", "Ramírez", "1234567890", "carlos@mail.com", "", ""},
-			{2, "Laura", "Martínez", "0987654321", "laura@mail.com", "", ""}
+			{ "Carlos",  "Crossfit", "carlos@mail.com", "", ""},
+			{ "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", ""}
 		};
 
-		String[] columnNames = {"ID", "Nombre", "Primer Apellido", "Teléfono", "Correo", "Consulta", "Eliminar"};
+		String[] columnNames = {"Nombre", "Especialidad",  "Correo", "Detalles", "Eliminar"};
 
 		model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 5 || column == 6;
+				return column == 3 || column == 4;
 			}
 		};
 
@@ -149,19 +152,24 @@ public class Clientes {
 		scrollPane.setViewportView(table);
 
 		// Renderizar botones en la tabla
-		table.getColumn("Consulta").setCellRenderer(new ButtonRenderer("Consulta"));
-		table.getColumn("Consulta").setCellEditor(new ButtonEditor(new JCheckBox(), "Consulta", table));
+		table.getColumn("Detalles").setCellRenderer(new ButtonRenderer2("Detalles"));
+		table.getColumn("Detalles").setCellEditor(new ButtonEditor2(new JCheckBox(), "Detalles", table));
 
-		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer("Eliminar"));
-		table.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), "Eliminar", table));
+		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer2("Eliminar"));
+		table.getColumn("Eliminar").setCellEditor(new ButtonEditor2(new JCheckBox(), "Eliminar", table));
 
-		// Botón Añadir cliente 
-		JButton boton_Añadir_cliente = new JButton("Añadir cliente");
-		boton_Añadir_cliente.setForeground(new Color(255, 255, 255));
-		boton_Añadir_cliente.setBackground(new Color(0, 143, 57));
-		boton_Añadir_cliente.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_Añadir_cliente.setBounds(763, 522, 145, 31);
-		panel_2.add(boton_Añadir_cliente);
+		// Botón Añadir instructor
+		
+		JButton boton_Añadir_instructor = new JButton("Añadir instructor");
+		boton_Añadir_instructor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_Añadir_instructor.setForeground(new Color(255, 255, 255));
+		boton_Añadir_instructor.setBackground(new Color(0, 143, 57));
+		boton_Añadir_instructor.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_Añadir_instructor.setBounds(763, 522, 145, 31);
+		panel_2.add(boton_Añadir_instructor);
 		
 
 		// Botones laterales de la ventana
@@ -172,7 +180,7 @@ public class Clientes {
 		panel.add(boton_INICIO);
 
 		JButton boton_CLIENTES = new JButton("CLIENTES");
-		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setBackground(new Color(255, 205, 17));
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
 		panel.add(boton_CLIENTES);
@@ -184,7 +192,7 @@ public class Clientes {
 		panel.add(boton_TARIFAS);
 
 		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");
-		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setBackground(new Color(255, 255, 255));
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
 		panel.add(boton_INSTRUCTORES);
@@ -209,8 +217,8 @@ public class Clientes {
 	}
 
 	// Renderer para mostrar botones en tabla
-	public class ButtonRenderer extends JButton implements TableCellRenderer {
-	    public ButtonRenderer(String label) {
+	public class ButtonRenderer2 extends JButton implements TableCellRenderer {
+	    public ButtonRenderer2(String label) {
 	        setOpaque(true);
 	        setForeground(Color.BLACK);
 	        setBackground(new Color(255, 205, 17));
@@ -218,8 +226,8 @@ public class Clientes {
 	        setHorizontalAlignment(SwingConstants.CENTER);
 
 	        // Cargar icono según etiqueta
-	        if (label.equals("Consulta")) {
-	            setIcon(loadIcon("Imagenes/editar.png"));
+	        if (label.equals("Detalles")) {
+	            setIcon(loadIcon("Imagenes/consultar.png"));
 	            setBackground(new Color(255, 205, 17)); 
 	        } else if (label.equals("Eliminar")) {
 	            setIcon(loadIcon("Imagenes/eliminar.png"));
@@ -242,14 +250,14 @@ public class Clientes {
 	}
 
 	// Editor para que los botones con imagen funcionen en tabla
-	public class ButtonEditor extends DefaultCellEditor {
+	public class ButtonEditor2 extends DefaultCellEditor {
 	    protected JButton button;
 	    private String label;
 	    private boolean clicked;
 	    private int row;
 	    private JTable table;
 
-	    public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
+	    public ButtonEditor2(JCheckBox checkBox, String label, JTable table) {
 	        super(checkBox);
 	        this.label = label;
 	        this.table = table;
@@ -260,9 +268,9 @@ public class Clientes {
 	        button.setFont(new Font("Anton", Font.PLAIN, 14));
 	        button.setHorizontalAlignment(SwingConstants.CENTER);
 
-	        // Cargar icono según etiqueta
-	        if (label.equals("Consulta")) {
-	            button.setIcon(loadIcon("Imagenes/editar.png"));
+	        // Cargar icono
+	        if (label.equals("Detalles")) {
+	            button.setIcon(loadIcon("Imagenes/consultar.png"));
 	        } else if (label.equals("Eliminar")) {
 	            button.setIcon(loadIcon("Imagenes/eliminar.png"));
 	        }
@@ -291,7 +299,7 @@ public class Clientes {
 		        if (label.equals("Eliminar")) {
 		            // Aquí conecta con la base de datos para borrar el registro según el ID de la fila seleccionada
 		            // y luego actualiza la tabla recargando datos.
-		        } else if (label.equals("Consulta")) {
+		        } else if (label.equals("Detalles")) {
 		            // Aquí abre un formulario para editar la fila,
 		            // luego guarda cambios en la base de datos con un UPDATE,
 		            // y recarga la tabla con los datos actualizados.

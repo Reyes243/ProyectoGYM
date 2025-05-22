@@ -16,11 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class Credencial_usuario {
+public class Ficha_de_instructor {
 
 	private JFrame frame;
 
@@ -31,7 +30,7 @@ public class Credencial_usuario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Credencial_usuario window = new Credencial_usuario();
+					Ficha_de_instructor window = new Ficha_de_instructor();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +42,7 @@ public class Credencial_usuario {
 	/**
 	 * Create the application.
 	 */
-	public Credencial_usuario() {
+	public Ficha_de_instructor() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -108,14 +107,14 @@ public class Credencial_usuario {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Credencial");//titulo de inicio 
+		JLabel lblNewLabel = new JLabel("FICHA DE INSTRUCTOR");//titulo de inicio 
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 		
 		JLabel Imagen_de_usuario = new JLabel("");
-		Imagen_de_usuario.setBounds(70, 140, 200, 300);
+		Imagen_de_usuario.setBounds(15, 90, 200, 300);
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
@@ -125,79 +124,98 @@ public class Credencial_usuario {
 		Imagen_de_usuario .setIcon(new ImageIcon(p3));
 		panel_2.add(Imagen_de_usuario);
 		
-		JLabel lblNewLabel_5 = new JLabel("MIEMBRO");
-		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 32));
-		lblNewLabel_5.setBounds(70, 61, 147, 68);
-		panel_2.add(lblNewLabel_5);
-		
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(340, 160, 84, 32);
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
 		
-		JLabel lblNewLabel_10 = new JLabel("Fecha de nacimiento:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_10.setBounds(340, 230, 200, 32);
+		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_10.setBounds(272, 165, 91, 22);
 		panel_2.add(lblNewLabel_10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vigencia hasta: ");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_6.setBounds(340, 370, 144, 32);
-		panel_2.add(lblNewLabel_6);
+		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
+		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_9.setBounds(272, 267, 104, 22);
+		panel_2.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_13 = new JLabel("No. Identificador: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_13.setBounds(688, 160, 155, 32);
-		panel_2.add(lblNewLabel_13);
+		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
+		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_8.setBounds(272, 315, 67, 22);
+		panel_2.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_14 = new JLabel("Plan actual: ");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_14.setBounds(340, 300, 108, 32);
-		panel_2.add(lblNewLabel_14);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBounds(779, 370, 100, 100);
-		lblNewLabel_7.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon s1 =new ImageIcon("Imagenes/logo ginmasio.png");
-		Image s2= s1.getImage();
-		Image s3=s2.getScaledInstance(100, 100,Image.SCALE_SMOOTH);
-		lblNewLabel_7 .setIcon(new ImageIcon(s3));
+		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
+		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_7.setBounds(272, 362, 132, 28);
 		panel_2.add(lblNewLabel_7);
 		
-		//info de usuario/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre= new JLabel("Jose Lopez");
-		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_nombre.setBounds(420, 162, 118, 29);
+		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_13.setBounds(272, 217, 147, 22);
+		panel_2.add(lblNewLabel_13);
+		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JLabel Info_nombre= new JLabel("Laura Mendez");
+		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_nombre.setBounds(328, 119, 122, 21);
 		panel_2.add(Info_nombre);
 		
-		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_fecha_nacimiento.setBounds(532, 230, 127, 32);
-		panel_2.add(Info_fecha_nacimiento);
+		JLabel Info_especialidad = new JLabel("Pilates y Yoga");
+		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_especialidad.setBounds(361, 165, 147, 22);
+		panel_2.add(Info_especialidad);
 		
-		JLabel Info_plan = new JLabel("PREMIUM");
-		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_plan.setBounds(444, 300, 118, 32);
-		panel_2.add(Info_plan);
+		JLabel Info_clase = new JLabel("YOGA RELAX");
+		Info_clase.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_clase.setBounds(381, 267, 152, 22);
+		panel_2.add(Info_clase);
 		
-		JLabel Info_identificador = new JLabel("2");
-		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_identificador.setBounds(843, 160, 36, 32);
-		panel_2.add(Info_identificador);
+		JLabel Info_telefono = new JLabel("612 187 0000");
+		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_telefono.setBounds(334, 315, 152, 22);
+		panel_2.add(Info_telefono);
 		
-		JLabel Info_Vigencia= new JLabel("09/06/2025");
-		Info_Vigencia.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_Vigencia.setBounds(478, 370, 138, 32);
-		panel_2.add(Info_Vigencia);
+		JLabel Info_correo = new JLabel(" laura.mendez@evolvefit.com");
+		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_correo.setBounds(405, 362, 200, 28);
+		panel_2.add(Info_correo);
+		
+		JLabel Info_horarrio = new JLabel("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
+		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_horarrio.setBounds(422, 217, 352, 22);
+		panel_2.add(Info_horarrio);
 		
 		//botones de accion para el cliente ///////////////////////////////////////////////////////////////////////
-		JButton boton_descraga_credencial = new JButton("Descargar ");
+		JButton boton_descraga_credencial = new JButton("credencial");
 		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
-		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
-		boton_descraga_credencial.setBounds(740, 494, 147, 39);
+		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_descraga_credencial.setBounds(736, 501, 160, 32);
 		panel_2.add(boton_descraga_credencial);
+		
+		JButton boton_historial_asistencias = new JButton("Editar información");
+		boton_historial_asistencias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_historial_asistencias.setBackground(new Color(255, 205, 17));
+		boton_historial_asistencias.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_historial_asistencias.setBounds(566, 501, 160, 32);
+		panel_2.add(boton_historial_asistencias);
+		
+		JButton boton_historial_pagos = new JButton("Historial de clases");
+		boton_historial_pagos.setBackground(new Color(255, 205, 17));
+		boton_historial_pagos.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_historial_pagos.setBounds(396, 501, 160, 32);
+		panel_2.add(boton_historial_pagos);
+		
+		JButton boton_regresar = new JButton("Regresar");
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 12));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(226, 501, 160, 32);
+		panel_2.add(boton_regresar);
 		
 		//Botones laterales //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO= new JButton("INICIO");//boton de inicio
@@ -211,7 +229,7 @@ public class Credencial_usuario {
 		panel.add(boton_INICIO);
 		
 		JButton boton_CLIENTES = new JButton("CLIENTES");//boton de clientes
-		boton_CLIENTES.setBackground(new Color(255, 255, 255));
+		boton_CLIENTES.setBackground(new Color(255, 205, 17));
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -231,7 +249,7 @@ public class Credencial_usuario {
 		panel.add(boton_TARIFAS);
 		
 		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");//boton de instructores
-		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setBackground(new Color(255, 255, 255));
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
