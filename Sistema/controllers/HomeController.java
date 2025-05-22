@@ -24,6 +24,9 @@ public class HomeController {
 	public void Clases() {
 		vista.Clases();
 	}
+	public void Panel_checador() {
+		vista.Panel_checador();
+	}
 		
 	
 

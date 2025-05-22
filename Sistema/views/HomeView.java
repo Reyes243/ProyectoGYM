@@ -14,13 +14,16 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +38,7 @@ import Vistas.Instructores.ButtonEditor2;
 import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
+import models.ConectionModel;
 
 public class HomeView {
 
@@ -242,7 +246,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Clases();
-				
+
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -253,6 +257,9 @@ public class HomeView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -263,6 +270,24 @@ public class HomeView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -412,7 +437,10 @@ public class HomeView {
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+
 			}
 		});
 		panel.add(boton_TARIFAS);
@@ -426,7 +454,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Instructores();
-				
+
 			}
 		});
 		panel.add(boton_INSTRUCTORES);
@@ -440,7 +468,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Clases();
-				
+
 			}
 		});
 		panel.add(boton_CLASES);
@@ -449,12 +477,42 @@ public class HomeView {
 		boton_CHECADOR.setBackground(new Color(255, 205, 17));
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
+
+			}
+		});
 		panel.add(boton_CHECADOR);
 
 		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
+			}
+		});
 		panel.add(boton_CERRAR_SESION);
 
 		frame.add(panel);
@@ -857,6 +915,9 @@ public class HomeView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -867,6 +928,24 @@ public class HomeView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -888,7 +967,7 @@ public class HomeView {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
-		//frame.setLocationRelativeTo(null);
+		// frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -1060,12 +1139,43 @@ public class HomeView {
 		boton_CHECADOR.setBackground(new Color(255, 205, 17));
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
+				
+
+			}
+		});
 		panel.add(boton_CHECADOR);
 
 		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
+			}
+		});
 		panel.add(boton_CERRAR_SESION);
 
 		frame.add(panel);
@@ -1188,6 +1298,7 @@ public class HomeView {
 		}
 
 	}
+
 	public void Clases() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -1257,11 +1368,9 @@ public class HomeView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = {
-			{"YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", ""}
-		};
+		Object[][] data = { { "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
 
-		String[] columnNames = {"Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros"};
+		String[] columnNames = { "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
@@ -1288,8 +1397,8 @@ public class HomeView {
 		table.getColumn("Registros").setCellRenderer(new ButtonRenderer3("Registros"));
 		table.getColumn("Registros").setCellEditor(new ButtonEditor3(new JCheckBox(), "Registros", table));
 
-		// Botón Añadir cliente 
-		JButton boton_Editar_clases= new JButton("Editar clases");
+		// Botón Añadir cliente
+		JButton boton_Editar_clases = new JButton("Editar clases");
 		boton_Editar_clases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -1302,10 +1411,9 @@ public class HomeView {
 		boton_Editar_clases.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_Editar_clases.setBounds(763, 522, 145, 31);
 		panel_2.add(boton_Editar_clases);
-		
 
 		// Botones laterales de la ventana
-		JButton boton_INICIO= new JButton("INICIO");
+		JButton boton_INICIO = new JButton("INICIO");
 		boton_INICIO.setBackground(new Color(255, 205, 17));
 		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INICIO.setBounds(10, 86, 136, 71);
@@ -1314,7 +1422,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Panel_inicio();
-			
+
 			}
 		});
 		panel.add(boton_INICIO);
@@ -1374,6 +1482,9 @@ public class HomeView {
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		panel.add(boton_CHECADOR);
@@ -1384,10 +1495,28 @@ public class HomeView {
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		panel.add(boton_CERRAR_SESION);
-		
+
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
@@ -1396,115 +1525,324 @@ public class HomeView {
 
 	// Renderer para mostrar botones en tabla
 	public class ButtonRenderer3 extends JButton implements TableCellRenderer {
-	    public ButtonRenderer3(String label) {
-	        setOpaque(true);
-	        setForeground(Color.BLACK);
-	        setBackground(new Color(255, 205, 17));
-	        setFont(new Font("Anton", Font.PLAIN, 14));
-	        setHorizontalAlignment(SwingConstants.CENTER);
+		public ButtonRenderer3(String label) {
+			setOpaque(true);
+			setForeground(Color.BLACK);
+			setBackground(new Color(255, 205, 17));
+			setFont(new Font("Anton", Font.PLAIN, 14));
+			setHorizontalAlignment(SwingConstants.CENTER);
 
-	        // Cargar icono según etiqueta
-	        if (label.equals("Inscribir")) {
-	            setIcon(loadIcon("Imagenes/editar.png"));
-	            setBackground(new Color(0, 206, 82)); 
-	        } else if (label.equals("Registros")) {
-	            setIcon(loadIcon("Imagenes/eliminar.png"));
-	            setBackground(new Color(255, 205, 17)); 
-	        }
-	        setText(null);  
-	    }
+			// Cargar icono según etiqueta
+			if (label.equals("Inscribir")) {
+				setIcon(loadIcon("Imagenes/editar.png"));
+				setBackground(new Color(0, 206, 82));
+			} else if (label.equals("Registros")) {
+				setIcon(loadIcon("Imagenes/eliminar.png"));
+				setBackground(new Color(255, 205, 17));
+			}
+			setText(null);
+		}
 
-	    private ImageIcon loadIcon(String path) {
-	        ImageIcon icon = new ImageIcon(path);
-	        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-	        return new ImageIcon(img);
-	    }
+		private ImageIcon loadIcon(String path) {
+			ImageIcon icon = new ImageIcon(path);
+			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			return new ImageIcon(img);
+		}
 
-	    @Override
-	    public Component getTableCellRendererComponent(JTable table, Object value,
-	            boolean isSelected, boolean hasFocus, int row, int column) {
-	        return this;
-	    }
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			return this;
+		}
 	}
 
 	// Editor para que los botones con imagen funcionen en tabla
 	public class ButtonEditor3 extends DefaultCellEditor {
-	    protected JButton button;
-	    private String label;
-	    private boolean clicked;
-	    private int row;
-	    private JTable table;
+		protected JButton button;
+		private String label;
+		private boolean clicked;
+		private int row;
+		private JTable table;
 
-	    public ButtonEditor3(JCheckBox checkBox, String label, JTable table) {
-	        super(checkBox);
-	        this.label = label;
-	        this.table = table;
-	        button = new JButton();
-	        button.setOpaque(true);
-	        button.setForeground(Color.BLACK);
-	        button.setBackground(new Color(255, 205, 17));
-	        button.setFont(new Font("Anton", Font.PLAIN, 14));
-	        button.setHorizontalAlignment(SwingConstants.CENTER);
+		public ButtonEditor3(JCheckBox checkBox, String label, JTable table) {
+			super(checkBox);
+			this.label = label;
+			this.table = table;
+			button = new JButton();
+			button.setOpaque(true);
+			button.setForeground(Color.BLACK);
+			button.setBackground(new Color(255, 205, 17));
+			button.setFont(new Font("Anton", Font.PLAIN, 14));
+			button.setHorizontalAlignment(SwingConstants.CENTER);
 
-	        // Cargar icono según etiqueta
-	        if (label.equals("Inscribir")) {
-	            button.setIcon(loadIcon("Imagenes/editar.png"));
-	        } else if (label.equals("Registros")) {
-	            button.setIcon(loadIcon("Imagenes/eliminar.png"));
-	        }
-	        button.setText(null);  // Sin texto
+			// Cargar icono según etiqueta
+			if (label.equals("Inscribir")) {
+				button.setIcon(loadIcon("Imagenes/editar.png"));
+			} else if (label.equals("Registros")) {
+				button.setIcon(loadIcon("Imagenes/eliminar.png"));
+			}
+			button.setText(null); // Sin texto
 
-	        button.addActionListener(e -> fireEditingStopped());
-	    }
+			button.addActionListener(e -> fireEditingStopped());
+		}
 
-	    private ImageIcon loadIcon(String path) {
-	        ImageIcon icon = new ImageIcon(path);
-	        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-	        return new ImageIcon(img);
-	    }
+		private ImageIcon loadIcon(String path) {
+			ImageIcon icon = new ImageIcon(path);
+			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			return new ImageIcon(img);
+		}
 
-	    @Override
-	    public Component getTableCellEditorComponent(JTable table, Object value,
-	            boolean isSelected, int row, int column) {
-	        this.row = row;
-	        clicked = true;
-	        return button;
-	    }
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+				int column) {
+			this.row = row;
+			clicked = true;
+			return button;
+		}
 
-	    @Override
-	    public Object getCellEditorValue() {
-		    if (clicked) {
-		        if (label.equals("Registros")) {
-		        	String nombreClase = (String) table.getValueAt(row, 0); // Obtén el nombre
+		@Override
+		public Object getCellEditorValue() {
+			if (clicked) {
+				if (label.equals("Registros")) {
+					String nombreClase = (String) table.getValueAt(row, 0); // Obtén el nombre
 					Window window = SwingUtilities.getWindowAncestor(table);
 					if (window != null) {
 						window.dispose();
 					}
 					UsersController uc = new UsersController();
 					uc.Registro_de_clase(nombreClase);
-		            // Aquí conecta con la base de datos para borrar el registro según el ID de la fila seleccionada
-		            // y luego actualiza la tabla recargando datos.
-		        } else if (label.equals("Inscribir")) {
-		        	
-		            // Aquí abre un formulario para editar la fila,
-		            // luego guarda cambios en la base de datos con un UPDATE,
-		            // y recarga la tabla con los datos actualizados.
-		        }
-		    }
-		    clicked = false;
-		    return label;
+					// Aquí conecta con la base de datos para borrar el registro según el ID de la
+					// fila seleccionada
+					// y luego actualiza la tabla recargando datos.
+				} else if (label.equals("Inscribir")) {
+
+					// Aquí abre un formulario para editar la fila,
+					// luego guarda cambios en la base de datos con un UPDATE,
+					// y recarga la tabla con los datos actualizados.
+				}
+			}
+			clicked = false;
+			return label;
 		}
 
-	    @Override
-	    public boolean stopCellEditing() {
-	        clicked = false;
-	        return super.stopCellEditing();
-	    }
+		@Override
+		public boolean stopCellEditing() {
+			clicked = false;
+			return super.stopCellEditing();
+		}
 
-	    @Override
-	    protected void fireEditingStopped() {
-	        super.fireEditingStopped();
-	    }
+		@Override
+		protected void fireEditingStopped() {
+			super.fireEditingStopped();
+		}
+	}
+
+	public void Panel_checador() {
+		try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("Button.arc", 8); // Esquinas redondeadas
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 1100, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(204, 204, 204));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 1084, 75);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 11, 53, 53);
+		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
+		Image portada2 = portada1.getImage();
+		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		panel_1.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
+		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
+		lblNewLabel_2.setBounds(73, 11, 128, 35);
+		panel_1.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
+		lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(73, 42, 107, 22);
+		panel_1.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
+		lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
+		lblNewLabel_4.setBounds(407, 11, 270, 53);
+		panel_1.add(lblNewLabel_4);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(156, 86, 918, 564);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 0, 0));
+		panel_3.setBounds(0, 0, 918, 50);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("CHECADOR");// titulo de inicio
+		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(60, 11, 309, 28);
+		panel_3.add(lblNewLabel);
+
+		Object[][] data = { { 1, "Brandon Arce Ulloa", "12:02 pm" } };
+
+		String[] columnas = { "ID cliente", "Nombre(s)", "Entrada" };
+
+		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
+		scrollPane_Usuario.setBounds(10, 61, 898, 431);
+		panel_2.add(scrollPane_Usuario);
+		JTable table = new JTable(data, columnas);
+		table.setFont(new Font("Anton", Font.PLAIN, 12));
+		table.setBackground(new Color(204, 204, 204));
+		scrollPane_Usuario.setViewportView(table);
+
+		JTableHeader header = table.getTableHeader();
+		header.setBackground(Color.BLACK);
+		header.setForeground(Color.WHITE);
+		header.setFont(new Font("Anton", Font.PLAIN, 14));
+		header.setReorderingAllowed(false);
+		scrollPane_Usuario.setViewportView(table);
+
+		JButton boton_regresar = new JButton("Añadir entrada");// boton regresar
+		boton_regresar.setForeground(new Color(255, 255, 255));
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_regresar.setBackground(new Color(0, 206, 82));
+		boton_regresar.setBounds(724, 503, 184, 50);
+		panel_2.add(boton_regresar);
+
+		JButton boton_descargar_clase = new JButton("Descargar");
+		boton_descargar_clase.setFont(new Font("Anton", Font.PLAIN, 20));
+		boton_descargar_clase.setBackground(new Color(255, 205, 17));
+		boton_descargar_clase.setBounds(530, 503, 184, 50);
+		panel_2.add(boton_descargar_clase);
+
+		// botones
+		// laterales/////////////////////////////////////////////////////////////////////////////////////////
+		JButton boton_INICIO = new JButton("INICIO");
+		boton_INICIO.setBackground(new Color(255, 205, 17));
+		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INICIO.setBounds(10, 86, 136, 71);
+		boton_INICIO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_inicio();
+			}
+		});
+		panel.add(boton_INICIO);
+
+		JButton boton_CLIENTES = new JButton("CLIENTES");// boton de clientes
+		boton_CLIENTES.setBackground(new Color(255, 205, 17));
+		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLIENTES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
+			}
+		});
+		boton_CLIENTES.setBounds(10, 168, 136, 71);
+		panel.add(boton_CLIENTES);
+
+		JButton boton_TARIFAS = new JButton("TARIFAS");// boton de tarifas
+		boton_TARIFAS.setBackground(new Color(255, 205, 17));
+		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_TARIFAS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
+			}
+		});
+		boton_TARIFAS.setBounds(10, 250, 136, 71);
+		panel.add(boton_TARIFAS);
+
+		JButton boton_INSTRUCTORES = new JButton("INSTRUCTORES");// boton de instructores
+		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
+		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_INSTRUCTORES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
+			}
+		});
+		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
+		panel.add(boton_INSTRUCTORES);
+
+		JButton boton_CLASES = new JButton("CLASES");
+		boton_CLASES.setBackground(new Color(255, 205, 17));
+		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
+		panel.add(boton_CLASES);
+
+		JButton boton_CHECADOR = new JButton("CHECADOR");// boton de checador
+		boton_CHECADOR.setBackground(new Color(255, 255, 255));
+		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		panel.add(boton_CHECADOR);
+
+		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");// boton de cerrar sesion
+		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
+		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
+			}
+		});
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
+		
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
 	}
 
 }

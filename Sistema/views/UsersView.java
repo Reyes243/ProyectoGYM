@@ -15,8 +15,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,6 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -39,6 +42,7 @@ import Vistas.Registro_de_clase.ButtonEditor3;
 import Vistas.Registro_de_clase.ButtonRenderer3;
 import controllers.HomeController;
 import controllers.UsersController;
+import models.ConectionModel;
 
 public class UsersView {
 
@@ -232,6 +236,9 @@ public class UsersView {
 		boton_descraga_credencial.setBounds(736, 501, 160, 32);
 		boton_descraga_credencial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController uc = new UsersController();
+				uc.Credencial_usuario();
 
 			}
 		});
@@ -349,6 +356,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -359,6 +369,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -369,6 +382,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -379,6 +395,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -683,6 +717,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController HC = new HomeController();
+				HC.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -693,6 +730,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -703,6 +743,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -713,6 +756,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -858,6 +919,7 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 
 			}
 		});
@@ -882,6 +944,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -891,6 +956,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 205, 17));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");// boton de checador
@@ -898,6 +970,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -908,6 +983,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -1041,6 +1134,7 @@ public class UsersView {
 		boton_INICIO.setBounds(10, 86, 136, 71);
 		boton_INICIO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Panel_inicio();
 
@@ -1053,6 +1147,7 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -1076,6 +1171,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -1085,6 +1183,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 205, 17));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");// boton de checador
@@ -1092,6 +1197,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -1102,6 +1210,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+					JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -1308,6 +1434,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -1318,6 +1447,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -1328,6 +1460,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -1338,6 +1473,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -1638,6 +1791,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -1648,6 +1804,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -1658,6 +1817,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -1668,6 +1830,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -1950,6 +2130,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -1960,6 +2143,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -1970,6 +2156,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -1980,6 +2169,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -2194,6 +2401,9 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
@@ -2204,6 +2414,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -2214,6 +2427,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -2224,6 +2440,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -2234,6 +2453,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -2454,6 +2691,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -2464,6 +2704,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -2474,6 +2717,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -2484,6 +2730,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -2635,6 +2899,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -2644,6 +2911,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 205, 17));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");// boton de checador
@@ -2651,6 +2925,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -2661,6 +2938,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -2920,6 +3215,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -2930,6 +3228,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -2940,6 +3241,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -3077,6 +3396,13 @@ public class UsersView {
 		boton_INICIO.setBackground(new Color(255, 205, 17));
 		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INICIO.setBounds(10, 86, 136, 71);
+		boton_INICIO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_inicio();
+			}
+		});
 		panel.add(boton_INICIO);
 
 		JButton boton_CLIENTES = new JButton("CLIENTES");// boton de clientes
@@ -3086,7 +3412,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				HomeController hc = new HomeController();
-				hc.Panel_inicio();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -3110,6 +3436,7 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -3119,6 +3446,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 205, 17));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");// boton de checador
@@ -3126,6 +3460,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -3136,8 +3473,26 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
-		});
+		});;
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
 		panel.add(boton_CERRAR_SESION);
 
@@ -3387,6 +3742,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -3397,6 +3755,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -3407,6 +3768,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -3619,6 +3998,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -3629,6 +4011,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -3639,6 +4024,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -3905,6 +4308,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -3915,6 +4321,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -4134,12 +4558,41 @@ public class UsersView {
 		boton_CHECADOR.setBackground(new Color(255, 205, 17));
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
+			}
+		});
 		panel.add(boton_CHECADOR);
 
 		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
+			}
+		});
 		panel.add(boton_CERRAR_SESION);
 
 		frame.add(panel);
@@ -4248,7 +4701,6 @@ public class UsersView {
 			super.fireEditingStopped();
 		}
 	}
-
 	public void Editar_eliminar_y_añadir_clases() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -4318,9 +4770,11 @@ public class UsersView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { { "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
+		Object[][] data = {
+			{"YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", ""}
+		};
 
-		String[] columnNames = { "Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar", "Eliminar" };
+		String[] columnNames = {"Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar", "Eliminar"};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
@@ -4347,8 +4801,8 @@ public class UsersView {
 		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer3("Eliminar"));
 		table.getColumn("Eliminar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table));
 
-		// Botón Añadir cliente
-		JButton boton_Añadir_clase = new JButton("Añadir clase");
+		// Botón Añadir cliente 
+		JButton boton_Añadir_clase= new JButton("Añadir clase");
 		boton_Añadir_clase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -4361,7 +4815,7 @@ public class UsersView {
 		boton_Añadir_clase.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_Añadir_clase.setBounds(763, 522, 145, 31);
 		panel_2.add(boton_Añadir_clase);
-
+		
 		JButton boton_cancelar = new JButton("Cancelar");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
 		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
@@ -4375,9 +4829,10 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_cancelar);
+		
 
 		// Botones laterales de la ventana
-		JButton boton_INICIO = new JButton("INICIO");
+		JButton boton_INICIO= new JButton("INICIO");
 		boton_INICIO.setBackground(new Color(255, 205, 17));
 		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INICIO.setBounds(10, 86, 136, 71);
@@ -4386,6 +4841,7 @@ public class UsersView {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Panel_inicio();
+			
 			}
 		});
 		panel.add(boton_INICIO);
@@ -4420,6 +4876,13 @@ public class UsersView {
 		boton_INSTRUCTORES.setBackground(new Color(255, 205, 17));
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
+		boton_INSTRUCTORES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
+			}
+		});
 		panel.add(boton_INSTRUCTORES);
 
 		JButton boton_CLASES = new JButton("CLASES");
@@ -4432,14 +4895,43 @@ public class UsersView {
 		boton_CHECADOR.setBackground(new Color(255, 205, 17));
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
+		boton_CHECADOR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
+			}
+		});
 		panel.add(boton_CHECADOR);
 
 		JButton boton_CERRAR_SESION = new JButton("CERRAR SESION");
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-		panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
+			}
+		});
+		panel.add(boton_CERRAR_SESION);
+		
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
@@ -4447,8 +4939,8 @@ public class UsersView {
 	}
 
 	// Renderer para mostrar botones en tabla
-	public class ButtonRenderer31 extends JButton implements TableCellRenderer {
-	    public ButtonRenderer31(String label) {
+	public class ButtonRenderer extends JButton implements TableCellRenderer {
+	    public ButtonRenderer(String label) {
 	        setOpaque(true);
 	        setForeground(Color.BLACK);
 	        setBackground(new Color(255, 205, 17));
@@ -4480,14 +4972,14 @@ public class UsersView {
 	}
 
 	// Editor para que los botones con imagen funcionen en tabla
-	public class ButtonEditor31 extends DefaultCellEditor {
+	public class ButtonEditor extends DefaultCellEditor {
 	    protected JButton button;
 	    private String label;
 	    private boolean clicked;
 	    private int row;
 	    private JTable table;
 
-	    public ButtonEditor31(JCheckBox checkBox, String label, JTable table) {
+	    public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
 	        super(checkBox);
 	        this.label = label;
 	        this.table = table;
@@ -4526,10 +5018,18 @@ public class UsersView {
 	    @Override
 	    public Object getCellEditorValue() {
 		    if (clicked) {
-		        if (label.equals("Eliminar")) {
+		        if (label.equals("Editar")) {
+		        	String nombreClase = (String) table.getValueAt(row, 0); // Obtén el nombre
+					Window window = SwingUtilities.getWindowAncestor(table);
+					if (window != null) {
+						window.dispose();
+					}
+					UsersController uc = new UsersController();
+					uc.Editar_clases(nombreClase);
 		            // Aquí conecta con la base de datos para borrar el registro según el ID de la fila seleccionada
 		            // y luego actualiza la tabla recargando datos.
-		        } else if (label.equals("Editar")) {
+		        } else if (label.equals("Eliminar")) {
+		        	
 		            // Aquí abre un formulario para editar la fila,
 		            // luego guarda cambios en la base de datos con un UPDATE,
 		            // y recarga la tabla con los datos actualizados.
@@ -4550,6 +5050,8 @@ public class UsersView {
 	        super.fireEditingStopped();
 	    }
 	}
+
+	
 
 	public void Editar_clases(String nombreClase) {
 		try {
@@ -4772,6 +5274,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -4782,6 +5287,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
@@ -5012,6 +5535,9 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Panel_checador();
 			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
@@ -5022,6 +5548,24 @@ public class UsersView {
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas cerrar sesión?",
+						"Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (confirmacion == JOptionPane.YES_OPTION) {
+					new ConectionModel().close();
+
+					JOptionPane messagePane = new JOptionPane("Sesión cerrada correctamente",
+							JOptionPane.INFORMATION_MESSAGE);
+					JDialog messageDialog = messagePane.createDialog("Información");
+					messageDialog.setLocationRelativeTo(null);
+					messageDialog.setVisible(true);
+
+					new Timer(1500, ev -> messageDialog.dispose()).start();
+
+					frame.dispose();
+					AuthView av = new AuthView();
+					av.login();
+				}
 			}
 		});
 		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
