@@ -278,13 +278,14 @@ public class AuthView {
 					JOptionPane.showMessageDialog(frame, "¡Registro exitoso!", "Éxito",
 							JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
-					login();
+					AuthView av = new AuthView();
+					av.login();
+					
 				} else {
 					JOptionPane.showMessageDialog(frame, "Error al guardar los datos.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
-				frame.dispose();
-				AuthView.this.login();
+				
 			}
 		});
 
