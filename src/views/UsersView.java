@@ -76,10 +76,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -120,10 +119,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_5 = new JLabel("ID Cliente: ");
@@ -250,9 +248,7 @@ public class UsersView {
 		boton_descargar_info.setBounds(626, 501, 100, 32);
 		boton_descargar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Credencial_usuario();
+				
 
 			}
 		});
@@ -449,10 +445,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -494,10 +489,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(80, 100, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(80, 100, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_5 = new JLabel("Datos del nuevo miembro:");
@@ -811,10 +805,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -1037,10 +1030,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -1264,10 +1256,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -1308,10 +1299,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_5 = new JLabel("MIEMBRO");
@@ -1349,10 +1339,9 @@ public class UsersView {
 		lblNewLabel_7.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon s1 = new ImageIcon("Imagenes/logo ginmasio.png");
-		Image s2 = s1.getImage();
-		Image s3 = s2.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		lblNewLabel_7.setIcon(new ImageIcon(s3));
+		ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/logo ginmasio.png"));
+		Image imagen2 = icon2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		lblNewLabel_7.setIcon(new ImageIcon(imagen2));
 		panel_2.add(lblNewLabel_7);
 
 		// info de
@@ -1389,6 +1378,19 @@ public class UsersView {
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_descraga_credencial.setBounds(740, 494, 147, 39);
 		panel_2.add(boton_descraga_credencial);
+		
+		JButton boton_regresar = new JButton("Regresar");// boton regresar
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(583, 494, 147, 39);
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController controller = new UsersController();
+				controller.Informacion_de_cliente(0);
+			}
+		});
+		panel_2.add(boton_regresar);
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1527,10 +1529,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -1571,10 +1572,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(80, 100, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(80, 100, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_5 = new JLabel("Datos del nuevo miembro:");
@@ -1884,10 +1884,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -1995,10 +1994,9 @@ public class UsersView {
 		boton_inf_plan_estandar.setBackground(new Color(255, 205, 17));
 		boton_inf_plan_estandar.setBounds(205, 0, 35, 35);
 		boton_inf_plan_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon p1 = new ImageIcon("Imagenes/editar.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_estandar.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_inf_plan_estandar.setIcon(new ImageIcon(imagen1));
 		boton_inf_plan_estandar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -2012,50 +2010,45 @@ public class UsersView {
 		boton_plan_instcibsion_estandar.setBackground(new Color(255, 0, 0));
 		boton_plan_instcibsion_estandar.setBounds(240, 0, 35, 35);
 		boton_plan_instcibsion_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon e1 = new ImageIcon("Imagenes/eliminar.png");
-		Image e2 = e1.getImage();
-		Image e3 = e2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(e3));
+		ImageIcon icon4 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
+		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
 		plan_estandar.add(boton_plan_instcibsion_estandar);
 
 		JButton boton_inf_plan_premium = new JButton("");
 		boton_inf_plan_premium.setBackground(new Color(255, 205, 17));
 		boton_inf_plan_premium.setBounds(205, 0, 35, 35);
 		boton_inf_plan_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon s1 = new ImageIcon("Imagenes/editar.png");
-		Image s2 = s1.getImage();
-		Image s3 = s2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_premium.setIcon(new ImageIcon(s3));
+		ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
+		Image imagen2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_inf_plan_premium.setIcon(new ImageIcon(imagen2));
 		plan_premium.add(boton_inf_plan_premium);
 
 		JButton boton_plan_instcibsion_premium = new JButton("");
 		boton_plan_instcibsion_premium.setBackground(new Color(255, 0, 0));
 		boton_plan_instcibsion_premium.setBounds(240, 0, 35, 35);
 		boton_plan_instcibsion_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon q1 = new ImageIcon("Imagenes/eliminar.png");
-		Image q2 = q1.getImage();
-		Image q3 = q2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_premium.setIcon(new ImageIcon(q3));
+		ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
+		Image imagen5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_plan_instcibsion_premium.setIcon(new ImageIcon(imagen5));
 		plan_premium.add(boton_plan_instcibsion_premium);
 
 		JButton boton_inf_plan_familiar = new JButton("");
 		boton_inf_plan_familiar.setBackground(new Color(255, 205, 17));
 		boton_inf_plan_familiar.setBounds(205, 0, 35, 35);
 		boton_inf_plan_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon a1 = new ImageIcon("Imagenes/editar.png");
-		Image a2 = a1.getImage();
-		Image a3 = a2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_familiar.setIcon(new ImageIcon(a3));
+		ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
+		Image imagen3 = icon3.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_inf_plan_familiar.setIcon(new ImageIcon(imagen3));
 		plan_familiar.add(boton_inf_plan_familiar);
 
 		JButton boton_plan_instcibsion_familiar = new JButton("");
 		boton_plan_instcibsion_familiar.setBackground(new Color(255, 0, 0));
 		boton_plan_instcibsion_familiar.setBounds(240, 0, 35, 35);
 		boton_plan_instcibsion_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon f1 = new ImageIcon("Imagenes/eliminar.png");
-		Image f2 = f1.getImage();
-		Image f3 = f2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_familiar.setIcon(new ImageIcon(f3));
+		ImageIcon icon6 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
+		Image imagen6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		boton_plan_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
 		plan_familiar.add(boton_plan_instcibsion_familiar);
 
 		JButton boton_editar_tarifas = new JButton("Cancelar");
@@ -2223,10 +2216,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -2314,12 +2306,6 @@ public class UsersView {
 		txtrSeIncluyeAcceso.setBackground(new Color(204, 204, 204));
 		txtrSeIncluyeAcceso.setBounds(20, 72, 527, 169);
 		descripcion_plan.add(txtrSeIncluyeAcceso);
-		ImageIcon p1 = new ImageIcon("Imagenes/editar.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon e1 = new ImageIcon("Imagenes/eliminar.png");
-		Image e2 = e1.getImage();
-		Image e3 = e2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 
 		JTextField textField = new JTextField();
 		textField.setBackground(new Color(204, 204, 204));
@@ -2333,18 +2319,7 @@ public class UsersView {
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 28));
 		lblNewLabel_9.setBounds(95, 118, 100, 35);
 		plan_estandar.add(lblNewLabel_9);
-		ImageIcon s1 = new ImageIcon("Imagenes/editar.png");
-		Image s2 = s1.getImage();
-		Image s3 = s2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon q1 = new ImageIcon("Imagenes/eliminar.png");
-		Image q2 = q1.getImage();
-		Image q3 = q2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon a1 = new ImageIcon("Imagenes/editar.png");
-		Image a2 = a1.getImage();
-		Image a3 = a2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon f1 = new ImageIcon("Imagenes/eliminar.png");
-		Image f2 = f1.getImage();
-		Image f3 = f2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+
 
 		JButton boton_cancelar = new JButton("Cancelar");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
@@ -2507,10 +2482,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -2595,12 +2569,6 @@ public class UsersView {
 		txtrSeIncluyeAcceso.setBackground(new Color(204, 204, 204));
 		txtrSeIncluyeAcceso.setBounds(20, 72, 527, 169);
 		descripcion_plan.add(txtrSeIncluyeAcceso);
-		ImageIcon p1 = new ImageIcon("Imagenes/editar.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon e1 = new ImageIcon("Imagenes/eliminar.png");
-		Image e2 = e1.getImage();
-		Image e3 = e2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 
 		JTextField textField = new JTextField();
 		textField.setBackground(new Color(204, 204, 204));
@@ -2613,19 +2581,7 @@ public class UsersView {
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 28));
 		lblNewLabel_9.setBounds(95, 118, 100, 35);
 		plan_estandar.add(lblNewLabel_9);
-		ImageIcon s1 = new ImageIcon("Imagenes/editar.png");
-		Image s2 = s1.getImage();
-		Image s3 = s2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon q1 = new ImageIcon("Imagenes/eliminar.png");
-		Image q2 = q1.getImage();
-		Image q3 = q2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon a1 = new ImageIcon("Imagenes/editar.png");
-		Image a2 = a1.getImage();
-		Image a3 = a2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		ImageIcon f1 = new ImageIcon("Imagenes/eliminar.png");
-		Image f2 = f1.getImage();
-		Image f3 = f2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-
+		
 		JButton boton_cancelar = new JButton("Cancelar");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
 		boton_cancelar.setBackground(new Color(255, 0, 0));
@@ -2784,10 +2740,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -2992,10 +2947,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3036,10 +2990,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
@@ -3295,10 +3248,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3528,10 +3480,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3572,10 +3523,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
@@ -3823,10 +3773,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3867,10 +3816,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_5 = new JLabel("INSTRUCTOR");
@@ -3898,10 +3846,9 @@ public class UsersView {
 		lblNewLabel_7.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon s1 = new ImageIcon("Imagenes/logo ginmasio.png");
-		Image s2 = s1.getImage();
-		Image s3 = s2.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		lblNewLabel_7.setIcon(new ImageIcon(s3));
+		ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/logo ginmasio.png"));
+		Image imagen2 = icon2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		lblNewLabel_7.setIcon(new ImageIcon(imagen2));
 		panel_2.add(lblNewLabel_7);
 
 		// info de
@@ -4079,10 +4026,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -4123,10 +4069,9 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
-		Imagen_de_usuario.setIcon(new ImageIcon(p3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
@@ -4376,9 +4321,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada2));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -4612,16 +4557,22 @@ public class UsersView {
 
 			// Cargar icono según etiqueta
 			if (label.equals("Eliminar")) {
-				setIcon(loadIcon("Imagenes/eliminar.png"));
+				setIcon(loadIcon("/Imagenes/eliminar.png"));
 				setBackground(new Color(255, 0, 0));
 			}
 			setText(null);
 		}
 
 		private ImageIcon loadIcon(String path) {
-			ImageIcon icon = new ImageIcon(path);
-			Image img = icon.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-			return new ImageIcon(img);
+		    java.net.URL imgURL = getClass().getResource(path);
+		    if (imgURL != null) {
+		        ImageIcon icon = new ImageIcon(imgURL);
+		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		        return new ImageIcon(img);
+		    } else {
+		        System.err.println("No se pudo encontrar la imagen: " + path);
+		        return null;
+		    }
 		}
 
 		@Override
@@ -4654,7 +4605,7 @@ public class UsersView {
 
 			// Cargar icono según etiqueta
 			if (label.equals("Eliminar")) {
-				button.setIcon(loadIcon("Imagenes/eliminar.png"));
+				button.setIcon(loadIcon("/Imagenes/eliminar.png"));
 			}
 			button.setText(null); // Sin texto
 
@@ -4662,9 +4613,15 @@ public class UsersView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-			ImageIcon icon = new ImageIcon(path);
-			Image img = icon.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-			return new ImageIcon(img);
+		    java.net.URL imgURL = getClass().getResource(path);
+		    if (imgURL != null) {
+		        ImageIcon icon = new ImageIcon(imgURL);
+		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		        return new ImageIcon(img);
+		    } else {
+		        System.err.println("No se pudo encontrar la imagen: " + path);
+		        return null;
+		    }
 		}
 
 		@Override
@@ -4728,9 +4685,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada2));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -4794,11 +4751,11 @@ public class UsersView {
 		scrollPane.setViewportView(table);
 
 		// Renderizar botones en la tabla
-		table.getColumn("Editar").setCellRenderer(new ButtonRenderer3("Editar"));
-		table.getColumn("Editar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Editar", table));
+		table.getColumn("Editar").setCellRenderer(new ButtonRenderer("Editar"));
+		table.getColumn("Editar").setCellEditor(new ButtonEditor(new JCheckBox(), "Editar", table));
 
-		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer3("Eliminar"));
-		table.getColumn("Eliminar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table));
+		table.getColumn("Eliminar").setCellRenderer(new ButtonRenderer("Eliminar"));
+		table.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), "Eliminar", table));
 
 		// Botón Añadir cliente
 		JButton boton_Añadir_clase = new JButton("Añadir clase");
@@ -4947,19 +4904,25 @@ public class UsersView {
 
 			// Cargar icono según etiqueta
 			if (label.equals("Editar")) {
-				setIcon(loadIcon("Imagenes/editar.png"));
+				setIcon(loadIcon("/Imagenes/editar.png"));
 				setBackground(new Color(255, 205, 17));
 			} else if (label.equals("Eliminar")) {
-				setIcon(loadIcon("Imagenes/eliminar.png"));
+				setIcon(loadIcon("/Imagenes/eliminar.png"));
 				setBackground(new Color(255, 0, 0));
 			}
 			setText(null);
 		}
 
 		private ImageIcon loadIcon(String path) {
-			ImageIcon icon = new ImageIcon(path);
-			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			return new ImageIcon(img);
+		    java.net.URL imgURL = getClass().getResource(path);
+		    if (imgURL != null) {
+		        ImageIcon icon = new ImageIcon(imgURL);
+		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		        return new ImageIcon(img);
+		    } else {
+		        System.err.println("No se pudo encontrar la imagen: " + path);
+		        return null;
+		    }
 		}
 
 		@Override
@@ -4990,9 +4953,9 @@ public class UsersView {
 
 			// Cargar icono según etiqueta
 			if (label.equals("Editar")) {
-				button.setIcon(loadIcon("Imagenes/editar.png"));
+				button.setIcon(loadIcon("/Imagenes/editar.png"));
 			} else if (label.equals("Eliminar")) {
-				button.setIcon(loadIcon("Imagenes/eliminar.png"));
+				button.setIcon(loadIcon("/Imagenes/eliminar.png"));
 			}
 			button.setText(null); // Sin texto
 
@@ -5000,9 +4963,15 @@ public class UsersView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-			ImageIcon icon = new ImageIcon(path);
-			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			return new ImageIcon(img);
+		    java.net.URL imgURL = getClass().getResource(path);
+		    if (imgURL != null) {
+		        ImageIcon icon = new ImageIcon(imgURL);
+		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		        return new ImageIcon(img);
+		    } else {
+		        System.err.println("No se pudo encontrar la imagen: " + path);
+		        return null;
+		    }
 		}
 
 		@Override
@@ -5076,10 +5045,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -5114,7 +5082,7 @@ public class UsersView {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
+		ImageIcon p1 = new ImageIcon("/Imagenes/imagen credencial.png");
 		Image p2 = p1.getImage();
 		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
 
@@ -5339,10 +5307,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -5377,7 +5344,7 @@ public class UsersView {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
-		ImageIcon p1 = new ImageIcon("Imagenes/imagen credencial.png");
+		ImageIcon p1 = new ImageIcon("/Imagenes/imagen credencial.png");
 		Image p2 = p1.getImage();
 		Image p3 = p2.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
 

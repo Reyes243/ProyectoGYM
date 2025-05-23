@@ -56,17 +56,17 @@ public class AuthView {
 
 		JLabel lblNewLabel = new JLabel("EVOLVEFIT");// titulo del gym
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 38));
-		lblNewLabel.setBounds(20, 20, 177, 87);
+		lblNewLabel.setBounds(20, 20, 200, 87);
 		panel_1.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("HEALTH & FITNESS");// subtitulo de gym
 		lblNewLabel_1.setFont(new Font("Anton", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(20, 93, 177, 14);
+		lblNewLabel_1.setBounds(20, 93, 200, 14);
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Panel de administración");// subtitulo de gym 2
 		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_2.setBounds(20, 152, 319, 41);
+		lblNewLabel_2.setBounds(20, 152, 400, 41);
 		panel_1.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo electronico:");// titulo del correo
@@ -84,11 +84,11 @@ public class AuthView {
 
 		JLabel lblNewLabel_4 = new JLabel("");// cuadro de la imaegen del login
 		lblNewLabel_4.setBounds(439, 0, 615, 629);
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo login.png"));
+		Image imagen = icon.getImage().getScaledInstance(615, 629, Image.SCALE_SMOOTH);
+		lblNewLabel_4.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_4);
-		ImageIcon portada1 = new ImageIcon("Imagenes/fondo login.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(615, 629, Image.SCALE_SMOOTH);
-		lblNewLabel_4.setIcon(new ImageIcon(portada3));
+		
 
 		JLabel lblNewLabel_5 = new JLabel("Contraseña:");// titulo de la contraseña
 		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 18));
@@ -221,10 +221,10 @@ public class AuthView {
 		JLabel lblNewLabel_4 = new JLabel("");// cuadro de la imaegen del login
 		lblNewLabel_4.setBounds(439, 0, 615, 629);
 		panel_1.add(lblNewLabel_4);
-		ImageIcon portada1 = new ImageIcon("Imagenes/fondo registro.jpg");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(615, 629, Image.SCALE_SMOOTH);
-		lblNewLabel_4.setIcon(new ImageIcon(portada3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo registro.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(615, 629, Image.SCALE_SMOOTH);
+		lblNewLabel_4.setIcon(new ImageIcon(imagen1));
+		
 
 		JLabel lblNewLabel_5 = new JLabel("Contraseña:");// titulo de la contraseña
 		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 18));
