@@ -4,7 +4,7 @@
 Pasos para un buen funcionamiento
 </p>
 
-- Importar el estilo de fuente Anton de dropbox
+- Importar el estilo de fuente Anton-regular de dropbox
 
   [Dropbox](https://www.dropbox.com/scl/fo/3qtb5yt6mcqxikszzfubp/ADCrAzQwkpM9Yd1sJpyEpxM?rlkey=iyff08d40mgtq60pn01eef9nv&e=1&st=ug8160dx&dl=0)
 
