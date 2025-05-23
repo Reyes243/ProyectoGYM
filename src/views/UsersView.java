@@ -2987,7 +2987,7 @@ public class UsersView {
 
 		JLabel Imagen_de_usuario = new JLabel("");
 		Imagen_de_usuario.setBounds(15, 90, 200, 300);
-		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
 		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
