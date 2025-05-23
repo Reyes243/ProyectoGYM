@@ -2229,10 +2229,9 @@ public class UsersView {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2= portada1.getImage();
-		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
-		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -2514,10 +2513,9 @@ public class UsersView {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 = new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3323,10 +3321,9 @@ public class UsersView {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2= portada1.getImage();
-		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
-		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
@@ -3530,10 +3527,9 @@ public class UsersView {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon portada1 =new ImageIcon("Imagenes/logo sin letras.png");
-		Image portada2= portada1.getImage();
-		Image portada3=portada2.getScaledInstance(53, 53,Image.SCALE_SMOOTH);
-		lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
