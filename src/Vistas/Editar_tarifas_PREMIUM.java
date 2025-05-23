@@ -163,7 +163,10 @@ public class Editar_tarifas_PREMIUM {
 		txtrSeIncluyeAcceso.setLineWrap(true);          
 		txtrSeIncluyeAcceso.setWrapStyleWord(true); 
 		txtrSeIncluyeAcceso.setFont(new Font("Anton", Font.PLAIN, 17));
-		txtrSeIncluyeAcceso.setText("Se incluye acceso al área de cardio únicamente y al equipo correspondiente.\nDurante su membresía se le aplicara un 15% de descuento al comprar productos de la marca EVOLVEFIT.\nMiembros máximos para veneficios: 1\nMembrecía mensual con costo de $300.");
+		txtrSeIncluyeAcceso.setText("Se incluye acceso completo a todo el equipo y áreas del gimnasio.\r\n"
+				+ "Durante su membresía se le aplicara un 25% de descuento al comprar productos de la marca EVOLVEFIT.\r\n"
+				+ "Miembros máximos para veneficios: 1\r\n"
+				+ "Membrecía mensual con costo de $600.");
 		txtrSeIncluyeAcceso.setBackground(new Color(204, 204, 204));
 		txtrSeIncluyeAcceso.setBounds(20, 72, 527, 169);
 		descripcion_plan.add(txtrSeIncluyeAcceso);

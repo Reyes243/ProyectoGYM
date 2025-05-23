@@ -794,6 +794,16 @@ public class HomeView {
 		ImageIcon icon4 = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
 		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
+		boton_plan_instcibsion_estandar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController uc = new UsersController();
+				uc.Clientes_con_tarifa_ESTANDAR();
+				
+			}
+		});
 		plan_estandar.add(boton_plan_instcibsion_estandar);
 
 		JButton boton_inf_plan_premium = new JButton("");
@@ -834,6 +844,14 @@ public class HomeView {
 		ImageIcon icon6 = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
 		Image imagen6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		boton_plan_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
+		boton_plan_instcibsion_familiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UsersController uc = new UsersController();
+				uc.Clientes_con_tarifa_FAMILIAR();
+
+			}
+		});
 		plan_familiar.add(boton_plan_instcibsion_familiar);
 
 		JButton boton_editar_tarifas = new JButton("Editar tarifas");
