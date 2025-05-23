@@ -294,6 +294,22 @@ public class AuthView {
 		boton_registro.setFont(new Font("Anton", Font.PLAIN, 20));
 		boton_registro.setBounds(80, 535, 279, 56);
 		panel_1.add(boton_registro);
+		
+		JButton boton_regresar = new JButton("Regresar");
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_regresar.setBounds(315, 15, 114, 30);
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				AuthView av = new AuthView();
+				av.login();
+				
+				
+			}
+		});
+		panel_1.add(boton_regresar);
 
 		frame.add(panel);
 		frame.repaint();
