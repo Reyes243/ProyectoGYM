@@ -9,7 +9,7 @@ Pasos para un buen funcionamiento
   [Dropbox](https://www.dropbox.com/scl/fo/3qtb5yt6mcqxikszzfubp/ADCrAzQwkpM9Yd1sJpyEpxM?rlkey=iyff08d40mgtq60pn01eef9nv&e=1&st=ug8160dx&dl=0)
 
 
--  Descargar el archivo ejecutable (ProyectoGYM)
+-  Descargar el archivo ejecutable (PROYECTOGYM)
 
 -  Puede ingresar con este usuario
   
