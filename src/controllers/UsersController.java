@@ -20,14 +20,14 @@ public class UsersController {
 	public void Informacion_de_cliente(int idCliente){
 		vista.Informacion_de_cliente(idCliente);
 	}
-	public void Edicion_de_informacion_de_cliente() {
-		vista.Edicion_de_informacion_de_cliente();
+	public void Edicion_de_informacion_de_cliente(int idcliente) {
+		vista.Edicion_de_informacion_de_cliente(idcliente);
 	}
-	public void Historial_de_pagos() {
-		vista.Historial_de_pagos();
+	public void Historial_de_pagos(int idcliente) {
+		vista.Historial_de_pagos(idcliente);
 	}
-	public void HIstorial_de_asistencias() {
-		vista.HIstorial_de_asistencias();
+	public void HIstorial_de_asistencias(int idcliente) {
+		vista.HIstorial_de_asistencias(idcliente);
 	}
 	public void Añadir_cliente() {
 		vista.Añadir_cliente();
@@ -56,8 +56,8 @@ public class UsersController {
 	public void Clientes_con_tarifa_PREMIUM() {
 		vista.Clientes_con_tarifa_PREMIUM();
 	}
-	public void Credencial_usuario() {
-		vista.Credencial_usuario();
+	public void Credencial_usuario(int idcliente) {
+		vista.Credencial_usuario(idcliente);
 	}
 	public void Ficha_de_instructor(String nombreInstructor) {
 		vista.Ficha_de_instructor(nombreInstructor);

@@ -54,14 +54,14 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	    UsersModel um = new UsersModel();
-	    Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
-	    
-	    if (datosCliente.isEmpty()) {
-	        JOptionPane.showMessageDialog(null, "Cliente no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-	        return;
-	    }
+		UsersModel um = new UsersModel();
+		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
 
+		if (datosCliente.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado. ID inválido: " + idCliente, "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
@@ -193,7 +193,7 @@ public class UsersView {
 		panel_2.add(Info_nombre);
 
 		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-	
+
 		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_fecha_nacimiento.setBounds(382, 210, 147, 22);
 		panel_2.add(Info_fecha_nacimiento);
@@ -245,7 +245,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Credencial_usuario();
+				uc.Credencial_usuario(idCliente);
 
 			}
 		});
@@ -270,7 +270,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Edicion_de_informacion_de_cliente();
+				controller.Edicion_de_informacion_de_cliente(idCliente);
 
 			}
 		});
@@ -284,7 +284,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.HIstorial_de_asistencias();
+				controller.HIstorial_de_asistencias(idCliente);
 			}
 		});
 		panel_2.add(boton_historial_asistencias);
@@ -297,7 +297,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Historial_de_pagos();
+				controller.Historial_de_pagos(idCliente);
 				;
 
 			}
@@ -428,7 +428,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Edicion_de_informacion_de_cliente() {
+	public void Edicion_de_informacion_de_cliente(int idcliente) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -618,7 +618,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Informacion_de_cliente(0);
+				controller.Informacion_de_cliente(idcliente);
 
 			}
 		});
@@ -787,7 +787,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Historial_de_pagos() {
+	public void Historial_de_pagos(int idcliente) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -897,7 +897,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Informacion_de_cliente(0);
+				controller.Informacion_de_cliente(idcliente);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -1012,7 +1012,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void HIstorial_de_asistencias() {
+	public void HIstorial_de_asistencias(int idcliente) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -1122,7 +1122,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Informacion_de_cliente(0);
+				controller.Informacion_de_cliente(idcliente);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -1238,7 +1238,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Credencial_usuario() {
+	public void Credencial_usuario(int idcliente) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -1395,7 +1395,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Informacion_de_cliente(0);
+				controller.Informacion_de_cliente(idcliente);
 			}
 		});
 		panel_2.add(boton_regresar);
