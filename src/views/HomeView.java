@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -39,6 +40,7 @@ import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
 import models.ConectionModel;
+import models.User;
 
 public class HomeView {
 
@@ -73,7 +75,7 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(10, 11, 53, 53);
 		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(53,53, Image.SCALE_SMOOTH);
+		Image imagen1 = icon1.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
 		lblNewLabel_1.setIcon(new ImageIcon(imagen1));
 		panel_1.add(lblNewLabel_1);
 
@@ -298,7 +300,7 @@ public class HomeView {
 		frame.setVisible(true);
 	}
 
-	public void Clientes() {
+	public void Clientes(List<User> clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -366,11 +368,12 @@ public class HomeView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { { 1, "Jose", "Lopez", "612 750 0000", "JoseLg@hotmai.com", "", "" }, };
+		// Object[][] data = { { 1, "Jose", "Lopez", "612 750 0000",
+		// "JoseLg@hotmai.com", "", "" }, };
 
 		String[] columnNames = { "ID", "Nombre", "Primer Apellido", "Teléfono", "Correo", "Consulta", "Eliminar" };
 
-		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return column == 5 || column == 6;
@@ -387,6 +390,12 @@ public class HomeView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
+
+		for (User usuario : clientes) {
+			Object[] fila = { usuario.getId(), usuario.getNombre(), usuario.getPrimerApellido(), usuario.getTelefono(),
+					usuario.getCorreo(), "", "" };
+			model.addRow(fila);
+		}
 
 		// Renderizar botones en la tabla
 		table.getColumn("Consulta").setCellRenderer(new ButtonRenderer("Consulta"));
@@ -541,15 +550,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override
@@ -590,15 +599,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override
@@ -795,13 +804,13 @@ public class HomeView {
 		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
 		boton_plan_instcibsion_estandar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
 				uc.Clientes_con_tarifa_ESTANDAR();
-				
+
 			}
 		});
 		plan_estandar.add(boton_plan_instcibsion_estandar);
@@ -1226,15 +1235,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override
@@ -1275,15 +1284,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override
@@ -1577,15 +1586,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override
@@ -1626,15 +1635,15 @@ public class HomeView {
 		}
 
 		private ImageIcon loadIcon(String path) {
-		    java.net.URL imgURL = getClass().getResource(path);
-		    if (imgURL != null) {
-		        ImageIcon icon = new ImageIcon(imgURL);
-		        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		        return new ImageIcon(img);
-		    } else {
-		        System.err.println("No se pudo encontrar la imagen: " + path);
-		        return null;
-		    }
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
+			}
 		}
 
 		@Override

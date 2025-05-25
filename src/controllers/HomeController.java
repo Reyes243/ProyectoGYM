@@ -1,9 +1,15 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.User;
+import models.UsersModel;
 import views.HomeView;
 
 public class HomeController {
 	
+	private List<User> clientes = new ArrayList<>();
 	private HomeView vista;
 	
 	public HomeController(){		
@@ -12,8 +18,10 @@ public class HomeController {
 	public void Panel_inicio() {		
 		vista.Panel_inicio();
 	}
-	public void Clientes() {
-		vista.Clientes();
+	public void Clientes() {		
+		UsersModel um = new UsersModel();
+		clientes = um.getall();
+		vista.Clientes(clientes);
 	}
 	public void Tarifas() {
 		vista.Tarifas();

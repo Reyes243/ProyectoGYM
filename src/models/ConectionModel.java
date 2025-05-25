@@ -10,8 +10,8 @@ public class ConectionModel {
 	public ConectionModel() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_ProyectoGYM",
-					"freedb_CarlosLuquin", "sXYz68y3@ts6$@E");
+			conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech:3306/PROYECTOGYM",
+					"Luquin", "r7cS54$EuKxPV*8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

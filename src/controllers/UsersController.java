@@ -1,15 +1,22 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.User;
 import views.UsersView;
 
 public class UsersController {
 	
+	
 	private UsersView vista;
+	private List<User> clientes = new ArrayList<>();
 	
 	public UsersController() {
 		
 		vista = new UsersView();
 	}
+	
 	public void Informacion_de_cliente(int idCliente){
 		vista.Informacion_de_cliente(idCliente);
 	}
