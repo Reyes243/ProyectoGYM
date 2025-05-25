@@ -794,6 +794,13 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		UsersModel um = new UsersModel();
+		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idcliente);
+
+		if (datosCliente.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -851,14 +858,16 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] data = { { 1, "Jose", "Lopez", "612187000", "JoseLg@hotmai.com" } };
+		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre").split(" ")[0], // Nombre
+			datosCliente.get("nombre").split(" ").length > 1 ? datosCliente.get("nombre").split(" ")[1] : "", // Apellido
+			datosCliente.get("telefono"), datosCliente.get("correo") } };
 
 		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
 		panel_2.add(scrollPane_Usuario);
-		JTable table = new JTable(data, columnas);
+		JTable table = new JTable(dataCliente, columnas);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
 		scrollPane_Usuario.setViewportView(table);
@@ -1019,6 +1028,13 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		UsersModel um = new UsersModel();
+		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idcliente);
+
+		if (datosCliente.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -1076,14 +1092,16 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] data = { { 1, "Jose", "Lopez", "612187000", "JoseLg@hotmai.com" } };
+		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre").split(" ")[0], // Nombre
+				datosCliente.get("nombre").split(" ").length > 1 ? datosCliente.get("nombre").split(" ")[1] : "", // Apellido
+				datosCliente.get("telefono"), datosCliente.get("correo") } };
 
 		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
 		panel_2.add(scrollPane_Usuario);
-		JTable table = new JTable(data, columnas);
+		JTable table = new JTable(dataCliente, columnas);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
 		scrollPane_Usuario.setViewportView(table);
