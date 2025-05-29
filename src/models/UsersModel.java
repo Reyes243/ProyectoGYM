@@ -117,6 +117,25 @@ public class UsersModel {
 		return datosCliente;
 	}
 
+	public boolean eliminarCliente(int idCliente) {
+		ConectionModel conexion = new ConectionModel();
+		String sql = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, idCliente);
+				int affectedRows = pstmt.executeUpdate();
+				return affectedRows > 0;
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al eliminar cliente: " + e.getMessage());
+			return false;
+		} finally {
+			conexion.close();
+		}
+	}
+
 	public List<User> getall() {
 		clientes.clear();
 		ConectionModel conexion = new ConectionModel();

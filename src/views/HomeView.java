@@ -41,6 +41,7 @@ import controllers.HomeController;
 import controllers.UsersController;
 import models.ConectionModel;
 import models.User;
+import models.UsersModel;
 
 public class HomeView {
 
@@ -622,6 +623,29 @@ public class HomeView {
 		public Object getCellEditorValue() {
 			if (clicked) {
 				if (label.equals("Eliminar")) {
+					int idCliente = (int) table.getValueAt(row, 0);
+
+					int confirm = JOptionPane.showConfirmDialog(table, "¿Estás seguro de eliminar este cliente?",
+							"Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+					if (confirm == JOptionPane.YES_OPTION) {
+						// Eliminar de la base de datos
+						UsersModel model = new UsersModel();
+						boolean eliminado = model.eliminarCliente(idCliente);
+
+						if (eliminado) {
+							// Eliminar de la tabla visual
+							DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+							tableModel.removeRow(row);
+
+							JOptionPane.showMessageDialog(table, "Cliente eliminado correctamente", "Éxito",
+									JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(table, "Error al eliminar el cliente", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+
 					// Aquí conecta con la base de datos para borrar el registro según el ID de la
 					// fila seleccionada
 					// y luego actualiza la tabla recargando datos.
