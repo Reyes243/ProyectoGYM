@@ -1079,17 +1079,17 @@ public class HomeView {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 61, 898, 450);
 		panel_2.add(scrollPane);
+		//tabla/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		Object[][] data = { { 1,"Carlos", "Crossfit", "carlos@mail.com", "", "" },// Datos de ejemplo
+				{1, "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", "" } };
 
-		// Datos de ejemplo
-		Object[][] data = { { "Carlos", "Crossfit", "carlos@mail.com", "", "" },
-				{ "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", "" } };
-
-		String[] columnNames = { "Nombre", "Especialidad", "Correo", "Detalles", "Eliminar" };
+		String[] columnNames = {"ID", "Nombre", "Especialidad", "Correo", "Detalles", "Eliminar" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 3 || column == 4;
+				return column == 4 || column == 5;
 			}
 		};
 
@@ -1432,16 +1432,16 @@ public class HomeView {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 61, 898, 450);
 		panel_2.add(scrollPane);
+		//TAbla de clases////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		Object[][] data = { { 1,"YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };// Datos de ejemplo
 
-		// Datos de ejemplo
-		Object[][] data = { { "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
-
-		String[] columnNames = { "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros" };
+		String[] columnNames = { "ID","Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 5;
+				return column == 5 || column == 6;
 			}
 		};
 
