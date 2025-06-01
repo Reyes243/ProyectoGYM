@@ -1082,14 +1082,14 @@ public class HomeView {
 		//tabla/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		Object[][] data = { { 1,"Carlos", "Crossfit", "carlos@mail.com", "", "" },// Datos de ejemplo
-				{1, "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", "" } };
+				{2, "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", "" } };
 
 		String[] columnNames = {"ID", "Nombre", "Especialidad", "Correo", "Detalles", "Eliminar" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 5;
+				return column == 4 || column == 6;
 			}
 		};
 

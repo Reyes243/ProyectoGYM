@@ -87,11 +87,39 @@ public class UsersModel {
 		return false;
 	}
 
+	public Map<String, String> obtenerDatosParaPDF(int idCliente) {
+		Map<String, String> datos = new HashMap<>();
+		ConectionModel conexion = new ConectionModel();
+		String sql = "SELECT id_usuario, nombre,primer_apellido,segundo_apellido, correo, telefono FROM usuario WHERE id_usuario = ?";
+
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, idCliente);
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						datos.put("id", rs.getString("id_usuario"));
+						datos.put("nombre", rs.getString("nombre"));
+						datos.put("nombre", rs.getString("nombre") + " " + rs.getString("primer_apellido") + " "
+								+ rs.getString("segundo_apellido"));
+						datos.put("correo", rs.getString("correo"));
+						datos.put("telefono", rs.getString("telefono"));
+					}
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al obtener datos para PDF: " + e.getMessage());
+		} finally {
+			conexion.close(); // Cierra la conexión
+		}
+		return datos;
+	}
+
 	public Map<String, String> obtenerDatosBasicosCliente(int idCliente) {
 		Map<String, String> datosCliente = new HashMap<>();
 		ConectionModel conexion = new ConectionModel();
 
-		String sql = "SELECT id_usuario, nombre, primer_apellido, telefono, correo "
+		String sql = "SELECT id_usuario, nombre, primer_apellido,segundo_apellido, telefono, correo "
 				+ "FROM usuario WHERE id_usuario = ? AND id_rol = 2";
 
 		try {
@@ -101,10 +129,12 @@ public class UsersModel {
 
 				try (ResultSet rs = pstmt.executeQuery()) {
 					if (rs.next()) {
-						datosCliente.put("id", String.valueOf(rs.getInt("id_usuario")));
-						datosCliente.put("nombre", rs.getString("nombre") + " " + rs.getString("primer_apellido"));
-						datosCliente.put("telefono", rs.getString("telefono"));
-						datosCliente.put("correo", rs.getString("correo"));
+	                    datosCliente.put("id", String.valueOf(rs.getInt("id_usuario")));
+	                    datosCliente.put("nombre", rs.getString("nombre")); 
+	                    datosCliente.put("primer_apellido", rs.getString("primer_apellido"));
+	                    datosCliente.put("segundo_apellido", rs.getString("segundo_apellido"));
+	                    datosCliente.put("telefono", rs.getString("telefono"));
+	                    datosCliente.put("correo", rs.getString("correo"));
 					}
 				}
 			}
@@ -118,22 +148,30 @@ public class UsersModel {
 	}
 
 	public boolean eliminarCliente(int idCliente) {
-		ConectionModel conexion = new ConectionModel();
-		String sql = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
-
-		try {
-			Connection conn = conexion.getConnection();
-			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-				pstmt.setInt(1, idCliente);
-				int affectedRows = pstmt.executeUpdate();
-				return affectedRows > 0;
-			}
-		} catch (SQLException e) {
-			System.err.println("Error al eliminar cliente: " + e.getMessage());
-			return false;
-		} finally {
-			conexion.close();
-		}
+	    ConectionModel conexion = new ConectionModel();
+	    
+	    try {
+	        Connection conn = conexion.getConnection();
+	        
+	       
+	        String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
+	        try (PreparedStatement pstmtInscripciones = conn.prepareStatement(sqlInscripciones)) {
+	            pstmtInscripciones.setInt(1, idCliente);
+	            pstmtInscripciones.executeUpdate();
+	        }
+	        
+	        String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+	        try (PreparedStatement pstmtUsuario = conn.prepareStatement(sqlUsuario)) {
+	            pstmtUsuario.setInt(1, idCliente);
+	            int affectedRows = pstmtUsuario.executeUpdate();
+	            return affectedRows > 0;
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al eliminar cliente: " + e.getMessage());
+	        return false;
+	    } finally {
+	        conexion.close();
+	    }
 	}
 
 	public List<User> getall() {
@@ -160,6 +198,67 @@ public class UsersModel {
 			conexion.close();
 		}
 		return clientes;
+	}
+
+	public boolean actualizarCliente(int idCliente, String nombre, String primerApellido, String segundoApellido,
+			String telefono, String correo, String contraseña) {
+		ConectionModel conexion = new ConectionModel();
+
+		StringBuilder sql = new StringBuilder("UPDATE usuario SET ");
+		List<Object> parametros = new ArrayList<>();
+
+		if (nombre != null) {
+			sql.append("nombre = ?, ");
+			parametros.add(nombre.trim());
+		}
+
+		if (primerApellido != null) {
+			sql.append("primer_apellido = ?, ");
+			parametros.add(primerApellido.trim());
+		}
+
+		if (segundoApellido != null) {
+			sql.append("segundo_apellido = ?, ");
+			parametros.add(segundoApellido != null ? segundoApellido.trim() : null);
+		}
+
+		if (telefono != null) {
+			sql.append("telefono = ?, ");
+			parametros.add(telefono != null ? telefono.trim() : null);
+		}
+
+		if (correo != null) {
+			sql.append("correo = ?, ");
+			parametros.add(correo.trim());
+		}
+
+		if (contraseña != null && !contraseña.isEmpty()) {
+			sql.append("contraseña = ?, ");
+			parametros.add(contraseña.trim());
+		}
+
+
+		sql.delete(sql.length() - 2, sql.length());
+
+		sql.append(" WHERE id_usuario = ?");
+		parametros.add(idCliente);
+
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+				for (int i = 0; i < parametros.size(); i++) {
+					pstmt.setObject(i + 1, parametros.get(i));
+				}
+
+				int affectedRows = pstmt.executeUpdate();
+				return affectedRows > 0;
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al actualizar cliente: " + e.getMessage());
+			return false;
+		} finally {
+			conexion.close();
+		}
 	}
 
 }
