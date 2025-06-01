@@ -19,21 +19,21 @@ public class UsersModel {
 
 	}
 
-	public boolean registrarCliente(String nombre, String primerApellido, String segundoApellido, String telefono,
-			String correo, String contraseña) {
+	public int registrarCliente(String nombre, String primerApellido, String segundoApellido, String telefono,
+			String correo, String contraseña, String tarifaSeleccionada) {
 		ConectionModel conexion = new ConectionModel();
 
 		// Validación de campos obligatorios
 		if (nombre == null || nombre.trim().isEmpty() || primerApellido == null || primerApellido.trim().isEmpty()
 				|| correo == null || correo.trim().isEmpty() || contraseña == null || contraseña.trim().isEmpty()) {
 			System.err.println("Error: Nombre, todos los campos son obligatorios");
-			return false;
+			return -1;
 		}
 
 		// Verificar si el correo ya existe
 		if (existeUsuario(correo)) {
 			System.err.println("Error: El correo electrónico ya está registrado");
-			return false;
+			return -1;
 		}
 
 		String sql = "INSERT INTO usuario (nombre, primer_apellido, segundo_apellido, "
@@ -42,7 +42,8 @@ public class UsersModel {
 		try {
 			Connection conn = conexion.getConnection();
 
-			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
 				// Configurar todos los parámetros
 				pstmt.setString(1, nombre.trim());
 				pstmt.setString(2, primerApellido.trim());
@@ -52,11 +53,26 @@ public class UsersModel {
 				pstmt.setString(6, contraseña.trim());
 
 				int affectedRows = pstmt.executeUpdate();
-				return affectedRows > 0;
+
+				if (affectedRows > 0) {
+					try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+						if (generatedKeys.next()) {
+							int idUsuario = generatedKeys.getInt(1);
+
+							if (tarifaSeleccionada != null && !tarifaSeleccionada.equals("NINGUNA")) {
+								int idTarifa = obtenerIdTarifa(tarifaSeleccionada);
+								registrarUsuarioTarifa(idUsuario, idTarifa);
+							}
+
+							return idUsuario;
+						}
+					}
+				}
+				return -1;
 			}
 		} catch (SQLException e) {
 			System.err.println("Error al registrar cliente: " + e.getMessage());
-			return false;
+			return -1;
 		} finally {
 			conexion.close();
 		}
@@ -85,6 +101,52 @@ public class UsersModel {
 		}
 
 		return false;
+	}
+
+	private int obtenerIdTarifa(String nombreTarifa) {
+		ConectionModel conexion = new ConectionModel();
+		String sql = "SELECT id_tarifa FROM tarifa WHERE nombre_tarifa = ?";
+
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, nombreTarifa.toLowerCase());
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						return rs.getInt("id_tarifa");
+					}
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al obtener ID de tarifa: " + e.getMessage());
+		} finally {
+			conexion.close();
+		}
+		return -1;
+	}
+
+	private boolean registrarUsuarioTarifa(int idUsuario, int idTarifa) {
+		if (idTarifa == -1)
+			return false; // No registrar si no es una tarifa válida
+
+		ConectionModel conexion = new ConectionModel();
+		String sql = "INSERT INTO usuario_tarifa (id_usuario, id_tarifa) VALUES (?, ?)";
+
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, idUsuario);
+				pstmt.setInt(2, idTarifa);
+
+				int affectedRows = pstmt.executeUpdate();
+				return affectedRows > 0;
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al registrar usuario-tarifa: " + e.getMessage());
+			return false;
+		} finally {
+			conexion.close();
+		}
 	}
 
 	public Map<String, String> obtenerDatosParaPDF(int idCliente) {
@@ -119,8 +181,10 @@ public class UsersModel {
 		Map<String, String> datosCliente = new HashMap<>();
 		ConectionModel conexion = new ConectionModel();
 
-		String sql = "SELECT id_usuario, nombre, primer_apellido,segundo_apellido, telefono, correo "
-				+ "FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+		String sql = "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, "
+				+ "u.telefono, u.correo, t.nombre_tarifa " + "FROM usuario u "
+				+ "LEFT JOIN usuario_tarifa ut ON u.id_usuario = ut.id_usuario "
+				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa " + "WHERE u.id_usuario = ? AND u.id_rol = 2";
 
 		try {
 			Connection conn = conexion.getConnection();
@@ -129,12 +193,13 @@ public class UsersModel {
 
 				try (ResultSet rs = pstmt.executeQuery()) {
 					if (rs.next()) {
-	                    datosCliente.put("id", String.valueOf(rs.getInt("id_usuario")));
-	                    datosCliente.put("nombre", rs.getString("nombre")); 
-	                    datosCliente.put("primer_apellido", rs.getString("primer_apellido"));
-	                    datosCliente.put("segundo_apellido", rs.getString("segundo_apellido"));
-	                    datosCliente.put("telefono", rs.getString("telefono"));
-	                    datosCliente.put("correo", rs.getString("correo"));
+						datosCliente.put("id", String.valueOf(rs.getInt("id_usuario")));
+						datosCliente.put("nombre", rs.getString("nombre"));
+						datosCliente.put("primer_apellido", rs.getString("primer_apellido"));
+						datosCliente.put("segundo_apellido", rs.getString("segundo_apellido"));
+						datosCliente.put("telefono", rs.getString("telefono"));
+						datosCliente.put("correo", rs.getString("correo"));
+						datosCliente.put("tarifa", rs.getString("nombre_tarifa"));
 					}
 				}
 			}
@@ -148,30 +213,56 @@ public class UsersModel {
 	}
 
 	public boolean eliminarCliente(int idCliente) {
-	    ConectionModel conexion = new ConectionModel();
-	    
-	    try {
-	        Connection conn = conexion.getConnection();
-	        
-	       
-	        String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
-	        try (PreparedStatement pstmtInscripciones = conn.prepareStatement(sqlInscripciones)) {
-	            pstmtInscripciones.setInt(1, idCliente);
-	            pstmtInscripciones.executeUpdate();
-	        }
-	        
-	        String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
-	        try (PreparedStatement pstmtUsuario = conn.prepareStatement(sqlUsuario)) {
-	            pstmtUsuario.setInt(1, idCliente);
-	            int affectedRows = pstmtUsuario.executeUpdate();
-	            return affectedRows > 0;
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Error al eliminar cliente: " + e.getMessage());
-	        return false;
-	    } finally {
-	        conexion.close();
-	    }
+		ConectionModel conexion = new ConectionModel();
+		Connection conn = null;
+
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false); 
+
+			
+			String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlInscripciones)) {
+				pstmt.setInt(1, idCliente);
+				pstmt.executeUpdate();
+			}
+
+			
+			String sqlTarifas = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlTarifas)) {
+				pstmt.setInt(1, idCliente);
+				pstmt.executeUpdate();
+			}
+
+			
+			String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlUsuario)) {
+				pstmt.setInt(1, idCliente);
+				int affectedRows = pstmt.executeUpdate();
+
+				conn.commit();
+				return affectedRows > 0;
+			}
+		} catch (SQLException e) {
+			try {
+				if (conn != null) {
+					conn.rollback(); 
+				}
+			} catch (SQLException ex) {
+				System.err.println("Error al hacer rollback: " + ex.getMessage());
+			}
+			System.err.println("Error al eliminar cliente: " + e.getMessage());
+			return false;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.setAutoCommit(true);
+				}
+			} catch (SQLException e) {
+				System.err.println("Error al restaurar auto-commit: " + e.getMessage());
+			}
+			conexion.close();
+		}
 	}
 
 	public List<User> getall() {
@@ -236,7 +327,6 @@ public class UsersModel {
 			sql.append("contraseña = ?, ");
 			parametros.add(contraseña.trim());
 		}
-
 
 		sql.delete(sql.length() - 2, sql.length());
 

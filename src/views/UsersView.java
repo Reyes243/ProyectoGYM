@@ -141,10 +141,6 @@ public class UsersView {
 		lblNewLabel_11.setBounds(235, 160, 60, 22);
 		panel_2.add(lblNewLabel_11);
 
-		JLabel lblNewLabel_10 = new JLabel("Fecha de nacimiento:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(235, 210, 147, 22);
-		panel_2.add(lblNewLabel_10);
 
 		JLabel lblNewLabel_9 = new JLabel("Correo electronico:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -161,10 +157,6 @@ public class UsersView {
 		lblNewLabel_7.setBounds(235, 362, 117, 28);
 		panel_2.add(lblNewLabel_7);
 
-		JLabel lblNewLabel_6 = new JLabel("Fecha del siguiente cargo:");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_6.setBounds(575, 310, 173, 22);
-		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_12 = new JLabel("Siguiente pago:");
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -176,9 +168,9 @@ public class UsersView {
 		lblNewLabel_13.setBounds(575, 210, 93, 22);
 		panel_2.add(lblNewLabel_13);
 
-		JLabel lblNewLabel_14 = new JLabel("Plan:");
+		JLabel lblNewLabel_14 = new JLabel("Tarifa:");
 		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_14.setBounds(575, 160, 32, 22);
+		lblNewLabel_14.setBounds(575, 160, 70, 22);
 		panel_2.add(lblNewLabel_14);
 
 		// informacion del usuario
@@ -195,11 +187,6 @@ public class UsersView {
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_fecha_nacimiento.setBounds(382, 210, 147, 22);
-		panel_2.add(Info_fecha_nacimiento);
 
 		JLabel Info_correo = new JLabel("");
 		Info_correo.setText(datosCliente.get("correo"));
@@ -218,9 +205,10 @@ public class UsersView {
 		Info_clase.setBounds(362, 362, 167, 28);
 		panel_2.add(Info_clase);
 
-		JLabel Info_plan = new JLabel("PREMIUM");
+		JLabel Info_plan = new JLabel("");
+		Info_plan.setText(datosCliente.getOrDefault("tarifa", "Ninguna"));
 		Info_plan.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_plan.setBounds(617, 160, 161, 22);
+		Info_plan.setBounds(617, 160, 200, 22);
 		panel_2.add(Info_plan);
 
 		JLabel Info_pago_ant = new JLabel("$600");
@@ -233,10 +221,6 @@ public class UsersView {
 		Info_pago_sig.setBounds(685, 260, 145, 22);
 		panel_2.add(Info_pago_sig);
 
-		JLabel Info_Fecha_pago = new JLabel("09/06/2025");
-		Info_Fecha_pago.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_Fecha_pago.setBounds(758, 309, 138, 23);
-		panel_2.add(Info_Fecha_pago);
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
@@ -648,7 +632,7 @@ public class UsersView {
 					return;
 				}
 
-				// Verificar contraseñas si se modificaron
+			
 				String nuevaContra = new String(Info_contra.getPassword());
 				String confirmarContra = new String(Info_confirmar_contra.getPassword());
 
@@ -658,7 +642,6 @@ public class UsersView {
 					return;
 				}
 
-				// Mostrar confirmación
 				int confirmacion = JOptionPane.showConfirmDialog(frame, "¿Está seguro que desea guardar los cambios?",
 						"Confirmar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -671,7 +654,6 @@ public class UsersView {
 						JOptionPane.showMessageDialog(frame, "Cambios guardados correctamente.", "Éxito",
 								JOptionPane.INFORMATION_MESSAGE);
 						cambiosRealizados = false;
-						// Actualizar valores originales
 						valoresOriginales.put("nombre", Info_nombre.getText());
 						valoresOriginales.put("primer_apellido", Info_primer_apellido.getText());
 						valoresOriginales.put("segundo_apellido", Info_segundo_apellido.getText());
@@ -1737,10 +1719,11 @@ public class UsersView {
 		lblNewLabel_13.setBounds(499, 170, 85, 22);
 		panel_2.add(lblNewLabel_13);
 
-		JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
+		/*JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
 		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_14.setBounds(499, 115, 142, 22);
 		panel_2.add(lblNewLabel_14);
+		*/
 
 		// informacion del usuario
 		// ////////////////////////////////////////////////////////////
@@ -1785,6 +1768,16 @@ public class UsersView {
 		txtConfirmarContrasena.setFont(new Font("Anton", Font.PLAIN, 16));
 		txtConfirmarContrasena.setBounds(649, 225, 159, 22);
 		panel_2.add(txtConfirmarContrasena);
+		
+		JComboBox comboBox_Tarifas = new JComboBox();
+		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
+		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_Tarifas.setBounds(649, 283, 161, 22);
+		String[] tarifas = { "NINGUNA", "estandar", "premium", "familiar" };
+		for (String tarifa : tarifas) {
+			comboBox_Tarifas.addItem(tarifa);
+		}
+		panel_2.add(comboBox_Tarifas);
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
@@ -1802,6 +1795,7 @@ public class UsersView {
 				String correo = txtCorreo.getText().trim();
 				String contrasena = new String(txtContrasena.getPassword());
 				String confirmarContrasena = new String(txtConfirmarContrasena.getPassword());
+				String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
 
 				if (nombre.isEmpty() || primerApellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()
 						|| confirmarContrasena.isEmpty()) {
@@ -1814,22 +1808,23 @@ public class UsersView {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				UsersModel um = new UsersModel();
-				boolean exito = um.registrarCliente(nombre, primerApellido,
-						segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
-						correo, contrasena);
+				 UsersModel um = new UsersModel();
+			        int idUsuario = um.registrarCliente(nombre, primerApellido,
+			                segundoApellido.isEmpty() ? null : segundoApellido, 
+			                telefono.isEmpty() ? null : telefono,
+			                correo, contrasena, tarifaSeleccionada);
 
-				if (exito) {
-					JOptionPane.showMessageDialog(frame, "Cliente registrado correctamente");
-					frame.dispose();
-					// Actualizar la lista de clientes si es necesario
-					new HomeController().Clientes();
-				} else {
-					JOptionPane.showMessageDialog(frame, "Error al registrar el cliente", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
 
-			}
+			        if (idUsuario != -1) {
+			            JOptionPane.showMessageDialog(frame, "Cliente registrado correctamente");
+			            frame.dispose();
+			     
+			            new HomeController().Clientes();
+			        } else {
+			            JOptionPane.showMessageDialog(frame, "Error al registrar el cliente", "Error",
+			                    JOptionPane.ERROR_MESSAGE);
+			        }
+			    }
 		});
 		panel_2.add(boton_registar);
 
@@ -1855,7 +1850,7 @@ public class UsersView {
 
 		// combox de
 		// usario////////////////////////////////////////////////////////////////////////
-		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
+		/*UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
 		JComboBox comboBox_dias = new JComboBox();
 		comboBox_dias.setBackground(new Color(204, 204, 204));
 		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -1884,16 +1879,9 @@ public class UsersView {
 			comboBox_año.addItem(String.valueOf(año));
 		}
 		panel_2.add(comboBox_año);
+		*/
 
-		JComboBox comboBox_Tarifas = new JComboBox();
-		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
-		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_Tarifas.setBounds(649, 283, 161, 22);
-		String[] tarifas = { "NINGUNA", "ESTANDAR", "PREMIUM", "FAMILIAR" };
-		for (String tarifa : tarifas) {
-			comboBox_Tarifas.addItem(tarifa);
-		}
-		panel_2.add(comboBox_Tarifas);
+		
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////

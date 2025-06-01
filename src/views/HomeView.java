@@ -368,9 +368,7 @@ public class HomeView {
 		scrollPane.setBounds(10, 61, 898, 450);
 		panel_2.add(scrollPane);
 
-		// Datos de ejemplo
-		// Object[][] data = { { 1, "Jose", "Lopez", "612 750 0000",
-		// "JoseLg@hotmai.com", "", "" }, };
+
 
 		String[] columnNames = { "ID", "Nombre", "Primer Apellido", "Teléfono", "Correo", "Consulta", "Eliminar" };
 
