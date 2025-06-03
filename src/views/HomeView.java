@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -276,6 +277,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -329,6 +331,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -339,6 +342,7 @@ public class HomeView {
 		JDialog goodbyeDialog = new JDialog(frame, "Sesión cerrada", true);
 		goodbyeDialog.setSize(400, 220);
 		goodbyeDialog.setLocationRelativeTo(frame);
+		goodbyeDialog.setUndecorated(true);
 		goodbyeDialog.setLayout(null);
 
 		JPanel goodbyePanel = new JPanel(null);
@@ -580,6 +584,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -633,6 +638,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -731,30 +737,136 @@ public class HomeView {
 				if (label.equals("Eliminar")) {
 					int idCliente = (int) table.getValueAt(row, 0);
 
-					int confirm = JOptionPane.showConfirmDialog(table, "¿Estás seguro de eliminar este cliente?",
-							"Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+					// Crear el JDialog personalizado (ALERTA DE CONFIRMACIÓN)
+					final boolean[] confirmado = {false};
 
-					if (confirm == JOptionPane.YES_OPTION) {
-						// Eliminar de la base de datos
+					// Usamos Window como padre para evitar errores de constructor
+					Frame parentFrame = JOptionPane.getFrameForComponent(table);
+					JDialog dialog = new JDialog(parentFrame, "Confirmación", true);
+					dialog.setSize(400, 180);
+					dialog.setLayout(null);
+					dialog.setUndecorated(true);
+					dialog.setLocationRelativeTo(table);
+
+					// Panel superior decorativo
+					JPanel header = new JPanel();
+					header.setBackground(new Color(81, 151, 255));
+					header.setBounds(0, 0, 400, 33);
+					dialog.add(header);
+
+					// Mensaje de confirmación
+					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Se borrará al cliente permanentemente<br>¿Desea continuar?</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(69, 44, 297, 59);
+					dialog.add(mensaje);
+
+					// Botón ACEPTAR
+					JButton aceptar = new JButton("Aceptar");
+					aceptar.setBackground(new Color(0, 206, 82));
+					aceptar.setForeground(Color.WHITE);
+					aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					aceptar.setBounds(264, 123, 102, 33);
+					dialog.add(aceptar);
+
+					// Botón CANCELAR
+					JButton cancelar = new JButton("Cancelar");
+					cancelar.setBackground(Color.RED);
+					cancelar.setForeground(Color.WHITE);
+					cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+					cancelar.setBounds(38, 123, 102, 33);
+					dialog.add(cancelar);
+
+					// Listeners
+					aceptar.addActionListener(e -> {
+						confirmado[0] = true;
+						dialog.dispose();
+					});
+
+					cancelar.addActionListener(e -> {
+						dialog.dispose();
+					});
+
+					// Mostrar alerta (modal)
+					dialog.setVisible(true);
+
+					// Si el usuario confirmó
+					if (confirmado[0]) {
 						UsersModel model = new UsersModel();
 						boolean eliminado = model.eliminarCliente(idCliente);
 
 						if (eliminado) {
-							// Eliminar de la tabla visual
 							DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 							tableModel.removeRow(row);
 
-							JOptionPane.showMessageDialog(table, "Cliente eliminado correctamente", "Éxito",
-									JOptionPane.INFORMATION_MESSAGE);
+							JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
+		                    exitoDialog.setSize(400, 180);
+		                    exitoDialog.setLayout(null);
+		                    exitoDialog.setUndecorated(true);
+		                    exitoDialog.setLocationRelativeTo(table);
+
+		                    JPanel eliminarExito = new JPanel();
+		                    eliminarExito.setBackground(new Color(255, 255, 255));
+		                    eliminarExito.setBounds(0, 0, 400, 180);
+		                    eliminarExito.setLayout(null);
+		                    exitoDialog.add(eliminarExito);
+
+		                    JPanel panelComplementoExito = new JPanel();
+		                    panelComplementoExito.setBackground(new Color(81, 151, 255));
+		                    panelComplementoExito.setBounds(0, 0, 400, 33);
+		                    eliminarExito.add(panelComplementoExito);
+
+		                    JLabel mensajeExito = new JLabel("<html><div style='text-align: center;'>Cliente eliminado correctamente<br></div></html>");
+		                    mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
+		                    mensajeExito.setBounds(85, 44, 305, 59);
+		                    eliminarExito.add(mensajeExito);
+
+		                    JButton botonAceptarExito = new JButton("Aceptar");
+		                    botonAceptarExito.setBackground(new Color(0, 206, 82));
+		                    botonAceptarExito.setForeground(Color.WHITE);
+		                    botonAceptarExito.setFont(new Font("Anton", Font.PLAIN, 14));
+		                    botonAceptarExito.setBounds(151, 121, 102, 33);
+		                    eliminarExito.add(botonAceptarExito);
+
+		                    botonAceptarExito.addActionListener(e -> exitoDialog.dispose());
+
+		                    exitoDialog.setVisible(true);
+		                    
 						} else {
-							JOptionPane.showMessageDialog(table, "Error al eliminar el cliente", "Error",
-									JOptionPane.ERROR_MESSAGE);
+							JDialog errorDialog = new JDialog(parentFrame, "Error", true);
+		                    errorDialog.setSize(400, 180);
+		                    errorDialog.setLayout(null);
+		                    errorDialog.setUndecorated(true);
+		                    errorDialog.setLocationRelativeTo(table);
+
+		                    JPanel eliminarError = new JPanel();
+		                    eliminarError.setBackground(new Color(255, 255, 255));
+		                    eliminarError.setBounds(0, 0, 400, 180);
+		                    eliminarError.setLayout(null);
+		                    errorDialog.add(eliminarError);
+
+		                    JPanel panelComplementoError = new JPanel();
+		                    panelComplementoError.setBackground(new Color(81, 151, 255));
+		                    panelComplementoError.setBounds(0, 0, 400, 33);
+		                    eliminarError.add(panelComplementoError);
+
+		                    JLabel mensajeError = new JLabel("<html><div style='text-align: center;'>Error al eliminar el cliente<br></div></html>");
+		                    mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
+		                    mensajeError.setBounds(113, 44, 277, 59);
+		                    eliminarError.add(mensajeError);
+
+		                    JButton botonAceptarError = new JButton("Aceptar");
+		                    botonAceptarError.setBackground(new Color(0, 206, 82));
+		                    botonAceptarError.setForeground(Color.WHITE);
+		                    botonAceptarError.setFont(new Font("Anton", Font.PLAIN, 14));
+		                    botonAceptarError.setBounds(151, 121, 102, 33);
+		                    eliminarError.add(botonAceptarError);
+
+		                    botonAceptarError.addActionListener(e -> errorDialog.dispose());
+
+		                    errorDialog.setVisible(true);
 						}
 					}
 
-					// Aquí conecta con la base de datos para borrar el registro según el ID de la
-					// fila seleccionada
-					// y luego actualiza la tabla recargando datos.
 				} else if (label.equals("Consulta")) {
 					int idCliente = (int) table.getValueAt(row, 0);
 
@@ -764,15 +876,13 @@ public class HomeView {
 					}
 					UsersController controller = new UsersController();
 					controller.Informacion_de_cliente(idCliente);
-
-					// Aquí abre un formulario para editar la fila,
-					// luego guarda cambios en la base de datos con un UPDATE,
-					// y recarga la tabla con los datos actualizados.
 				}
 			}
 			clicked = false;
 			return label;
 		}
+
+
 
 		@Override
 		public boolean stopCellEditing() {
@@ -1091,6 +1201,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1144,6 +1255,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1346,6 +1458,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1399,6 +1512,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1729,6 +1843,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1782,6 +1897,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -2003,6 +2119,7 @@ public class HomeView {
 				dialogoAlerta.setSize(400, 220);
 				dialogoAlerta.setLocationRelativeTo(frame);
 				dialogoAlerta.setResizable(false);
+				dialogoAlerta.setUndecorated(true);
 				dialogoAlerta.setLayout(null);
 
 				JPanel cliente_entrada = new JPanel();
@@ -2155,6 +2272,7 @@ public class HomeView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -2208,6 +2326,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 
 //		JPanel ID_cliente_entrada = new JPanel();

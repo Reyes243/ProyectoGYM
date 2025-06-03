@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -386,6 +387,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -439,6 +441,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -449,6 +452,7 @@ public class UsersView {
 		JDialog goodbyeDialog = new JDialog(frame, "Sesión cerrada", true);
 		goodbyeDialog.setSize(400, 220);
 		goodbyeDialog.setLocationRelativeTo(frame);
+		goodbyeDialog.setUndecorated(true);
 		goodbyeDialog.setLayout(null);
 
 		JPanel goodbyePanel = new JPanel(null);
@@ -897,6 +901,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -950,6 +955,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1167,6 +1173,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1220,6 +1227,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1431,6 +1439,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1484,6 +1493,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1733,6 +1743,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -1786,6 +1797,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -1890,7 +1902,7 @@ public class UsersView {
 
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(15, 351, 132, 28);
+		lblNewLabel_7.setBounds(499, 115, 132, 28);
 		panel_2.add(lblNewLabel_7);
 
 		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
@@ -1907,12 +1919,6 @@ public class UsersView {
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_13.setBounds(499, 170, 85, 22);
 		panel_2.add(lblNewLabel_13);
-
-		/*
-		 * JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
-		 * lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
-		 * lblNewLabel_14.setBounds(499, 115, 142, 22); panel_2.add(lblNewLabel_14);
-		 */
 
 		// informacion del usuario
 		// ////////////////////////////////////////////////////////////
@@ -1943,25 +1949,25 @@ public class UsersView {
 		JTextField txtCorreo = new JTextField("");
 		txtCorreo.setBackground(new Color(204, 204, 204));
 		txtCorreo.setFont(new Font("Anton", Font.PLAIN, 16));
-		txtCorreo.setBounds(157, 351, 167, 28);
+		txtCorreo.setBounds(649, 115, 200, 22);
 		panel_2.add(txtCorreo);
 
 		JPasswordField txtContrasena = new JPasswordField("");
 		txtContrasena.setBackground(new Color(204, 204, 204));
 		txtContrasena.setFont(new Font("Anton", Font.PLAIN, 16));
-		txtContrasena.setBounds(649, 170, 161, 22);
+		txtContrasena.setBounds(649, 170, 200, 22);
 		panel_2.add(txtContrasena);
 
 		JPasswordField txtConfirmarContrasena = new JPasswordField("");
 		txtConfirmarContrasena.setBackground(new Color(204, 204, 204));
 		txtConfirmarContrasena.setFont(new Font("Anton", Font.PLAIN, 16));
-		txtConfirmarContrasena.setBounds(649, 225, 159, 22);
+		txtConfirmarContrasena.setBounds(649, 225, 200, 22);
 		panel_2.add(txtConfirmarContrasena);
 
 		JComboBox comboBox_Tarifas = new JComboBox();
 		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
 		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_Tarifas.setBounds(649, 283, 161, 22);
+		comboBox_Tarifas.setBounds(649, 283, 200, 22);
 		String[] tarifas = { "NINGUNA", "estandar", "premium", "familiar" };
 		for (String tarifa : tarifas) {
 			comboBox_Tarifas.addItem(tarifa);
@@ -1976,44 +1982,174 @@ public class UsersView {
 		boton_registar.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_registar.setBounds(727, 483, 160, 50);
 		boton_registar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nombre = txtNombre.getText().trim();
-				String primerApellido = txtPrimerApellido.getText().trim();
-				String segundoApellido = txtSegundoApellido.getText().trim();
-				String telefono = txtTelefono.getText().trim();
-				String correo = txtCorreo.getText().trim();
-				String contrasena = new String(txtContrasena.getPassword());
-				String confirmarContrasena = new String(txtConfirmarContrasena.getPassword());
-				String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
+		    public void actionPerformed(ActionEvent e) {
+		        String nombre = txtNombre.getText().trim();
+		        String primerApellido = txtPrimerApellido.getText().trim();
+		        String segundoApellido = txtSegundoApellido.getText().trim();
+		        String telefono = txtTelefono.getText().trim();
+		        String correo = txtCorreo.getText().trim();
+		        String contrasena = new String(txtContrasena.getPassword());
+		        String confirmarContrasena = new String(txtConfirmarContrasena.getPassword());
+		        String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
 
-				if (nombre.isEmpty() || primerApellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()
-						|| confirmarContrasena.isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Todos los campos obligatorios deben estar completos", "Error",
-							JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				if (!contrasena.equals(confirmarContrasena)) {
-					JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden", "Error",
-							JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				UsersModel um = new UsersModel();
-				int idUsuario = um.registrarCliente(nombre, primerApellido,
-						segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
-						correo, contrasena, tarifaSeleccionada);
+		        Frame parentFrame = JOptionPane.getFrameForComponent(frame); // Para el JDialog
 
-				if (idUsuario != -1) {
-					JOptionPane.showMessageDialog(frame, "Cliente registrado correctamente");
-					frame.dispose();
+		        // Validación de campos obligatorios
+		        if (nombre.isEmpty() || primerApellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()
+		                || confirmarContrasena.isEmpty()) {
 
-					new HomeController().Clientes();
-				} else {
-					JOptionPane.showMessageDialog(frame, "Error al registrar el cliente", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
+		            // Alerta personalizada de campos obligatorios
+		            JDialog camposDialog = new JDialog(parentFrame, "Advertencia", true);
+		            camposDialog.setSize(400, 180);
+		            camposDialog.setLayout(null);
+		            camposDialog.setUndecorated(true);
+		            camposDialog.setLocationRelativeTo(frame);
+
+		            JPanel camposObligatorios = new JPanel();
+		            camposObligatorios.setBackground(new Color(255, 255, 255));
+		            camposObligatorios.setBounds(0, 0, 400, 180);
+		            camposObligatorios.setLayout(null);
+		            camposDialog.add(camposObligatorios);
+
+		            JPanel panelComplemento = new JPanel();
+		            panelComplemento.setBackground(new Color(81, 151, 255));
+		            panelComplemento.setBounds(0, 0, 400, 33);
+		            camposObligatorios.add(panelComplemento);
+
+		            JLabel mensajeCampos = new JLabel("<html><div style='text-align: center;'>Todos los campos obligatorios deben estar completos<br></div></html>");
+		            mensajeCampos.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensajeCampos.setBounds(43, 44, 312, 59);
+		            camposObligatorios.add(mensajeCampos);
+
+		            JButton botonAceptarCampos = new JButton("Aceptar");
+		            botonAceptarCampos.setBackground(new Color(0, 206, 82));
+		            botonAceptarCampos.setForeground(Color.WHITE);
+		            botonAceptarCampos.setFont(new Font("Anton", Font.PLAIN, 14));
+		            botonAceptarCampos.setBounds(151, 121, 102, 33);
+		            camposObligatorios.add(botonAceptarCampos);
+
+		            botonAceptarCampos.addActionListener(ev -> camposDialog.dispose());
+		            camposDialog.setVisible(true);
+		            return;
+		        }
+
+		        // Validación de contraseñas
+		        if (!contrasena.equals(confirmarContrasena)) {
+		            JDialog contrasenaDialog = new JDialog(parentFrame, "Advertencia", true);
+		            contrasenaDialog.setSize(400, 180);
+		            contrasenaDialog.setLayout(null);
+		            contrasenaDialog.setUndecorated(true);
+		            contrasenaDialog.setLocationRelativeTo(frame);
+
+		            JPanel panel = new JPanel();
+		            panel.setBackground(Color.WHITE);
+		            panel.setBounds(0, 0, 400, 180);
+		            panel.setLayout(null);
+		            contrasenaDialog.add(panel);
+
+		            JPanel panelSuperior = new JPanel();
+		            panelSuperior.setBackground(new Color(81, 151, 255));
+		            panelSuperior.setBounds(0, 0, 400, 33);
+		            panel.add(panelSuperior);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Las contraseñas no coinciden<br></div></html>");
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(85, 44, 300, 59);
+		            panel.add(mensaje);
+
+		            JButton botonAceptar = new JButton("Aceptar");
+		            botonAceptar.setBackground(new Color(0, 206, 82));
+		            botonAceptar.setForeground(Color.WHITE);
+		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            botonAceptar.setBounds(151, 121, 102, 33);
+		            panel.add(botonAceptar);
+
+		            botonAceptar.addActionListener(ev -> contrasenaDialog.dispose());
+		            contrasenaDialog.setVisible(true);
+		            return;
+		        }
+
+		        UsersModel um = new UsersModel();
+		        int idUsuario = um.registrarCliente(nombre, primerApellido,
+		                segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
+		                correo, contrasena, tarifaSeleccionada);
+
+		        if (idUsuario != -1) {
+		            // Éxito - Cliente registrado correctamente
+		            JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
+		            exitoDialog.setSize(400, 180);
+		            exitoDialog.setLayout(null);
+		            exitoDialog.setUndecorated(true);
+		            exitoDialog.setLocationRelativeTo(frame);
+
+		            JPanel panelExito = new JPanel();
+		            panelExito.setBackground(Color.WHITE);
+		            panelExito.setBounds(0, 0, 400, 180);
+		            panelExito.setLayout(null);
+		            exitoDialog.add(panelExito);
+
+		            JPanel panelSuperior = new JPanel();
+		            panelSuperior.setBackground(new Color(81, 151, 255));
+		            panelSuperior.setBounds(0, 0, 400, 33);
+		            panelExito.add(panelSuperior);
+
+		            JLabel mensajeExito = new JLabel("<html><div style='text-align: center;'>Cliente registrado correctamente<br></div></html>");
+		            mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensajeExito.setBounds(70, 44, 300, 59);
+		            panelExito.add(mensajeExito);
+
+		            JButton botonAceptar = new JButton("Aceptar");
+		            botonAceptar.setBackground(new Color(0, 206, 82));
+		            botonAceptar.setForeground(Color.WHITE);
+		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            botonAceptar.setBounds(151, 121, 102, 33);
+		            panelExito.add(botonAceptar);
+
+		            botonAceptar.addActionListener(ev -> {
+		                exitoDialog.dispose();
+		                frame.dispose();
+		                new HomeController().Clientes();
+		            });
+
+		            exitoDialog.setVisible(true);
+		        } else {
+		            // Error al registrar el cliente
+		            JDialog errorDialog = new JDialog(parentFrame, "Error", true);
+		            errorDialog.setSize(400, 180);
+		            errorDialog.setLayout(null);
+		            errorDialog.setUndecorated(true);
+		            errorDialog.setLocationRelativeTo(frame);
+
+		            JPanel panelError = new JPanel();
+		            panelError.setBackground(Color.WHITE);
+		            panelError.setBounds(0, 0, 400, 180);
+		            panelError.setLayout(null);
+		            errorDialog.add(panelError);
+
+		            JPanel panelSuperior = new JPanel();
+		            panelSuperior.setBackground(new Color(81, 151, 255));
+		            panelSuperior.setBounds(0, 0, 400, 33);
+		            panelError.add(panelSuperior);
+
+		            JLabel mensajeError = new JLabel("<html><div style='text-align: center;'>Error al registrar el cliente<br></div></html>");
+		            mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensajeError.setBounds(70, 44, 300, 59);
+		            panelError.add(mensajeError);
+
+		            JButton botonAceptar = new JButton("Aceptar");
+		            botonAceptar.setBackground(new Color(0, 206, 82));
+		            botonAceptar.setForeground(Color.WHITE);
+		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            botonAceptar.setBounds(151, 121, 102, 33);
+		            panelError.add(botonAceptar);
+
+		            botonAceptar.addActionListener(ev -> errorDialog.dispose());
+		            errorDialog.setVisible(true);
+		        }
+		    }
 		});
 		panel_2.add(boton_registar);
+
 
 		JButton boton_cancelar = new JButton("Cancelar / volver");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
@@ -2035,29 +2171,6 @@ public class UsersView {
 		btnNewButton.setBounds(15, 296, 132, 32);
 		panel_2.add(btnNewButton);
 
-		// combox de
-		// usario////////////////////////////////////////////////////////////////////////
-		/*
-		 * UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		 * JComboBox comboBox_dias = new JComboBox(); comboBox_dias.setBackground(new
-		 * Color(204, 204, 204)); comboBox_dias.setFont(new Font("Anton", Font.PLAIN,
-		 * 16)); comboBox_dias.setBounds(651, 115, 60, 22); for (int i = 1; i <= 31;
-		 * i++) { comboBox_dias.addItem(String.valueOf(i)); }
-		 * panel_2.add(comboBox_dias);
-		 * 
-		 * JComboBox comboBox_meses = new JComboBox(); comboBox_meses.setBackground(new
-		 * Color(204, 204, 204)); comboBox_meses.setFont(new Font("Anton", Font.PLAIN,
-		 * 16)); comboBox_meses.setBounds(709, 115, 117, 22); String[] meses = {
-		 * "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
-		 * "Septiembre", "Octubre", "Noviembre", "Diciembre" }; for (String mes : meses)
-		 * { comboBox_meses.addItem(mes); } panel_2.add(comboBox_meses);
-		 * 
-		 * JComboBox comboBox_año = new JComboBox(); comboBox_año.setBackground(new
-		 * Color(204, 204, 204)); comboBox_año.setFont(new Font("Anton", Font.PLAIN,
-		 * 16)); comboBox_año.setBounds(823, 115, 85, 22); for (int año = 1950; año <=
-		 * 2025; año++) { comboBox_año.addItem(String.valueOf(año)); }
-		 * panel_2.add(comboBox_año);
-		 */
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -2143,6 +2256,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -2196,6 +2310,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -2518,6 +2633,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -2571,6 +2687,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -2829,6 +2946,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -2882,6 +3000,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -3141,6 +3260,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -3194,6 +3314,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -3435,6 +3556,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -3488,6 +3610,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -3722,6 +3845,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -3775,6 +3899,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -3956,6 +4081,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -4009,6 +4135,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -4191,6 +4318,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -4244,6 +4372,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -4427,6 +4556,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -4480,6 +4610,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -4757,6 +4888,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -4810,6 +4942,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -5017,6 +5150,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -5070,6 +5204,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -5339,6 +5474,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -5392,6 +5528,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -5621,6 +5758,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -5674,6 +5812,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -5945,6 +6084,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -5998,6 +6138,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -6225,6 +6366,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -6278,6 +6420,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -6601,6 +6744,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -6654,6 +6798,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -7019,6 +7164,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -7072,6 +7218,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 
@@ -7310,6 +7457,7 @@ public class UsersView {
 			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
 			dialog.setSize(400, 220);
 			dialog.setLocationRelativeTo(frame);
+			dialog.setUndecorated(true);
 			dialog.setLayout(null);
 
 			// Panel principal - AHORA CON TAMAÑO COMPLETO
@@ -7363,6 +7511,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 

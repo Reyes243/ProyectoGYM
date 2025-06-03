@@ -138,6 +138,7 @@ public class AuthView {
 		            JDialog errorDialog = new JDialog(frame, "Error de inicio de sesión", true);
 		            errorDialog.setSize(400, 220);
 		            errorDialog.setLocationRelativeTo(frame);
+		            errorDialog.setUndecorated(true);
 		            errorDialog.setLayout(null);
 
 		            JPanel fallo_de_sesion = new JPanel(null);
@@ -178,6 +179,7 @@ public class AuthView {
 		            JDialog bienvenidaDialog = new JDialog(frame, "Inicio de sesión exitoso", true);
 		            bienvenidaDialog.setSize(400, 220);
 		            bienvenidaDialog.setLocationRelativeTo(frame);
+		            bienvenidaDialog.setUndecorated(true);
 		            bienvenidaDialog.setLayout(null);
 
 		            JPanel panelBienvenida = new JPanel(null);
@@ -217,6 +219,7 @@ public class AuthView {
 		            JDialog errorDialog = new JDialog(frame, "Error de inicio de sesión", true);
 		            errorDialog.setSize(400, 220);
 		            errorDialog.setLocationRelativeTo(frame);
+		            errorDialog.setUndecorated(true);
 		            errorDialog.setLayout(null);
 
 		            JPanel fallo_de_sesion = new JPanel(null);
@@ -268,6 +271,7 @@ public class AuthView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 
 	}
@@ -368,8 +372,9 @@ public class AuthView {
 		            JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
-		            dialogo.setLayout(null);
 		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
+		            
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -408,8 +413,9 @@ public class AuthView {
 		        	JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
-		            dialogo.setLayout(null);
 		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
+		            
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -452,8 +458,9 @@ public class AuthView {
 		            JDialog dialogo = new JDialog(frame, "Registro Exitoso", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
-		            dialogo.setLayout(null);
 		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
+		           
 
 		            JPanel panel_complemento = new JPanel();
 		            panel_complemento.setBackground(new Color(81, 151, 255));
@@ -488,8 +495,9 @@ public class AuthView {
 		            JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
-		            dialogo.setLayout(null);
 		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
+		            
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -550,6 +558,7 @@ public class AuthView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 
 	}
