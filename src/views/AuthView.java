@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -356,43 +357,174 @@ public class AuthView {
 		panel_1.add(cuadro_txt_confirmar_contraseña);
 		cuadro_txt_confirmar_contraseña.setColumns(10);
 
-		JButton boton_registro = new JButton("REGISTRARSE");// Boton de registro
+		JButton boton_registro = new JButton("REGISTRARSE"); // Boton de registro
 		boton_registro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String email = cuadro_txt_correo.getText();
-				String password = new String(cuadro_txt_contraseña.getPassword());
-				String confirmPassword = new String(cuadro_txt_confirmar_contraseña.getPassword());
+		    public void actionPerformed(ActionEvent e) {
+		        String email = cuadro_txt_correo.getText();
+		        String password = new String(cuadro_txt_contraseña.getPassword());
+		        String confirmPassword = new String(cuadro_txt_confirmar_contraseña.getPassword());
 
-				if (email.isEmpty() || password.isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+		        if (email.isEmpty() || password.isEmpty()) {
+		            JDialog dialogo = new JDialog(frame, "Error", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setLayout(null);
+		            dialogo.setUndecorated(true);
 
-				if (!password.equals(confirmPassword)) {
-					JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+		            JPanel panelFondo = new JPanel();
+		            panelFondo.setBackground(Color.WHITE);
+		            panelFondo.setBounds(0, 0, 400, 180);
+		            panelFondo.setLayout(null);
+		            dialogo.add(panelFondo);
 
-				AuthModel modelo = new AuthModel();
-				boolean registroExitoso = modelo.registrarAdmin(email, password);
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            panelFondo.add(panel_complemento);
 
-				if (registroExitoso) {
-					JOptionPane.showMessageDialog(frame, "¡Registro exitoso!", "Éxito",
-							JOptionPane.INFORMATION_MESSAGE);
-					frame.dispose();
-					AuthView av = new AuthView();
-					av.login();
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Todos los campos son obligatorios.<br>Error</div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            panelFondo.add(mensaje);
 
-				} else {
-					JOptionPane.showMessageDialog(frame, "Error al guardar los datos.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            panelFondo.add(boton_aceptar);
 
-			}
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose();
+		                }
+		            });
+
+		            dialogo.setVisible(true);
+		            return;
+		        }
+
+		        if (!password.equals(confirmPassword)) {
+		        	JDialog dialogo = new JDialog(frame, "Error", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setLayout(null);
+		            dialogo.setUndecorated(true);
+
+		            JPanel panelFondo = new JPanel();
+		            panelFondo.setBackground(Color.WHITE);
+		            panelFondo.setBounds(0, 0, 400, 180);
+		            panelFondo.setLayout(null);
+		            dialogo.add(panelFondo);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            panelFondo.add(panel_complemento);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Las contraseñas no coinciden.<br>Error</div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            panelFondo.add(mensaje);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            panelFondo.add(boton_aceptar);
+
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose();
+		                }
+		            });
+
+		            dialogo.setVisible(true);
+		            return;
+		        }
+
+		        AuthModel modelo = new AuthModel();
+		        boolean registroExitoso = modelo.registrarAdmin(email, password);
+
+		        if (registroExitoso) {
+		            // Crear alerta personalizada como un JDialog
+		            JDialog dialogo = new JDialog(frame, "Registro Exitoso", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setLayout(null);
+		            dialogo.setUndecorated(true);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            dialogo.add(panel_complemento);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Registro realizado correctamente<br></div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            dialogo.add(mensaje);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            dialogo.add(boton_aceptar);
+
+		            // Acción del botón aceptar
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose(); // Cierra el dialogo
+		                    frame.dispose(); // Cierra la ventana actual
+		                    AuthView av = new AuthView(); // Abre login
+		                    av.login();
+		                }
+		            });
+
+		            dialogo.setVisible(true); // Muestra la alerta
+
+		        } else {
+		            JDialog dialogo = new JDialog(frame, "Error", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setLayout(null);
+		            dialogo.setUndecorated(true);
+
+		            JPanel panelFondo = new JPanel();
+		            panelFondo.setBackground(Color.WHITE);
+		            panelFondo.setBounds(0, 0, 400, 180);
+		            panelFondo.setLayout(null);
+		            dialogo.add(panelFondo);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            panelFondo.add(panel_complemento);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Error al guardar los datos.<br>Error</div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            panelFondo.add(mensaje);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            panelFondo.add(boton_aceptar);
+
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose();
+		                }
+		            });
+
+		            dialogo.setVisible(true);
+		            return;
+		        }
+		    }
 		});
-
 		boton_registro.setBackground(new Color(255, 205, 17));
 		boton_registro.setForeground(new Color(0, 0, 0));
 		boton_registro.setFont(new Font("Anton", Font.PLAIN, 20));
