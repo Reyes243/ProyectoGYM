@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -102,49 +103,152 @@ public class AuthView {
 		cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		panel_1.add(cuadro_txt_contraseña);
 		cuadro_txt_contraseña.setColumns(10);
+		
 
-		JButton boton_inicio_sesion = new JButton("INICIAR SESION");// boton de inicio de sesion
+		JButton boton_inicio_sesion = new JButton("INICIAR SESION");
 		boton_inicio_sesion.setForeground(new Color(255, 255, 255));
 		boton_inicio_sesion.setBackground(new Color(0, 143, 57));
 		boton_inicio_sesion.setFont(new Font("Anton", Font.PLAIN, 20));
 		boton_inicio_sesion.setBounds(80, 445, 279, 56);
 		boton_inicio_sesion.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Boolean flag1 = false, flag2 = false;
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String correo = cuadro_txt_correo.getText().trim();
+		        String password = new String(cuadro_txt_contraseña.getPassword()).trim();
+		        boolean camposLlenos = true;
 
-				if (cuadro_txt_correo.getText().equals("")) {
-					cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-				} else {
-					cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.green, 3));
-					flag1 = true;
-				}
+		        // Validación de campos vacíos
+		        if (correo.isEmpty()) {
+		            cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		            camposLlenos = false;
+		        } else {
+		            cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+		        }
 
-				String password = new String(cuadro_txt_contraseña.getPassword());
-				if (password.equals("")) {
-					cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-				} else {
-					cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.green, 3));
-					flag2 = true;
-				}
+		        if (password.isEmpty()) {
+		            cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		            camposLlenos = false;
+		        } else {
+		            cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+		        }
 
-				if (flag1 && flag2) {
-					AuthModel am = new AuthModel();
-					boolean is_login = am.login(cuadro_txt_correo.getText(), password);
+		        if (!camposLlenos) {
+		            // Mostrar alerta si hay campos vacíos
+		            JDialog errorDialog = new JDialog(frame, "Error de inicio de sesión", true);
+		            errorDialog.setSize(400, 220);
+		            errorDialog.setLocationRelativeTo(frame);
+		            errorDialog.setLayout(null);
 
-					if (is_login) {
-						JOptionPane.showMessageDialog(null, "Bienvenido.");
-						frame.dispose();
-						HomeController hc = new HomeController();
-						hc.Panel_inicio();
-					} else {
-						JOptionPane.showMessageDialog(null, "Error al acceder", "Verifique su información",
-								JOptionPane.WARNING_MESSAGE);
-					}
-				}
-			}
+		            JPanel fallo_de_sesion = new JPanel(null);
+		            fallo_de_sesion.setBackground(Color.WHITE);
+		            fallo_de_sesion.setBounds(0, 0, 400, 220);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            fallo_de_sesion.add(panel_complemento);
+
+		            JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Debe llenar todos los campos<br>para iniciar sesión.</div></html>");
+		            pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+		            pregunta_de_confirmacion.setBounds(90, 50, 340, 60);
+		            fallo_de_sesion.add(pregunta_de_confirmacion);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(140, 130, 120, 30);
+		            boton_aceptar.addActionListener(ev -> errorDialog.dispose());
+
+		            fallo_de_sesion.add(boton_aceptar);
+		            errorDialog.add(fallo_de_sesion);
+		            errorDialog.setVisible(true);
+		            return;
+		        }
+
+		        // Login
+		        AuthModel am = new AuthModel();
+		        boolean is_login = am.login(correo, password);
+
+		        if (is_login) {
+		            cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+		            cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+
+		            JDialog bienvenidaDialog = new JDialog(frame, "Inicio de sesión exitoso", true);
+		            bienvenidaDialog.setSize(400, 220);
+		            bienvenidaDialog.setLocationRelativeTo(frame);
+		            bienvenidaDialog.setLayout(null);
+
+		            JPanel panelBienvenida = new JPanel(null);
+		            panelBienvenida.setBackground(Color.WHITE);
+		            panelBienvenida.setBounds(0, 0, 400, 220);
+
+		            JPanel headerPanel = new JPanel();
+		            headerPanel.setBackground(new Color(81, 151, 255));
+		            headerPanel.setBounds(0, 0, 400, 33);
+		            panelBienvenida.add(headerPanel);
+
+		            JLabel mensajeBienvenida = new JLabel("<html><div style='text-align: center;'>¡Inicio de sesión exitoso!<br>Bienvenido al sistema.</div></html>");
+		            mensajeBienvenida.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensajeBienvenida.setBounds(116, 44, 230, 59);
+		            panelBienvenida.add(mensajeBienvenida);
+
+		            JButton botonAceptar = new JButton("Continuar");
+		            botonAceptar.setBackground(new Color(0, 206, 82));
+		            botonAceptar.setForeground(Color.WHITE);
+		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            botonAceptar.setBounds(151, 114, 102, 33);
+		            botonAceptar.addActionListener(ev -> {
+		                bienvenidaDialog.dispose();
+		                frame.dispose();
+		                HomeController hc = new HomeController();
+		                hc.Panel_inicio();
+		            });
+
+		            panelBienvenida.add(botonAceptar);
+		            bienvenidaDialog.add(panelBienvenida);
+		            bienvenidaDialog.setVisible(true);
+		        } else {
+		            // Login incorrecto
+		            cuadro_txt_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		            cuadro_txt_contraseña.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+		            JDialog errorDialog = new JDialog(frame, "Error de inicio de sesión", true);
+		            errorDialog.setSize(400, 220);
+		            errorDialog.setLocationRelativeTo(frame);
+		            errorDialog.setLayout(null);
+
+		            JPanel fallo_de_sesion = new JPanel(null);
+		            fallo_de_sesion.setBackground(Color.WHITE);
+		            fallo_de_sesion.setBounds(0, 0, 400, 220);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            fallo_de_sesion.add(panel_complemento);
+
+		            JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Datos incorrectos, imposible iniciar sesión.<br>Verifique el correo y la contraseña.</div></html>");
+		            pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+		            pregunta_de_confirmacion.setBounds(55, 50, 340, 60);
+		            fallo_de_sesion.add(pregunta_de_confirmacion);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(140, 130, 120, 30);
+		            boton_aceptar.addActionListener(ev -> errorDialog.dispose());
+
+		            fallo_de_sesion.add(boton_aceptar);
+		            errorDialog.add(fallo_de_sesion);
+		            errorDialog.setVisible(true);
+		        }
+		    }
 		});
 		panel_1.add(boton_inicio_sesion);
+
+		
+
 
 		JButton boton_registro = new JButton("REGISTRARSE");// Boton de registro
 		boton_registro.setBackground(new Color(255, 205, 17));

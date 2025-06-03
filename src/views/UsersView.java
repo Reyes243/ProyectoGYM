@@ -141,7 +141,6 @@ public class UsersView {
 		lblNewLabel_11.setBounds(235, 160, 60, 22);
 		panel_2.add(lblNewLabel_11);
 
-
 		JLabel lblNewLabel_9 = new JLabel("Correo electronico:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_9.setBounds(235, 260, 132, 22);
@@ -156,7 +155,6 @@ public class UsersView {
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_7.setBounds(235, 362, 117, 28);
 		panel_2.add(lblNewLabel_7);
-
 
 		JLabel lblNewLabel_12 = new JLabel("Siguiente pago:");
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -186,7 +184,6 @@ public class UsersView {
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
-
 
 		JLabel Info_correo = new JLabel("");
 		Info_correo.setText(datosCliente.get("correo"));
@@ -220,7 +217,6 @@ public class UsersView {
 		Info_pago_sig.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_pago_sig.setBounds(685, 260, 145, 22);
 		panel_2.add(Info_pago_sig);
-
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
@@ -387,131 +383,131 @@ public class UsersView {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
-private void closeSession(JFrame frame) {
-    new ConectionModel().close();
-    
-    // Crear diálogo de despedida
-    JDialog goodbyeDialog = new JDialog(frame, "Sesión cerrada", true);
-    goodbyeDialog.setSize(400, 220);
-    goodbyeDialog.setLocationRelativeTo(frame);
-    goodbyeDialog.setLayout(null);
-    
-    JPanel goodbyePanel = new JPanel(null);
-    goodbyePanel.setBackground(Color.WHITE);
-    goodbyePanel.setBounds(0, 0, 400, 220);
-    
-    // Panel superior azul
-    JPanel headerPanel = new JPanel();
-    headerPanel.setBackground(new Color(81, 151, 255));
-    headerPanel.setBounds(0, 0, 400, 33);
-    
-    // Mensaje de despedida
-    JLabel goodbyeMessage = new JLabel("<html><div style='text-align: center;'>Sesión cerrada correctamente.<br>Que tenga un buen día :)</div></html>");
-    goodbyeMessage.setFont(new Font("Anton", Font.PLAIN, 16));
-    goodbyeMessage.setBounds(80, 50, 300, 60);
-    
-    // Botón Aceptar
-    JButton btnAccept = new JButton("Aceptar");
-    btnAccept.setBackground(new Color(0, 206, 82));
-    btnAccept.setForeground(Color.WHITE);
-    btnAccept.setFont(new Font("Anton", Font.PLAIN, 14));
-    btnAccept.setBounds(150, 140, 102, 33);
-    
-    // Acción del botón
-    btnAccept.addActionListener(e -> {
-        goodbyeDialog.dispose();
-        frame.dispose();
-        SwingUtilities.invokeLater(() -> {
-            AuthView av = new AuthView();
-            av.login();
-        });
-    });
-    
-    // Añadir componentes
-    goodbyePanel.add(headerPanel);
-    goodbyePanel.add(goodbyeMessage);
-    goodbyePanel.add(btnAccept);
-    
-    goodbyeDialog.add(goodbyePanel);
-    goodbyeDialog.setVisible(true);
-}
+	private void closeSession(JFrame frame) {
+		new ConectionModel().close();
+
+		// Crear diálogo de despedida
+		JDialog goodbyeDialog = new JDialog(frame, "Sesión cerrada", true);
+		goodbyeDialog.setSize(400, 220);
+		goodbyeDialog.setLocationRelativeTo(frame);
+		goodbyeDialog.setLayout(null);
+
+		JPanel goodbyePanel = new JPanel(null);
+		goodbyePanel.setBackground(Color.WHITE);
+		goodbyePanel.setBounds(0, 0, 400, 220);
+
+		// Panel superior azul
+		JPanel headerPanel = new JPanel();
+		headerPanel.setBackground(new Color(81, 151, 255));
+		headerPanel.setBounds(0, 0, 400, 33);
+
+		// Mensaje de despedida
+		JLabel goodbyeMessage = new JLabel(
+				"<html><div style='text-align: center;'>Sesión cerrada correctamente.<br>Que tenga un buen día :)</div></html>");
+		goodbyeMessage.setFont(new Font("Anton", Font.PLAIN, 16));
+		goodbyeMessage.setBounds(80, 50, 300, 60);
+
+		// Botón Aceptar
+		JButton btnAccept = new JButton("Aceptar");
+		btnAccept.setBackground(new Color(0, 206, 82));
+		btnAccept.setForeground(Color.WHITE);
+		btnAccept.setFont(new Font("Anton", Font.PLAIN, 14));
+		btnAccept.setBounds(150, 140, 102, 33);
+
+		// Acción del botón
+		btnAccept.addActionListener(e -> {
+			goodbyeDialog.dispose();
+			frame.dispose();
+			SwingUtilities.invokeLater(() -> {
+				AuthView av = new AuthView();
+				av.login();
+			});
+		});
+
+		// Añadir componentes
+		goodbyePanel.add(headerPanel);
+		goodbyePanel.add(goodbyeMessage);
+		goodbyePanel.add(btnAccept);
+
+		goodbyeDialog.add(goodbyePanel);
+		goodbyeDialog.setVisible(true);
+	}
 
 	public void Edicion_de_informacion_de_cliente(int idcliente) {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-            UIManager.put("Button.arc", 8);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+		try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("Button.arc", 8);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
-        UsersModel model = new UsersModel();
-        Map<String, String> datosCliente = model.obtenerDatosBasicosCliente(idcliente);
+		UsersModel model = new UsersModel();
+		Map<String, String> datosCliente = model.obtenerDatosBasicosCliente(idcliente);
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
 		Map<String, String> valoresOriginales = new HashMap<>();
 
 		JPanel panel = new JPanel();
@@ -670,23 +666,23 @@ private void closeSession(JFrame frame) {
 		Info_confirmar_contra.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_confirmar_contra.setBounds(649, 225, 159, 22);
 		panel_2.add(Info_confirmar_contra);
-		
-        DocumentListener documentListener = new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                cambiosRealizados = true;
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                cambiosRealizados = true;
-            }
+		DocumentListener documentListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                cambiosRealizados = true;
-            }
-        };
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
+		};
 		Info_nombre.getDocument().addDocumentListener(documentListener);
 		Info_primer_apellido.getDocument().addDocumentListener(documentListener);
 		Info_segundo_apellido.getDocument().addDocumentListener(documentListener);
@@ -710,7 +706,6 @@ private void closeSession(JFrame frame) {
 					return;
 				}
 
-			
 				String nuevaContra = new String(Info_contra.getPassword());
 				String confirmarContra = new String(Info_confirmar_contra.getPassword());
 
@@ -753,7 +748,7 @@ private void closeSession(JFrame frame) {
 		boton_descargar_info.setBounds(556, 483, 161, 50);
 		boton_descargar_info.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (cambiosRealizados) {
 					int confirmacion = JOptionPane.showConfirmDialog(frame,
 							"¿Está seguro que desea salir sin guardar los cambios?", "Confirmar salida",
@@ -899,65 +894,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	private boolean actualizarCliente(int idCliente, String nombre, String primerApellido, String segundoApellido,
 			String telefono, String correo, String contraseña) {
@@ -1170,65 +1164,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void HIstorial_de_asistencias(int idcliente) {
 		try {
@@ -1435,65 +1428,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Credencial_usuario(int idcliente) {
 		try {
@@ -1738,65 +1730,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Añadir_cliente() {
 		try {
@@ -1917,11 +1908,11 @@ private void closeSession(JFrame frame) {
 		lblNewLabel_13.setBounds(499, 170, 85, 22);
 		panel_2.add(lblNewLabel_13);
 
-		/*JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_14.setBounds(499, 115, 142, 22);
-		panel_2.add(lblNewLabel_14);
-		*/
+		/*
+		 * JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
+		 * lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
+		 * lblNewLabel_14.setBounds(499, 115, 142, 22); panel_2.add(lblNewLabel_14);
+		 */
 
 		// informacion del usuario
 		// ////////////////////////////////////////////////////////////
@@ -1966,7 +1957,7 @@ private void closeSession(JFrame frame) {
 		txtConfirmarContrasena.setFont(new Font("Anton", Font.PLAIN, 16));
 		txtConfirmarContrasena.setBounds(649, 225, 159, 22);
 		panel_2.add(txtConfirmarContrasena);
-		
+
 		JComboBox comboBox_Tarifas = new JComboBox();
 		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
 		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -2006,23 +1997,21 @@ private void closeSession(JFrame frame) {
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				 UsersModel um = new UsersModel();
-			        int idUsuario = um.registrarCliente(nombre, primerApellido,
-			                segundoApellido.isEmpty() ? null : segundoApellido, 
-			                telefono.isEmpty() ? null : telefono,
-			                correo, contrasena, tarifaSeleccionada);
+				UsersModel um = new UsersModel();
+				int idUsuario = um.registrarCliente(nombre, primerApellido,
+						segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
+						correo, contrasena, tarifaSeleccionada);
 
+				if (idUsuario != -1) {
+					JOptionPane.showMessageDialog(frame, "Cliente registrado correctamente");
+					frame.dispose();
 
-			        if (idUsuario != -1) {
-			            JOptionPane.showMessageDialog(frame, "Cliente registrado correctamente");
-			            frame.dispose();
-			     
-			            new HomeController().Clientes();
-			        } else {
-			            JOptionPane.showMessageDialog(frame, "Error al registrar el cliente", "Error",
-			                    JOptionPane.ERROR_MESSAGE);
-			        }
-			    }
+					new HomeController().Clientes();
+				} else {
+					JOptionPane.showMessageDialog(frame, "Error al registrar el cliente", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		});
 		panel_2.add(boton_registar);
 
@@ -2048,38 +2037,27 @@ private void closeSession(JFrame frame) {
 
 		// combox de
 		// usario////////////////////////////////////////////////////////////////////////
-		/*UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		JComboBox comboBox_dias = new JComboBox();
-		comboBox_dias.setBackground(new Color(204, 204, 204));
-		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_dias.setBounds(651, 115, 60, 22);
-		for (int i = 1; i <= 31; i++) {
-			comboBox_dias.addItem(String.valueOf(i));
-		}
-		panel_2.add(comboBox_dias);
-
-		JComboBox comboBox_meses = new JComboBox();
-		comboBox_meses.setBackground(new Color(204, 204, 204));
-		comboBox_meses.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_meses.setBounds(709, 115, 117, 22);
-		String[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-				"Octubre", "Noviembre", "Diciembre" };
-		for (String mes : meses) {
-			comboBox_meses.addItem(mes);
-		}
-		panel_2.add(comboBox_meses);
-
-		JComboBox comboBox_año = new JComboBox();
-		comboBox_año.setBackground(new Color(204, 204, 204));
-		comboBox_año.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_año.setBounds(823, 115, 85, 22);
-		for (int año = 1950; año <= 2025; año++) {
-			comboBox_año.addItem(String.valueOf(año));
-		}
-		panel_2.add(comboBox_año);
-		*/
-
-		
+		/*
+		 * UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
+		 * JComboBox comboBox_dias = new JComboBox(); comboBox_dias.setBackground(new
+		 * Color(204, 204, 204)); comboBox_dias.setFont(new Font("Anton", Font.PLAIN,
+		 * 16)); comboBox_dias.setBounds(651, 115, 60, 22); for (int i = 1; i <= 31;
+		 * i++) { comboBox_dias.addItem(String.valueOf(i)); }
+		 * panel_2.add(comboBox_dias);
+		 * 
+		 * JComboBox comboBox_meses = new JComboBox(); comboBox_meses.setBackground(new
+		 * Color(204, 204, 204)); comboBox_meses.setFont(new Font("Anton", Font.PLAIN,
+		 * 16)); comboBox_meses.setBounds(709, 115, 117, 22); String[] meses = {
+		 * "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+		 * "Septiembre", "Octubre", "Noviembre", "Diciembre" }; for (String mes : meses)
+		 * { comboBox_meses.addItem(mes); } panel_2.add(comboBox_meses);
+		 * 
+		 * JComboBox comboBox_año = new JComboBox(); comboBox_año.setBackground(new
+		 * Color(204, 204, 204)); comboBox_año.setFont(new Font("Anton", Font.PLAIN,
+		 * 16)); comboBox_año.setBounds(823, 115, 85, 22); for (int año = 1950; año <=
+		 * 2025; año++) { comboBox_año.addItem(String.valueOf(año)); }
+		 * panel_2.add(comboBox_año);
+		 */
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -2162,65 +2140,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Editar_tarifas() {
 		try {
@@ -2538,65 +2515,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Editar_tarifas_PREMIUM() {
 		try {
@@ -2850,65 +2826,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Editar_tarifas_FAMILIAR() {
 		try {
@@ -3163,65 +3138,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Editar_tarifas_2() {
 		try {
@@ -3458,65 +3432,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Añadir_tarifa() {
 		try {
@@ -3746,65 +3719,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Clientes_con_tarifa_ESTANDAR() {
 		try {
@@ -3981,65 +3953,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Clientes_con_tarifa_FAMILIAR() {
 		try {
@@ -4217,65 +4188,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Clientes_con_tarifa_PREMIUM() {
 		try {
@@ -4454,65 +4424,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Ficha_de_instructor(String nombreInstructor) {
 		try {
@@ -4785,65 +4754,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Historial_de_clase() {
 		try {
@@ -5046,65 +5014,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar = new JButton("Cancelar");
-		    boton_cancelar.setForeground(Color.WHITE);
-		    boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar.setBackground(Color.RED);
-		    boton_cancelar.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar = new JButton("Cancelar");
+			boton_cancelar.setForeground(Color.WHITE);
+			boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar.setBackground(Color.RED);
+			boton_cancelar.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar);
 
-		    // Acciones de los botones
-		    boton_cancelar.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Editar_instructor() {
 		try {
@@ -5369,65 +5336,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Credencial_instructor() {
 		try {
@@ -5652,65 +5618,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Añadir_instructor() {
 		try {
@@ -5977,65 +5942,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Registro_de_clase(String nombreClase) {
 		try {
@@ -6258,65 +6222,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	// Renderer para mostrar botones en tabla
 	public class ButtonRenderer3 extends JButton implements TableCellRenderer {
@@ -6635,65 +6598,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	// Renderer para mostrar botones en tabla
 	public class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -7054,65 +7016,64 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 	public void Añadir_clases() {
 		try {
@@ -7346,64 +7307,63 @@ private void closeSession(JFrame frame) {
 		boton_CERRAR_SESION.setBackground(new Color(255, 205, 17));
 		boton_CERRAR_SESION.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CERRAR_SESION.addActionListener(e -> {
-		    JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
-		    dialog.setSize(400, 220);
-		    dialog.setLocationRelativeTo(frame);
-		    dialog.setLayout(null); 
-		    
-		    // Panel principal - AHORA CON TAMAÑO COMPLETO
-		    JPanel Cerrar_sesion = new JPanel();
-		    Cerrar_sesion.setBackground(new Color(255, 255, 255));
-		    Cerrar_sesion.setBounds(0, 0, 400, 220); 
-		    Cerrar_sesion.setLayout(null); 
-		    dialog.add(Cerrar_sesion);
+			JDialog dialog = new JDialog(frame, "Cerrar sesión", true);
+			dialog.setSize(400, 220);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setLayout(null);
 
-		    // Panel superior azul
-		    JPanel panel_complemento = new JPanel();
-		    panel_complemento.setBackground(new Color(81, 151, 255));
-		    panel_complemento.setBounds(0, 0, 400, 33);
-		    Cerrar_sesion.add(panel_complemento);
+			// Panel principal - AHORA CON TAMAÑO COMPLETO
+			JPanel Cerrar_sesion = new JPanel();
+			Cerrar_sesion.setBackground(new Color(255, 255, 255));
+			Cerrar_sesion.setBounds(0, 0, 400, 220);
+			Cerrar_sesion.setLayout(null);
+			dialog.add(Cerrar_sesion);
 
-		    // Etiqueta con la pregunta
-		    JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
-		    pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		    pregunta_de_confirmacion.setBounds(90, 44, 310, 60); 
-		    Cerrar_sesion.add(pregunta_de_confirmacion);
+			// Panel superior azul
+			JPanel panel_complemento = new JPanel();
+			panel_complemento.setBackground(new Color(81, 151, 255));
+			panel_complemento.setBounds(0, 0, 400, 33);
+			Cerrar_sesion.add(panel_complemento);
 
-		    // Botón Cancelar
-		    JButton boton_cancelar_alerta = new JButton("Cancelar");
-		    boton_cancelar_alerta.setForeground(Color.WHITE);
-		    boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_cancelar_alerta.setBackground(Color.RED);
-		    boton_cancelar_alerta.setBounds(50, 140, 120, 35); 
-		    Cerrar_sesion.add(boton_cancelar_alerta);
+			// Etiqueta con la pregunta
+			JLabel pregunta_de_confirmacion = new JLabel(
+					"<html><div style='text-align: center;'>Está a punto de cerrar sesión<br>¿Desea continuar?</div></html>");
+			pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+			pregunta_de_confirmacion.setBounds(90, 44, 310, 60);
+			Cerrar_sesion.add(pregunta_de_confirmacion);
 
-		    // Botón Aceptar
-		    JButton boton_aceptar = new JButton("Aceptar");
-		    boton_aceptar.setBackground(new Color(0, 206, 82));
-		    boton_aceptar.setForeground(Color.WHITE);
-		    boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		    boton_aceptar.setBounds(230, 140, 120, 35);
-		    Cerrar_sesion.add(boton_aceptar);
+			// Botón Cancelar
+			JButton boton_cancelar_alerta = new JButton("Cancelar");
+			boton_cancelar_alerta.setForeground(Color.WHITE);
+			boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_cancelar_alerta.setBackground(Color.RED);
+			boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+			Cerrar_sesion.add(boton_cancelar_alerta);
 
-		    // Acciones de los botones
-		    boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-		    boton_aceptar.addActionListener(ev -> {
-		        dialog.dispose();
-		        closeSession(frame);
-		    });
+			// Botón Aceptar
+			JButton boton_aceptar = new JButton("Aceptar");
+			boton_aceptar.setBackground(new Color(0, 206, 82));
+			boton_aceptar.setForeground(Color.WHITE);
+			boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+			boton_aceptar.setBounds(230, 140, 120, 35);
+			Cerrar_sesion.add(boton_aceptar);
 
-		    dialog.setVisible(true);
+			// Acciones de los botones
+			boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+			boton_aceptar.addActionListener(ev -> {
+				dialog.dispose();
+				closeSession(frame);
+			});
+
+			dialog.setVisible(true);
 		});
-	boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
-	panel.add(boton_CERRAR_SESION);
+		boton_CERRAR_SESION.setBounds(10, 579, 136, 71);
+		panel.add(boton_CERRAR_SESION);
 
-	
-
-	frame.add(panel);
-	frame.repaint();
-	frame.revalidate();
-	frame.setVisible(true);
-}
+		frame.add(panel);
+		frame.repaint();
+		frame.revalidate();
+		frame.setVisible(true);
+	}
 
 }
