@@ -185,7 +185,17 @@ public class UsersView {
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
-
+		
+		JLabel Info_primer_apellido = new JLabel("Diaz");
+		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_primer_apellido.setBounds(342, 210, 200, 22);
+		panel_2.add(Info_primer_apellido);
+		
+		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_10.setBounds(235, 210, 147, 22);
+		panel_2.add(lblNewLabel_10);
+		
 		JLabel Info_correo = new JLabel("");
 		Info_correo.setText(datosCliente.get("correo"));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -197,6 +207,7 @@ public class UsersView {
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(296, 310, 152, 22);
 		panel_2.add(Info_telefono);
+		
 
 		JLabel Info_clase = new JLabel("TECNICA EN MAQUINAS");
 		Info_clase.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -598,7 +609,7 @@ public class UsersView {
 
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(15, 351, 132, 28);
+		lblNewLabel_7.setBounds(499, 115, 132, 28);
 		panel_2.add(lblNewLabel_7);
 
 //		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
@@ -616,11 +627,6 @@ public class UsersView {
 		lblNewLabel_13.setBounds(499, 170, 85, 22);
 		panel_2.add(lblNewLabel_13);
 
-		/*
-		 * JLabel lblNewLabel_14 = new JLabel("Fecha de nacimiento:");
-		 * lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
-		 * lblNewLabel_14.setBounds(499, 115, 142, 22); panel_2.add(lblNewLabel_14);
-		 */
 
 		// informacion del usuario
 		// ////////////////////////////////////////////////////////////
@@ -656,19 +662,19 @@ public class UsersView {
 		valoresOriginales.put("correo", Info_correo.getText());
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(157, 351, 167, 28);
+		Info_correo.setBounds(649, 115, 200, 22);
 		panel_2.add(Info_correo);
 
 		JPasswordField Info_contra = new JPasswordField("");
 		Info_contra.setBackground(new Color(204, 204, 204));
 		Info_contra.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_contra.setBounds(649, 170, 161, 22);
+		Info_contra.setBounds(649, 170, 200, 22);
 		panel_2.add(Info_contra);
 
 		JPasswordField Info_confirmar_contra = new JPasswordField("");
 		Info_confirmar_contra.setBackground(new Color(204, 204, 204));
 		Info_confirmar_contra.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_confirmar_contra.setBounds(649, 225, 159, 22);
+		Info_confirmar_contra.setBounds(649, 225, 200, 22);
 		panel_2.add(Info_confirmar_contra);
 
 		DocumentListener documentListener = new DocumentListener() {
@@ -697,53 +703,221 @@ public class UsersView {
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
-		JButton boton_descraga_credencial = new JButton("Guardar cambios");
-		boton_descraga_credencial.setForeground(new Color(255, 255, 255));
-		boton_descraga_credencial.setBackground(new Color(0, 206, 82));
-		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_descraga_credencial.setBounds(727, 483, 160, 50);
-		boton_descraga_credencial.addActionListener(new ActionListener() {
+		JButton boton_guardar_cambios = new JButton("Guardar cambios");
+		boton_guardar_cambios.setForeground(new Color(255, 255, 255));
+		boton_guardar_cambios.setBackground(new Color(0, 206, 82));
+		boton_guardar_cambios.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_guardar_cambios.setBounds(727, 483, 160, 50);
+		boton_guardar_cambios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!cambiosRealizados) {
-					JOptionPane.showMessageDialog(frame, "No se han realizado cambios para guardar.", "Información",
-							JOptionPane.INFORMATION_MESSAGE);
+					JDialog alerta = new JDialog(frame, "Información", true);
+					alerta.setUndecorated(true);
+					alerta.setSize(400, 180);
+					alerta.setLocationRelativeTo(frame);
+					alerta.setLayout(null);
+
+					JPanel fondo = new JPanel();
+					fondo.setBackground(Color.WHITE);
+					fondo.setBounds(0, 0, 400, 180);
+					fondo.setLayout(null);
+					alerta.add(fondo);
+
+					JPanel encabezado = new JPanel();
+					encabezado.setBackground(new Color(81, 151, 255));
+					encabezado.setBounds(0, 0, 400, 33);
+					fondo.add(encabezado);
+
+					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>No se han realizado cambios para guardar.</div></html>", SwingConstants.CENTER);
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(30, 50, 340, 50);
+					fondo.add(mensaje);
+
+					JButton aceptar = new JButton("Aceptar");
+					aceptar.setBackground(new Color(0, 206, 82));
+					aceptar.setForeground(Color.WHITE);
+					aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					aceptar.setBounds(148, 110, 102, 33);
+					aceptar.addActionListener(a -> alerta.dispose());
+					fondo.add(aceptar);
+
+					alerta.setVisible(true);
 					return;
 				}
+				// Validación de campos obligatorios
+				if (
+					Info_nombre.getText().trim().isEmpty() ||
+					Info_primer_apellido.getText().trim().isEmpty() ||
+					Info_telefono.getText().trim().isEmpty() ||
+					Info_correo.getText().trim().isEmpty()
+				) {
+					JDialog alertaCampos = new JDialog(frame, "Campos obligatorios", true);
+					alertaCampos.setUndecorated(true);
+					alertaCampos.setSize(400, 180);
+					alertaCampos.setLocationRelativeTo(frame);
+					alertaCampos.setLayout(null);
+
+					JPanel fondo = new JPanel();
+					fondo.setBackground(Color.WHITE);
+					fondo.setBounds(0, 0, 400, 180);
+					fondo.setLayout(null);
+					alertaCampos.add(fondo);
+
+					JPanel encabezado = new JPanel();
+					encabezado.setBackground(new Color(255, 70, 70));
+					encabezado.setBounds(0, 0, 400, 33);
+					fondo.add(encabezado);
+
+					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Por favor complete todos los campos obligatorios.</div></html>", SwingConstants.CENTER);
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(30, 50, 340, 50);
+					fondo.add(mensaje);
+
+					JButton aceptar = new JButton("Aceptar");
+					aceptar.setBackground(new Color(0, 206, 82));
+					aceptar.setForeground(Color.WHITE);
+					aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					aceptar.setBounds(148, 110, 102, 33);
+					aceptar.addActionListener(a -> alertaCampos.dispose());
+					fondo.add(aceptar);
+
+					alertaCampos.setVisible(true);
+					return;
+				}
+
 
 				String nuevaContra = new String(Info_contra.getPassword());
 				String confirmarContra = new String(Info_confirmar_contra.getPassword());
 
 				if (!nuevaContra.isEmpty() && !nuevaContra.equals(confirmarContra)) {
-					JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden.", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JDialog error = new JDialog(frame, "Error", true);
+					error.setUndecorated(true);
+					error.setSize(400, 180);
+					error.setLocationRelativeTo(frame);
+					error.setLayout(null);
+
+					JPanel fondo = new JPanel();
+					fondo.setBackground(Color.WHITE);
+					fondo.setBounds(0, 0, 400, 180);
+					fondo.setLayout(null);
+					error.add(fondo);
+
+					JPanel encabezado = new JPanel();
+					encabezado.setBackground(new Color(81, 151, 255));
+					encabezado.setBounds(0, 0, 400, 33);
+					fondo.add(encabezado);
+
+					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Las contraseñas no coinciden.</div></html>", SwingConstants.CENTER);
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(30, 50, 340, 50);
+					fondo.add(mensaje);
+
+					JButton aceptar = new JButton("Aceptar");
+					aceptar.setBackground(new Color(0, 206, 82));
+					aceptar.setForeground(Color.WHITE);
+					aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					aceptar.setBounds(148, 110, 102, 33);
+					aceptar.addActionListener(a -> error.dispose());
+					fondo.add(aceptar);
+
+					error.setVisible(true);
 					return;
 				}
 
-				int confirmacion = JOptionPane.showConfirmDialog(frame, "¿Está seguro que desea guardar los cambios?",
-						"Confirmar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				// Confirmación personalizada (Sí / No)
+				JDialog confirmacion = new JDialog(frame, "Confirmar cambios", true);
+				confirmacion.setUndecorated(true);
+				confirmacion.setSize(400, 180);
+				confirmacion.setLocationRelativeTo(frame);
+				confirmacion.setLayout(null);
 
-				if (confirmacion == JOptionPane.YES_OPTION) {
+				JPanel fondo = new JPanel();
+				fondo.setBackground(Color.WHITE);
+				fondo.setBounds(0, 0, 400, 180);
+				fondo.setLayout(null);
+				confirmacion.add(fondo);
+
+				JPanel encabezado = new JPanel();
+				encabezado.setBackground(new Color(81, 151, 255));
+				encabezado.setBounds(0, 0, 400, 33);
+				fondo.add(encabezado);
+
+				JLabel mensaje = new JLabel("<html><div style='text-align: center;'>¿Está seguro que desea guardar los cambios?</div></html>", SwingConstants.CENTER);
+				mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+				mensaje.setBounds(30, 50, 340, 50);
+				fondo.add(mensaje);
+
+				JButton botonSi = new JButton("Sí");
+				botonSi.setBackground(new Color(0, 206, 82));
+				botonSi.setForeground(Color.WHITE);
+				botonSi.setFont(new Font("Anton", Font.PLAIN, 14));
+				botonSi.setBounds(90, 110, 90, 33);
+
+				JButton botonNo = new JButton("No");
+				botonNo.setBackground(new Color(255, 70, 70));
+				botonNo.setForeground(Color.WHITE);
+				botonNo.setFont(new Font("Anton", Font.PLAIN, 14));
+				botonNo.setBounds(220, 110, 90, 33);
+
+				fondo.add(botonSi);
+				fondo.add(botonNo);
+
+				botonSi.addActionListener(a -> {
+					confirmacion.dispose();
 					boolean exito = actualizarCliente(idcliente, Info_nombre.getText(), Info_primer_apellido.getText(),
-							Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
-							nuevaContra.isEmpty() ? null : nuevaContra);
+						Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
+						nuevaContra.isEmpty() ? null : nuevaContra);
+
+					JDialog resultado = new JDialog(frame, "Resultado", true);
+					resultado.setUndecorated(true);
+					resultado.setSize(400, 180);
+					resultado.setLocationRelativeTo(frame);
+					resultado.setLayout(null);
+
+					JPanel fondoResultado = new JPanel();
+					fondoResultado.setBackground(Color.WHITE);
+					fondoResultado.setBounds(0, 0, 400, 180);
+					fondoResultado.setLayout(null);
+					resultado.add(fondoResultado);
+
+					JPanel encabezadoResultado = new JPanel();
+					encabezadoResultado.setBackground(exito ? new Color(81, 151, 255) : new Color(81, 151, 255));
+					encabezadoResultado.setBounds(0, 0, 400, 33);
+					fondoResultado.add(encabezadoResultado);
+
+					JLabel mensajeFinal = new JLabel("<html><div style='text-align: center;'>" + 
+						(exito ? "Cambios guardados correctamente." : "Error al guardar los cambios.") + "</div></html>", SwingConstants.CENTER);
+					mensajeFinal.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeFinal.setBounds(30, 50, 340, 50);
+					fondoResultado.add(mensajeFinal);
+
+					JButton aceptarFinal = new JButton("Aceptar");
+					aceptarFinal.setBackground(new Color(0, 206, 82));
+					aceptarFinal.setForeground(Color.WHITE);
+					aceptarFinal.setFont(new Font("Anton", Font.PLAIN, 14));
+					aceptarFinal.setBounds(148, 110, 102, 33);
+					aceptarFinal.addActionListener(ev -> resultado.dispose());
+					fondoResultado.add(aceptarFinal);
+
+					resultado.setVisible(true);
 
 					if (exito) {
-						JOptionPane.showMessageDialog(frame, "Cambios guardados correctamente.", "Éxito",
-								JOptionPane.INFORMATION_MESSAGE);
 						cambiosRealizados = false;
 						valoresOriginales.put("nombre", Info_nombre.getText());
 						valoresOriginales.put("primer_apellido", Info_primer_apellido.getText());
 						valoresOriginales.put("segundo_apellido", Info_segundo_apellido.getText());
 						valoresOriginales.put("telefono", Info_telefono.getText());
 						valoresOriginales.put("correo", Info_correo.getText());
-					} else {
-						JOptionPane.showMessageDialog(frame, "Error al guardar los cambios.", "Error",
-								JOptionPane.ERROR_MESSAGE);
 					}
-				}
+				});
+
+				botonNo.addActionListener(a -> confirmacion.dispose());
+
+				confirmacion.setVisible(true);
 			}
 		});
-		panel_2.add(boton_descraga_credencial);
+		panel_2.add(boton_guardar_cambios);
+
 
 		JButton boton_descargar_info = new JButton("Cancelar / volver");
 		boton_descargar_info.setForeground(new Color(255, 255, 255));
@@ -782,35 +956,11 @@ public class UsersView {
 
 		// combox de
 		// usario////////////////////////////////////////////////////////////////////////
-		/*
-		 * UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		 * JComboBox comboBox_dias = new JComboBox(); comboBox_dias.setBackground(new
-		 * Color(204, 204, 204)); comboBox_dias.setFont(new Font("Anton", Font.PLAIN,
-		 * 16)); comboBox_dias.setBounds(651, 115, 60, 22); for (int i = 1; i <= 31;
-		 * i++) { comboBox_dias.addItem(String.valueOf(i)); }
-		 * panel_2.add(comboBox_dias);
-		 * 
-		 * /*JComboBox comboBox_meses = new JComboBox();
-		 * comboBox_meses.setBackground(new Color(204, 204, 204));
-		 * comboBox_meses.setFont(new Font("Anton", Font.PLAIN, 16));
-		 * comboBox_meses.setBounds(709, 115, 117, 22); String[] meses = { "Enero",
-		 * "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
-		 * "Septiembre", "Octubre", "Noviembre", "Diciembre" }; for (String mes : meses)
-		 * { comboBox_meses.addItem(mes); } panel_2.add(comboBox_meses);
-		 */
-
-		/*
-		 * JComboBox comboBox_año = new JComboBox(); comboBox_año.setBackground(new
-		 * Color(204, 204, 204)); comboBox_año.setFont(new Font("Anton", Font.PLAIN,
-		 * 16)); comboBox_año.setBounds(823, 115, 85, 22); for (int año = 1950; año <=
-		 * 2025; año++) { comboBox_año.addItem(String.valueOf(año)); }
-		 * panel_2.add(comboBox_año);
-		 */
 
 //		JComboBox comboBox_Tarifas = new JComboBox();
 //		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
 //		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-//		comboBox_Tarifas.setBounds(649, 283, 161, 22);
+//		comboBox_Tarifas.setBounds(649, 283, 200, 22);
 //		String[] tarifas = { "NINGUNA", "ESTANDAR", "PREMIUM", "FAMILIAR" };
 //		for (String tarifa : tarifas) {
 //			comboBox_Tarifas.addItem(tarifa);
@@ -1581,7 +1731,7 @@ public class UsersView {
 		lblNewLabel_11.setBounds(340, 160, 84, 32);
 		panel_2.add(lblNewLabel_11);
 
-		JLabel lblNewLabel_10 = new JLabel("Fecha de nacimiento:");
+		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 22));
 		lblNewLabel_10.setBounds(340, 230, 200, 32);
 		panel_2.add(lblNewLabel_10);
@@ -1618,10 +1768,10 @@ public class UsersView {
 		Info_nombre.setBounds(420, 162, 118, 29);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_fecha_nacimiento = new JLabel("15/08/1980");
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_fecha_nacimiento.setBounds(532, 230, 127, 32);
-		panel_2.add(Info_fecha_nacimiento);
+		JLabel Info_primer_apellido = new JLabel("Hinojosa");
+		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 22));
+		Info_primer_apellido.setBounds(492, 230, 127, 32);
+		panel_2.add(Info_primer_apellido);
 
 		JLabel Info_plan = new JLabel("PREMIUM");
 		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));

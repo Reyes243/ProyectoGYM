@@ -56,27 +56,27 @@ public class Alertas {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel campos_obligatorios = new JPanel();
-		campos_obligatorios.setBackground(new Color(255, 255, 255));
-		campos_obligatorios.setBounds(335, 234, 400, 180);
-		frame.getContentPane().add(campos_obligatorios);
-		campos_obligatorios.setLayout(null);
+		JPanel no_hay_cambios = new JPanel();
+		no_hay_cambios.setBackground(new Color(255, 255, 255));
+		no_hay_cambios.setBounds(335, 234, 400, 180);
+		frame.getContentPane().add(no_hay_cambios);
+		no_hay_cambios.setLayout(null);
 		
 		JPanel panel_complemento= new JPanel();
 		panel_complemento.setBackground(new Color(81, 151, 255));
 		panel_complemento.setBounds(0, 0, 400, 33);
-		campos_obligatorios.add(panel_complemento);
+		no_hay_cambios.add(panel_complemento);
 		
-		JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Todos los campos obligatorios deben estar completos<br></div></html>");
+		JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>No se han realizado cambios para guardar.<br></div></html>");
 		pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		pregunta_de_confirmacion.setBounds(43, 44, 312, 59);
-		campos_obligatorios.add(pregunta_de_confirmacion);
+		pregunta_de_confirmacion.setBounds(57, 44, 343, 59);
+		no_hay_cambios.add(pregunta_de_confirmacion);
 		
 		JButton boton_aceptar = new JButton("Aceptar");
 		boton_aceptar.setBackground(new Color(0, 206, 82));
 		boton_aceptar.setForeground(new Color(255, 255, 255));
 		boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_aceptar.setBounds(151, 121, 102, 33);
-		campos_obligatorios.add(boton_aceptar);
+		no_hay_cambios.add(boton_aceptar);
 	}
 }
