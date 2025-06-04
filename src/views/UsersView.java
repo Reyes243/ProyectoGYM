@@ -631,10 +631,10 @@ public class UsersView {
 		lblNewLabel_7.setBounds(499, 115, 132, 28);
 		panel_2.add(lblNewLabel_7);
 
-		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
+	/*	JLabel lblNewLabel_6 = new JLabel("Tarifa:");
 		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_6.setBounds(499, 280, 60, 22);
-		panel_2.add(lblNewLabel_6);
+		panel_2.add(lblNewLabel_6);*/
 
 		JLabel lblNewLabel_12 = new JLabel("Confirmar contraseña:");
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
