@@ -46,6 +46,19 @@ import models.UsersModel;
 
 public class UsersView {
 	private boolean cambiosRealizados = false;
+	private Font antonFont;
+
+	private void cargarFuentePersonalizada() {
+	    try {
+	        antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf")).deriveFont(Font.PLAIN, 18f);
+	        // Registra la fuente en el sistema gráfico de Java
+	        java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
+	        ge.registerFont(antonFont);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
+	    }
+	}
 
 	public UsersView() {
 
@@ -58,6 +71,8 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		cargarFuentePersonalizada();
+		
 		UsersModel um = new UsersModel();
 		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
 
@@ -127,8 +142,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/GYMBRO.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -186,7 +201,7 @@ public class UsersView {
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
 		
-		JLabel Info_primer_apellido = new JLabel("Diaz");
+		JLabel Info_primer_apellido = new JLabel("Hernadeztish");
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_primer_apellido.setBounds(342, 210, 200, 22);
 		panel_2.add(Info_primer_apellido);
@@ -582,8 +597,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(80, 100, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/GYMBRO.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(132, 180, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -1878,8 +1893,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/GYMBRO.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -1925,12 +1940,12 @@ public class UsersView {
 
 		// info de
 		// usuario/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre = new JLabel("Jose Lopez");
+		JLabel Info_nombre = new JLabel("Carlostish");
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_nombre.setBounds(420, 162, 118, 29);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_primer_apellido = new JLabel("Hinojosa");
+		JLabel Info_primer_apellido = new JLabel("Hernandeztish");
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_primer_apellido.setBounds(492, 230, 127, 32);
 		panel_2.add(Info_primer_apellido);
@@ -2182,8 +2197,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(80, 100, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/GYMBRO.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(132, 180, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -2588,11 +2603,11 @@ public class UsersView {
 		});
 		panel_2.add(boton_cancelar);
 
-		JButton btnNewButton = new JButton("Cargar foto");
-		btnNewButton.setBackground(new Color(255, 205, 17));
-		btnNewButton.setFont(new Font("Anton", Font.PLAIN, 12));
-		btnNewButton.setBounds(15, 296, 132, 32);
-		panel_2.add(btnNewButton);
+		JButton cargar_foto = new JButton("Cargar foto");
+		cargar_foto.setBackground(new Color(255, 205, 17));
+		cargar_foto.setFont(new Font("Anton", Font.PLAIN, 12));
+		cargar_foto.setBounds(15, 296, 132, 32);	
+		panel_2.add(cargar_foto);
 
 
 		// Botones laterales
@@ -2885,14 +2900,72 @@ public class UsersView {
 		});
 		plan_estandar.add(boton_inf_plan_estandar);
 
-		JButton boton_plan_instcibsion_estandar = new JButton("");
-		boton_plan_instcibsion_estandar.setBackground(new Color(255, 0, 0));
-		boton_plan_instcibsion_estandar.setBounds(240, 0, 35, 35);
-		boton_plan_instcibsion_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		JButton boton_eliminar_instcibsion_estandar = new JButton("");
+		boton_eliminar_instcibsion_estandar.setBackground(new Color(255, 0, 0));
+		boton_eliminar_instcibsion_estandar.setBounds(240, 0, 35, 35);
+		boton_eliminar_instcibsion_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		ImageIcon icon4 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
 		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
-		plan_estandar.add(boton_plan_instcibsion_estandar);
+		boton_eliminar_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
+		boton_eliminar_instcibsion_estandar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+                dialog.setSize(400, 220);
+                dialog.setLocationRelativeTo(null);
+                dialog.setUndecorated(true);
+                dialog.setLayout(null);
+
+                // Panel principal de la alerta
+                JPanel confirmar_eliminacion = new JPanel();
+                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+                confirmar_eliminacion.setBounds(0, 0, 400, 220);
+                confirmar_eliminacion.setLayout(null);
+                dialog.add(confirmar_eliminacion);
+
+                // Panel superior de la alerta (azul)
+                JPanel panel_complemento = new JPanel();
+                panel_complemento.setBackground(new Color(81, 151, 255));
+                panel_complemento.setBounds(0, 0, 400, 33);
+                confirmar_eliminacion.add(panel_complemento);
+
+                // Etiqueta de confirmación
+                JLabel pregunta_de_confirmacion = new JLabel(
+                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+                confirmar_eliminacion.add(pregunta_de_confirmacion);
+
+                // Botón "Cancelar"
+                JButton boton_cancelar_alerta = new JButton("Cancelar");
+                boton_cancelar_alerta.setForeground(Color.WHITE);
+                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_cancelar_alerta.setBackground(Color.RED);
+                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+                confirmar_eliminacion.add(boton_cancelar_alerta);
+
+                // Botón "Aceptar"
+                JButton boton_aceptar = new JButton("Aceptar");
+                boton_aceptar.setBackground(new Color(0, 206, 82));
+                boton_aceptar.setForeground(Color.WHITE);
+                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_aceptar.setBounds(230, 140, 120, 35);
+                confirmar_eliminacion.add(boton_aceptar);
+
+                // Acción al hacer clic en "Cancelar"
+                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+
+                // Acción al hacer clic en "Aceptar"
+                boton_aceptar.addActionListener(ev -> {
+                    dialog.dispose();
+                    
+                });
+
+                dialog.setVisible(true);
+			}
+		});
+		
+		
+		plan_estandar.add(boton_eliminar_instcibsion_estandar);
 
 		JButton boton_inf_plan_premium = new JButton("");
 		boton_inf_plan_premium.setBackground(new Color(255, 205, 17));
@@ -2910,14 +2983,70 @@ public class UsersView {
 		});
 		plan_premium.add(boton_inf_plan_premium);
 
-		JButton boton_plan_instcibsion_premium = new JButton("");
-		boton_plan_instcibsion_premium.setBackground(new Color(255, 0, 0));
-		boton_plan_instcibsion_premium.setBounds(240, 0, 35, 35);
-		boton_plan_instcibsion_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		JButton boton_eliminar_instcibsion_premium = new JButton("");
+		boton_eliminar_instcibsion_premium.setBackground(new Color(255, 0, 0));
+		boton_eliminar_instcibsion_premium.setBounds(240, 0, 35, 35);
+		boton_eliminar_instcibsion_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
 		Image imagen5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_premium.setIcon(new ImageIcon(imagen5));
-		plan_premium.add(boton_plan_instcibsion_premium);
+		boton_eliminar_instcibsion_premium.setIcon(new ImageIcon(imagen5));
+		boton_eliminar_instcibsion_premium.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+                dialog.setSize(400, 220);
+                dialog.setLocationRelativeTo(null);
+                dialog.setUndecorated(true);
+                dialog.setLayout(null);
+
+                // Panel principal de la alerta
+                JPanel confirmar_eliminacion = new JPanel();
+                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+                confirmar_eliminacion.setBounds(0, 0, 400, 220);
+                confirmar_eliminacion.setLayout(null);
+                dialog.add(confirmar_eliminacion);
+
+                // Panel superior de la alerta (azul)
+                JPanel panel_complemento = new JPanel();
+                panel_complemento.setBackground(new Color(81, 151, 255));
+                panel_complemento.setBounds(0, 0, 400, 33);
+                confirmar_eliminacion.add(panel_complemento);
+
+                // Etiqueta de confirmación
+                JLabel pregunta_de_confirmacion = new JLabel(
+                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+                confirmar_eliminacion.add(pregunta_de_confirmacion);
+
+                // Botón "Cancelar"
+                JButton boton_cancelar_alerta = new JButton("Cancelar");
+                boton_cancelar_alerta.setForeground(Color.WHITE);
+                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_cancelar_alerta.setBackground(Color.RED);
+                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+                confirmar_eliminacion.add(boton_cancelar_alerta);
+
+                // Botón "Aceptar"
+                JButton boton_aceptar = new JButton("Aceptar");
+                boton_aceptar.setBackground(new Color(0, 206, 82));
+                boton_aceptar.setForeground(Color.WHITE);
+                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_aceptar.setBounds(230, 140, 120, 35);
+                confirmar_eliminacion.add(boton_aceptar);
+
+                // Acción al hacer clic en "Cancelar"
+                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+
+                // Acción al hacer clic en "Aceptar"
+                boton_aceptar.addActionListener(ev -> {
+                    dialog.dispose();
+                    
+                });
+
+                dialog.setVisible(true);
+			}
+		});
+		plan_premium.add(boton_eliminar_instcibsion_premium);
 
 		JButton boton_inf_plan_familiar = new JButton("");
 		boton_inf_plan_familiar.setBackground(new Color(255, 205, 17));
@@ -2935,14 +3064,70 @@ public class UsersView {
 		});
 		plan_familiar.add(boton_inf_plan_familiar);
 
-		JButton boton_plan_instcibsion_familiar = new JButton("");
-		boton_plan_instcibsion_familiar.setBackground(new Color(255, 0, 0));
-		boton_plan_instcibsion_familiar.setBounds(240, 0, 35, 35);
-		boton_plan_instcibsion_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		JButton boton_eliminar_instcibsion_familiar = new JButton("");
+		boton_eliminar_instcibsion_familiar.setBackground(new Color(255, 0, 0));
+		boton_eliminar_instcibsion_familiar.setBounds(240, 0, 35, 35);
+		boton_eliminar_instcibsion_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		ImageIcon icon6 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
 		Image imagen6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
-		plan_familiar.add(boton_plan_instcibsion_familiar);
+		boton_eliminar_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
+		boton_eliminar_instcibsion_familiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+                dialog.setSize(400, 220);
+                dialog.setLocationRelativeTo(null);
+                dialog.setUndecorated(true);
+                dialog.setLayout(null);
+
+                // Panel principal de la alerta
+                JPanel confirmar_eliminacion = new JPanel();
+                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+                confirmar_eliminacion.setBounds(0, 0, 400, 220);
+                confirmar_eliminacion.setLayout(null);
+                dialog.add(confirmar_eliminacion);
+
+                // Panel superior de la alerta (azul)
+                JPanel panel_complemento = new JPanel();
+                panel_complemento.setBackground(new Color(81, 151, 255));
+                panel_complemento.setBounds(0, 0, 400, 33);
+                confirmar_eliminacion.add(panel_complemento);
+
+                // Etiqueta de confirmación
+                JLabel pregunta_de_confirmacion = new JLabel(
+                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+                confirmar_eliminacion.add(pregunta_de_confirmacion);
+
+                // Botón "Cancelar"
+                JButton boton_cancelar_alerta = new JButton("Cancelar");
+                boton_cancelar_alerta.setForeground(Color.WHITE);
+                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_cancelar_alerta.setBackground(Color.RED);
+                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+                confirmar_eliminacion.add(boton_cancelar_alerta);
+
+                // Botón "Aceptar"
+                JButton boton_aceptar = new JButton("Aceptar");
+                boton_aceptar.setBackground(new Color(0, 206, 82));
+                boton_aceptar.setForeground(Color.WHITE);
+                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+                boton_aceptar.setBounds(230, 140, 120, 35);
+                confirmar_eliminacion.add(boton_aceptar);
+
+                // Acción al hacer clic en "Cancelar"
+                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+
+                // Acción al hacer clic en "Aceptar"
+                boton_aceptar.addActionListener(ev -> {
+                    dialog.dispose();
+                    
+                });
+
+                dialog.setVisible(true);
+			}
+		});
+		plan_familiar.add(boton_eliminar_instcibsion_familiar);
 
 		JButton boton_editar_tarifas = new JButton("Cancelar");
 		boton_editar_tarifas.setForeground(new Color(255, 255, 255));
@@ -5106,8 +5291,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/VADUROTISH.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -5700,8 +5885,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/VADUROTISH.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(173, 252, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -5709,72 +5894,71 @@ public class UsersView {
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
-
+		
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(272, 165, 91, 22);
+		lblNewLabel_10.setBounds(272, 151, 91, 22);
 		panel_2.add(lblNewLabel_10);
-
+		
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(272, 267, 104, 22);
+		lblNewLabel_9.setBounds(272, 293, 104, 22);
 		panel_2.add(lblNewLabel_9);
-
+		
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(272, 315, 67, 22);
+		lblNewLabel_8.setBounds(272, 326, 67, 22);
 		panel_2.add(lblNewLabel_8);
-
+		
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(272, 362, 132, 28);
+		lblNewLabel_7.setBounds(271, 359, 132, 28);
 		panel_2.add(lblNewLabel_7);
-
+		
 		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(272, 217, 147, 22);
+		lblNewLabel_13.setBounds(272, 184, 147, 22);
 		panel_2.add(lblNewLabel_13);
-		// info de
-		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre = new JTextField("Laura Mendez");
+		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JTextField Info_nombre= new JTextField("Laura Mendez");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_nombre.setBounds(328, 119, 186, 21);
+		Info_nombre.setBounds(420, 119, 320, 21);
 		panel_2.add(Info_nombre);
-
+		
 		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_especialidad.setBounds(361, 165, 236, 22);
+		Info_especialidad.setBounds(420, 151, 320, 22);
 		panel_2.add(Info_especialidad);
-
+		
+		
 		JTextField Info_telefono = new JTextField("612 187 0000");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_telefono.setBounds(334, 315, 152, 22);
+		Info_telefono.setBounds(420, 326, 320, 22);
 		panel_2.add(Info_telefono);
-
+		
 		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(405, 362, 255, 28);
+		Info_correo.setBounds(420, 362, 320, 22);
 		panel_2.add(Info_correo);
-
+		
 		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_horarrio.setBounds(422, 217, 468, 22);
+		Info_horarrio.setBounds(272, 217, 468, 65);
 		panel_2.add(Info_horarrio);
-
-		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
+		
+		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_clases.setBounds(386, 267, 200, 22);
-		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
-				"SPINNING INTENSO" };
+		comboBox_clases.setBounds(420, 293, 320, 22);
+		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
 		for (String clase : clases) {
 			comboBox_clases.addItem(clase);
 		}
@@ -6024,8 +6208,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/VADUROTISH.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -6308,8 +6492,8 @@ public class UsersView {
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		Imagen_de_usuario.setHorizontalAlignment(SwingConstants.CENTER);
 		Imagen_de_usuario.setVerticalAlignment(SwingConstants.CENTER);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/imagen credencial.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/VADUROTISH.jpg"));
+		Image imagen1 = icon1.getImage().getScaledInstance(173, 252, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
 
@@ -6317,72 +6501,71 @@ public class UsersView {
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
-
+		
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(272, 165, 91, 22);
+		lblNewLabel_10.setBounds(272, 151, 91, 22);
 		panel_2.add(lblNewLabel_10);
-
+		
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(272, 267, 104, 22);
+		lblNewLabel_9.setBounds(272, 293, 104, 22);
 		panel_2.add(lblNewLabel_9);
-
+		
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(272, 315, 67, 22);
+		lblNewLabel_8.setBounds(272, 326, 67, 22);
 		panel_2.add(lblNewLabel_8);
-
+		
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(272, 362, 132, 28);
+		lblNewLabel_7.setBounds(271, 359, 132, 28);
 		panel_2.add(lblNewLabel_7);
-
+		
 		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(272, 217, 147, 22);
+		lblNewLabel_13.setBounds(272, 184, 147, 22);
 		panel_2.add(lblNewLabel_13);
-		// info de
-		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre = new JTextField("");
+		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JTextField Info_nombre= new JTextField("");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_nombre.setBounds(328, 119, 186, 21);
+		Info_nombre.setBounds(420, 119, 320, 21);
 		panel_2.add(Info_nombre);
-
+		
 		JTextField Info_especialidad = new JTextField("");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_especialidad.setBounds(361, 165, 236, 22);
+		Info_especialidad.setBounds(420, 151, 320, 22);
 		panel_2.add(Info_especialidad);
-
+		
+		
 		JTextField Info_telefono = new JTextField("");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_telefono.setBounds(334, 315, 152, 22);
+		Info_telefono.setBounds(420, 326, 320, 22);
 		panel_2.add(Info_telefono);
-
-		JTextField Info_correo = new JTextField("");
+		
+		JTextField Info_correo = new JTextField(" ");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(405, 362, 255, 28);
+		Info_correo.setBounds(420, 362, 320, 22);
 		panel_2.add(Info_correo);
-
+		
 		JTextField Info_horarrio = new JTextField("");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_horarrio.setBounds(422, 217, 468, 22);
+		Info_horarrio.setBounds(272, 217, 468, 65);
 		panel_2.add(Info_horarrio);
-
-		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
+		
+		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_clases.setBounds(386, 267, 200, 22);
-		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
-				"SPINNING INTENSO" };
+		comboBox_clases.setBounds(420, 293, 320, 22);
+		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
 		for (String clase : clases) {
 			comboBox_clases.addItem(clase);
 		}
@@ -6935,18 +7118,68 @@ public class UsersView {
 			return button;
 		}
 
-		@Override
 		public Object getCellEditorValue() {
-			if (clicked) {
-				if (label.equals("Eliminar")) {
-					// Aquí conecta con la base de datos para borrar el registro según el ID de la
-					// fila seleccionada
-					// y luego actualiza la tabla recargando datos.
-				}
-			}
-			clicked = false;
-			return label;
-		}
+	        if (clicked) {
+	            if (label.equals("Eliminar")) {
+	                // Crear el JDialog con la alerta personalizada
+	                JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+	                dialog.setSize(400, 220);
+	                dialog.setLocationRelativeTo(null);
+	                dialog.setUndecorated(true);
+	                dialog.setLayout(null);
+
+	                // Panel principal de la alerta
+	                JPanel confirmar_eliminacion = new JPanel();
+	                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+	                confirmar_eliminacion.setBounds(0, 0, 400, 220);
+	                confirmar_eliminacion.setLayout(null);
+	                dialog.add(confirmar_eliminacion);
+
+	                // Panel superior de la alerta (azul)
+	                JPanel panel_complemento = new JPanel();
+	                panel_complemento.setBackground(new Color(81, 151, 255));
+	                panel_complemento.setBounds(0, 0, 400, 33);
+	                confirmar_eliminacion.add(panel_complemento);
+
+	                // Etiqueta de confirmación
+	                JLabel pregunta_de_confirmacion = new JLabel(
+	                        "<html><div style='text-align: center;'>El miembro se borrará permanentemente<br>¿Desea continuar?</div></html>");
+	                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+	                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+	                confirmar_eliminacion.add(pregunta_de_confirmacion);
+
+	                // Botón "Cancelar"
+	                JButton boton_cancelar_alerta = new JButton("Cancelar");
+	                boton_cancelar_alerta.setForeground(Color.WHITE);
+	                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+	                boton_cancelar_alerta.setBackground(Color.RED);
+	                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+	                confirmar_eliminacion.add(boton_cancelar_alerta);
+
+	                // Botón "Aceptar"
+	                JButton boton_aceptar = new JButton("Aceptar");
+	                boton_aceptar.setBackground(new Color(0, 206, 82));
+	                boton_aceptar.setForeground(Color.WHITE);
+	                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+	                boton_aceptar.setBounds(230, 140, 120, 35);
+	                confirmar_eliminacion.add(boton_aceptar);
+
+	                // Acción al hacer clic en "Cancelar"
+	                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+
+	                // Acción al hacer clic en "Aceptar"
+	                boton_aceptar.addActionListener(ev -> {
+	                    dialog.dispose();
+	                    
+	                });
+
+	                dialog.setVisible(true);  // Mostrar el diálogo de confirmación
+	            }
+	        }
+	        clicked = false;
+	        return label;
+	    
+	}
 
 		@Override
 		public boolean stopCellEditing() {
@@ -7330,9 +7563,58 @@ public class UsersView {
 					// y luego actualiza la tabla recargando datos.
 				} else if (label.equals("Eliminar")) {
 
-					// Aquí abre un formulario para editar la fila,
-					// luego guarda cambios en la base de datos con un UPDATE,
-					// y recarga la tabla con los datos actualizados.
+					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+	                dialog.setSize(400, 220);
+	                dialog.setLocationRelativeTo(null);
+	                dialog.setUndecorated(true);
+	                dialog.setLayout(null);
+
+	                // Panel principal de la alerta
+	                JPanel confirmar_eliminacion = new JPanel();
+	                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+	                confirmar_eliminacion.setBounds(0, 0, 400, 220);
+	                confirmar_eliminacion.setLayout(null);
+	                dialog.add(confirmar_eliminacion);
+
+	                // Panel superior de la alerta (azul)
+	                JPanel panel_complemento = new JPanel();
+	                panel_complemento.setBackground(new Color(81, 151, 255));
+	                panel_complemento.setBounds(0, 0, 400, 33);
+	                confirmar_eliminacion.add(panel_complemento);
+
+	                // Etiqueta de confirmación
+	                JLabel pregunta_de_confirmacion = new JLabel(
+	                        "<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
+	                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+	                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+	                confirmar_eliminacion.add(pregunta_de_confirmacion);
+
+	                // Botón "Cancelar"
+	                JButton boton_cancelar_alerta = new JButton("Cancelar");
+	                boton_cancelar_alerta.setForeground(Color.WHITE);
+	                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+	                boton_cancelar_alerta.setBackground(Color.RED);
+	                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+	                confirmar_eliminacion.add(boton_cancelar_alerta);
+
+	                // Botón "Aceptar"
+	                JButton boton_aceptar = new JButton("Aceptar");
+	                boton_aceptar.setBackground(new Color(0, 206, 82));
+	                boton_aceptar.setForeground(Color.WHITE);
+	                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+	                boton_aceptar.setBounds(230, 140, 120, 35);
+	                confirmar_eliminacion.add(boton_aceptar);
+
+	                // Acción al hacer clic en "Cancelar"
+	                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+
+	                // Acción al hacer clic en "Aceptar"
+	                boton_aceptar.addActionListener(ev -> {
+	                    dialog.dispose();
+	                    
+	                });
+
+	                dialog.setVisible(true);
 				}
 			}
 			clicked = false;
@@ -7442,13 +7724,13 @@ public class UsersView {
 		JTextField Info_nombre = new JTextField("YOGA RELAX");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_nombre.setBounds(223, 83, 186, 37);
+		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
 		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(235, 316, 468, 37);
+		Info_horarrio.setBounds(58, 356, 517, 37);
 		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7467,7 +7749,7 @@ public class UsersView {
 		JComboBox comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
-		comboBox_entrenador.setBounds(236, 161, 200, 31);
+		comboBox_entrenador.setBounds(247, 161, 328, 31);
 		String[] entrenador = { "NINGUNA", "Sebastian Torres", "Laura Mendez", "Camila Rodriguez", "Marco Rojas" };
 		for (String entrenadores : entrenador) {
 			comboBox_entrenador.addItem(entrenadores);
@@ -7736,13 +8018,13 @@ public class UsersView {
 		JTextField Info_nombre = new JTextField("");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_nombre.setBounds(223, 83, 186, 37);
+		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
 		JTextField Info_horarrio = new JTextField("");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(235, 316, 468, 37);
+		Info_horarrio.setBounds(58, 356, 517, 37);
 		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7761,7 +8043,7 @@ public class UsersView {
 		JComboBox comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
-		comboBox_entrenador.setBounds(236, 161, 200, 31);
+		comboBox_entrenador.setBounds(247, 161, 328, 31);
 		String[] entrenador = { "NINGUNA", "Sebastian Torres", "Laura Mendez", "Camila Rodriguez", "Marco Rojas" };
 		for (String entrenadores : entrenador) {
 			comboBox_entrenador.addItem(entrenadores);

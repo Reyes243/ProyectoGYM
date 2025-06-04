@@ -13,11 +13,12 @@ import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class Alertas {
 
 	private JFrame frame;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -57,44 +58,31 @@ public class Alertas {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel id_de_usuario_clase  = new JPanel();
-		id_de_usuario_clase.setBackground(new Color(255, 255, 255));
-		id_de_usuario_clase.setBounds(335, 234, 400, 180);
-		frame.getContentPane().add(id_de_usuario_clase);
-		id_de_usuario_clase.setLayout(null);
+		JPanel inf_tarifa_estandar = new JPanel();
+		inf_tarifa_estandar.setBackground(new Color(255, 255, 255));
+		inf_tarifa_estandar.setBounds(335, 234, 500, 280);
+		frame.getContentPane().add(inf_tarifa_estandar);
+		inf_tarifa_estandar.setLayout(null);
 		
 		JPanel panel_complemento= new JPanel();
 		panel_complemento.setBackground(new Color(81, 151, 255));
-		panel_complemento.setBounds(0, 0, 400, 33);
-		id_de_usuario_clase.add(panel_complemento);
+		panel_complemento.setBounds(0, 0, 500, 33);
+		inf_tarifa_estandar.add(panel_complemento);
 		
-		JLabel pregunta_de_confirmacion = new JLabel("<html><div style='text-align: center;'>Ingrese el ID del usuario a inscribir a la clase:<br></div></html>");
-		pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-		pregunta_de_confirmacion.setBounds(48, 33, 352, 59);
-		id_de_usuario_clase.add(pregunta_de_confirmacion);
+		JTextArea txtrPlanEstandarSe = new JTextArea();
+		txtrPlanEstandarSe.setBounds(10, 44, 480, 151);
+		inf_tarifa_estandar.add(txtrPlanEstandarSe);
+		txtrPlanEstandarSe.setText("Plan: FAMILIAR\r\n-Se incluye acceso completo a todo el equipo y áreas del gimnasio.\r\n-Durante su membresía se le aplicara un 30% de descuento a todos los miembros del plan al comprar productos de la marca EVOLVEFIT.\r\n-Membrecía mensual con costo de $1099.\r\n");
+		txtrPlanEstandarSe.setLineWrap(true);
+
+		txtrPlanEstandarSe.setWrapStyleWord(true);
+		txtrPlanEstandarSe.setFont(new Font("Anton", Font.PLAIN, 16));
 		
-		JButton boton_aceptar = new JButton("Aceptar");
-		boton_aceptar.setBackground(new Color(0, 206, 82));
-		boton_aceptar.setForeground(new Color(255, 255, 255));
-		boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_aceptar.setBounds(255, 136, 102, 33);
-		id_de_usuario_clase.add(boton_aceptar);
-		
-		JButton boton_aceptar_1 = new JButton("Cancelar");
-		boton_aceptar_1.setForeground(Color.WHITE);
-		boton_aceptar_1.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_aceptar_1.setBackground(new Color(255, 0, 0));
-		boton_aceptar_1.setBounds(48, 136, 102, 33);
-		id_de_usuario_clase.add(boton_aceptar_1);
-		
-		textField = new JTextField();
-		textField.setBounds(153, 90, 102, 33);
-		id_de_usuario_clase.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("ID:");
-		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel.setBounds(136, 90, 46, 35);
-		id_de_usuario_clase.add(lblNewLabel);
+		JButton btn_aceptar = new JButton("Aceptar");
+		btn_aceptar.setFont(new Font("Anton", Font.PLAIN, 15));
+		btn_aceptar.setForeground(new Color(255, 255, 255));
+		btn_aceptar.setBackground(new Color(0, 206, 82));
+		btn_aceptar.setBounds(344, 230, 146, 39);
+		inf_tarifa_estandar.add(btn_aceptar);
 	}
 }

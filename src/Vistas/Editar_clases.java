@@ -141,13 +141,13 @@ public class Editar_clases {
 		JTextField Info_nombre= new JTextField("YOGA RELAX");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_nombre.setBounds(223, 83, 186, 37);
+		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 		
 		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(235, 316, 468, 37);
+		Info_horarrio.setBounds(58, 356, 517, 37);
 		panel_2.add(Info_horarrio);
 		
 		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ public class Editar_clases {
 		JComboBox comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
-		comboBox_entrenador.setBounds(236, 161, 200, 31);
+		comboBox_entrenador.setBounds(247, 161, 328, 31);
 		String[] entrenador = {"NINGUNA", "Sebastian Torres", "Laura Mendez", "Camila Rodriguez", "Marco Rojas"};
 		for (String entrenadores : entrenador) {
 			comboBox_entrenador.addItem(entrenadores);
