@@ -764,7 +764,7 @@ public class UsersView {
 					alertaCampos.add(fondo);
 
 					JPanel encabezado = new JPanel();
-					encabezado.setBackground(new Color(255, 70, 70));
+					encabezado.setBackground(new Color(81, 151, 255));
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
