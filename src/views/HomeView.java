@@ -2005,6 +2005,81 @@ public class HomeView {
 					// fila seleccionada
 					// y luego actualiza la tabla recargando datos.
 				} else if (label.equals("Inscribir")) {
+					Frame frame = JOptionPane.getFrameForComponent(table);
+					JDialog idDialog = new JDialog(frame, "Inscribir usuario", true);
+					idDialog.setSize(400, 180);
+					idDialog.setUndecorated(true);
+					idDialog.setLocationRelativeTo(frame);
+					idDialog.setLayout(null);
+
+					// Panel principal
+					JPanel id_de_usuario_clase = new JPanel();
+					id_de_usuario_clase.setBackground(Color.WHITE);
+					id_de_usuario_clase.setBounds(0, 0, 400, 180);
+					id_de_usuario_clase.setLayout(null);
+					idDialog.add(id_de_usuario_clase);
+
+					// Panel superior
+					JPanel panel_complemento = new JPanel();
+					panel_complemento.setBackground(new Color(81, 151, 255));
+					panel_complemento.setBounds(0, 0, 400, 33);
+					id_de_usuario_clase.add(panel_complemento);
+
+					// Texto explicativo
+					JLabel pregunta_de_confirmacion = new JLabel(
+					    "<html><div style='text-align: center;'>Ingrese el ID del usuario a inscribir a la clase:</div></html>",
+					    SwingConstants.CENTER
+					);
+					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+					pregunta_de_confirmacion.setBounds(25, 40, 350, 40);
+					id_de_usuario_clase.add(pregunta_de_confirmacion);
+
+					// Campo de texto
+					JTextField textField = new JTextField();
+					textField.setBounds(150, 85, 100, 30);
+					id_de_usuario_clase.add(textField);
+					textField.setColumns(10);
+
+					// Etiqueta ID
+					JLabel lblNewLabel = new JLabel("ID:");
+					lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 16));
+					lblNewLabel.setBounds(120, 85, 30, 30);
+					id_de_usuario_clase.add(lblNewLabel);
+
+					// Botón Aceptar
+					JButton boton_aceptar = new JButton("Aceptar");
+					boton_aceptar.setBackground(new Color(0, 206, 82));
+					boton_aceptar.setForeground(Color.WHITE);
+					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_aceptar.setBounds(230, 130, 100, 30);
+					id_de_usuario_clase.add(boton_aceptar);
+
+					// Acción del botón Aceptar
+					boton_aceptar.addActionListener(e -> {
+					    String idUsuario = textField.getText().trim();
+					    if (!idUsuario.isEmpty()) {
+					        // Aquí haces lo que necesitas con el ID, como inscribir al usuario
+					        System.out.println("ID ingresado: " + idUsuario);
+					        idDialog.dispose();
+					    } else {
+					        JOptionPane.showMessageDialog(idDialog, "Por favor, ingrese un ID válido.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+					    }
+					});
+
+					// Botón Cancelar
+					JButton boton_cancelar = new JButton("Cancelar");
+					boton_cancelar.setBackground(Color.RED);
+					boton_cancelar.setForeground(Color.WHITE);
+					boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_cancelar.setBounds(70, 130, 100, 30);
+					id_de_usuario_clase.add(boton_cancelar);
+
+					// Acción del botón Cancelar
+					boton_cancelar.addActionListener(e -> idDialog.dispose());
+
+					// Mostrar el diálogo
+					idDialog.setVisible(true);
+
 
 					// Aquí abre un formulario para editar la fila,
 					// luego guarda cambios en la base de datos con un UPDATE,
@@ -2110,7 +2185,7 @@ public class HomeView {
 		header.setReorderingAllowed(false);
 		scrollPane_Usuario.setViewportView(table);
 		// inicio del boton Añadir
-		// entrada/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// entrada/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_Añadir_entrada = new JButton("Añadir entrada");
 		boton_Añadir_entrada.setForeground(new Color(255, 255, 255));
 		boton_Añadir_entrada.addActionListener(new ActionListener() {

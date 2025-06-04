@@ -368,13 +368,13 @@ public class AuthView {
 		        String password = new String(cuadro_txt_contraseña.getPassword());
 		        String confirmPassword = new String(cuadro_txt_confirmar_contraseña.getPassword());
 
+		        // Validación de campos obligatorios
 		        if (email.isEmpty() || password.isEmpty()) {
 		            JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
 		            dialogo.setUndecorated(true);
 		            dialogo.setLayout(null);
-		            
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -387,7 +387,7 @@ public class AuthView {
 		            panel_complemento.setBounds(0, 0, 400, 33);
 		            panelFondo.add(panel_complemento);
 
-		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Todos los campos son obligatorios.<br>Error</div></html>", SwingConstants.CENTER);
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Todos los campos son obligatorios.<br></div></html>", SwingConstants.CENTER);
 		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 		            mensaje.setBounds(50, 44, 300, 59);
 		            panelFondo.add(mensaje);
@@ -409,13 +409,54 @@ public class AuthView {
 		            return;
 		        }
 
-		        if (!password.equals(confirmPassword)) {
-		        	JDialog dialogo = new JDialog(frame, "Error", true);
+		        // Validación de la contraseña (debe ser al menos 8 caracteres)
+		        if (password.length() < 8) {
+		            JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
 		            dialogo.setUndecorated(true);
 		            dialogo.setLayout(null);
-		            
+
+		            JPanel panelFondo = new JPanel();
+		            panelFondo.setBackground(Color.WHITE);
+		            panelFondo.setBounds(0, 0, 400, 180);
+		            panelFondo.setLayout(null);
+		            dialogo.add(panelFondo);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            panelFondo.add(panel_complemento);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>La contraseña debe tener al menos 8 caracteres.<br></div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            panelFondo.add(mensaje);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            panelFondo.add(boton_aceptar);
+
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose();
+		                }
+		            });
+
+		            dialogo.setVisible(true);
+		            return;
+		        }
+
+		        // Validación de contraseñas coincidentes
+		        if (!password.equals(confirmPassword)) {
+		            JDialog dialogo = new JDialog(frame, "Error", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -450,6 +491,48 @@ public class AuthView {
 		            return;
 		        }
 
+		        // Validación de formato del correo (solo "usuario@gmail.com" o "usuario@hotmail.com")
+		        if (!email.matches("^[a-zA-Z0-9._-]+@(gmail|hotmail)\\.com$")) {
+		            JDialog dialogo = new JDialog(frame, "Error", true);
+		            dialogo.setSize(400, 180);
+		            dialogo.setLocationRelativeTo(frame);
+		            dialogo.setUndecorated(true);
+		            dialogo.setLayout(null);
+
+		            JPanel panelFondo = new JPanel();
+		            panelFondo.setBackground(Color.WHITE);
+		            panelFondo.setBounds(0, 0, 400, 180);
+		            panelFondo.setLayout(null);
+		            dialogo.add(panelFondo);
+
+		            JPanel panel_complemento = new JPanel();
+		            panel_complemento.setBackground(new Color(81, 151, 255));
+		            panel_complemento.setBounds(0, 0, 400, 33);
+		            panelFondo.add(panel_complemento);
+
+		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El correo debe ser de tipo usuario@gmail.com o usuario@hotmail.com.<br></div></html>", SwingConstants.CENTER);
+		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		            mensaje.setBounds(50, 44, 300, 59);
+		            panelFondo.add(mensaje);
+
+		            JButton boton_aceptar = new JButton("Aceptar");
+		            boton_aceptar.setBackground(new Color(0, 206, 82));
+		            boton_aceptar.setForeground(Color.WHITE);
+		            boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		            boton_aceptar.setBounds(148, 100, 102, 33);
+		            panelFondo.add(boton_aceptar);
+
+		            boton_aceptar.addActionListener(new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    dialogo.dispose();
+		                }
+		            });
+
+		            dialogo.setVisible(true);
+		            return;
+		        }
+
+		        // Si todas las validaciones son correctas, registrar el usuario
 		        AuthModel modelo = new AuthModel();
 		        boolean registroExitoso = modelo.registrarAdmin(email, password);
 
@@ -460,7 +543,6 @@ public class AuthView {
 		            dialogo.setLocationRelativeTo(frame);
 		            dialogo.setUndecorated(true);
 		            dialogo.setLayout(null);
-		           
 
 		            JPanel panel_complemento = new JPanel();
 		            panel_complemento.setBackground(new Color(81, 151, 255));
@@ -490,14 +572,12 @@ public class AuthView {
 		            });
 
 		            dialogo.setVisible(true); // Muestra la alerta
-
 		        } else {
 		            JDialog dialogo = new JDialog(frame, "Error", true);
 		            dialogo.setSize(400, 180);
 		            dialogo.setLocationRelativeTo(frame);
 		            dialogo.setUndecorated(true);
 		            dialogo.setLayout(null);
-		            
 
 		            JPanel panelFondo = new JPanel();
 		            panelFondo.setBackground(Color.WHITE);
@@ -538,6 +618,7 @@ public class AuthView {
 		boton_registro.setFont(new Font("Anton", Font.PLAIN, 20));
 		boton_registro.setBounds(80, 535, 279, 56);
 		panel_1.add(boton_registro);
+
 		
 		JButton boton_regresar = new JButton("Regresar");
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
