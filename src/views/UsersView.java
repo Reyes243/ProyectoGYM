@@ -201,7 +201,8 @@ public class UsersView {
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
 		
-		JLabel Info_primer_apellido = new JLabel("Hernadeztish");
+		JLabel Info_primer_apellido = new JLabel("");
+		Info_primer_apellido.setText(datosCliente.get("primer_apellido"));
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_primer_apellido.setBounds(342, 210, 200, 22);
 		panel_2.add(Info_primer_apellido);
@@ -313,7 +314,7 @@ public class UsersView {
 				;
 
 			}
-		});
+ 		});
 		panel_2.add(boton_historial_pagos);
 
 		JButton boton_regresar = new JButton("Regresar");
@@ -349,6 +350,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -1164,6 +1168,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -1435,7 +1442,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -1701,7 +1710,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -1824,12 +1835,21 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Credencial_usuario(int idcliente) {
+	public void Credencial_usuario(int idCliente) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+		
+		UsersModel um = new UsersModel();
+		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
+
+		if (datosCliente.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado. ID inválido: " + idCliente, "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 
 		JFrame frame = new JFrame();
@@ -1940,22 +1960,26 @@ public class UsersView {
 
 		// info de
 		// usuario/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre = new JLabel("Carlostish");
+		JLabel Info_nombre = new JLabel("");
+		Info_nombre.setText(datosCliente.get("nombre"));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_nombre.setBounds(420, 162, 118, 29);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_primer_apellido = new JLabel("Hernandeztish");
+		JLabel Info_primer_apellido = new JLabel("");
+		Info_primer_apellido.setText(datosCliente.get("primer_apellido"));
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_primer_apellido.setBounds(492, 230, 127, 32);
 		panel_2.add(Info_primer_apellido);
 
-		JLabel Info_plan = new JLabel("PREMIUM");
+		JLabel Info_plan = new JLabel("");
+		Info_plan.setText(datosCliente.getOrDefault("tarifa", "Ninguna"));
 		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_plan.setBounds(444, 300, 118, 32);
 		panel_2.add(Info_plan);
 
-		JLabel Info_identificador = new JLabel("2");
+		JLabel Info_identificador = new JLabel("");
+		Info_identificador.setText(datosCliente.get("id"));
 		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
 		Info_identificador.setBounds(843, 160, 36, 32);
 		panel_2.add(Info_identificador);
@@ -1981,7 +2005,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController controller = new UsersController();
-				controller.Informacion_de_cliente(idcliente);
+				controller.Informacion_de_cliente(idCliente);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -2006,6 +2030,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes(); 
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -2630,6 +2657,9 @@ public class UsersView {
 		boton_CLIENTES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLIENTES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
