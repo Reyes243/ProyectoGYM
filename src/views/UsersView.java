@@ -49,15 +49,16 @@ public class UsersView {
 	private Font antonFont;
 
 	private void cargarFuentePersonalizada() {
-	    try {
-	        antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf")).deriveFont(Font.PLAIN, 18f);
-	        // Registra la fuente en el sistema gráfico de Java
-	        java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
-	        ge.registerFont(antonFont);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
-	    }
+		try {
+			antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf"))
+					.deriveFont(Font.PLAIN, 18f);
+			// Registra la fuente en el sistema gráfico de Java
+			java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(antonFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
+		}
 	}
 
 	public UsersView() {
@@ -72,7 +73,7 @@ public class UsersView {
 			ex.printStackTrace();
 		}
 		cargarFuentePersonalizada();
-		
+
 		UsersModel um = new UsersModel();
 		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
 
@@ -200,18 +201,18 @@ public class UsersView {
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(296, 160, 150, 21);
 		panel_2.add(Info_nombre);
-		
+
 		JLabel Info_primer_apellido = new JLabel("");
 		Info_primer_apellido.setText(datosCliente.get("primer_apellido"));
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_primer_apellido.setBounds(342, 210, 200, 22);
 		panel_2.add(Info_primer_apellido);
-		
+
 		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_10.setBounds(235, 210, 147, 22);
 		panel_2.add(lblNewLabel_10);
-		
+
 		JLabel Info_correo = new JLabel("");
 		Info_correo.setText(datosCliente.get("correo"));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -223,7 +224,6 @@ public class UsersView {
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(296, 310, 152, 22);
 		panel_2.add(Info_telefono);
-		
 
 		JLabel Info_clase = new JLabel("TECNICA EN MAQUINAS");
 		Info_clase.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -314,7 +314,7 @@ public class UsersView {
 				;
 
 			}
- 		});
+		});
 		panel_2.add(boton_historial_pagos);
 
 		JButton boton_regresar = new JButton("Regresar");
@@ -471,7 +471,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -646,7 +646,6 @@ public class UsersView {
 		lblNewLabel_13.setBounds(499, 170, 85, 22);
 		panel_2.add(lblNewLabel_13);
 
-
 		// informacion del usuario
 		// ////////////////////////////////////////////////////////////
 		JTextField Info_nombre = new JTextField(datosCliente.getOrDefault("nombre", ""));
@@ -748,7 +747,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>No se han realizado cambios para guardar.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>No se han realizado cambios para guardar.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -766,12 +767,8 @@ public class UsersView {
 				}
 
 				// Validación de campos obligatorios
-				if (
-					Info_nombre.getText().trim().isEmpty() ||
-					Info_primer_apellido.getText().trim().isEmpty() ||
-					Info_telefono.getText().trim().isEmpty() ||
-					Info_correo.getText().trim().isEmpty()
-				) {
+				if (Info_nombre.getText().trim().isEmpty() || Info_primer_apellido.getText().trim().isEmpty()
+						|| Info_telefono.getText().trim().isEmpty() || Info_correo.getText().trim().isEmpty()) {
 					// Alerta si falta completar campos obligatorios
 					JDialog alertaCampos = new JDialog(frame, "Campos obligatorios", true);
 					alertaCampos.setUndecorated(true);
@@ -790,7 +787,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Por favor complete todos los campos obligatorios.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Por favor complete todos los campos obligatorios.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -827,7 +826,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El teléfono debe contener solo números.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El teléfono debe contener solo números.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -845,9 +846,9 @@ public class UsersView {
 				}
 
 				// Validación de nombres y apellidos (solo letras y espacios)
-				if (!Info_nombre.getText().matches("[a-zA-Z\\s]+") ||
-					!Info_primer_apellido.getText().matches("[a-zA-Z\\s]+") ||
-					!Info_segundo_apellido.getText().matches("[a-zA-Z\\s]+")) {
+				if (!Info_nombre.getText().matches("[a-zA-Z\\s]+")
+						|| !Info_primer_apellido.getText().matches("[a-zA-Z\\s]+")
+						|| !Info_segundo_apellido.getText().matches("[a-zA-Z\\s]+")) {
 					JDialog alertaNombre = new JDialog(frame, "Error de nombre", true);
 					alertaNombre.setUndecorated(true);
 					alertaNombre.setSize(400, 180);
@@ -865,7 +866,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Los nombres y apellidos deben contener solo letras y espacios.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Los nombres y apellidos deben contener solo letras y espacios.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -902,7 +905,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El correo debe ser @gmail.com o @hotmail.com.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El correo debe ser @gmail.com o @hotmail.com.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -918,7 +923,6 @@ public class UsersView {
 					alertaCorreo.setVisible(true);
 					return;
 				}
-
 
 				String nuevaContra = new String(Info_contra.getPassword());
 				String confirmarContra = new String(Info_confirmar_contra.getPassword());
@@ -941,7 +945,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Las contraseñas no coinciden.</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Las contraseñas no coinciden.</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -976,7 +982,9 @@ public class UsersView {
 				encabezado.setBounds(0, 0, 400, 33);
 				fondo.add(encabezado);
 
-				JLabel mensaje = new JLabel("<html><div style='text-align: center;'>¿Está seguro que desea guardar los cambios?</div></html>", SwingConstants.CENTER);
+				JLabel mensaje = new JLabel(
+						"<html><div style='text-align: center;'>¿Está seguro que desea guardar los cambios?</div></html>",
+						SwingConstants.CENTER);
 				mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 				mensaje.setBounds(30, 50, 340, 50);
 				fondo.add(mensaje);
@@ -999,8 +1007,8 @@ public class UsersView {
 				botonSi.addActionListener(a -> {
 					confirmacion.dispose();
 					boolean exito = actualizarCliente(idcliente, Info_nombre.getText(), Info_primer_apellido.getText(),
-						Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
-						nuevaContra.isEmpty() ? null : nuevaContra);
+							Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
+							nuevaContra.isEmpty() ? null : nuevaContra);
 
 					JDialog resultado = new JDialog(frame, "Resultado", true);
 					resultado.setUndecorated(true);
@@ -1019,8 +1027,9 @@ public class UsersView {
 					encabezadoResultado.setBounds(0, 0, 400, 33);
 					fondoResultado.add(encabezadoResultado);
 
-					JLabel mensajeFinal = new JLabel("<html><div style='text-align: center;'>" + 
-						(exito ? "Cambios guardados correctamente." : "Error al guardar los cambios.") + "</div></html>", SwingConstants.CENTER);
+					JLabel mensajeFinal = new JLabel("<html><div style='text-align: center;'>"
+							+ (exito ? "Cambios guardados correctamente." : "Error al guardar los cambios.")
+							+ "</div></html>", SwingConstants.CENTER);
 					mensajeFinal.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensajeFinal.setBounds(30, 50, 340, 50);
 					fondoResultado.add(mensajeFinal);
@@ -1030,7 +1039,11 @@ public class UsersView {
 					aceptarFinal.setForeground(Color.WHITE);
 					aceptarFinal.setFont(new Font("Anton", Font.PLAIN, 14));
 					aceptarFinal.setBounds(148, 110, 102, 33);
-					aceptarFinal.addActionListener(ev -> resultado.dispose());
+					aceptarFinal.addActionListener(ev -> {
+					    resultado.dispose(); // Cierra la ventana actual
+					    // Llama al método Informacion_de_cliente con el idCliente correspondiente
+					    new UsersController().Informacion_de_cliente(idcliente);
+					});
 					fondoResultado.add(aceptarFinal);
 
 					resultado.setVisible(true);
@@ -1051,7 +1064,6 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_guardar_cambios);
-
 
 		JButton boton_cancelar_volver = new JButton("Cancelar / volver");
 		boton_cancelar_volver.setForeground(new Color(255, 255, 255));
@@ -1080,7 +1092,9 @@ public class UsersView {
 					encabezado.setBounds(0, 0, 400, 33);
 					fondo.add(encabezado);
 
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>¿Está seguro que desea salir sin guardar los cambios?</div></html>", SwingConstants.CENTER);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>¿Está seguro que desea salir sin guardar los cambios?</div></html>",
+							SwingConstants.CENTER);
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(30, 50, 340, 50);
 					fondo.add(mensaje);
@@ -1123,7 +1137,6 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_cancelar_volver);
-
 
 		JButton boton_cargar_foto = new JButton("Cargar foto");
 		boton_cargar_foto.setBackground(new Color(255, 205, 17));
@@ -1289,7 +1302,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -1563,7 +1576,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -1831,7 +1844,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -1842,7 +1855,7 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		UsersModel um = new UsersModel();
 		Map<String, String> datosCliente = um.obtenerDatosBasicosCliente(idCliente);
 
@@ -2032,7 +2045,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				HomeController hc = new HomeController();
-				hc.Clientes(); 
+				hc.Clientes();
 			}
 		});
 		boton_CLIENTES.setBounds(10, 168, 136, 71);
@@ -2151,7 +2164,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -2336,285 +2349,292 @@ public class UsersView {
 		boton_registar.setFont(new Font("Anton", Font.PLAIN, 14));
 		boton_registar.setBounds(727, 483, 160, 50);
 		boton_registar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nombre = txtNombre.getText().trim();
-		        String primerApellido = txtPrimerApellido.getText().trim();
-		        String segundoApellido = txtSegundoApellido.getText().trim();
-		        String telefono = txtTelefono.getText().trim();
-		        String correo = txtCorreo.getText().trim();
-		        String contrasena = new String(txtContrasena.getPassword());
-		        String confirmarContrasena = new String(txtConfirmarContrasena.getPassword());
-		        String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
+			public void actionPerformed(ActionEvent e) {
+				String nombre = txtNombre.getText().trim();
+				String primerApellido = txtPrimerApellido.getText().trim();
+				String segundoApellido = txtSegundoApellido.getText().trim();
+				String telefono = txtTelefono.getText().trim();
+				String correo = txtCorreo.getText().trim();
+				String contrasena = new String(txtContrasena.getPassword());
+				String confirmarContrasena = new String(txtConfirmarContrasena.getPassword());
+				String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
 
-		        Frame parentFrame = JOptionPane.getFrameForComponent(frame); // Para el JDialog
+				Frame parentFrame = JOptionPane.getFrameForComponent(frame); // Para el JDialog
 
-		        // Validación de campos obligatorios
-		        if (nombre.isEmpty() || primerApellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty() 
-		                || confirmarContrasena.isEmpty()) {
+				// Validación de campos obligatorios
+				if (nombre.isEmpty() || primerApellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()
+						|| confirmarContrasena.isEmpty()) {
 
-		            // Alerta personalizada de campos obligatorios
-		            JDialog camposDialog = new JDialog(parentFrame, "Advertencia", true);
-		            camposDialog.setSize(400, 180);
-		            camposDialog.setLayout(null);
-		            camposDialog.setUndecorated(true);
-		            camposDialog.setLocationRelativeTo(frame);
+					// Alerta personalizada de campos obligatorios
+					JDialog camposDialog = new JDialog(parentFrame, "Advertencia", true);
+					camposDialog.setSize(400, 180);
+					camposDialog.setLayout(null);
+					camposDialog.setUndecorated(true);
+					camposDialog.setLocationRelativeTo(frame);
 
-		            JPanel camposObligatorios = new JPanel();
-		            camposObligatorios.setBackground(new Color(255, 255, 255));
-		            camposObligatorios.setBounds(0, 0, 400, 180);
-		            camposObligatorios.setLayout(null);
-		            camposDialog.add(camposObligatorios);
+					JPanel camposObligatorios = new JPanel();
+					camposObligatorios.setBackground(new Color(255, 255, 255));
+					camposObligatorios.setBounds(0, 0, 400, 180);
+					camposObligatorios.setLayout(null);
+					camposDialog.add(camposObligatorios);
 
-		            JPanel panelComplemento = new JPanel();
-		            panelComplemento.setBackground(new Color(81, 151, 255));
-		            panelComplemento.setBounds(0, 0, 400, 33);
-		            camposObligatorios.add(panelComplemento);
+					JPanel panelComplemento = new JPanel();
+					panelComplemento.setBackground(new Color(81, 151, 255));
+					panelComplemento.setBounds(0, 0, 400, 33);
+					camposObligatorios.add(panelComplemento);
 
-		            JLabel mensajeCampos = new JLabel("<html><div style='text-align: center;'>Todos los campos obligatorios deben estar completos<br></div></html>");
-		            mensajeCampos.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensajeCampos.setBounds(43, 44, 312, 59);
-		            camposObligatorios.add(mensajeCampos);
+					JLabel mensajeCampos = new JLabel(
+							"<html><div style='text-align: center;'>Todos los campos obligatorios deben estar completos<br></div></html>");
+					mensajeCampos.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeCampos.setBounds(43, 44, 312, 59);
+					camposObligatorios.add(mensajeCampos);
 
-		            JButton botonAceptarCampos = new JButton("Aceptar");
-		            botonAceptarCampos.setBackground(new Color(0, 206, 82));
-		            botonAceptarCampos.setForeground(Color.WHITE);
-		            botonAceptarCampos.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptarCampos.setBounds(151, 121, 102, 33);
-		            camposObligatorios.add(botonAceptarCampos);
+					JButton botonAceptarCampos = new JButton("Aceptar");
+					botonAceptarCampos.setBackground(new Color(0, 206, 82));
+					botonAceptarCampos.setForeground(Color.WHITE);
+					botonAceptarCampos.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptarCampos.setBounds(151, 121, 102, 33);
+					camposObligatorios.add(botonAceptarCampos);
 
-		            botonAceptarCampos.addActionListener(ev -> camposDialog.dispose());
-		            camposDialog.setVisible(true);
-		            return;
-		        }
+					botonAceptarCampos.addActionListener(ev -> camposDialog.dispose());
+					camposDialog.setVisible(true);
+					return;
+				}
 
-		        // Validación de caracteres en el nombre y apellidos (solo letras)
-		        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]+") || !primerApellido.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]+") || 
-		            !segundoApellido.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]*")) {
-		            
-		            // Alerta personalizada si el nombre o los apellidos tienen caracteres no válidos
-		            JDialog caracteresDialog = new JDialog(parentFrame, "Advertencia", true);
-		            caracteresDialog.setSize(400, 180);
-		            caracteresDialog.setLayout(null);
-		            caracteresDialog.setUndecorated(true);
-		            caracteresDialog.setLocationRelativeTo(frame);
+				// Validación de caracteres en el nombre y apellidos (solo letras)
+				if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]+") || !primerApellido.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]+")
+						|| !segundoApellido.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ]*")) {
 
-		            JPanel panel = new JPanel();
-		            panel.setBackground(Color.WHITE);
-		            panel.setBounds(0, 0, 400, 180);
-		            panel.setLayout(null);
-		            caracteresDialog.add(panel);
+					// Alerta personalizada si el nombre o los apellidos tienen caracteres no
+					// válidos
+					JDialog caracteresDialog = new JDialog(parentFrame, "Advertencia", true);
+					caracteresDialog.setSize(400, 180);
+					caracteresDialog.setLayout(null);
+					caracteresDialog.setUndecorated(true);
+					caracteresDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panel.add(panelSuperior);
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					caracteresDialog.add(panel);
 
-		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El nombre y los apellidos solo deben contener letras.</div></html>");
-		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensaje.setBounds(50, 44, 300, 59);
-		            panel.add(mensaje);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panel.add(botonAceptar);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El nombre y los apellidos solo deben contener letras.</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
 
-		            botonAceptar.addActionListener(ev -> caracteresDialog.dispose());
-		            caracteresDialog.setVisible(true);
-		            return;
-		        }
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
 
-		        // Validación del teléfono (solo números)
-		        if (!telefono.matches("[0-9]+")) {
-		            JDialog telefonoDialog = new JDialog(parentFrame, "Advertencia", true);
-		            telefonoDialog.setSize(400, 180);
-		            telefonoDialog.setLayout(null);
-		            telefonoDialog.setUndecorated(true);
-		            telefonoDialog.setLocationRelativeTo(frame);
+					botonAceptar.addActionListener(ev -> caracteresDialog.dispose());
+					caracteresDialog.setVisible(true);
+					return;
+				}
 
-		            JPanel panel = new JPanel();
-		            panel.setBackground(Color.WHITE);
-		            panel.setBounds(0, 0, 400, 180);
-		            panel.setLayout(null);
-		            telefonoDialog.add(panel);
+				// Validación del teléfono (solo números)
+				if (!telefono.matches("[0-9]+")) {
+					JDialog telefonoDialog = new JDialog(parentFrame, "Advertencia", true);
+					telefonoDialog.setSize(400, 180);
+					telefonoDialog.setLayout(null);
+					telefonoDialog.setUndecorated(true);
+					telefonoDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panel.add(panelSuperior);
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					telefonoDialog.add(panel);
 
-		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El teléfono solo debe contener números.</div></html>");
-		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensaje.setBounds(50, 44, 300, 59);
-		            panel.add(mensaje);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panel.add(botonAceptar);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El teléfono solo debe contener números.</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
 
-		            botonAceptar.addActionListener(ev -> telefonoDialog.dispose());
-		            telefonoDialog.setVisible(true);
-		            return;
-		        }
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
 
-		        // Validación del correo (solo @gmail.com o @hotmail.com)
-		        if (!correo.matches("^[a-zA-Z0-9._-]+@(gmail|hotmail)\\.com$")) {
-		            JDialog correoDialog = new JDialog(parentFrame, "Advertencia", true);
-		            correoDialog.setSize(400, 180);
-		            correoDialog.setLayout(null);
-		            correoDialog.setUndecorated(true);
-		            correoDialog.setLocationRelativeTo(frame);
+					botonAceptar.addActionListener(ev -> telefonoDialog.dispose());
+					telefonoDialog.setVisible(true);
+					return;
+				}
 
-		            JPanel panel = new JPanel();
-		            panel.setBackground(Color.WHITE);
-		            panel.setBounds(0, 0, 400, 180);
-		            panel.setLayout(null);
-		            correoDialog.add(panel);
+				// Validación del correo (solo @gmail.com o @hotmail.com)
+				if (!correo.matches("^[a-zA-Z0-9._-]+@(gmail|hotmail)\\.com$")) {
+					JDialog correoDialog = new JDialog(parentFrame, "Advertencia", true);
+					correoDialog.setSize(400, 180);
+					correoDialog.setLayout(null);
+					correoDialog.setUndecorated(true);
+					correoDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panel.add(panelSuperior);
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					correoDialog.add(panel);
 
-		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>El correo debe ser @gmail.com o @hotmail.com</div></html>");
-		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensaje.setBounds(50, 44, 300, 59);
-		            panel.add(mensaje);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panel.add(botonAceptar);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El correo debe ser @gmail.com o @hotmail.com</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
 
-		            botonAceptar.addActionListener(ev -> correoDialog.dispose());
-		            correoDialog.setVisible(true);
-		            return;
-		        }
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
 
-		        // Validación de contraseñas
-		        if (!contrasena.equals(confirmarContrasena)) {
-		            JDialog contrasenaDialog = new JDialog(parentFrame, "Advertencia", true);
-		            contrasenaDialog.setSize(400, 180);
-		            contrasenaDialog.setLayout(null);
-		            contrasenaDialog.setUndecorated(true);
-		            contrasenaDialog.setLocationRelativeTo(frame);
+					botonAceptar.addActionListener(ev -> correoDialog.dispose());
+					correoDialog.setVisible(true);
+					return;
+				}
 
-		            JPanel panel = new JPanel();
-		            panel.setBackground(Color.WHITE);
-		            panel.setBounds(0, 0, 400, 180);
-		            panel.setLayout(null);
-		            contrasenaDialog.add(panel);
+				// Validación de contraseñas
+				if (!contrasena.equals(confirmarContrasena)) {
+					JDialog contrasenaDialog = new JDialog(parentFrame, "Advertencia", true);
+					contrasenaDialog.setSize(400, 180);
+					contrasenaDialog.setLayout(null);
+					contrasenaDialog.setUndecorated(true);
+					contrasenaDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panel.add(panelSuperior);
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					contrasenaDialog.add(panel);
 
-		            JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Las contraseñas no coinciden<br></div></html>");
-		            mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensaje.setBounds(85, 44, 300, 59);
-		            panel.add(mensaje);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panel.add(botonAceptar);
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Las contraseñas no coinciden<br></div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(85, 44, 300, 59);
+					panel.add(mensaje);
 
-		            botonAceptar.addActionListener(ev -> contrasenaDialog.dispose());
-		            contrasenaDialog.setVisible(true);
-		            return;
-		        }
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
 
-		        UsersModel um = new UsersModel();
-		        int idUsuario = um.registrarCliente(nombre, primerApellido,
-		                segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
-		                correo, contrasena, tarifaSeleccionada);
+					botonAceptar.addActionListener(ev -> contrasenaDialog.dispose());
+					contrasenaDialog.setVisible(true);
+					return;
+				}
 
-		        if (idUsuario != -1) {
-		            // Éxito - Cliente registrado correctamente
-		            JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
-		            exitoDialog.setSize(400, 180);
-		            exitoDialog.setLayout(null);
-		            exitoDialog.setUndecorated(true);
-		            exitoDialog.setLocationRelativeTo(frame);
+				UsersModel um = new UsersModel();
+				int idUsuario = um.registrarCliente(nombre, primerApellido,
+						segundoApellido.isEmpty() ? null : segundoApellido, telefono.isEmpty() ? null : telefono,
+						correo, contrasena, tarifaSeleccionada);
 
-		            JPanel panelExito = new JPanel();
-		            panelExito.setBackground(Color.WHITE);
-		            panelExito.setBounds(0, 0, 400, 180);
-		            panelExito.setLayout(null);
-		            exitoDialog.add(panelExito);
+				if (idUsuario != -1) {
+					// Éxito - Cliente registrado correctamente
+					JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
+					exitoDialog.setSize(400, 180);
+					exitoDialog.setLayout(null);
+					exitoDialog.setUndecorated(true);
+					exitoDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panelExito.add(panelSuperior);
+					JPanel panelExito = new JPanel();
+					panelExito.setBackground(Color.WHITE);
+					panelExito.setBounds(0, 0, 400, 180);
+					panelExito.setLayout(null);
+					exitoDialog.add(panelExito);
 
-		            JLabel mensajeExito = new JLabel("<html><div style='text-align: center;'>Cliente registrado correctamente<br></div></html>");
-		            mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensajeExito.setBounds(70, 44, 300, 59);
-		            panelExito.add(mensajeExito);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panelExito.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panelExito.add(botonAceptar);
+					JLabel mensajeExito = new JLabel(
+							"<html><div style='text-align: center;'>Cliente registrado correctamente<br></div></html>");
+					mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeExito.setBounds(70, 44, 300, 59);
+					panelExito.add(mensajeExito);
 
-		            botonAceptar.addActionListener(ev -> {
-		                exitoDialog.dispose();
-		                frame.dispose();
-		                new HomeController().Clientes();
-		            });
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panelExito.add(botonAceptar);
 
-		            exitoDialog.setVisible(true);
-		        } else {
-		            // Error al registrar el cliente
-		            JDialog errorDialog = new JDialog(parentFrame, "Error", true);
-		            errorDialog.setSize(400, 180);
-		            errorDialog.setLayout(null);
-		            errorDialog.setUndecorated(true);
-		            errorDialog.setLocationRelativeTo(frame);
+					botonAceptar.addActionListener(ev -> {
+						exitoDialog.dispose();
+						frame.dispose();
+						new HomeController().Clientes();
+					});
 
-		            JPanel panelError = new JPanel();
-		            panelError.setBackground(Color.WHITE);
-		            panelError.setBounds(0, 0, 400, 180);
-		            panelError.setLayout(null);
-		            errorDialog.add(panelError);
+					exitoDialog.setVisible(true);
+				} else {
+					// Error al registrar el cliente
+					JDialog errorDialog = new JDialog(parentFrame, "Error", true);
+					errorDialog.setSize(400, 180);
+					errorDialog.setLayout(null);
+					errorDialog.setUndecorated(true);
+					errorDialog.setLocationRelativeTo(frame);
 
-		            JPanel panelSuperior = new JPanel();
-		            panelSuperior.setBackground(new Color(81, 151, 255));
-		            panelSuperior.setBounds(0, 0, 400, 33);
-		            panelError.add(panelSuperior);
+					JPanel panelError = new JPanel();
+					panelError.setBackground(Color.WHITE);
+					panelError.setBounds(0, 0, 400, 180);
+					panelError.setLayout(null);
+					errorDialog.add(panelError);
 
-		            JLabel mensajeError = new JLabel("<html><div style='text-align: center;'>Error al registrar el cliente<br></div></html>");
-		            mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
-		            mensajeError.setBounds(70, 44, 300, 59);
-		            panelError.add(mensajeError);
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panelError.add(panelSuperior);
 
-		            JButton botonAceptar = new JButton("Aceptar");
-		            botonAceptar.setBackground(new Color(0, 206, 82));
-		            botonAceptar.setForeground(Color.WHITE);
-		            botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-		            botonAceptar.setBounds(151, 121, 102, 33);
-		            panelError.add(botonAceptar);
+					JLabel mensajeError = new JLabel(
+							"<html><div style='text-align: center;'>Error al registrar el cliente<br></div></html>");
+					mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeError.setBounds(70, 44, 300, 59);
+					panelError.add(mensajeError);
 
-		            botonAceptar.addActionListener(ev -> errorDialog.dispose());
-		            errorDialog.setVisible(true);
-		        }
-		    }
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panelError.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> errorDialog.dispose());
+					errorDialog.setVisible(true);
+				}
+			}
 		});
 		panel_2.add(boton_registar);
-
 
 		JButton boton_cancelar = new JButton("Cancelar / volver");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
@@ -2633,9 +2653,8 @@ public class UsersView {
 		JButton cargar_foto = new JButton("Cargar foto");
 		cargar_foto.setBackground(new Color(255, 205, 17));
 		cargar_foto.setFont(new Font("Anton", Font.PLAIN, 12));
-		cargar_foto.setBounds(15, 296, 132, 32);	
+		cargar_foto.setBounds(15, 296, 132, 32);
 		panel_2.add(cargar_foto);
-
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -2778,7 +2797,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -2940,61 +2959,60 @@ public class UsersView {
 		boton_eliminar_instcibsion_estandar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-                dialog.setSize(400, 220);
-                dialog.setLocationRelativeTo(null);
-                dialog.setUndecorated(true);
-                dialog.setLayout(null);
+				dialog.setSize(400, 220);
+				dialog.setLocationRelativeTo(null);
+				dialog.setUndecorated(true);
+				dialog.setLayout(null);
 
-                // Panel principal de la alerta
-                JPanel confirmar_eliminacion = new JPanel();
-                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-                confirmar_eliminacion.setLayout(null);
-                dialog.add(confirmar_eliminacion);
+				// Panel principal de la alerta
+				JPanel confirmar_eliminacion = new JPanel();
+				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+				confirmar_eliminacion.setBounds(0, 0, 400, 220);
+				confirmar_eliminacion.setLayout(null);
+				dialog.add(confirmar_eliminacion);
 
-                // Panel superior de la alerta (azul)
-                JPanel panel_complemento = new JPanel();
-                panel_complemento.setBackground(new Color(81, 151, 255));
-                panel_complemento.setBounds(0, 0, 400, 33);
-                confirmar_eliminacion.add(panel_complemento);
+				// Panel superior de la alerta (azul)
+				JPanel panel_complemento = new JPanel();
+				panel_complemento.setBackground(new Color(81, 151, 255));
+				panel_complemento.setBounds(0, 0, 400, 33);
+				confirmar_eliminacion.add(panel_complemento);
 
-                // Etiqueta de confirmación
-                JLabel pregunta_de_confirmacion = new JLabel(
-                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-                confirmar_eliminacion.add(pregunta_de_confirmacion);
+				// Etiqueta de confirmación
+				JLabel pregunta_de_confirmacion = new JLabel(
+						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+				confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-                // Botón "Cancelar"
-                JButton boton_cancelar_alerta = new JButton("Cancelar");
-                boton_cancelar_alerta.setForeground(Color.WHITE);
-                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_cancelar_alerta.setBackground(Color.RED);
-                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-                confirmar_eliminacion.add(boton_cancelar_alerta);
+				// Botón "Cancelar"
+				JButton boton_cancelar_alerta = new JButton("Cancelar");
+				boton_cancelar_alerta.setForeground(Color.WHITE);
+				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_cancelar_alerta.setBackground(Color.RED);
+				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+				confirmar_eliminacion.add(boton_cancelar_alerta);
 
-                // Botón "Aceptar"
-                JButton boton_aceptar = new JButton("Aceptar");
-                boton_aceptar.setBackground(new Color(0, 206, 82));
-                boton_aceptar.setForeground(Color.WHITE);
-                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_aceptar.setBounds(230, 140, 120, 35);
-                confirmar_eliminacion.add(boton_aceptar);
+				// Botón "Aceptar"
+				JButton boton_aceptar = new JButton("Aceptar");
+				boton_aceptar.setBackground(new Color(0, 206, 82));
+				boton_aceptar.setForeground(Color.WHITE);
+				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_aceptar.setBounds(230, 140, 120, 35);
+				confirmar_eliminacion.add(boton_aceptar);
 
-                // Acción al hacer clic en "Cancelar"
-                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+				// Acción al hacer clic en "Cancelar"
+				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
 
-                // Acción al hacer clic en "Aceptar"
-                boton_aceptar.addActionListener(ev -> {
-                    dialog.dispose();
-                    
-                });
+				// Acción al hacer clic en "Aceptar"
+				boton_aceptar.addActionListener(ev -> {
+					dialog.dispose();
 
-                dialog.setVisible(true);
+				});
+
+				dialog.setVisible(true);
 			}
 		});
-		
-		
+
 		plan_estandar.add(boton_eliminar_instcibsion_estandar);
 
 		JButton boton_inf_plan_premium = new JButton("");
@@ -3023,57 +3041,57 @@ public class UsersView {
 		boton_eliminar_instcibsion_premium.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-                dialog.setSize(400, 220);
-                dialog.setLocationRelativeTo(null);
-                dialog.setUndecorated(true);
-                dialog.setLayout(null);
+				dialog.setSize(400, 220);
+				dialog.setLocationRelativeTo(null);
+				dialog.setUndecorated(true);
+				dialog.setLayout(null);
 
-                // Panel principal de la alerta
-                JPanel confirmar_eliminacion = new JPanel();
-                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-                confirmar_eliminacion.setLayout(null);
-                dialog.add(confirmar_eliminacion);
+				// Panel principal de la alerta
+				JPanel confirmar_eliminacion = new JPanel();
+				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+				confirmar_eliminacion.setBounds(0, 0, 400, 220);
+				confirmar_eliminacion.setLayout(null);
+				dialog.add(confirmar_eliminacion);
 
-                // Panel superior de la alerta (azul)
-                JPanel panel_complemento = new JPanel();
-                panel_complemento.setBackground(new Color(81, 151, 255));
-                panel_complemento.setBounds(0, 0, 400, 33);
-                confirmar_eliminacion.add(panel_complemento);
+				// Panel superior de la alerta (azul)
+				JPanel panel_complemento = new JPanel();
+				panel_complemento.setBackground(new Color(81, 151, 255));
+				panel_complemento.setBounds(0, 0, 400, 33);
+				confirmar_eliminacion.add(panel_complemento);
 
-                // Etiqueta de confirmación
-                JLabel pregunta_de_confirmacion = new JLabel(
-                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-                confirmar_eliminacion.add(pregunta_de_confirmacion);
+				// Etiqueta de confirmación
+				JLabel pregunta_de_confirmacion = new JLabel(
+						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+				confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-                // Botón "Cancelar"
-                JButton boton_cancelar_alerta = new JButton("Cancelar");
-                boton_cancelar_alerta.setForeground(Color.WHITE);
-                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_cancelar_alerta.setBackground(Color.RED);
-                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-                confirmar_eliminacion.add(boton_cancelar_alerta);
+				// Botón "Cancelar"
+				JButton boton_cancelar_alerta = new JButton("Cancelar");
+				boton_cancelar_alerta.setForeground(Color.WHITE);
+				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_cancelar_alerta.setBackground(Color.RED);
+				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+				confirmar_eliminacion.add(boton_cancelar_alerta);
 
-                // Botón "Aceptar"
-                JButton boton_aceptar = new JButton("Aceptar");
-                boton_aceptar.setBackground(new Color(0, 206, 82));
-                boton_aceptar.setForeground(Color.WHITE);
-                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_aceptar.setBounds(230, 140, 120, 35);
-                confirmar_eliminacion.add(boton_aceptar);
+				// Botón "Aceptar"
+				JButton boton_aceptar = new JButton("Aceptar");
+				boton_aceptar.setBackground(new Color(0, 206, 82));
+				boton_aceptar.setForeground(Color.WHITE);
+				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_aceptar.setBounds(230, 140, 120, 35);
+				confirmar_eliminacion.add(boton_aceptar);
 
-                // Acción al hacer clic en "Cancelar"
-                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+				// Acción al hacer clic en "Cancelar"
+				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
 
-                // Acción al hacer clic en "Aceptar"
-                boton_aceptar.addActionListener(ev -> {
-                    dialog.dispose();
-                    
-                });
+				// Acción al hacer clic en "Aceptar"
+				boton_aceptar.addActionListener(ev -> {
+					dialog.dispose();
 
-                dialog.setVisible(true);
+				});
+
+				dialog.setVisible(true);
 			}
 		});
 		plan_premium.add(boton_eliminar_instcibsion_premium);
@@ -3104,57 +3122,57 @@ public class UsersView {
 		boton_eliminar_instcibsion_familiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-                dialog.setSize(400, 220);
-                dialog.setLocationRelativeTo(null);
-                dialog.setUndecorated(true);
-                dialog.setLayout(null);
+				dialog.setSize(400, 220);
+				dialog.setLocationRelativeTo(null);
+				dialog.setUndecorated(true);
+				dialog.setLayout(null);
 
-                // Panel principal de la alerta
-                JPanel confirmar_eliminacion = new JPanel();
-                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-                confirmar_eliminacion.setLayout(null);
-                dialog.add(confirmar_eliminacion);
+				// Panel principal de la alerta
+				JPanel confirmar_eliminacion = new JPanel();
+				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+				confirmar_eliminacion.setBounds(0, 0, 400, 220);
+				confirmar_eliminacion.setLayout(null);
+				dialog.add(confirmar_eliminacion);
 
-                // Panel superior de la alerta (azul)
-                JPanel panel_complemento = new JPanel();
-                panel_complemento.setBackground(new Color(81, 151, 255));
-                panel_complemento.setBounds(0, 0, 400, 33);
-                confirmar_eliminacion.add(panel_complemento);
+				// Panel superior de la alerta (azul)
+				JPanel panel_complemento = new JPanel();
+				panel_complemento.setBackground(new Color(81, 151, 255));
+				panel_complemento.setBounds(0, 0, 400, 33);
+				confirmar_eliminacion.add(panel_complemento);
 
-                // Etiqueta de confirmación
-                JLabel pregunta_de_confirmacion = new JLabel(
-                        "<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-                confirmar_eliminacion.add(pregunta_de_confirmacion);
+				// Etiqueta de confirmación
+				JLabel pregunta_de_confirmacion = new JLabel(
+						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
+				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+				confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-                // Botón "Cancelar"
-                JButton boton_cancelar_alerta = new JButton("Cancelar");
-                boton_cancelar_alerta.setForeground(Color.WHITE);
-                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_cancelar_alerta.setBackground(Color.RED);
-                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-                confirmar_eliminacion.add(boton_cancelar_alerta);
+				// Botón "Cancelar"
+				JButton boton_cancelar_alerta = new JButton("Cancelar");
+				boton_cancelar_alerta.setForeground(Color.WHITE);
+				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_cancelar_alerta.setBackground(Color.RED);
+				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+				confirmar_eliminacion.add(boton_cancelar_alerta);
 
-                // Botón "Aceptar"
-                JButton boton_aceptar = new JButton("Aceptar");
-                boton_aceptar.setBackground(new Color(0, 206, 82));
-                boton_aceptar.setForeground(Color.WHITE);
-                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-                boton_aceptar.setBounds(230, 140, 120, 35);
-                confirmar_eliminacion.add(boton_aceptar);
+				// Botón "Aceptar"
+				JButton boton_aceptar = new JButton("Aceptar");
+				boton_aceptar.setBackground(new Color(0, 206, 82));
+				boton_aceptar.setForeground(Color.WHITE);
+				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_aceptar.setBounds(230, 140, 120, 35);
+				confirmar_eliminacion.add(boton_aceptar);
 
-                // Acción al hacer clic en "Cancelar"
-                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+				// Acción al hacer clic en "Cancelar"
+				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
 
-                // Acción al hacer clic en "Aceptar"
-                boton_aceptar.addActionListener(ev -> {
-                    dialog.dispose();
-                    
-                });
+				// Acción al hacer clic en "Aceptar"
+				boton_aceptar.addActionListener(ev -> {
+					dialog.dispose();
 
-                dialog.setVisible(true);
+				});
+
+				dialog.setVisible(true);
 			}
 		});
 		plan_familiar.add(boton_eliminar_instcibsion_familiar);
@@ -3325,7 +3343,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -3638,7 +3656,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -3952,7 +3970,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -4248,7 +4266,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -4537,7 +4555,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -4773,7 +4791,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -5010,7 +5028,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -5248,7 +5266,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -5580,7 +5598,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -5842,7 +5860,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -5924,71 +5942,72 @@ public class UsersView {
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
-		
+
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_10.setBounds(272, 151, 91, 22);
 		panel_2.add(lblNewLabel_10);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_9.setBounds(272, 293, 104, 22);
 		panel_2.add(lblNewLabel_9);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_8.setBounds(272, 326, 67, 22);
 		panel_2.add(lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_7.setBounds(271, 359, 132, 28);
 		panel_2.add(lblNewLabel_7);
-		
+
 		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_13.setBounds(272, 184, 147, 22);
 		panel_2.add(lblNewLabel_13);
-		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre= new JTextField("Laura Mendez");
+		// info de
+		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JTextField Info_nombre = new JTextField("Laura Mendez");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(420, 119, 320, 21);
 		panel_2.add(Info_nombre);
-		
+
 		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_especialidad.setBounds(420, 151, 320, 22);
 		panel_2.add(Info_especialidad);
-		
-		
+
 		JTextField Info_telefono = new JTextField("612 187 0000");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(420, 326, 320, 22);
 		panel_2.add(Info_telefono);
-		
+
 		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_correo.setBounds(420, 362, 320, 22);
 		panel_2.add(Info_correo);
-		
+
 		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_horarrio.setBounds(272, 217, 468, 65);
 		panel_2.add(Info_horarrio);
-		
-		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
+
+		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
 		comboBox_clases.setBounds(420, 293, 320, 22);
-		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
+		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
+				"SPINNING INTENSO" };
 		for (String clase : clases) {
 			comboBox_clases.addItem(clase);
 		}
@@ -6165,7 +6184,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -6449,7 +6468,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -6531,71 +6550,72 @@ public class UsersView {
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_11.setBounds(272, 118, 60, 22);
 		panel_2.add(lblNewLabel_11);
-		
+
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_10.setBounds(272, 151, 91, 22);
 		panel_2.add(lblNewLabel_10);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_9.setBounds(272, 293, 104, 22);
 		panel_2.add(lblNewLabel_9);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_8.setBounds(272, 326, 67, 22);
 		panel_2.add(lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_7.setBounds(271, 359, 132, 28);
 		panel_2.add(lblNewLabel_7);
-		
+
 		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_13.setBounds(272, 184, 147, 22);
 		panel_2.add(lblNewLabel_13);
-		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre= new JTextField("");
+		// info de
+		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JTextField Info_nombre = new JTextField("");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(420, 119, 320, 21);
 		panel_2.add(Info_nombre);
-		
+
 		JTextField Info_especialidad = new JTextField("");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_especialidad.setBounds(420, 151, 320, 22);
 		panel_2.add(Info_especialidad);
-		
-		
+
 		JTextField Info_telefono = new JTextField("");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(420, 326, 320, 22);
 		panel_2.add(Info_telefono);
-		
+
 		JTextField Info_correo = new JTextField(" ");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_correo.setBounds(420, 362, 320, 22);
 		panel_2.add(Info_correo);
-		
+
 		JTextField Info_horarrio = new JTextField("");
 		Info_horarrio.setBackground(new Color(204, 204, 204));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_horarrio.setBounds(272, 217, 468, 65);
 		panel_2.add(Info_horarrio);
-		
-		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17)); 
+
+		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
 		comboBox_clases.setBounds(420, 293, 320, 22);
-		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
+		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
+				"SPINNING INTENSO" };
 		for (String clase : clases) {
 			comboBox_clases.addItem(clase);
 		}
@@ -6774,7 +6794,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -7056,7 +7076,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -7149,67 +7169,67 @@ public class UsersView {
 		}
 
 		public Object getCellEditorValue() {
-	        if (clicked) {
-	            if (label.equals("Eliminar")) {
-	                // Crear el JDialog con la alerta personalizada
-	                JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-	                dialog.setSize(400, 220);
-	                dialog.setLocationRelativeTo(null);
-	                dialog.setUndecorated(true);
-	                dialog.setLayout(null);
+			if (clicked) {
+				if (label.equals("Eliminar")) {
+					// Crear el JDialog con la alerta personalizada
+					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+					dialog.setSize(400, 220);
+					dialog.setLocationRelativeTo(null);
+					dialog.setUndecorated(true);
+					dialog.setLayout(null);
 
-	                // Panel principal de la alerta
-	                JPanel confirmar_eliminacion = new JPanel();
-	                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-	                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-	                confirmar_eliminacion.setLayout(null);
-	                dialog.add(confirmar_eliminacion);
+					// Panel principal de la alerta
+					JPanel confirmar_eliminacion = new JPanel();
+					confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+					confirmar_eliminacion.setBounds(0, 0, 400, 220);
+					confirmar_eliminacion.setLayout(null);
+					dialog.add(confirmar_eliminacion);
 
-	                // Panel superior de la alerta (azul)
-	                JPanel panel_complemento = new JPanel();
-	                panel_complemento.setBackground(new Color(81, 151, 255));
-	                panel_complemento.setBounds(0, 0, 400, 33);
-	                confirmar_eliminacion.add(panel_complemento);
+					// Panel superior de la alerta (azul)
+					JPanel panel_complemento = new JPanel();
+					panel_complemento.setBackground(new Color(81, 151, 255));
+					panel_complemento.setBounds(0, 0, 400, 33);
+					confirmar_eliminacion.add(panel_complemento);
 
-	                // Etiqueta de confirmación
-	                JLabel pregunta_de_confirmacion = new JLabel(
-	                        "<html><div style='text-align: center;'>El miembro se borrará permanentemente<br>¿Desea continuar?</div></html>");
-	                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-	                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-	                confirmar_eliminacion.add(pregunta_de_confirmacion);
+					// Etiqueta de confirmación
+					JLabel pregunta_de_confirmacion = new JLabel(
+							"<html><div style='text-align: center;'>El miembro se borrará permanentemente<br>¿Desea continuar?</div></html>");
+					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+					pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+					confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-	                // Botón "Cancelar"
-	                JButton boton_cancelar_alerta = new JButton("Cancelar");
-	                boton_cancelar_alerta.setForeground(Color.WHITE);
-	                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_cancelar_alerta.setBackground(Color.RED);
-	                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_cancelar_alerta);
+					// Botón "Cancelar"
+					JButton boton_cancelar_alerta = new JButton("Cancelar");
+					boton_cancelar_alerta.setForeground(Color.WHITE);
+					boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_cancelar_alerta.setBackground(Color.RED);
+					boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+					confirmar_eliminacion.add(boton_cancelar_alerta);
 
-	                // Botón "Aceptar"
-	                JButton boton_aceptar = new JButton("Aceptar");
-	                boton_aceptar.setBackground(new Color(0, 206, 82));
-	                boton_aceptar.setForeground(Color.WHITE);
-	                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_aceptar.setBounds(230, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_aceptar);
+					// Botón "Aceptar"
+					JButton boton_aceptar = new JButton("Aceptar");
+					boton_aceptar.setBackground(new Color(0, 206, 82));
+					boton_aceptar.setForeground(Color.WHITE);
+					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_aceptar.setBounds(230, 140, 120, 35);
+					confirmar_eliminacion.add(boton_aceptar);
 
-	                // Acción al hacer clic en "Cancelar"
-	                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+					// Acción al hacer clic en "Cancelar"
+					boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
 
-	                // Acción al hacer clic en "Aceptar"
-	                boton_aceptar.addActionListener(ev -> {
-	                    dialog.dispose();
-	                    
-	                });
+					// Acción al hacer clic en "Aceptar"
+					boton_aceptar.addActionListener(ev -> {
+						dialog.dispose();
 
-	                dialog.setVisible(true);  // Mostrar el diálogo de confirmación
-	            }
-	        }
-	        clicked = false;
-	        return label;
-	    
-	}
+					});
+
+					dialog.setVisible(true); // Mostrar el diálogo de confirmación
+				}
+			}
+			clicked = false;
+			return label;
+
+		}
 
 		@Override
 		public boolean stopCellEditing() {
@@ -7484,7 +7504,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -7594,57 +7614,57 @@ public class UsersView {
 				} else if (label.equals("Eliminar")) {
 
 					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-	                dialog.setSize(400, 220);
-	                dialog.setLocationRelativeTo(null);
-	                dialog.setUndecorated(true);
-	                dialog.setLayout(null);
+					dialog.setSize(400, 220);
+					dialog.setLocationRelativeTo(null);
+					dialog.setUndecorated(true);
+					dialog.setLayout(null);
 
-	                // Panel principal de la alerta
-	                JPanel confirmar_eliminacion = new JPanel();
-	                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-	                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-	                confirmar_eliminacion.setLayout(null);
-	                dialog.add(confirmar_eliminacion);
+					// Panel principal de la alerta
+					JPanel confirmar_eliminacion = new JPanel();
+					confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+					confirmar_eliminacion.setBounds(0, 0, 400, 220);
+					confirmar_eliminacion.setLayout(null);
+					dialog.add(confirmar_eliminacion);
 
-	                // Panel superior de la alerta (azul)
-	                JPanel panel_complemento = new JPanel();
-	                panel_complemento.setBackground(new Color(81, 151, 255));
-	                panel_complemento.setBounds(0, 0, 400, 33);
-	                confirmar_eliminacion.add(panel_complemento);
+					// Panel superior de la alerta (azul)
+					JPanel panel_complemento = new JPanel();
+					panel_complemento.setBackground(new Color(81, 151, 255));
+					panel_complemento.setBounds(0, 0, 400, 33);
+					confirmar_eliminacion.add(panel_complemento);
 
-	                // Etiqueta de confirmación
-	                JLabel pregunta_de_confirmacion = new JLabel(
-	                        "<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
-	                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-	                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-	                confirmar_eliminacion.add(pregunta_de_confirmacion);
+					// Etiqueta de confirmación
+					JLabel pregunta_de_confirmacion = new JLabel(
+							"<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
+					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+					pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+					confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-	                // Botón "Cancelar"
-	                JButton boton_cancelar_alerta = new JButton("Cancelar");
-	                boton_cancelar_alerta.setForeground(Color.WHITE);
-	                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_cancelar_alerta.setBackground(Color.RED);
-	                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_cancelar_alerta);
+					// Botón "Cancelar"
+					JButton boton_cancelar_alerta = new JButton("Cancelar");
+					boton_cancelar_alerta.setForeground(Color.WHITE);
+					boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_cancelar_alerta.setBackground(Color.RED);
+					boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+					confirmar_eliminacion.add(boton_cancelar_alerta);
 
-	                // Botón "Aceptar"
-	                JButton boton_aceptar = new JButton("Aceptar");
-	                boton_aceptar.setBackground(new Color(0, 206, 82));
-	                boton_aceptar.setForeground(Color.WHITE);
-	                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_aceptar.setBounds(230, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_aceptar);
+					// Botón "Aceptar"
+					JButton boton_aceptar = new JButton("Aceptar");
+					boton_aceptar.setBackground(new Color(0, 206, 82));
+					boton_aceptar.setForeground(Color.WHITE);
+					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_aceptar.setBounds(230, 140, 120, 35);
+					confirmar_eliminacion.add(boton_aceptar);
 
-	                // Acción al hacer clic en "Cancelar"
-	                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+					// Acción al hacer clic en "Cancelar"
+					boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
 
-	                // Acción al hacer clic en "Aceptar"
-	                boton_aceptar.addActionListener(ev -> {
-	                    dialog.dispose();
-	                    
-	                });
+					// Acción al hacer clic en "Aceptar"
+					boton_aceptar.addActionListener(ev -> {
+						dialog.dispose();
 
-	                dialog.setVisible(true);
+					});
+
+					dialog.setVisible(true);
 				}
 			}
 			clicked = false;
@@ -7953,7 +7973,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -8246,7 +8266,7 @@ public class UsersView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
