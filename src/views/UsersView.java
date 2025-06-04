@@ -1040,6 +1040,7 @@ public class UsersView {
 					aceptarFinal.setFont(new Font("Anton", Font.PLAIN, 14));
 					aceptarFinal.setBounds(148, 110, 102, 33);
 					aceptarFinal.addActionListener(ev -> {
+						frame.dispose();
 					    resultado.dispose(); 
 					    new UsersController().Informacion_de_cliente(idcliente);
 					});
