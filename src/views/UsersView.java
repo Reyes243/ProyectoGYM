@@ -631,10 +631,10 @@ public class UsersView {
 		lblNewLabel_7.setBounds(499, 115, 132, 28);
 		panel_2.add(lblNewLabel_7);
 
-//		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
-//		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
-//		lblNewLabel_6.setBounds(499, 280, 60, 22);
-//		panel_2.add(lblNewLabel_6);
+		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
+		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_6.setBounds(499, 280, 60, 22);
+		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_12 = new JLabel("Confirmar contraseña:");
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -1924,28 +1924,28 @@ public class UsersView {
 		panel_2.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(340, 160, 84, 32);
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_11.setBounds(340, 160, 150, 32);
 		panel_2.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_10.setBounds(340, 230, 200, 32);
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_10.setBounds(340, 230, 150, 32);
 		panel_2.add(lblNewLabel_10);
 
 		JLabel lblNewLabel_6 = new JLabel("Vigencia hasta: ");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_6.setBounds(340, 370, 144, 32);
+		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_6.setBounds(340, 370, 150, 32);
 		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_13 = new JLabel("No. Identificador: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_13.setBounds(688, 160, 155, 32);
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_13.setBounds(688, 160, 150, 32);
 		panel_2.add(lblNewLabel_13);
 
 		JLabel lblNewLabel_14 = new JLabel("Plan actual: ");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_14.setBounds(340, 300, 108, 32);
+		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_14.setBounds(340, 300, 150, 32);
 		panel_2.add(lblNewLabel_14);
 
 		JLabel lblNewLabel_7 = new JLabel("");
@@ -1963,30 +1963,30 @@ public class UsersView {
 		JLabel Info_nombre = new JLabel("");
 		Info_nombre.setText(datosCliente.get("nombre"));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_nombre.setBounds(420, 162, 118, 29);
+		Info_nombre.setBounds(340, 185, 200, 30);
 		panel_2.add(Info_nombre);
 
 		JLabel Info_primer_apellido = new JLabel("");
 		Info_primer_apellido.setText(datosCliente.get("primer_apellido"));
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_primer_apellido.setBounds(492, 230, 127, 32);
+		Info_primer_apellido.setBounds(340, 255, 200, 30);
 		panel_2.add(Info_primer_apellido);
 
 		JLabel Info_plan = new JLabel("");
 		Info_plan.setText(datosCliente.getOrDefault("tarifa", "Ninguna"));
 		Info_plan.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_plan.setBounds(444, 300, 118, 32);
+		Info_plan.setBounds(340, 325, 200, 30);
 		panel_2.add(Info_plan);
 
 		JLabel Info_identificador = new JLabel("");
 		Info_identificador.setText(datosCliente.get("id"));
 		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_identificador.setBounds(843, 160, 36, 32);
+		Info_identificador.setBounds(688, 185, 200, 30);
 		panel_2.add(Info_identificador);
 
 		JLabel Info_Vigencia = new JLabel("09/06/2025");
 		Info_Vigencia.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_Vigencia.setBounds(478, 370, 138, 32);
+		Info_Vigencia.setBounds(340, 395, 200, 30);
 		panel_2.add(Info_Vigencia);
 
 		// botones de accion para el cliente
