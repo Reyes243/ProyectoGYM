@@ -113,8 +113,8 @@ public class UsersController {
 	public void Credencial_usuario(int idcliente) {
 		vista.Credencial_usuario(idcliente);
 	}
-	public void Ficha_de_instructor(String nombreInstructor) {
-		vista.Ficha_de_instructor(nombreInstructor);
+	public void Ficha_de_instructor(int idinstructor) {
+		vista.Ficha_de_instructor(idinstructor);
 	}
 	public void  Historial_de_clase() {
 		vista.Historial_de_clase();
@@ -129,8 +129,8 @@ public class UsersController {
 		vista.Añadir_instructor();
 		
 	}
-	public void Registro_de_clase(String nombreClase) {
-		vista.Registro_de_clase(nombreClase);
+	public void Registro_de_clase(int nombreclase) {
+		vista.Registro_de_clase(nombreclase);
 	}
 	public void Editar_eliminar_y_añadir_clases() {
 		vista.Editar_eliminar_y_añadir_clases();

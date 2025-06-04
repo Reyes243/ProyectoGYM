@@ -213,56 +213,63 @@ public class UsersModel {
 	}
 
 	public boolean eliminarCliente(int idCliente) {
-		ConectionModel conexion = new ConectionModel();
-		Connection conn = null;
+	    ConectionModel conexion = new ConectionModel();
+	    Connection conn = null;
 
-		try {
-			conn = conexion.getConnection();
-			conn.setAutoCommit(false); 
+	    try {
+	        conn = conexion.getConnection();
+	        conn.setAutoCommit(false); 
 
-			
-			String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
-			try (PreparedStatement pstmt = conn.prepareStatement(sqlInscripciones)) {
-				pstmt.setInt(1, idCliente);
-				pstmt.executeUpdate();
-			}
+	       
+	        String sqlAsistencia = "DELETE FROM asistencia WHERE id_usuario = ?";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sqlAsistencia)) {
+	            pstmt.setInt(1, idCliente);
+	            pstmt.executeUpdate();
+	        }
 
-			
-			String sqlTarifas = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
-			try (PreparedStatement pstmt = conn.prepareStatement(sqlTarifas)) {
-				pstmt.setInt(1, idCliente);
-				pstmt.executeUpdate();
-			}
+	        
+	        String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sqlInscripciones)) {
+	            pstmt.setInt(1, idCliente);
+	            pstmt.executeUpdate();
+	        }
 
-			
-			String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
-			try (PreparedStatement pstmt = conn.prepareStatement(sqlUsuario)) {
-				pstmt.setInt(1, idCliente);
-				int affectedRows = pstmt.executeUpdate();
+	        
+	        String sqlTarifas = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sqlTarifas)) {
+	            pstmt.setInt(1, idCliente);
+	            pstmt.executeUpdate();
+	        }
 
-				conn.commit();
-				return affectedRows > 0;
-			}
-		} catch (SQLException e) {
-			try {
-				if (conn != null) {
-					conn.rollback(); 
-				}
-			} catch (SQLException ex) {
-				System.err.println("Error al hacer rollback: " + ex.getMessage());
-			}
-			System.err.println("Error al eliminar cliente: " + e.getMessage());
-			return false;
-		} finally {
-			try {
-				if (conn != null) {
-					conn.setAutoCommit(true);
-				}
-			} catch (SQLException e) {
-				System.err.println("Error al restaurar auto-commit: " + e.getMessage());
-			}
-			conexion.close();
-		}
+	        
+	        String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sqlUsuario)) {
+	            pstmt.setInt(1, idCliente);
+	            int affectedRows = pstmt.executeUpdate();
+
+	            conn.commit(); 
+	            return affectedRows > 0;
+	        }
+	    } catch (SQLException e) {
+	        try {
+	            if (conn != null) {
+	                conn.rollback(); 
+	            }
+	        } catch (SQLException ex) {
+	            System.err.println("Error al hacer rollback: " + ex.getMessage());
+	        }
+	        System.err.println("Error al eliminar cliente: " + e.getMessage());
+	        return false;
+	    } finally {
+	        try {
+	            if (conn != null) {
+	                conn.setAutoCommit(true); 
+	            }
+	        } catch (SQLException e) {
+	            System.err.println("Error al restaurar auto-commit: " + e.getMessage());
+	        }
+	        conexion.close();
+	    }
 	}
 
 	public List<User> getall() {

@@ -1613,14 +1613,14 @@ public class HomeView {
 					// fila seleccionada
 					// y luego actualiza la tabla recargando datos.
 				} else if (label.equals("Detalles")) {
-					String nombreInstructor = (String) table.getValueAt(row, 0); // Obtén el nombre
+					int idInstructor = (int) table.getValueAt(row, 0); // Obtén el nombre
 					Window window = SwingUtilities.getWindowAncestor(table);
 					if (window != null) {
 						window.dispose();
 					}
 
 					UsersController uc = new UsersController();
-					uc.Ficha_de_instructor(nombreInstructor);
+		            uc.Ficha_de_instructor(idInstructor); 
 					// Aquí abre un formulario para editar la fila,
 					// luego guarda cambios en la base de datos con un UPDATE,
 					// y recarga la tabla con los datos actualizados.
@@ -1994,13 +1994,13 @@ public class HomeView {
 		public Object getCellEditorValue() {
 			if (clicked) {
 				if (label.equals("Registros")) {
-					String nombreClase = (String) table.getValueAt(row, 0); // Obtén el nombre
+					int idnombreclase = (int) table.getValueAt(row, 0); // Obtén el nombre
 					Window window = SwingUtilities.getWindowAncestor(table);
 					if (window != null) {
 						window.dispose();
 					}
 					UsersController uc = new UsersController();
-					uc.Registro_de_clase(nombreClase);
+					uc.Registro_de_clase(idnombreclase);
 					// Aquí conecta con la base de datos para borrar el registro según el ID de la
 					// fila seleccionada
 					// y luego actualiza la tabla recargando datos.

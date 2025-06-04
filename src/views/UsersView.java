@@ -5037,7 +5037,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Ficha_de_instructor(String nombreInstructor) {
+	public void Ficha_de_instructor(int idinstructor) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -5479,7 +5479,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(null);
+				uc.Ficha_de_instructor(0);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -5799,7 +5799,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(null);
+				uc.Ficha_de_instructor(0);
 			}
 		});
 		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 18));
@@ -6092,7 +6092,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(null);
+				uc.Ficha_de_instructor(0);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -6565,7 +6565,7 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Registro_de_clase(String nombreClase) {
+	public void Registro_de_clase(int nombreclase) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
