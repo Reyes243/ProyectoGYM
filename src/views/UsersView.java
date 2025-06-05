@@ -9,6 +9,10 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -540,6 +544,7 @@ public class UsersView {
 
 		UsersModel model = new UsersModel();
 		Map<String, String> datosCliente = model.obtenerDatosBasicosCliente(idcliente);
+		String tarifaActual = datosCliente.getOrDefault("tarifa", "NINGUNA");
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -722,6 +727,16 @@ public class UsersView {
 		Info_correo.getDocument().addDocumentListener(documentListener);
 		Info_contra.getDocument().addDocumentListener(documentListener);
 		Info_confirmar_contra.getDocument().addDocumentListener(documentListener);
+		
+		JComboBox<String> comboBox_Tarifas = new JComboBox<>();
+	    comboBox_Tarifas.setBackground(new Color(204, 204, 204));
+	    comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
+	    comboBox_Tarifas.setBounds(649, 283, 200, 22);
+	    cargarTarifasEnComboBox(comboBox_Tarifas);
+	    
+	    // Establecer la tarifa actual como seleccionada
+	    comboBox_Tarifas.setSelectedItem(tarifaActual);
+	    panel_2.add(comboBox_Tarifas);
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
@@ -1010,9 +1025,15 @@ public class UsersView {
 
 				botonSi.addActionListener(a -> {
 					confirmacion.dispose();
-					boolean exito = actualizarCliente(idcliente, Info_nombre.getText(), Info_primer_apellido.getText(),
-							Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
-							nuevaContra.isEmpty() ? null : nuevaContra);
+					String tarifaSeleccionada = (String) comboBox_Tarifas.getSelectedItem();
+					 boolean exito = actualizarCliente(idcliente, Info_nombre.getText(), Info_primer_apellido.getText(),
+		                        Info_segundo_apellido.getText(), Info_telefono.getText(), Info_correo.getText(),
+		                        nuevaContra.isEmpty() ? null : nuevaContra);
+
+		                // Actualizar la tarifa del cliente
+		                if (exito) {
+		                    exito = actualizarTarifaCliente(idcliente, tarifaSeleccionada);
+		                }
 
 					JDialog resultado = new JDialog(frame, "Resultado", true);
 					resultado.setUndecorated(true);
@@ -1155,15 +1176,7 @@ public class UsersView {
 		// combox de
 		// usario////////////////////////////////////////////////////////////////////////
 
-		JComboBox comboBox_Tarifas = new JComboBox();
-		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
-		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_Tarifas.setBounds(649, 283, 200, 22);
-		String[] tarifas = { "NINGUNA", "estandar", "premium", "familiar" };
-		for (String tarifa : tarifas) {
-			comboBox_Tarifas.addItem(tarifa);
-		}
-		panel_2.add(comboBox_Tarifas);
+		
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1308,6 +1321,102 @@ public class UsersView {
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+	private void cargarTarifasEnComboBox(JComboBox<String> comboBox) {
+	    comboBox.removeAllItems(); // Limpia opciones previas
+	    comboBox.addItem("NINGUNA"); // Opción predeterminada
+
+	    String sql = "SELECT nombre_tarifa FROM tarifa";
+
+	    try {
+	        ConectionModel conexion = new ConectionModel();
+	        Connection conn = conexion.getConnection();
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            String nombreTarifa = rs.getString("nombre_tarifa");
+	            comboBox.addItem(nombreTarifa);
+	        }
+
+	        conexion.close();
+	    } catch (SQLException e) {
+	        System.err.println("Error al cargar tarifas: " + e.getMessage());
+	    }
+	}
+	private boolean actualizarTarifaCliente(int idCliente, String nombreTarifa) {
+	    ConectionModel conexion = new ConectionModel();
+	    Connection conn = null;
+	    
+	    try {
+	        conn = conexion.getConnection();
+	        conn.setAutoCommit(false); // Iniciar transacción
+
+	        // Primero eliminar cualquier tarifa existente
+	        String sqlEliminar = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sqlEliminar)) {
+	            pstmt.setInt(1, idCliente);
+	            pstmt.executeUpdate();
+	        }
+
+	        // Si se seleccionó una tarifa (no es "NINGUNA"), insertar la nueva
+	        if (!"NINGUNA".equals(nombreTarifa)) {
+	            int idTarifa = obtenerIdTarifa(nombreTarifa);
+	            if (idTarifa != -1) {
+	                String sqlInsertar = "INSERT INTO usuario_tarifa (id_usuario, id_tarifa) VALUES (?, ?)";
+	                try (PreparedStatement pstmt = conn.prepareStatement(sqlInsertar)) {
+	                    pstmt.setInt(1, idCliente);
+	                    pstmt.setInt(2, idTarifa);
+	                    pstmt.executeUpdate();
+	                }
+	            }
+	        }
+
+	        conn.commit(); // Confirmar la transacción
+	        return true;
+	    } catch (SQLException e) {
+	        try {
+	            if (conn != null) {
+	                conn.rollback(); // Revertir en caso de error
+	            }
+	        } catch (SQLException ex) {
+	            System.err.println("Error al hacer rollback: " + ex.getMessage());
+	        }
+	        System.err.println("Error al actualizar tarifa del cliente: " + e.getMessage());
+	        return false;
+	    } finally {
+	        try {
+	            if (conn != null) {
+	                conn.setAutoCommit(true);
+	            }
+	        } catch (SQLException e) {
+	            System.err.println("Error al restaurar auto-commit: " + e.getMessage());
+	        }
+	        conexion.close();
+	    }
+	}
+
+	// Método auxiliar para obtener el ID de una tarifa por su nombre
+	private int obtenerIdTarifa(String nombreTarifa) {
+	    ConectionModel conexion = new ConectionModel();
+	    String sql = "SELECT id_tarifa FROM tarifa WHERE nombre_tarifa = ?";
+	    
+	    try {
+	        Connection conn = conexion.getConnection();
+	        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	            pstmt.setString(1, nombreTarifa.toLowerCase());
+	            try (ResultSet rs = pstmt.executeQuery()) {
+	                if (rs.next()) {
+	                    return rs.getInt("id_tarifa");
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al obtener ID de tarifa: " + e.getMessage());
+	    } finally {
+	        conexion.close();
+	    }
+	    return -1;
 	}
 
 	private boolean actualizarCliente(int idCliente, String nombre, String primerApellido, String segundoApellido,
@@ -2341,15 +2450,12 @@ public class UsersView {
 		txtConfirmarContrasena.setBounds(649, 225, 200, 22);
 		panel_2.add(txtConfirmarContrasena);
 
-		JComboBox comboBox_Tarifas = new JComboBox();
-		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
-		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_Tarifas.setBounds(649, 283, 200, 22);
-		String[] tarifas = { "NINGUNA", "estandar", "premium", "familiar" };
-		for (String tarifa : tarifas) {
-			comboBox_Tarifas.addItem(tarifa);
-		}
-		panel_2.add(comboBox_Tarifas);
+		JComboBox<String> comboBox_Tarifas = new JComboBox<>();
+	    comboBox_Tarifas.setBackground(new Color(204, 204, 204));
+	    comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
+	    comboBox_Tarifas.setBounds(649, 283, 200, 22);
+	    cargarTarifasEnComboBox(comboBox_Tarifas);
+	    panel_2.add(comboBox_Tarifas);
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
