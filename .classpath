@@ -7,8 +7,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion/ProyectoGYM/Files/flatlaf-3.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion/ProyectoGYM/Files/itextpdf-5.5.13.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion/ProyectoGYM/Files/mysql-connector-j-9.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion3/ProyectoGYM/Files/flatlaf-3.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion3/ProyectoGYM/Files/itextpdf-5.5.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUQUIN/Desktop/Programacion3/ProyectoGYM/Files/mysql-connector-j-9.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -46,6 +49,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import controllers.HomeController;
 import controllers.UsersController;
 import models.ConectionModel;
+import models.InstrucoresModel;
 import models.UsersModel;
 
 public class UsersView {
@@ -733,8 +737,6 @@ public class UsersView {
 	    comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
 	    comboBox_Tarifas.setBounds(649, 283, 200, 22);
 	    cargarTarifasEnComboBox(comboBox_Tarifas);
-	    
-	    // Establecer la tarifa actual como seleccionada
 	    comboBox_Tarifas.setSelectedItem(tarifaActual);
 	    panel_2.add(comboBox_Tarifas);
 
@@ -2917,7 +2919,160 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
+	private final int FILAS = 2;
+	private final int COLUMNAS = 3;
+	private final Point[][] posicionesMatriz = new Point[FILAS][COLUMNAS];
+
+	private void inicializarMatrizPosiciones() {
+		int xInicial = 30;
+		int yInicial = 81;
+		int ancho = 275;
+		int alto = 185;
+		int espacioX = 18;
+		int espacioY = 18;
+
+		for (int fila = 0; fila < FILAS; fila++) {
+			for (int col = 0; col < COLUMNAS; col++) {
+				int x = xInicial + col * (ancho + espacioX);
+				int y = yInicial + fila * (alto + espacioY);
+				posicionesMatriz[fila][col] = new Point(x, y);
+			}
+		}
+	}
+
+	private void reubicarPaneles(JButton botonAgregar) {
+		int total = paneles_tarifa.size();
+
+		// Máximo 6 paneles (2 filas x 3 columnas)
+		if (total >= 6) {
+			botonAgregar.setVisible(false);
+		} else {
+			botonAgregar.setVisible(true);
+		}
+
+		// Posicionar paneles
+		for (int i = 0; i < total; i++) {
+			int fila = i / COLUMNAS;
+			int col = i % COLUMNAS;
+			Point pos = posicionesMatriz[fila][col];
+			paneles_tarifa.get(i).setBounds((int) pos.getX(), (int) pos.getY(), 275, 185); // ← corregido
+		}
+
+		// Posicionar botón en la siguiente celda libre
+		if (total < 6) {
+			int fila = total / COLUMNAS;
+			int col = total % COLUMNAS;
+			Point pos = posicionesMatriz[fila][col];
+			botonAgregar.setBounds((int) pos.getX(), (int) pos.getY(), 275, 185); // ← corregido
+		}
+	}
+
+	public class Tarifa {
+		public String nombre;
+		public int precio;
+		public String descripcion;
+
+		public Tarifa(String nombre, int precio, String descripcion) {
+			this.nombre = nombre;
+			this.precio = precio;
+			this.descripcion = descripcion;
+		}
+	}
+
+	public class TarifaData {
+		public static List<Tarifa> tarifas = new ArrayList<>();
+	}
+
+	private JPanel panel_2;
+	private List<JPanel> paneles_tarifa = new ArrayList<>();
+
+	private JPanel crearPanelTarifa(String nombre, int precio, String descripcion, JButton botonAgregar) {
+		JPanel panelTarifa = new JPanel();
+		panelTarifa.setLayout(null);
+		panelTarifa.setBackground(Color.WHITE);
+		panelTarifa.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		panelTarifa.setBounds(30 + (paneles_tarifa.size() * 293), 81, 275, 185); // disposición horizontal
+
+		JLabel lblPlan = new JLabel("Plan");
+		lblPlan.setFont(new Font("Anton", Font.PLAIN, 22));
+		lblPlan.setBounds(20, 26, 100, 35);
+		panelTarifa.add(lblPlan);
+
+		JLabel lblNombre = new JLabel(nombre.toUpperCase());
+		lblNombre.setFont(new Font("Anton", Font.PLAIN, 28));
+		lblNombre.setBounds(20, 72, 172, 35);
+		panelTarifa.add(lblNombre);
+
+		JLabel lblPrecio = new JLabel("$" + precio + " / mes");
+		lblPrecio.setFont(new Font("Anton", Font.PLAIN, 28));
+		lblPrecio.setBounds(20, 118, 200, 35);
+		panelTarifa.add(lblPrecio);
+
+		// Botón Eliminar
+
+		JButton btnEliminar = new JButton("");
+		btnEliminar.setBounds(240, 0, 35, 35);
+		btnEliminar.setBackground(Color.RED);
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
+        Image imagen5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        btnEliminar.setIcon(new ImageIcon(imagen5));
+		btnEliminar.addActionListener(e -> {
+			// 1. Eliminar el panel de la interfaz
+			panel_2.remove(panelTarifa);
+			paneles_tarifa.remove(panelTarifa);
+
+			// 2. Eliminar la tarifa real de la lista de datos
+			TarifaData.tarifas.removeIf(t -> t.nombre.equalsIgnoreCase(nombre) && t.precio == precio
+					&& t.descripcion.equalsIgnoreCase(descripcion));
+
+			// 3. Reubicar el botón "+" y refrescar
+			reubicarPaneles(botonAgregar);
+			panel_2.repaint();
+			panel_2.revalidate();
+		});
+		panelTarifa.add(btnEliminar);
+
+		// Botón Editar
+		JButton btnEditar = new JButton("");
+		btnEditar.setBounds(205, 0, 35, 35);
+		btnEditar.setBackground(new Color(255, 205, 17));
+		btnEditar.setForeground(Color.WHITE);
+		btnEditar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
+        Image imagen2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        btnEditar.setIcon(new ImageIcon(imagen2));
+		btnEditar.addActionListener(e -> {
+			// 1. Guardar los datos actuales de la tarifa a editar
+			TarifaTempStorage.nombre = nombre;
+			TarifaTempStorage.precio = precio;
+			TarifaTempStorage.descripcion = descripcion;
+
+			// 2. Cerrar la ventana actual
+			JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(panelTarifa);
+			if (parentFrame != null)
+				parentFrame.dispose();
+
+			// 3. Abrir la ventana de edición
+			UsersController uc = new UsersController();
+			uc.Editar_tarifas2(); // << aquí tu conexión
+		});
+		panelTarifa.add(btnEditar);
+
+		return panelTarifa;
+	}
+
+	public class TarifaTempStorage {
+		public static String nombre = "";
+		public static int precio = 0;
+		public static String descripcion = "";
+	}
+
+	private JButton botonAgregar;
+
 	public void Editar_tarifas() {
+
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -2926,14 +3081,15 @@ public class UsersView {
 		}
 
 		JFrame frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(0, 0, 1100, 700);
+		frame.setSize(1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(204, 204, 204));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setLayout(null);
+		panel.setBounds(0, 0, 1100, 700);
+		frame.add(panel);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
@@ -2963,363 +3119,68 @@ public class UsersView {
 		lblNewLabel_4.setBounds(407, 11, 270, 53);
 		panel_1.add(lblNewLabel_4);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(156, 86, 918, 564);
-		panel.add(panel_2);
+		panel_2 = new JPanel();
 		panel_2.setLayout(null);
+		panel_2.setBounds(156, 86, 918, 564);
+		panel_2.setBackground(Color.WHITE);
+		panel.add(panel_2);
 
+		// Panel negro de título
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(0, 0, 0));
 		panel_3.setBounds(0, 0, 918, 50);
-		panel_2.add(panel_3);
 		panel_3.setLayout(null);
+		panel_2.add(panel_3);
 
-		JLabel lblNewLabel = new JLabel("EDITAR TARIFAS Y DESCRIPCION");// titulo de inicio
+		JLabel lblNewLabel = new JLabel("EDITAR TARIFAS Y DESCRIPCIÓN");
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(60, 11, 436, 28);
 		panel_3.add(lblNewLabel);
-		// tarifas//////////////////////////////////////////////////////////////////////
-		JPanel plan_estandar = new JPanel();
-		plan_estandar.setBackground(new Color(255, 255, 255));
-		plan_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_estandar.setBounds(30, 81, 275, 185);
-		panel_2.add(plan_estandar);
-		plan_estandar.setLayout(null);
+		inicializarMatrizPosiciones();
 
-		JLabel lblNewLabel_5 = new JLabel("Plan");
-		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_5.setBounds(20, 26, 100, 35);
-		plan_estandar.add(lblNewLabel_5);
+		// Botón "+"
+		botonAgregar = new JButton("+");
+		botonAgregar.setFont(new Font("Arial", Font.BOLD, 50));
+		botonAgregar.setBounds(30, 81, 275, 185);
+		panel_2.add(botonAgregar);
 
-		JLabel lblNewLabel_6 = new JLabel("ESTANDAR");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_6.setBounds(20, 72, 172, 35);
-		plan_estandar.add(lblNewLabel_6);
+		for (Tarifa t : TarifaData.tarifas) {
+			JPanel panel_tarifa = crearPanelTarifa(t.nombre, t.precio, t.descripcion, botonAgregar);
+			paneles_tarifa.add(panel_tarifa);
+			panel_2.add(panel_tarifa);
+		}
 
-		JLabel lblNewLabel_7 = new JLabel("$300 / mes");
-		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_7.setBounds(20, 118, 146, 35);
-		plan_estandar.add(lblNewLabel_7);
-
-		JPanel plan_premium = new JPanel();
-		plan_premium.setBackground(new Color(255, 255, 255));
-		plan_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_premium.setBounds(323, 81, 275, 185);
-		panel_2.add(plan_premium);
-		plan_premium.setLayout(null);
-
-		JLabel lblNewLabel_8 = new JLabel("Plan");
-		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_8.setBounds(20, 26, 100, 35);
-		plan_premium.add(lblNewLabel_8);
-
-		JLabel lblNewLabel_9 = new JLabel("PREMIUM");
-		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_9.setBounds(20, 72, 172, 35);
-		plan_premium.add(lblNewLabel_9);
-
-		JLabel lblNewLabel_10 = new JLabel("$600 / mes");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_10.setBounds(20, 118, 146, 35);
-		plan_premium.add(lblNewLabel_10);
-
-		JPanel plan_familiar = new JPanel();
-		plan_familiar.setBackground(new Color(255, 255, 255));
-		plan_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_familiar.setBounds(615, 81, 275, 185);
-		panel_2.add(plan_familiar);
-		plan_familiar.setLayout(null);
-
-		JLabel lblNewLabel_11 = new JLabel("Plan");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(20, 26, 100, 35);
-		plan_familiar.add(lblNewLabel_11);
-
-		JLabel lblNewLabel_12 = new JLabel("FAMILIAR");
-		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_12.setBounds(20, 72, 172, 35);
-		plan_familiar.add(lblNewLabel_12);
-
-		JLabel lblNewLabel_13 = new JLabel("$1099 / mes");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_13.setBounds(20, 118, 146, 35);
-		plan_familiar.add(lblNewLabel_13);
-
-		// botones de
-		// tarifas///////////////////////////////////////////////////////////////////////////////
-		JButton boton_inf_plan_estandar = new JButton("");
-		boton_inf_plan_estandar.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_estandar.setBounds(205, 0, 35, 35);
-		boton_inf_plan_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_estandar.setIcon(new ImageIcon(imagen1));
-		boton_inf_plan_estandar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Editar_tarifas2();
+		// Listener del botón "+"
+		botonAgregar.addActionListener(e -> {
+			if (paneles_tarifa.size() >= 6) {
+				JOptionPane.showMessageDialog(frame, "Máximo 6 tarifas permitidas.");
+				return;
 			}
-		});
-		plan_estandar.add(boton_inf_plan_estandar);
 
-		JButton boton_eliminar_instcibsion_estandar = new JButton("");
-		boton_eliminar_instcibsion_estandar.setBackground(new Color(255, 0, 0));
-		boton_eliminar_instcibsion_estandar.setBounds(240, 0, 35, 35);
-		boton_eliminar_instcibsion_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon4 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
-		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_eliminar_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
-		boton_eliminar_instcibsion_estandar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-				dialog.setSize(400, 220);
-				dialog.setLocationRelativeTo(null);
-				dialog.setUndecorated(true);
-				dialog.setLayout(null);
-
-				// Panel principal de la alerta
-				JPanel confirmar_eliminacion = new JPanel();
-				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-				confirmar_eliminacion.setBounds(0, 0, 400, 220);
-				confirmar_eliminacion.setLayout(null);
-				dialog.add(confirmar_eliminacion);
-
-				// Panel superior de la alerta (azul)
-				JPanel panel_complemento = new JPanel();
-				panel_complemento.setBackground(new Color(81, 151, 255));
-				panel_complemento.setBounds(0, 0, 400, 33);
-				confirmar_eliminacion.add(panel_complemento);
-
-				// Etiqueta de confirmación
-				JLabel pregunta_de_confirmacion = new JLabel(
-						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-				confirmar_eliminacion.add(pregunta_de_confirmacion);
-
-				// Botón "Cancelar"
-				JButton boton_cancelar_alerta = new JButton("Cancelar");
-				boton_cancelar_alerta.setForeground(Color.WHITE);
-				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_cancelar_alerta.setBackground(Color.RED);
-				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-				confirmar_eliminacion.add(boton_cancelar_alerta);
-
-				// Botón "Aceptar"
-				JButton boton_aceptar = new JButton("Aceptar");
-				boton_aceptar.setBackground(new Color(0, 206, 82));
-				boton_aceptar.setForeground(Color.WHITE);
-				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_aceptar.setBounds(230, 140, 120, 35);
-				confirmar_eliminacion.add(boton_aceptar);
-
-				// Acción al hacer clic en "Cancelar"
-				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-
-				// Acción al hacer clic en "Aceptar"
-				boton_aceptar.addActionListener(ev -> {
-					dialog.dispose();
-
-				});
-
-				dialog.setVisible(true);
-			}
+			frame.dispose();
+			UsersController uc = new UsersController();
+			uc.Añadir_tarifa(); // ← Aquí vas a la ventana para ingresar datos
 		});
 
-		plan_estandar.add(boton_eliminar_instcibsion_estandar);
+		// Agregar tarifas iniciales
 
-		JButton boton_inf_plan_premium = new JButton("");
-		boton_inf_plan_premium.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_premium.setBounds(205, 0, 35, 35);
-		boton_inf_plan_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
-		Image imagen2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_premium.setIcon(new ImageIcon(imagen2));
-		boton_inf_plan_premium.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Editar_tarifas_PREMIUM();
-			}
-		});
-		plan_premium.add(boton_inf_plan_premium);
+		// Reubicar y mostrar
+		reubicarPaneles(botonAgregar);
 
-		JButton boton_eliminar_instcibsion_premium = new JButton("");
-		boton_eliminar_instcibsion_premium.setBackground(new Color(255, 0, 0));
-		boton_eliminar_instcibsion_premium.setBounds(240, 0, 35, 35);
-		boton_eliminar_instcibsion_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
-		Image imagen5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_eliminar_instcibsion_premium.setIcon(new ImageIcon(imagen5));
-		boton_eliminar_instcibsion_premium.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-				dialog.setSize(400, 220);
-				dialog.setLocationRelativeTo(null);
-				dialog.setUndecorated(true);
-				dialog.setLayout(null);
-
-				// Panel principal de la alerta
-				JPanel confirmar_eliminacion = new JPanel();
-				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-				confirmar_eliminacion.setBounds(0, 0, 400, 220);
-				confirmar_eliminacion.setLayout(null);
-				dialog.add(confirmar_eliminacion);
-
-				// Panel superior de la alerta (azul)
-				JPanel panel_complemento = new JPanel();
-				panel_complemento.setBackground(new Color(81, 151, 255));
-				panel_complemento.setBounds(0, 0, 400, 33);
-				confirmar_eliminacion.add(panel_complemento);
-
-				// Etiqueta de confirmación
-				JLabel pregunta_de_confirmacion = new JLabel(
-						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-				confirmar_eliminacion.add(pregunta_de_confirmacion);
-
-				// Botón "Cancelar"
-				JButton boton_cancelar_alerta = new JButton("Cancelar");
-				boton_cancelar_alerta.setForeground(Color.WHITE);
-				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_cancelar_alerta.setBackground(Color.RED);
-				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-				confirmar_eliminacion.add(boton_cancelar_alerta);
-
-				// Botón "Aceptar"
-				JButton boton_aceptar = new JButton("Aceptar");
-				boton_aceptar.setBackground(new Color(0, 206, 82));
-				boton_aceptar.setForeground(Color.WHITE);
-				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_aceptar.setBounds(230, 140, 120, 35);
-				confirmar_eliminacion.add(boton_aceptar);
-
-				// Acción al hacer clic en "Cancelar"
-				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-
-				// Acción al hacer clic en "Aceptar"
-				boton_aceptar.addActionListener(ev -> {
-					dialog.dispose();
-
-				});
-
-				dialog.setVisible(true);
-			}
-		});
-		plan_premium.add(boton_eliminar_instcibsion_premium);
-
-		JButton boton_inf_plan_familiar = new JButton("");
-		boton_inf_plan_familiar.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_familiar.setBounds(205, 0, 35, 35);
-		boton_inf_plan_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
-		Image imagen3 = icon3.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_familiar.setIcon(new ImageIcon(imagen3));
-		boton_inf_plan_familiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Editar_tarifas_FAMILIAR();
-			}
-		});
-		plan_familiar.add(boton_inf_plan_familiar);
-
-		JButton boton_eliminar_instcibsion_familiar = new JButton("");
-		boton_eliminar_instcibsion_familiar.setBackground(new Color(255, 0, 0));
-		boton_eliminar_instcibsion_familiar.setBounds(240, 0, 35, 35);
-		boton_eliminar_instcibsion_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		ImageIcon icon6 = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
-		Image imagen6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_eliminar_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
-		boton_eliminar_instcibsion_familiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-				dialog.setSize(400, 220);
-				dialog.setLocationRelativeTo(null);
-				dialog.setUndecorated(true);
-				dialog.setLayout(null);
-
-				// Panel principal de la alerta
-				JPanel confirmar_eliminacion = new JPanel();
-				confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-				confirmar_eliminacion.setBounds(0, 0, 400, 220);
-				confirmar_eliminacion.setLayout(null);
-				dialog.add(confirmar_eliminacion);
-
-				// Panel superior de la alerta (azul)
-				JPanel panel_complemento = new JPanel();
-				panel_complemento.setBackground(new Color(81, 151, 255));
-				panel_complemento.setBounds(0, 0, 400, 33);
-				confirmar_eliminacion.add(panel_complemento);
-
-				// Etiqueta de confirmación
-				JLabel pregunta_de_confirmacion = new JLabel(
-						"<html><div style='text-align: center;'>La tarifa se borrará permanentemente<br>¿Desea continuar?</div></html>");
-				pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-				pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-				confirmar_eliminacion.add(pregunta_de_confirmacion);
-
-				// Botón "Cancelar"
-				JButton boton_cancelar_alerta = new JButton("Cancelar");
-				boton_cancelar_alerta.setForeground(Color.WHITE);
-				boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_cancelar_alerta.setBackground(Color.RED);
-				boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-				confirmar_eliminacion.add(boton_cancelar_alerta);
-
-				// Botón "Aceptar"
-				JButton boton_aceptar = new JButton("Aceptar");
-				boton_aceptar.setBackground(new Color(0, 206, 82));
-				boton_aceptar.setForeground(Color.WHITE);
-				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_aceptar.setBounds(230, 140, 120, 35);
-				confirmar_eliminacion.add(boton_aceptar);
-
-				// Acción al hacer clic en "Cancelar"
-				boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-
-				// Acción al hacer clic en "Aceptar"
-				boton_aceptar.addActionListener(ev -> {
-					dialog.dispose();
-
-				});
-
-				dialog.setVisible(true);
-			}
-		});
-		plan_familiar.add(boton_eliminar_instcibsion_familiar);
-
-		JButton boton_editar_tarifas = new JButton("Cancelar");
-		boton_editar_tarifas.setForeground(new Color(255, 255, 255));
-		boton_editar_tarifas.setBackground(new Color(255, 0, 0));
-		boton_editar_tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-		boton_editar_tarifas.setBounds(762, 503, 128, 50);
-		boton_editar_tarifas.addActionListener(new ActionListener() {
+		JButton boton_cancelar_regresar = new JButton("Cancelar");
+		boton_cancelar_regresar.setForeground(new Color(255, 255, 255));
+		boton_cancelar_regresar.setBackground(new Color(255, 0, 0));
+		boton_cancelar_regresar.setFont(new Font("Anton", Font.PLAIN, 16));
+		boton_cancelar_regresar.setBounds(762, 503, 128, 50);
+		boton_cancelar_regresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				HomeController hc = new HomeController();
 				hc.Tarifas();
 			}
 		});
-		panel_2.add(boton_editar_tarifas);
-
-		JButton boton_agregar_tarifa = new JButton("+");
-		boton_agregar_tarifa.setForeground(new Color(204, 204, 204));
-		boton_agregar_tarifa.setFont(new Font("Anton", Font.PLAIN, 98));
-		boton_agregar_tarifa.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-		boton_agregar_tarifa.setBounds(30, 307, 275, 185);
-		boton_agregar_tarifa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Añadir_tarifa();
-			}
-		});
-		panel_2.add(boton_agregar_tarifa);
+		panel_2.add(boton_cancelar_regresar);
 
 		// botones de los
 		// laterales/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3462,7 +3323,6 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
 	public void Editar_tarifas_PREMIUM() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -4166,12 +4026,6 @@ public class UsersView {
 		lblNewLabel_5.setBounds(20, 26, 100, 35);
 		plan_estandar.add(lblNewLabel_5);
 
-		JTextField lblNewLabel_6 = new JTextField("ESTANDAR");
-		lblNewLabel_6.setBackground(new Color(204, 204, 204));
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_6.setBounds(20, 72, 172, 35);
-		plan_estandar.add(lblNewLabel_6);
-
 		JLabel lblNewLabel_7 = new JLabel("$");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 28));
 		lblNewLabel_7.setBounds(20, 118, 13, 35);
@@ -4189,31 +4043,41 @@ public class UsersView {
 		lblNewLabel_8.setBounds(20, 26, 44, 35);
 		descripcion_plan.add(lblNewLabel_8);
 
+		JTextField nombre_de_la_tarifa = new JTextField("");
+		nombre_de_la_tarifa.setBackground(new Color(204, 204, 204));
+		nombre_de_la_tarifa.setFont(new Font("Anton", Font.PLAIN, 28));
+		nombre_de_la_tarifa.setBounds(20, 72, 172, 35);
+		plan_estandar.add(nombre_de_la_tarifa);
+
+		// Campo: Nombre del plan
 		JTextField txtEstandar = new JTextField();
 		txtEstandar.setBackground(new Color(204, 204, 204));
 		txtEstandar.setFont(new Font("Anton", Font.PLAIN, 22));
-		txtEstandar.setText("ESTANDAR");
 		txtEstandar.setBounds(74, 26, 214, 32);
 		descripcion_plan.add(txtEstandar);
 		txtEstandar.setColumns(10);
 
+		// Campo: Precio
+		JTextField textField = new JTextField();
+		textField.setBackground(new Color(204, 204, 204));
+		textField.setFont(new Font("Anton", Font.PLAIN, 28));
+		textField.setBounds(34, 118, 62, 35);
+		plan_estandar.add(textField);
+		textField.setColumns(10);
+
+		// Campo: Descripción
 		JTextArea txtrSeIncluyeAcceso = new JTextArea();
 		txtrSeIncluyeAcceso.setLineWrap(true);
 		txtrSeIncluyeAcceso.setWrapStyleWord(true);
 		txtrSeIncluyeAcceso.setFont(new Font("Anton", Font.PLAIN, 17));
-		txtrSeIncluyeAcceso.setText(
-				"Se incluye acceso al área de cardio únicamente y al equipo correspondiente.\nDurante su membresía se le aplicara un 15% de descuento al comprar productos de la marca EVOLVEFIT.\nMiembros máximos para veneficios: 1\nMembrecía mensual con costo de $300.");
 		txtrSeIncluyeAcceso.setBackground(new Color(204, 204, 204));
 		txtrSeIncluyeAcceso.setBounds(20, 72, 527, 169);
 		descripcion_plan.add(txtrSeIncluyeAcceso);
 
-		JTextField textField = new JTextField();
-		textField.setBackground(new Color(204, 204, 204));
-		textField.setFont(new Font("Anton", Font.PLAIN, 28));
-		textField.setText("300");
-		textField.setBounds(34, 118, 62, 35);
-		plan_estandar.add(textField);
-		textField.setColumns(10);
+		nombre_de_la_tarifa.setText(TarifaTempStorage.nombre);
+		txtEstandar.setText(TarifaTempStorage.nombre);
+		textField.setText(String.valueOf(TarifaTempStorage.precio));
+		txtrSeIncluyeAcceso.setText(TarifaTempStorage.descripcion);
 
 		JLabel lblNewLabel_9 = new JLabel("/ mes");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 28));
@@ -4239,6 +4103,59 @@ public class UsersView {
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_guardar.setBounds(763, 503, 128, 50);
+
+		boton_guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nuevoNombre = txtEstandar.getText().trim();
+					String nombreVisual = nombre_de_la_tarifa.getText().trim(); // <- segundo campo
+					int nuevoPrecio = Integer.parseInt(textField.getText().trim());
+					String nuevaDescripcion = txtrSeIncluyeAcceso.getText().trim();
+
+					// 🛑 VALIDACIÓN: deben coincidir los nombres
+					if (!nuevoNombre.equalsIgnoreCase(nombreVisual)) {
+						JOptionPane.showMessageDialog(frame,
+								"El nombre del plan debe coincidir en ambos campos.\nCorrige antes de guardar.",
+								"Nombres diferentes", JOptionPane.WARNING_MESSAGE);
+						return; // Detiene el guardado
+					}
+
+					// Sincronizar el otro campo para coherencia visual (por si lo necesitas)
+					nombre_de_la_tarifa.setText(nuevoNombre);
+
+					if (nuevoNombre.isEmpty() || nuevaDescripcion.isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "Todos los campos deben estar completos.");
+						return;
+					}
+
+					// Buscar la tarifa original y reemplazarla
+					for (int i = 0; i < TarifaData.tarifas.size(); i++) {
+						Tarifa t = TarifaData.tarifas.get(i);
+						if (t.nombre.equalsIgnoreCase(TarifaTempStorage.nombre) && t.precio == TarifaTempStorage.precio
+								&& t.descripcion.equalsIgnoreCase(TarifaTempStorage.descripcion)) {
+
+							// Reemplazar tarifa
+							TarifaData.tarifas.set(i, new Tarifa(nuevoNombre, nuevoPrecio, nuevaDescripcion));
+							break;
+						}
+					}
+
+					// Limpiar temporal
+					TarifaTempStorage.nombre = "";
+					TarifaTempStorage.precio = 0;
+					TarifaTempStorage.descripcion = "";
+
+					// Regresar a Editar_tarifas
+					frame.dispose();
+					UsersController uc = new UsersController();
+					uc.Editar_tarifas();
+
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(frame, "El precio debe ser un número válido.");
+				}
+			}
+		});
+
 		panel_2.add(boton_guardar);
 
 		// botones de los
@@ -4386,6 +4303,10 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
+	private JTextField txtNombre;
+	private JTextField txtPrecio;
+	private JTextArea txtDescripcion;
+
 	public void Añadir_tarifa() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -4531,6 +4452,35 @@ public class UsersView {
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_guardar.setBounds(763, 503, 128, 50);
+
+		boton_guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombre = txtEstandar.getText().trim();
+					int precio = Integer.parseInt(textField.getText().trim());
+					String descripcion = txtrSeIncluyeAcceso.getText().trim();
+
+					// Validar datos
+					if (nombre.isEmpty() || descripcion.isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "Todos los campos deben estar completos.");
+						return;
+					}
+
+					// Guardar en clase temporal
+					Tarifa nuevaTarifa = new Tarifa(nombre, precio, descripcion);
+					TarifaData.tarifas.add(nuevaTarifa);
+
+					// Cerrar esta ventana y regresar
+					frame.dispose();
+					UsersController uc = new UsersController();
+					uc.Editar_tarifas();
+
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(frame, "El precio debe ser un número válido.");
+				}
+			}
+		});
+
 		panel_2.add(boton_guardar);
 
 		// botones de los
@@ -4674,7 +4624,6 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
 	public void Clientes_con_tarifa_ESTANDAR() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -5393,6 +5342,14 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		InstrucoresModel um = new InstrucoresModel();
+		Map<String, String> datosInstructor = um.obtenerDatosCompletosInstructor(idinstructor);
+
+		if (datosInstructor.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado. ID inválido: " + idinstructor, "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -5449,7 +5406,8 @@ public class UsersView {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
-
+		
+	
 		JLabel Imagen_de_usuario = new JLabel("");
 		Imagen_de_usuario.setBounds(15, 90, 200, 300);
 		Imagen_de_usuario.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -5459,6 +5417,11 @@ public class UsersView {
 		Image imagen1 = icon1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
 		Imagen_de_usuario.setIcon(new ImageIcon(imagen1));
 		panel_2.add(Imagen_de_usuario);
+		
+		JLabel lblNewLabel_5 = new JLabel("ID Instructor: ");
+		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_5.setBounds(235, 90, 85, 32);
+		panel_2.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -5491,32 +5454,44 @@ public class UsersView {
 		panel_2.add(lblNewLabel_13);
 		// info de
 		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre = new JLabel("Laura Mendez");
+		JLabel Info_ID = new JLabel("");
+		Info_ID.setText(datosInstructor.get("id"));
+		Info_ID.setFont(new Font("Anton", Font.PLAIN, 20));
+		Info_ID.setBounds(321, 92, 46, 28);
+		panel_2.add(Info_ID);
+				
+		JLabel Info_nombre = new JLabel("");
+		Info_nombre.setText(datosInstructor.get("nombre"));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(328, 119, 122, 21);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_especialidad = new JLabel("Pilates y Yoga");
+		JLabel Info_especialidad = new JLabel("");
+		Info_especialidad.setText(datosInstructor.get("especialidad"));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_especialidad.setBounds(361, 165, 147, 22);
 		panel_2.add(Info_especialidad);
 
-		JLabel Info_clase = new JLabel("YOGA RELAX");
+		JLabel Info_clase = new JLabel("");
+		Info_clase.setText(datosInstructor.get("clases"));
 		Info_clase.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_clase.setBounds(381, 267, 152, 22);
 		panel_2.add(Info_clase);
 
-		JLabel Info_telefono = new JLabel("612 187 0000");
+		JLabel Info_telefono = new JLabel("");
+		Info_telefono.setText(datosInstructor.get("telefono"));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(334, 315, 152, 22);
 		panel_2.add(Info_telefono);
 
-		JLabel Info_correo = new JLabel(" laura.mendez@evolvefit.com");
+		JLabel Info_correo = new JLabel("");
+		Info_correo.setText(datosInstructor.get("correo"));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_correo.setBounds(405, 362, 200, 28);
 		panel_2.add(Info_correo);
 
-		JLabel Info_horarrio = new JLabel("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
+		JLabel Info_horarrio = new JLabel("");
+		Info_horarrio.setText(datosInstructor.get("horarios"));
 		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_horarrio.setBounds(422, 217, 352, 22);
 		panel_2.add(Info_horarrio);

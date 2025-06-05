@@ -43,8 +43,12 @@ import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
 import models.ConectionModel;
+import models.Instructor;
+
 import models.User;
 import models.UsersModel;
+import views.UsersView.Tarifa;
+import views.UsersView.TarifaData;
 
 public class HomeView {
 	private Font antonFont;
@@ -963,6 +967,110 @@ public class HomeView {
 		panel_2.setBounds(156, 86, 918, 564);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
+		
+		int x = 30;
+		int y = 81;
+		int ancho = 275;
+		int alto = 185;
+		int espacioX = 18;
+		int espacioY = 18;
+		int columnas = 3;
+
+		for (int i = 0; i < TarifaData.tarifas.size(); i++) {
+		    Tarifa t = TarifaData.tarifas.get(i);
+
+		    JPanel panelTarifa = new JPanel();
+		    panelTarifa.setLayout(null);
+		    panelTarifa.setBackground(Color.WHITE);
+		    panelTarifa.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+		    int col = i % columnas;
+		    int fila = i / columnas;
+		    int px = x + col * (ancho + espacioX);
+		    int py = y + fila * (alto + espacioY);
+		    panelTarifa.setBounds(px, py, ancho, alto);
+
+		    JLabel lblTitulo = new JLabel("Plan");
+		    lblTitulo.setFont(new Font("Anton", Font.PLAIN, 22));
+		    lblTitulo.setBounds(20, 26, 100, 35);
+		    panelTarifa.add(lblTitulo);
+
+		    JLabel lblNombre = new JLabel(t.nombre.toUpperCase());
+		    lblNombre.setFont(new Font("Anton", Font.PLAIN, 28));
+		    lblNombre.setBounds(20, 72, 200, 35);
+		    panelTarifa.add(lblNombre);
+
+		    JLabel lblPrecio = new JLabel("$" + t.precio + " / mes");
+		    lblPrecio.setFont(new Font("Anton", Font.PLAIN, 28));
+		    lblPrecio.setBounds(20, 118, 250, 35);
+		    panelTarifa.add(lblPrecio);
+
+		    JButton botonInfo = new JButton("");
+		    botonInfo.setBackground(new Color(255, 205, 17));
+		    botonInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		    botonInfo.setBounds(225, 139, 40, 40);
+		    ImageIcon iconInfo = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
+		    Image infoImg = iconInfo.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		    botonInfo.setIcon(new ImageIcon(infoImg));
+		    botonInfo.addActionListener(ev -> {
+		        JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa", true);
+		        alertaTarifa.setBounds(400, 250, 500, 280);
+		        alertaTarifa.setLocationRelativeTo(frame);
+		        alertaTarifa.setUndecorated(true);
+		        alertaTarifa.setLayout(null);
+
+		        JPanel inf_tarifa = new JPanel();
+		        inf_tarifa.setBackground(new Color(255, 255, 255));
+		        inf_tarifa.setBounds(0, 0, 500, 280);
+		        alertaTarifa.add(inf_tarifa);
+		        inf_tarifa.setLayout(null);
+
+		        JPanel panel_complemento = new JPanel();
+		        panel_complemento.setBackground(new Color(81, 151, 255));
+		        panel_complemento.setBounds(0, 0, 500, 33);
+		        inf_tarifa.add(panel_complemento);
+
+		        JTextArea area = new JTextArea();
+		        area.setText("Plan: " + t.nombre + "\n\n" + t.descripcion);
+		        area.setBounds(10, 40, 480, 151);
+		        area.setLineWrap(true);
+		        area.setWrapStyleWord(true);
+		        area.setFont(new Font("Anton", Font.PLAIN, 16));
+		        area.setEditable(false);
+		        inf_tarifa.add(area);
+
+		        JButton btnAceptar = new JButton("Aceptar");
+		        btnAceptar.setBounds(344, 230, 146, 39);
+		        btnAceptar.setFont(new Font("Anton", Font.PLAIN, 15));
+		        btnAceptar.setBackground(new Color(0, 206, 82));
+		        btnAceptar.setForeground(Color.WHITE);
+		        btnAceptar.addActionListener(e -> alertaTarifa.dispose());
+		        inf_tarifa.add(btnAceptar);
+
+		        alertaTarifa.setVisible(true);
+		    });
+
+		    panelTarifa.add(botonInfo);
+		    
+		    JButton botonClientes = new JButton("");
+		    botonClientes.setBackground(new Color(255, 205, 17));
+		    botonClientes.setBounds(225, 88, 40, 40); // igual que el original
+		    botonClientes.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+		    ImageIcon iconUsuarios = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
+		    Image imagenUsuarios = iconUsuarios.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		    botonClientes.setIcon(new ImageIcon(imagenUsuarios));
+
+		    botonClientes.addActionListener(ev -> {
+		        frame.dispose();
+		        UsersController uc = new UsersController();
+		        uc.Clientes_con_tarifa_PREMIUM();  // Debes tener este método generalizado
+		    });
+
+		    panelTarifa.add(botonClientes);
+		    panel_2.add(panelTarifa);
+		}
+
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(0, 0, 0));
@@ -976,300 +1084,11 @@ public class HomeView {
 		lblNewLabel.setBounds(60, 11, 105, 28);
 		panel_3.add(lblNewLabel);
 		// tarifas//////////////////////////////////////////////////////////////////////
-		JPanel plan_estandar = new JPanel();
-		plan_estandar.setBackground(new Color(255, 255, 255));
-		plan_estandar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_estandar.setBounds(30, 81, 275, 185);
-		panel_2.add(plan_estandar);
-		plan_estandar.setLayout(null);
+		
 
-		JLabel lblNewLabel_5 = new JLabel("Plan");
-		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_5.setBounds(20, 26, 100, 35);
-		plan_estandar.add(lblNewLabel_5);
+		
 
-		JLabel lblNewLabel_6 = new JLabel("ESTANDAR");
-		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_6.setBounds(20, 72, 172, 35);
-		plan_estandar.add(lblNewLabel_6);
-
-		JLabel lblNewLabel_7 = new JLabel("$300 / mes");
-		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_7.setBounds(20, 118, 146, 35);
-		plan_estandar.add(lblNewLabel_7);
-
-		JPanel plan_premium = new JPanel();
-		plan_premium.setBackground(new Color(255, 255, 255));
-		plan_premium.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_premium.setBounds(323, 81, 275, 185);
-		panel_2.add(plan_premium);
-		plan_premium.setLayout(null);
-
-		JLabel lblNewLabel_8 = new JLabel("Plan");
-		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_8.setBounds(20, 26, 100, 35);
-		plan_premium.add(lblNewLabel_8);
-
-		JLabel lblNewLabel_9 = new JLabel("PREMIUM");
-		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_9.setBounds(20, 72, 172, 35);
-		plan_premium.add(lblNewLabel_9);
-
-		JLabel lblNewLabel_10 = new JLabel("$600 / mes");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_10.setBounds(20, 118, 146, 35);
-		plan_premium.add(lblNewLabel_10);
-
-		JPanel plan_familiar = new JPanel();
-		plan_familiar.setBackground(new Color(255, 255, 255));
-		plan_familiar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		plan_familiar.setBounds(615, 81, 275, 185);
-		panel_2.add(plan_familiar);
-		plan_familiar.setLayout(null);
-
-		JLabel lblNewLabel_11 = new JLabel("Plan");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 22));
-		lblNewLabel_11.setBounds(20, 26, 100, 35);
-		plan_familiar.add(lblNewLabel_11);
-
-		JLabel lblNewLabel_12 = new JLabel("FAMILIAR");
-		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_12.setBounds(20, 72, 172, 35);
-		plan_familiar.add(lblNewLabel_12);
-
-		JLabel lblNewLabel_13 = new JLabel("$1099 / mes");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 28));
-		lblNewLabel_13.setBounds(20, 118, 146, 35);
-		plan_familiar.add(lblNewLabel_13);
-
-		// botones de
-		// tarifas///////////////////////////////////////////////////////////////////////////////
-		JButton boton_inf_plan_estandar = new JButton("");
-		boton_inf_plan_estandar.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_estandar.setBounds(225, 139, 40, 40);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_estandar.setIcon(new ImageIcon(imagen1));
-		boton_inf_plan_estandar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Crear el JDialog para la alerta
-		        JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa Estándar", true); // true hace que sea modal (bloquea la ventana principal)
-		        alertaTarifa.setBounds(400, 250, 500, 280);  // Establece el tamaño y la posición de la ventana
-		        alertaTarifa.setLocationRelativeTo(frame);
-		        alertaTarifa.setUndecorated(true);
-		        alertaTarifa.setLayout(null);
-
-		        // Crear el panel para la alerta
-		        JPanel inf_tarifa_estandar = new JPanel();
-		        inf_tarifa_estandar.setBackground(new Color(255, 255, 255));
-		        inf_tarifa_estandar.setBounds(0, 0, 500, 280);
-		        alertaTarifa.add(inf_tarifa_estandar);
-		        inf_tarifa_estandar.setLayout(null);
-
-		        // Crear el panel superior (complemento de la alerta)
-		        JPanel panel_complemento = new JPanel();
-		        panel_complemento.setBackground(new Color(81, 151, 255));
-		        panel_complemento.setBounds(0, 0, 500, 33);
-		        inf_tarifa_estandar.add(panel_complemento);
-
-		        // Crear el JTextArea con la información
-		        JTextArea txtrPlanEstandarSe = new JTextArea();
-		        txtrPlanEstandarSe.setBounds(10, 40, 480, 151);
-		        inf_tarifa_estandar.add(txtrPlanEstandarSe);
-		        txtrPlanEstandarSe.setText("Plan: ESTANDAR \r\n-Se incluye acceso al área de cardio únicamente y al equipo correspondiente.\r\n-Durante su membresía se le aplicara un 15% de descuento al comprar productos de la marca EVOLVEFIT.\r\n-Membrecía mensual con costo de $300.\r\n\r\r\n\r\r\n\r\n");
-		        txtrPlanEstandarSe.setLineWrap(true);
-		        txtrPlanEstandarSe.setWrapStyleWord(true);
-		        txtrPlanEstandarSe.setFont(new Font("Anton", Font.PLAIN, 16));
-		        txtrPlanEstandarSe.setEditable(false); // Hace que el JTextArea no sea editable
-
-		        // Crear el botón "Aceptar" para cerrar la alerta
-		        JButton btn_aceptar = new JButton("Aceptar");
-		        btn_aceptar.setFont(new Font("Anton", Font.PLAIN, 15));
-		        btn_aceptar.setForeground(new Color(255, 255, 255));
-		        btn_aceptar.setBackground(new Color(0, 206, 82));
-		        btn_aceptar.setBounds(344, 230, 146, 39);
-		        inf_tarifa_estandar.add(btn_aceptar);
-
-		        // Agregar un listener para cerrar la ventana al hacer clic en "Aceptar"
-		        btn_aceptar.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                alertaTarifa.dispose(); // Cierra el JDialog
-		            }
-		        });
-
-		        // Hacer visible la ventana emergente
-		        alertaTarifa.setVisible(true);
-		    }
-		});
-
-		plan_estandar.add(boton_inf_plan_estandar);
-
-		JButton boton_plan_instcibsion_estandar = new JButton("");
-		boton_plan_instcibsion_estandar.setBackground(new Color(255, 205, 17));
-		boton_plan_instcibsion_estandar.setBounds(225, 88, 40, 40);
-		ImageIcon icon4 = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
-		Image imagen4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_estandar.setIcon(new ImageIcon(imagen4));
-		boton_plan_instcibsion_estandar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Clientes_con_tarifa_ESTANDAR();
-
-			}
-		});
-		plan_estandar.add(boton_plan_instcibsion_estandar);
-
-		JButton boton_inf_plan_premium = new JButton("");
-		boton_inf_plan_premium.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_premium.setBounds(225, 139, 40, 40);
-		ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
-		Image imagen2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_premium.setIcon(new ImageIcon(imagen2));
-		boton_inf_plan_premium.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Crear el JDialog para la alerta
-		        JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa Estándar", true); // true hace que sea modal (bloquea la ventana principal)
-		        alertaTarifa.setBounds(400, 250, 500, 280);  // Establece el tamaño y la posición de la ventana
-		        alertaTarifa.setLocationRelativeTo(frame);
-		        alertaTarifa.setUndecorated(true);
-		        alertaTarifa.setLayout(null);
-
-		        // Crear el panel para la alerta
-		        JPanel inf_tarifa_estandar = new JPanel();
-		        inf_tarifa_estandar.setBackground(new Color(255, 255, 255));
-		        inf_tarifa_estandar.setBounds(0, 0, 500, 280);
-		        alertaTarifa.add(inf_tarifa_estandar);
-		        inf_tarifa_estandar.setLayout(null);
-
-		        // Crear el panel superior (complemento de la alerta)
-		        JPanel panel_complemento = new JPanel();
-		        panel_complemento.setBackground(new Color(81, 151, 255));
-		        panel_complemento.setBounds(0, 0, 500, 33);
-		        inf_tarifa_estandar.add(panel_complemento);
-
-		        // Crear el JTextArea con la información
-		        JTextArea txtrPlanEstandarSe = new JTextArea();
-		        txtrPlanEstandarSe.setBounds(10, 40, 480, 151);
-		        inf_tarifa_estandar.add(txtrPlanEstandarSe);
-		        txtrPlanEstandarSe.setText("Plan: PREMIUM\r\n-Se incluye acceso completo a todo el equipo y áreas del gimnasio.\r\n-Durante su membresía se le aplicara un 25% de descuento al comprar productos de la marca EVOLVEFIT.\r\n-Membrecía mensual con costo de $600.\r\n\r\n");		        txtrPlanEstandarSe.setLineWrap(true);
-		        txtrPlanEstandarSe.setWrapStyleWord(true);
-		        txtrPlanEstandarSe.setFont(new Font("Anton", Font.PLAIN, 16));
-		        txtrPlanEstandarSe.setEditable(false); // Hace que el JTextArea no sea editable
-
-		        // Crear el botón "Aceptar" para cerrar la alerta
-		        JButton btn_aceptar = new JButton("Aceptar");
-		        btn_aceptar.setFont(new Font("Anton", Font.PLAIN, 15));
-		        btn_aceptar.setForeground(new Color(255, 255, 255));
-		        btn_aceptar.setBackground(new Color(0, 206, 82));
-		        btn_aceptar.setBounds(344, 230, 146, 39);
-		        inf_tarifa_estandar.add(btn_aceptar);
-
-		        // Agregar un listener para cerrar la ventana al hacer clic en "Aceptar"
-		        btn_aceptar.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                alertaTarifa.dispose(); // Cierra el JDialog
-		            }
-		        });
-
-		        // Hacer visible la ventana emergente
-		        alertaTarifa.setVisible(true);
-		    }
-		});
-
-		plan_premium.add(boton_inf_plan_premium);
-
-		JButton boton_plan_instcibsion_premium = new JButton("");
-		boton_plan_instcibsion_premium.setBackground(new Color(255, 205, 17));
-		boton_plan_instcibsion_premium.setBounds(225, 88, 40, 40);
-		ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
-		Image imagen5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_premium.setIcon(new ImageIcon(imagen5));
-		boton_plan_instcibsion_premium.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Clientes_con_tarifa_PREMIUM();
-
-			}
-		});
-		plan_premium.add(boton_plan_instcibsion_premium);
-
-		JButton boton_inf_plan_familiar = new JButton("");
-		boton_inf_plan_familiar.setBackground(new Color(255, 205, 17));
-		boton_inf_plan_familiar.setBounds(225, 139, 40, 40);
-		ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
-		Image imagen3 = icon3.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_inf_plan_familiar.setIcon(new ImageIcon(imagen3));
-		boton_inf_plan_familiar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Crear el JDialog para la alerta
-		        JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa Estándar", true); // true hace que sea modal (bloquea la ventana principal)
-		        alertaTarifa.setBounds(400, 250, 500, 280);  // Establece el tamaño y la posición de la ventana
-		        alertaTarifa.setLocationRelativeTo(frame);
-		        alertaTarifa.setUndecorated(true);
-		        alertaTarifa.setLayout(null);
-
-		        // Crear el panel para la alerta
-		        JPanel inf_tarifa_estandar = new JPanel();
-		        inf_tarifa_estandar.setBackground(new Color(255, 255, 255));
-		        inf_tarifa_estandar.setBounds(0, 0, 500, 280);
-		        alertaTarifa.add(inf_tarifa_estandar);
-		        inf_tarifa_estandar.setLayout(null);
-
-		        // Crear el panel superior (complemento de la alerta)
-		        JPanel panel_complemento = new JPanel();
-		        panel_complemento.setBackground(new Color(81, 151, 255));
-		        panel_complemento.setBounds(0, 0, 500, 33);
-		        inf_tarifa_estandar.add(panel_complemento);
-
-		        // Crear el JTextArea con la información
-		        JTextArea txtrPlanEstandarSe = new JTextArea();
-		        txtrPlanEstandarSe.setBounds(10, 40, 480, 151);
-		        inf_tarifa_estandar.add(txtrPlanEstandarSe);
-				txtrPlanEstandarSe.setText("Plan: FAMILIAR\r\n-Se incluye acceso completo a todo el equipo y áreas del gimnasio.\r\n-Durante su membresía se le aplicara un 30% de descuento a todos los miembros del plan al comprar productos de la marca EVOLVEFIT.\r\n-Membrecía mensual con costo de $1099.\r\n");
-		        txtrPlanEstandarSe.setWrapStyleWord(true);
-		        txtrPlanEstandarSe.setFont(new Font("Anton", Font.PLAIN, 16));
-		        txtrPlanEstandarSe.setEditable(false); // Hace que el JTextArea no sea editable
-
-		        // Crear el botón "Aceptar" para cerrar la alerta
-		        JButton btn_aceptar = new JButton("Aceptar");
-		        btn_aceptar.setFont(new Font("Anton", Font.PLAIN, 15));
-		        btn_aceptar.setForeground(new Color(255, 255, 255));
-		        btn_aceptar.setBackground(new Color(0, 206, 82));
-		        btn_aceptar.setBounds(344, 230, 146, 39);
-		        inf_tarifa_estandar.add(btn_aceptar);
-
-		        // Agregar un listener para cerrar la ventana al hacer clic en "Aceptar"
-		        btn_aceptar.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                alertaTarifa.dispose(); // Cierra el JDialog
-		            }
-		        });
-
-		        // Hacer visible la ventana emergente
-		        alertaTarifa.setVisible(true);
-		    }
-		});
-		plan_familiar.add(boton_inf_plan_familiar);
-
-		JButton boton_plan_instcibsion_familiar = new JButton("");
-		boton_plan_instcibsion_familiar.setBackground(new Color(255, 205, 17));
-		boton_plan_instcibsion_familiar.setBounds(225, 88, 40, 40);
-		ImageIcon icon6 = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
-		Image imagen6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		boton_plan_instcibsion_familiar.setIcon(new ImageIcon(imagen6));
-		boton_plan_instcibsion_familiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Clientes_con_tarifa_FAMILIAR();
-
-			}
-		});
-		plan_familiar.add(boton_plan_instcibsion_familiar);
+	
 
 		JButton boton_editar_tarifas = new JButton("Editar tarifas");
 		boton_editar_tarifas.setBackground(new Color(255, 205, 17));
@@ -1426,8 +1245,7 @@ public class HomeView {
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
-
-	public void Instructores() {
+	public void Instructores(List<Instructor> instructores) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -1496,17 +1314,17 @@ public class HomeView {
 		panel_2.add(scrollPane);
 		// tabla/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		Object[][] data = { { 1, "Carlos", "Crossfit", "carlos@mail.com", "", "" }, // Datos de ejemplo
-				{ 2, "Laura", "Spinning y Cardio Dance", "laura@mail.com", "", "" } };
+		
 
 		String[] columnNames = { "ID", "Nombre", "Especialidad", "Correo", "Detalles", "Eliminar" };
 
-		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+		DefaultTableModel model = new DefaultTableModel(columnNames,0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 5;
+				return column == 4 || column == 6;
 			}
 		};
+		
 
 		JTable table = new JTable(model);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
@@ -1518,6 +1336,12 @@ public class HomeView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
+		
+		for (Instructor instructor : instructores) {
+			Object[] fila = { instructor.getId(), instructor.getNombre(), instructor.getEspecialidad(), 
+					instructor.getCorreo(), "", "" };
+			model.addRow(fila);
+		}
 
 		// Renderizar botones en la tabla
 		table.getColumn("Detalles").setCellRenderer(new ButtonRenderer2("Detalles"));
