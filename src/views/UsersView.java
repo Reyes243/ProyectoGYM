@@ -157,6 +157,16 @@ public class UsersView {
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_11.setBounds(235, 160, 60, 22);
 		panel_2.add(lblNewLabel_11);
+		
+		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_10.setBounds(235, 210, 147, 22);
+		panel_2.add(lblNewLabel_10);
+		
+		JLabel lblNewLabel_13 = new JLabel("Segundo Apellido:");
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblNewLabel_13.setBounds(575, 210, 147, 22);
+		panel_2.add(lblNewLabel_13);
 
 		JLabel lblNewLabel_9 = new JLabel("Correo electronico:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -177,11 +187,6 @@ public class UsersView {
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_12.setBounds(575, 260, 100, 22);
 		panel_2.add(lblNewLabel_12);
-
-		JLabel lblNewLabel_13 = new JLabel("Pago anterior:");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(575, 210, 93, 22);
-		panel_2.add(lblNewLabel_13);
 
 		JLabel lblNewLabel_14 = new JLabel("Tarifa:");
 		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -207,12 +212,14 @@ public class UsersView {
 		Info_primer_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_primer_apellido.setBounds(342, 210, 200, 22);
 		panel_2.add(Info_primer_apellido);
+		
+		JLabel Info_segundo_apellido = new JLabel("");
+		Info_segundo_apellido.setText(datosCliente.get("segundo_apellido"));
+		Info_segundo_apellido.setFont(new Font("Anton", Font.PLAIN, 16));
+		Info_segundo_apellido.setBounds(695, 210, 200, 22);
+		panel_2.add(Info_segundo_apellido);
 
-		JLabel lblNewLabel_10 = new JLabel("Primer apellido:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(235, 210, 147, 22);
-		panel_2.add(lblNewLabel_10);
-
+		
 		JLabel Info_correo = new JLabel("");
 		Info_correo.setText(datosCliente.get("correo"));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -236,12 +243,9 @@ public class UsersView {
 		Info_plan.setBounds(617, 160, 200, 22);
 		panel_2.add(Info_plan);
 
-		JLabel Info_pago_ant = new JLabel("$600");
-		Info_pago_ant.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_pago_ant.setBounds(678, 210, 152, 22);
-		panel_2.add(Info_pago_ant);
-
-		JLabel Info_pago_sig = new JLabel("$600");
+		JLabel Info_pago_sig = new JLabel("");
+		String precio = datosCliente.getOrDefault("precio_tarifa", "0.00");
+		Info_pago_sig.setText("$" + precio);
 		Info_pago_sig.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_pago_sig.setBounds(685, 260, 145, 22);
 		panel_2.add(Info_pago_sig);
@@ -631,10 +635,10 @@ public class UsersView {
 		lblNewLabel_7.setBounds(499, 115, 132, 28);
 		panel_2.add(lblNewLabel_7);
 
-	/*	JLabel lblNewLabel_6 = new JLabel("Tarifa:");
+		JLabel lblNewLabel_6 = new JLabel("Tarifa:");
 		lblNewLabel_6.setFont(new Font("Anton", Font.PLAIN, 16));
 		lblNewLabel_6.setBounds(499, 280, 60, 22);
-		panel_2.add(lblNewLabel_6);*/
+		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_12 = new JLabel("Confirmar contraseña:");
 		lblNewLabel_12.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -1151,15 +1155,15 @@ public class UsersView {
 		// combox de
 		// usario////////////////////////////////////////////////////////////////////////
 
-//		JComboBox comboBox_Tarifas = new JComboBox();
-//		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
-//		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
-//		comboBox_Tarifas.setBounds(649, 283, 200, 22);
-//		String[] tarifas = { "NINGUNA", "ESTANDAR", "PREMIUM", "FAMILIAR" };
-//		for (String tarifa : tarifas) {
-//			comboBox_Tarifas.addItem(tarifa);
-//		}
-//		panel_2.add(comboBox_Tarifas);
+		JComboBox comboBox_Tarifas = new JComboBox();
+		comboBox_Tarifas.setBackground(new Color(204, 204, 204));
+		comboBox_Tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
+		comboBox_Tarifas.setBounds(649, 283, 200, 22);
+		String[] tarifas = { "NINGUNA", "estandar", "premium", "familiar" };
+		for (String tarifa : tarifas) {
+			comboBox_Tarifas.addItem(tarifa);
+		}
+		panel_2.add(comboBox_Tarifas);
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -2008,6 +2012,12 @@ public class UsersView {
 		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_descraga_credencial.setBounds(740, 494, 147, 39);
+		boton_descraga_credencial.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	UsersController controller = new UsersController();
+				controller.generarCredencialPDF(idCliente);
+		    }
+		});
 		panel_2.add(boton_descraga_credencial);
 
 		JButton boton_regresar = new JButton("Regresar");// boton regresar

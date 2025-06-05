@@ -152,29 +152,41 @@ public class UsersModel {
 	public Map<String, String> obtenerDatosParaPDF(int idCliente) {
 		Map<String, String> datos = new HashMap<>();
 		ConectionModel conexion = new ConectionModel();
-		String sql = "SELECT id_usuario, nombre,primer_apellido,segundo_apellido, correo, telefono FROM usuario WHERE id_usuario = ?";
+		String sql = "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, "
+				+ "u.correo, u.telefono, t.nombre_tarifa, t.precio " + "FROM usuario u "
+				+ "LEFT JOIN usuario_tarifa ut ON u.id_usuario = ut.id_usuario "
+				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa " + "WHERE u.id_usuario = ?";
 
 		try {
-			Connection conn = conexion.getConnection();
-			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-				pstmt.setInt(1, idCliente);
-				try (ResultSet rs = pstmt.executeQuery()) {
-					if (rs.next()) {
-						datos.put("id", rs.getString("id_usuario"));
-						datos.put("nombre", rs.getString("nombre"));
-						datos.put("nombre", rs.getString("nombre") + " " + rs.getString("primer_apellido") + " "
-								+ rs.getString("segundo_apellido"));
-						datos.put("correo", rs.getString("correo"));
-						datos.put("telefono", rs.getString("telefono"));
-					}
-				}
-			}
-		} catch (SQLException e) {
-			System.err.println("Error al obtener datos para PDF: " + e.getMessage());
-		} finally {
-			conexion.close(); // Cierra la conexión
-		}
-		return datos;
+	        Connection conn = conexion.getConnection();
+	        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	            pstmt.setInt(1, idCliente);
+	            try (ResultSet rs = pstmt.executeQuery()) {
+	                if (rs.next()) {
+	                	datos.put("primer_apellido", rs.getString("primer_apellido"));
+	                    datos.put("id", rs.getString("id_usuario"));
+	                    datos.put("nombre", rs.getString("nombre"));
+	                    datos.put("nombre_completo", rs.getString("nombre") + " " + 
+	                             rs.getString("primer_apellido") + " " + 
+	                             (rs.getString("segundo_apellido") != null ? rs.getString("segundo_apellido") : ""));
+	                    datos.put("correo", rs.getString("correo"));
+	                    datos.put("telefono", rs.getString("telefono"));
+	                    
+	                    // Agregar información de la tarifa
+	                    String nombreTarifa = rs.getString("nombre_tarifa");
+	                    Double precioTarifa = rs.getDouble("precio");
+	                    
+	                    datos.put("tarifa", nombreTarifa != null ? nombreTarifa : "Ninguna");
+	                    datos.put("precio_tarifa", precioTarifa != 0 ? String.format("$%.2f", precioTarifa) : "$0.00");
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al obtener datos para PDF: " + e.getMessage());
+	    } finally {
+	        conexion.close();
+	    }
+	    return datos;
 	}
 
 	public Map<String, String> obtenerDatosBasicosCliente(int idCliente) {
@@ -182,7 +194,7 @@ public class UsersModel {
 		ConectionModel conexion = new ConectionModel();
 
 		String sql = "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, "
-				+ "u.telefono, u.correo, t.nombre_tarifa " + "FROM usuario u "
+				+ "u.telefono, u.correo, t.nombre_tarifa, t.precio " + "FROM usuario u "
 				+ "LEFT JOIN usuario_tarifa ut ON u.id_usuario = ut.id_usuario "
 				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa " + "WHERE u.id_usuario = ? AND u.id_rol = 2";
 
@@ -200,6 +212,12 @@ public class UsersModel {
 						datosCliente.put("telefono", rs.getString("telefono"));
 						datosCliente.put("correo", rs.getString("correo"));
 						datosCliente.put("tarifa", rs.getString("nombre_tarifa"));
+
+						if (rs.getString("nombre_tarifa") != null) {
+							datosCliente.put("precio_tarifa", String.valueOf(rs.getDouble("precio")));
+						} else {
+							datosCliente.put("precio_tarifa", "0.00");
+						}
 					}
 				}
 			}
@@ -213,63 +231,59 @@ public class UsersModel {
 	}
 
 	public boolean eliminarCliente(int idCliente) {
-	    ConectionModel conexion = new ConectionModel();
-	    Connection conn = null;
+		ConectionModel conexion = new ConectionModel();
+		Connection conn = null;
 
-	    try {
-	        conn = conexion.getConnection();
-	        conn.setAutoCommit(false); 
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false);
 
-	       
-	        String sqlAsistencia = "DELETE FROM asistencia WHERE id_usuario = ?";
-	        try (PreparedStatement pstmt = conn.prepareStatement(sqlAsistencia)) {
-	            pstmt.setInt(1, idCliente);
-	            pstmt.executeUpdate();
-	        }
+			String sqlAsistencia = "DELETE FROM asistencia WHERE id_usuario = ?";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlAsistencia)) {
+				pstmt.setInt(1, idCliente);
+				pstmt.executeUpdate();
+			}
 
-	        
-	        String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
-	        try (PreparedStatement pstmt = conn.prepareStatement(sqlInscripciones)) {
-	            pstmt.setInt(1, idCliente);
-	            pstmt.executeUpdate();
-	        }
+			String sqlInscripciones = "DELETE FROM inscripcion WHERE id_usuario = ?";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlInscripciones)) {
+				pstmt.setInt(1, idCliente);
+				pstmt.executeUpdate();
+			}
 
-	        
-	        String sqlTarifas = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
-	        try (PreparedStatement pstmt = conn.prepareStatement(sqlTarifas)) {
-	            pstmt.setInt(1, idCliente);
-	            pstmt.executeUpdate();
-	        }
+			String sqlTarifas = "DELETE FROM usuario_tarifa WHERE id_usuario = ?";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlTarifas)) {
+				pstmt.setInt(1, idCliente);
+				pstmt.executeUpdate();
+			}
 
-	        
-	        String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
-	        try (PreparedStatement pstmt = conn.prepareStatement(sqlUsuario)) {
-	            pstmt.setInt(1, idCliente);
-	            int affectedRows = pstmt.executeUpdate();
+			String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlUsuario)) {
+				pstmt.setInt(1, idCliente);
+				int affectedRows = pstmt.executeUpdate();
 
-	            conn.commit(); 
-	            return affectedRows > 0;
-	        }
-	    } catch (SQLException e) {
-	        try {
-	            if (conn != null) {
-	                conn.rollback(); 
-	            }
-	        } catch (SQLException ex) {
-	            System.err.println("Error al hacer rollback: " + ex.getMessage());
-	        }
-	        System.err.println("Error al eliminar cliente: " + e.getMessage());
-	        return false;
-	    } finally {
-	        try {
-	            if (conn != null) {
-	                conn.setAutoCommit(true); 
-	            }
-	        } catch (SQLException e) {
-	            System.err.println("Error al restaurar auto-commit: " + e.getMessage());
-	        }
-	        conexion.close();
-	    }
+				conn.commit();
+				return affectedRows > 0;
+			}
+		} catch (SQLException e) {
+			try {
+				if (conn != null) {
+					conn.rollback();
+				}
+			} catch (SQLException ex) {
+				System.err.println("Error al hacer rollback: " + ex.getMessage());
+			}
+			System.err.println("Error al eliminar cliente: " + e.getMessage());
+			return false;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.setAutoCommit(true);
+				}
+			} catch (SQLException e) {
+				System.err.println("Error al restaurar auto-commit: " + e.getMessage());
+			}
+			conexion.close();
+		}
 	}
 
 	public List<User> getall() {
