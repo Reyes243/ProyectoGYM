@@ -133,7 +133,7 @@ public class Editar_clases {
 		lblNewLabel_9.setBounds(58, 242, 55, 22);
 		panel_2.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
+		JLabel lblNewLabel_13 = new JLabel("Dias disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 20));
 		lblNewLabel_13.setBounds(58, 323, 179, 22);
 		panel_2.add(lblNewLabel_13);
@@ -143,12 +143,6 @@ public class Editar_clases {
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
 		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
-		
-		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(58, 356, 517, 37);
-		panel_2.add(Info_horarrio);
 		
 		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -195,6 +189,16 @@ public class Editar_clases {
 		boton_cancelar.setBackground(new Color(255, 0, 0));
 		boton_cancelar.setBounds(554, 510, 160, 43);
 		panel_2.add(boton_cancelar);
+		
+		JComboBox comboBox_dias = new JComboBox();
+		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
+		comboBox_dias.setBackground(new Color(204, 204, 204));
+		comboBox_dias.setBounds(247, 319, 328, 31);
+		String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"};
+		for (String dias_semana : dias) {
+			comboBox_dias.addItem(dias_semana);
+		}
+		panel_2.add(comboBox_dias);
 		
 		
 		

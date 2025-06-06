@@ -128,64 +128,53 @@ public class Editar_instructor {
 		
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_11.setBounds(272, 118, 60, 22);
+		lblNewLabel_11.setBounds(272, 119, 91, 54);
 		panel_2.add(lblNewLabel_11);
 		
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(272, 151, 91, 22);
+		lblNewLabel_10.setBounds(272, 184, 91, 52);
 		panel_2.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(272, 293, 104, 22);
+		lblNewLabel_9.setBounds(272, 247, 132, 49);
 		panel_2.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(272, 326, 67, 22);
+		lblNewLabel_8.setBounds(272, 307, 104, 50);
 		panel_2.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(271, 359, 132, 28);
+		lblNewLabel_7.setBounds(272, 368, 132, 50);
 		panel_2.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(272, 184, 147, 22);
-		panel_2.add(lblNewLabel_13);
 		//info de intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JTextField Info_nombre= new JTextField("Laura Mendez");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_nombre.setBounds(420, 119, 320, 21);
+		Info_nombre.setBounds(420, 119, 320, 50);
 		panel_2.add(Info_nombre);
 		
 		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_especialidad.setBounds(420, 151, 320, 22);
+		Info_especialidad.setBounds(420, 184, 320, 50);
 		panel_2.add(Info_especialidad);
 		
 		
 		JTextField Info_telefono = new JTextField("612 187 0000");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_telefono.setBounds(420, 326, 320, 22);
+		Info_telefono.setBounds(420, 308, 320, 50);
 		panel_2.add(Info_telefono);
 		
 		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(420, 362, 320, 22);
+		Info_correo.setBounds(420, 369, 320, 50);
 		panel_2.add(Info_correo);
-		
-		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_horarrio.setBounds(272, 217, 468, 65);
-		panel_2.add(Info_horarrio);
 		
 		//comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -193,7 +182,7 @@ public class Editar_instructor {
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_clases.setBounds(420, 293, 320, 22);
+		comboBox_clases.setBounds(420, 247, 320, 50);
 		String[] clases = {"NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL", "SPINNING INTENSO"};
 		for (String clase : clases) {
 			comboBox_clases.addItem(clase);

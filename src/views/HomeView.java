@@ -1074,7 +1074,7 @@ public class HomeView {
 		    botonClientes.addActionListener(ev -> {
 		        frame.dispose();
 		        UsersController uc = new UsersController();
-		          uc.Clientes_con_tarifa_ESTANDAR("");
+		        uc.Clientes_con_tarifa_ESTANDAR(t.getNombreTarifa());
 		    });
 		    panelTarifa.add(botonClientes);
 		    panel_2.add(panelTarifa);
@@ -1254,6 +1254,7 @@ public class HomeView {
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
+	
 	public void Instructores(List<Instructor> instructores) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -2365,11 +2366,7 @@ public class HomeView {
 		boton_Añadir_entrada.setBounds(724, 503, 184, 50);
 		panel_2.add(boton_Añadir_entrada);
 
-		JButton boton_descargar_clase = new JButton("Descargar");
-		boton_descargar_clase.setFont(new Font("Anton", Font.PLAIN, 20));
-		boton_descargar_clase.setBackground(new Color(255, 205, 17));
-		boton_descargar_clase.setBounds(530, 503, 184, 50);
-		panel_2.add(boton_descargar_clase);
+		
 
 		// botones
 		// laterales/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

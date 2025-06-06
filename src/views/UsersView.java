@@ -3113,6 +3113,7 @@ public class UsersView {
 		}
 
 		JFrame frame = new JFrame();
+		frame.setResizable(false);
 		frame.setSize(1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
@@ -4998,64 +4999,54 @@ public class UsersView {
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_11.setBounds(272, 118, 60, 22);
+		lblNewLabel_11.setBounds(272, 119, 91, 54);
 		panel_2.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(272, 151, 91, 22);
+		lblNewLabel_10.setBounds(272, 184, 91, 52);
 		panel_2.add(lblNewLabel_10);
 
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(272, 293, 104, 22);
+		lblNewLabel_9.setBounds(272, 247, 132, 49);
 		panel_2.add(lblNewLabel_9);
 
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(272, 326, 67, 22);
+		lblNewLabel_8.setBounds(272, 307, 104, 50);
 		panel_2.add(lblNewLabel_8);
 
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(271, 359, 132, 28);
+		lblNewLabel_7.setBounds(272, 368, 132, 50);
 		panel_2.add(lblNewLabel_7);
 
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(272, 184, 147, 22);
-		panel_2.add(lblNewLabel_13);
 		// info de
 		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JTextField Info_nombre = new JTextField("Laura Mendez");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_nombre.setBounds(420, 119, 320, 21);
+		Info_nombre.setBounds(420, 119, 320, 50);
 		panel_2.add(Info_nombre);
 
 		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_especialidad.setBounds(420, 151, 320, 22);
+		Info_especialidad.setBounds(420, 184, 320, 50);
 		panel_2.add(Info_especialidad);
 
 		JTextField Info_telefono = new JTextField("612 187 0000");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_telefono.setBounds(420, 326, 320, 22);
+		Info_telefono.setBounds(420, 308, 320, 50);
 		panel_2.add(Info_telefono);
 
 		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(420, 362, 320, 22);
+		Info_correo.setBounds(420, 369, 320, 50);
 		panel_2.add(Info_correo);
-
-		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_horarrio.setBounds(272, 217, 468, 65);
-		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -5063,7 +5054,7 @@ public class UsersView {
 		JComboBox comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_clases.setBounds(420, 293, 320, 22);
+		comboBox_clases.setBounds(420, 247, 320, 50);
 		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
 				"SPINNING INTENSO" };
 		for (String clase : clases) {
@@ -5539,8 +5530,6 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
-
 	
 	public void Añadir_instructor() {
 		try {
@@ -5618,64 +5607,54 @@ public class UsersView {
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
 		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_11.setBounds(272, 118, 60, 22);
+		lblNewLabel_11.setBounds(272, 119, 91, 54);
 		panel_2.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_10 = new JLabel("Especialidad: ");
 		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_10.setBounds(272, 151, 91, 22);
+		lblNewLabel_10.setBounds(272, 184, 91, 52);
 		panel_2.add(lblNewLabel_10);
 
 		JLabel lblNewLabel_9 = new JLabel("Clase asignada:");
 		lblNewLabel_9.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(272, 293, 104, 22);
+		lblNewLabel_9.setBounds(272, 247, 132, 49);
 		panel_2.add(lblNewLabel_9);
 
 		JLabel lblNewLabel_8 = new JLabel("Teléfono:");
 		lblNewLabel_8.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_8.setBounds(272, 326, 67, 22);
+		lblNewLabel_8.setBounds(272, 307, 104, 50);
 		panel_2.add(lblNewLabel_8);
 
 		JLabel lblNewLabel_7 = new JLabel("Correo electronico:");
 		lblNewLabel_7.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_7.setBounds(271, 359, 132, 28);
+		lblNewLabel_7.setBounds(272, 368, 132, 50);
 		panel_2.add(lblNewLabel_7);
 
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
-		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(272, 184, 147, 22);
-		panel_2.add(lblNewLabel_13);
 		// info de
 		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JTextField Info_nombre = new JTextField("");
 		Info_nombre.setBackground(new Color(204, 204, 204));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_nombre.setBounds(420, 119, 320, 21);
+		Info_nombre.setBounds(420, 119, 320, 50);
 		panel_2.add(Info_nombre);
 
 		JTextField Info_especialidad = new JTextField("");
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_especialidad.setBounds(420, 151, 320, 22);
+		Info_especialidad.setBounds(420, 184, 320, 50);
 		panel_2.add(Info_especialidad);
 
 		JTextField Info_telefono = new JTextField("");
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_telefono.setBounds(420, 326, 320, 22);
+		Info_telefono.setBounds(420, 308, 320, 50);
 		panel_2.add(Info_telefono);
 
 		JTextField Info_correo = new JTextField(" ");
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_correo.setBounds(420, 362, 320, 22);
+		Info_correo.setBounds(420, 369, 320, 50);
 		panel_2.add(Info_correo);
-
-		JTextField Info_horarrio = new JTextField("");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 16));
-		Info_horarrio.setBounds(272, 217, 468, 65);
-		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -5683,7 +5662,7 @@ public class UsersView {
 		JComboBox<String> comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
-		comboBox_clases.setBounds(420, 293, 320, 22);
+		comboBox_clases.setBounds(420, 247, 320, 50);
 		cargarClasesEnComboBox(comboBox_clases);
 		panel_2.add(comboBox_clases);
 
@@ -6409,14 +6388,14 @@ public class UsersView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { { "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
+		Object[][] data = { {1, "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
 
-		String[] columnNames = { "Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar", "Eliminar" };
+		String[] columnNames = { "ID de clase","Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar", "Eliminar" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 5;
+				return column == 5 || column == 6;
 			}
 		};
 
@@ -6867,7 +6846,7 @@ public class UsersView {
 		lblNewLabel_9.setBounds(58, 242, 55, 22);
 		panel_2.add(lblNewLabel_9);
 
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
+		JLabel lblNewLabel_13 = new JLabel("Dias disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 20));
 		lblNewLabel_13.setBounds(58, 323, 179, 22);
 		panel_2.add(lblNewLabel_13);
@@ -6879,11 +6858,6 @@ public class UsersView {
 		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
-		JTextField Info_horarrio = new JTextField("Lunes, Miércoles y Viernes de 8:00 am a 12:00 pm");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(58, 356, 517, 37);
-		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -6907,6 +6881,16 @@ public class UsersView {
 			comboBox_entrenador.addItem(entrenadores);
 		}
 		panel_2.add(comboBox_entrenador);
+		
+		JComboBox comboBox_dias = new JComboBox();
+		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
+		comboBox_dias.setBackground(new Color(204, 204, 204));
+		comboBox_dias.setBounds(247, 319, 328, 31);
+		String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"};
+		for (String dias_semana : dias) {
+			comboBox_dias.addItem(dias_semana);
+		}
+		panel_2.add(comboBox_dias);
 
 		// botones de accion para el instructor
 		// ///////////////////////////////////////////////////////////////////////
@@ -7161,7 +7145,7 @@ public class UsersView {
 		lblNewLabel_9.setBounds(58, 242, 55, 22);
 		panel_2.add(lblNewLabel_9);
 
-		JLabel lblNewLabel_13 = new JLabel("Horarios disponibles: ");
+		JLabel lblNewLabel_13 = new JLabel("Dias disponibles: ");
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 20));
 		lblNewLabel_13.setBounds(58, 323, 179, 22);
 		panel_2.add(lblNewLabel_13);
@@ -7173,11 +7157,6 @@ public class UsersView {
 		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
-		JTextField Info_horarrio = new JTextField("");
-		Info_horarrio.setBackground(new Color(204, 204, 204));
-		Info_horarrio.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_horarrio.setBounds(58, 356, 517, 37);
-		panel_2.add(Info_horarrio);
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -7201,6 +7180,16 @@ public class UsersView {
 			comboBox_entrenador.addItem(entrenadores);
 		}
 		panel_2.add(comboBox_entrenador);
+		
+		JComboBox comboBox_dias = new JComboBox();
+		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
+		comboBox_dias.setBackground(new Color(204, 204, 204));
+		comboBox_dias.setBounds(247, 319, 328, 31);
+		String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"};
+		for (String dias_semana : dias) {
+			comboBox_dias.addItem(dias_semana);
+		}
+		panel_2.add(comboBox_dias);
 
 		// botones de accion para el instructor
 		// ///////////////////////////////////////////////////////////////////////

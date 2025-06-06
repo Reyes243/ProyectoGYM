@@ -127,7 +127,7 @@ public class UsersModel {
 
 	private boolean registrarUsuarioTarifa(int idUsuario, int idTarifa) {
 		if (idTarifa == -1)
-			return false; // No registrar si no es una tarifa válida
+			return false; 
 
 		ConectionModel conexion = new ConectionModel();
 		String sql = "INSERT INTO usuario_tarifa (id_usuario, id_tarifa) VALUES (?, ?)";

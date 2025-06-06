@@ -33,12 +33,11 @@ public class AuthView {
 	private void cargarFuentePersonalizada() {
 	    try {
 	        antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf")).deriveFont(Font.PLAIN, 18f);
-	        // Registra la fuente en el sistema gráfico de Java
 	        java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
 	        ge.registerFont(antonFont);
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
+	        antonFont = new Font("SansSerif", Font.PLAIN, 18); 
 	    }
 	}
 	
