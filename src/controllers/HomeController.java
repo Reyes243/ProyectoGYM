@@ -5,6 +5,8 @@ import java.util.List;
 
 import models.InstrucoresModel;
 import models.Instructor;
+import models.Tarifa;
+import models.TarifaModel;
 import models.User;
 import models.UsersModel;
 import views.HomeView;
@@ -13,6 +15,7 @@ public class HomeController {
 	
 	private List<User> clientes = new ArrayList<>();
 	private List<Instructor> instructores = new ArrayList<>();
+	private List<Tarifa> tarifas = new ArrayList<>();
 	private HomeView vista;
 	
 	public HomeController(){		
@@ -27,7 +30,9 @@ public class HomeController {
 		vista.Clientes(clientes);
 	}
 	public void Tarifas() {
-		vista.Tarifas();
+	   TarifaModel tm = new TarifaModel();
+	   tarifas = tm.obtenerTodas();
+	    vista.Tarifas(tarifas);
 	}
 	public void Instructores() {
 		InstrucoresModel im = new InstrucoresModel();

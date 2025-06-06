@@ -30,9 +30,9 @@ public class TarifaModel {
 		}
 	}
 
-	public List<Tarifa> obtenerTodas() {
-		ConectionModel conexion = new ConectionModel();
+	public List<Tarifa> obtenerTodas() {	
 		List<Tarifa> tarifas = new ArrayList<>();
+		ConectionModel conexion = new ConectionModel();
 		String sql = "SELECT * FROM tarifa";
 
 		try {
@@ -40,7 +40,7 @@ public class TarifaModel {
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
 				while (rs.next()) {
-					tarifas.add(new Tarifa(rs.getInt("id_tarifa"), rs.getString("nombre_tarifa"),
+					tarifas.add(new Tarifa(rs.getString("nombre_tarifa"),
 							rs.getString("descripcion"), rs.getInt("precio")));
 				}
 			}
@@ -52,4 +52,76 @@ public class TarifaModel {
 
 		return tarifas;
 	}
+	public boolean eliminarTarifa(String nombre, int precio, String descripcion) {
+	    ConectionModel conexion = new ConectionModel();
+
+	    try (Connection conn = conexion.getConnection()) {
+	        // Paso 1: obtener ID
+	        Integer id = obtenerIdTarifaPorDatos(nombre, precio, descripcion);
+	        if (id == null) {
+	            System.err.println("Tarifa no encontrada.");
+	            return false;
+	        }
+
+	        // Paso 2: eliminar relaciones en usuario_tarifa
+	        String sqlUsuarioTarifa = "DELETE FROM usuario_tarifa WHERE id_tarifa = ?";
+	        try (PreparedStatement stmt1 = conn.prepareStatement(sqlUsuarioTarifa)) {
+	            stmt1.setInt(1, id);
+	            stmt1.executeUpdate();
+	        }
+
+	        // Paso 3: eliminar tarifa
+	        String sqlTarifa = "DELETE FROM tarifa WHERE id_tarifa = ?";
+	        try (PreparedStatement stmt2 = conn.prepareStatement(sqlTarifa)) {
+	            stmt2.setInt(1, id);
+	            int filas = stmt2.executeUpdate();
+	            return filas > 0;
+	        }
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al eliminar tarifa: " + e.getMessage());
+	        return false;
+
+	    } finally {
+	        conexion.close();
+	    }
+	}
+	private Integer obtenerIdTarifaPorDatos(String nombre, int precio, String descripcion) {
+	    String sql = "SELECT id_tarifa FROM tarifa WHERE nombre_tarifa = ? AND precio = ? AND descripcion = ?";
+	    try (Connection conn = new ConectionModel().getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+	        stmt.setString(1, nombre);
+	        stmt.setInt(2, precio);
+	        stmt.setString(3, descripcion);
+
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_tarifa");
+	        }
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al obtener ID de tarifa: " + e.getMessage());
+	    }
+	    return null;
+	}
+	public boolean actualizarTarifa(String nombreOriginal, Tarifa nueva) {
+	    String sql = "UPDATE tarifa SET nombre_tarifa = ?, descripcion = ?, precio = ? WHERE nombre_tarifa = ?";
+
+	    try (Connection conn = new ConectionModel().getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setString(1, nueva.getNombreTarifa());
+	        pstmt.setString(2, nueva.getDescripcion());
+	        pstmt.setInt(3, nueva.getPrecio());
+	        pstmt.setString(4, nombreOriginal);
+
+	        return pstmt.executeUpdate() > 0;
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al actualizar tarifa: " + e.getMessage());
+	        return false;
+	    }
+	}
+	
 }

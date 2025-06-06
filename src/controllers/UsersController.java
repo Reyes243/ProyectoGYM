@@ -218,14 +218,6 @@ public class UsersController {
 		vista.Editar_tarifas();
 	}
 
-	public void Editar_tarifas_PREMIUM() {
-		vista.Editar_tarifas_PREMIUM();
-	}
-
-	public void Editar_tarifas_FAMILIAR() {
-		vista.Editar_tarifas_FAMILIAR();
-	}
-
 	public void Editar_tarifas2() {
 		vista.Editar_tarifas_2();
 	}
@@ -233,19 +225,9 @@ public class UsersController {
 	public void Añadir_tarifa() {
 		vista.Añadir_tarifa();
 	}
-
-	public void Clientes_con_tarifa_FAMILIAR() {
-		vista.Clientes_con_tarifa_FAMILIAR();
+	public void Clientes_con_tarifa_ESTANDAR(String nombreTarifa) {
+		vista.Clientes_con_tarifa_ESTANDAR(nombreTarifa);
 	}
-
-	public void Clientes_con_tarifa_ESTANDAR() {
-		vista.Clientes_con_tarifa_ESTANDAR();
-	}
-
-	public void Clientes_con_tarifa_PREMIUM() {
-		vista.Clientes_con_tarifa_PREMIUM();
-	}
-
 	public void Credencial_usuario(int idcliente) {
 		vista.Credencial_usuario(idcliente);
 	}

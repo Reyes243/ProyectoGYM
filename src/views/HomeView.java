@@ -44,10 +44,9 @@ import controllers.HomeController;
 import controllers.UsersController;
 import models.ConectionModel;
 import models.Instructor;
-
+import models.Tarifa;
 import models.User;
 import models.UsersModel;
-import views.UsersView.Tarifa;
 import views.UsersView.TarifaData;
 
 public class HomeView {
@@ -916,7 +915,7 @@ public class HomeView {
 
 	}
 
-	public void Tarifas() {
+	public void Tarifas(List<Tarifa> tarifas) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -976,8 +975,8 @@ public class HomeView {
 		int espacioY = 18;
 		int columnas = 3;
 
-		for (int i = 0; i < TarifaData.tarifas.size(); i++) {
-		    Tarifa t = TarifaData.tarifas.get(i);
+		for (int i = 0; i < tarifas.size(); i++) {
+		    Tarifa t = tarifas.get(i);
 
 		    JPanel panelTarifa = new JPanel();
 		    panelTarifa.setLayout(null);
@@ -995,12 +994,12 @@ public class HomeView {
 		    lblTitulo.setBounds(20, 26, 100, 35);
 		    panelTarifa.add(lblTitulo);
 
-		    JLabel lblNombre = new JLabel(t.nombre.toUpperCase());
+		    JLabel lblNombre = new JLabel(t.getNombreTarifa().toUpperCase());
 		    lblNombre.setFont(new Font("Anton", Font.PLAIN, 28));
 		    lblNombre.setBounds(20, 72, 200, 35);
 		    panelTarifa.add(lblNombre);
 
-		    JLabel lblPrecio = new JLabel("$" + t.precio + " / mes");
+		    JLabel lblPrecio = new JLabel("$" + t.getPrecio() + " / mes");
 		    lblPrecio.setFont(new Font("Anton", Font.PLAIN, 28));
 		    lblPrecio.setBounds(20, 118, 250, 35);
 		    panelTarifa.add(lblPrecio);
@@ -1031,7 +1030,7 @@ public class HomeView {
 		        inf_tarifa.add(panel_complemento);
 
 		        JTextArea area = new JTextArea();
-		        area.setText("Plan: " + t.nombre + "\n\n" + t.descripcion);
+		        area.setText("Plan: " + t.getNombreTarifa() + "\n\n" + t.getDescripcion());
 		        area.setBounds(10, 40, 480, 151);
 		        area.setLineWrap(true);
 		        area.setWrapStyleWord(true);
@@ -1056,17 +1055,14 @@ public class HomeView {
 		    botonClientes.setBackground(new Color(255, 205, 17));
 		    botonClientes.setBounds(225, 88, 40, 40); // igual que el original
 		    botonClientes.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
 		    ImageIcon iconUsuarios = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
 		    Image imagenUsuarios = iconUsuarios.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		    botonClientes.setIcon(new ImageIcon(imagenUsuarios));
-
 		    botonClientes.addActionListener(ev -> {
 		        frame.dispose();
 		        UsersController uc = new UsersController();
-		        uc.Clientes_con_tarifa_PREMIUM();  // Debes tener este método generalizado
+		          uc.Clientes_con_tarifa_ESTANDAR("");
 		    });
-
 		    panelTarifa.add(botonClientes);
 		    panel_2.add(panelTarifa);
 		}
@@ -1084,12 +1080,7 @@ public class HomeView {
 		lblNewLabel.setBounds(60, 11, 105, 28);
 		panel_3.add(lblNewLabel);
 		// tarifas//////////////////////////////////////////////////////////////////////
-		
-
-		
-
 	
-
 		JButton boton_editar_tarifas = new JButton("Editar tarifas");
 		boton_editar_tarifas.setBackground(new Color(255, 205, 17));
 		boton_editar_tarifas.setFont(new Font("Anton", Font.PLAIN, 16));

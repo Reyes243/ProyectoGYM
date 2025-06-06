@@ -158,35 +158,35 @@ public class UsersModel {
 				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa " + "WHERE u.id_usuario = ?";
 
 		try {
-	        Connection conn = conexion.getConnection();
-	        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            pstmt.setInt(1, idCliente);
-	            try (ResultSet rs = pstmt.executeQuery()) {
-	                if (rs.next()) {
-	                	datos.put("primer_apellido", rs.getString("primer_apellido"));
-	                    datos.put("id", rs.getString("id_usuario"));
-	                    datos.put("nombre", rs.getString("nombre"));
-	                    datos.put("nombre_completo", rs.getString("nombre") + " " + 
-	                             rs.getString("primer_apellido") + " " + 
-	                             (rs.getString("segundo_apellido") != null ? rs.getString("segundo_apellido") : ""));
-	                    datos.put("correo", rs.getString("correo"));
-	                    datos.put("telefono", rs.getString("telefono"));
-	                    
-	                    // Agregar información de la tarifa
-	                    String nombreTarifa = rs.getString("nombre_tarifa");
-	                    Double precioTarifa = rs.getDouble("precio");
-	                    
-	                    datos.put("tarifa", nombreTarifa != null ? nombreTarifa : "Ninguna");
-	                    datos.put("precio_tarifa", precioTarifa != 0 ? String.format("$%.2f", precioTarifa) : "$0.00");
-	                }
-	            }
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Error al obtener datos para PDF: " + e.getMessage());
-	    } finally {
-	        conexion.close();
-	    }
-	    return datos;
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, idCliente);
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						datos.put("primer_apellido", rs.getString("primer_apellido"));
+						datos.put("id", rs.getString("id_usuario"));
+						datos.put("nombre", rs.getString("nombre"));
+						datos.put("nombre_completo", rs.getString("nombre") + " " + rs.getString("primer_apellido")
+								+ " "
+								+ (rs.getString("segundo_apellido") != null ? rs.getString("segundo_apellido") : ""));
+						datos.put("correo", rs.getString("correo"));
+						datos.put("telefono", rs.getString("telefono"));
+
+						// Agregar información de la tarifa
+						String nombreTarifa = rs.getString("nombre_tarifa");
+						Double precioTarifa = rs.getDouble("precio");
+
+						datos.put("tarifa", nombreTarifa != null ? nombreTarifa : "Ninguna");
+						datos.put("precio_tarifa", precioTarifa != 0 ? String.format("$%.2f", precioTarifa) : "$0.00");
+					}
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al obtener datos para PDF: " + e.getMessage());
+		} finally {
+			conexion.close();
+		}
+		return datos;
 	}
 
 	public Map<String, String> obtenerDatosBasicosCliente(int idCliente) {
@@ -372,4 +372,40 @@ public class UsersModel {
 		}
 	}
 
+	public List<User> getClientesPorTarifa(String nombreTarifa) {
+		List<User> clientes = new ArrayList<>();
+		ConectionModel conexion = new ConectionModel();
+
+		// Debug: Mostrar la tarifa que estamos buscando
+		System.out.println("Buscando clientes con tarifa: " + nombreTarifa);
+
+		String sql = "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.telefono, u.correo " + "FROM usuario u "
+				+ "JOIN usuario_tarifa ut ON u.id_usuario = ut.id_usuario "
+				+ "JOIN tarifa t ON ut.id_tarifa = t.id_tarifa "
+				+ "WHERE LOWER(t.nombre_tarifa) = LOWER(?) AND u.id_rol = 2 " + "ORDER BY u.primer_apellido, u.nombre";
+
+		try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setString(1, nombreTarifa);
+			ResultSet rs = pstmt.executeQuery();
+
+			// Debug: Contar resultados
+			int count = 0;
+			while (rs.next()) {
+				count++;
+				User user = new User(rs.getInt("id_usuario"), rs.getString("nombre"), rs.getString("primer_apellido"),
+						rs.getString("telefono"), rs.getString("correo"));
+				clientes.add(user);
+			}
+			System.out.println("Clientes encontrados: " + count);
+
+		} catch (SQLException e) {
+			System.err.println("Error al obtener clientes por tarifa: " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+
+		return clientes;
+	}
 }
