@@ -403,10 +403,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1239,10 +1244,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1325,28 +1335,6 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	private void cargarTarifasEnComboBox(JComboBox<String> comboBox) {
-		comboBox.removeAllItems(); // Limpia opciones previas
-		comboBox.addItem("NINGUNA"); // Opción predeterminada
-
-		String sql = "SELECT nombre_tarifa FROM tarifa";
-
-		try {
-			ConectionModel conexion = new ConectionModel();
-			Connection conn = conexion.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				String nombreTarifa = rs.getString("nombre_tarifa");
-				comboBox.addItem(nombreTarifa);
-			}
-
-			conexion.close();
-		} catch (SQLException e) {
-			System.err.println("Error al cargar tarifas: " + e.getMessage());
-		}
-	}
 
 	private boolean actualizarTarifaCliente(int idCliente, String nombreTarifa) {
 		ConectionModel conexion = new ConectionModel();
@@ -1612,10 +1600,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -1880,10 +1873,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -1892,10 +1890,15 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
 		panel.add(boton_CHECADOR);
@@ -2205,10 +2208,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -2835,10 +2843,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -2921,6 +2934,29 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
+	private void cargarTarifasEnComboBox(JComboBox<String> comboBox) {
+		comboBox.removeAllItems(); // Limpia opciones previas
+		comboBox.addItem("NINGUNA"); // Opción predeterminada
+
+		String sql = "SELECT nombre_tarifa FROM tarifa";
+
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String nombreTarifa = rs.getString("nombre_tarifa");
+				comboBox.addItem(nombreTarifa);
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar tarifas: " + e.getMessage());
+		}
+	}
+	
 	private final int FILAS = 2;
 	private final int COLUMNAS = 3;
 	private final Point[][] posicionesMatriz = new Point[FILAS][COLUMNAS];
@@ -3238,10 +3274,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -3573,10 +3614,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -3904,10 +3950,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -4152,10 +4203,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -4508,10 +4564,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -4771,10 +4832,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -5094,11 +5160,16 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
-		});
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
+		});;
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
 
@@ -5378,10 +5449,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -5464,6 +5540,8 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
+
+	
 	public void Añadir_instructor() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -5602,15 +5680,11 @@ public class UsersView {
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		JComboBox comboBox_clases = new JComboBox();
+		JComboBox<String> comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
 		comboBox_clases.setBounds(420, 293, 320, 22);
-		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
-				"SPINNING INTENSO" };
-		for (String clase : clases) {
-			comboBox_clases.addItem(clase);
-		}
+		cargarClasesEnComboBox(comboBox_clases);
 		panel_2.add(comboBox_clases);
 
 		// botones de accion para el cliente
@@ -5703,11 +5777,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -5788,6 +5866,28 @@ public class UsersView {
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+	private void cargarClasesEnComboBox(JComboBox<String> comboBox) {
+		comboBox.removeAllItems(); // Limpia opciones previas
+		comboBox.addItem("NINGUNA"); // Opción predeterminada
+
+		String sql = "SELECT nombre_clase FROM clase";
+
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String nombreTarifa = rs.getString("nombre_clase");
+				comboBox.addItem(nombreTarifa);
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar clase: " + e.getMessage());
+		}
 	}
 
 	public void Registro_de_clase(int nombreclase) {
@@ -5927,10 +6027,15 @@ public class UsersView {
 		boton_regresar.setBounds(608, 510, 145, 43);
 		boton_regresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel_2.add(boton_regresar);
 
@@ -6355,10 +6460,15 @@ public class UsersView {
 		boton_cancelar.setBounds(608, 522, 145, 31);
 		boton_cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel_2.add(boton_cancelar);
 

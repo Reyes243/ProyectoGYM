@@ -9,7 +9,9 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -42,12 +44,15 @@ import Vistas.Instructores.ButtonEditor2;
 import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
+import models.Clase;
+import models.ClaseHorario;
 import models.ConectionModel;
 import models.Instructor;
 import models.Tarifa;
 import models.User;
 import models.UsersModel;
 import views.UsersView.TarifaData;
+import models.InstrucoresModel;
 
 public class HomeView {
 	private Font antonFont;
@@ -261,16 +266,20 @@ public class HomeView {
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
 		panel.add(boton_INSTRUCTORES);
 
-		JButton boton_CLASES = new JButton("CLASES");// boton de clases
+		JButton boton_CLASES = new JButton("CLASES");
 		boton_CLASES.setBackground(new Color(255, 205, 17));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -573,11 +582,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -1151,10 +1164,15 @@ public class HomeView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1312,7 +1330,7 @@ public class HomeView {
 		DefaultTableModel model = new DefaultTableModel(columnNames,0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 6;
+				return column == 4 || column == 5;
 			}
 		};
 		
@@ -1412,11 +1430,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 
@@ -1675,7 +1697,7 @@ public class HomeView {
 
 	}
 
-	public void Clases() {
+	public void Clases(List<Clase> clases) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -1745,19 +1767,34 @@ public class HomeView {
 		// TAbla de
 		// clases////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		Object[][] data = { { 1, "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };// Datos de
-																											// ejemplo
-
-		String[] columnNames = { "ID", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir",
-				"Registros" };
-
-		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return column == 5 || column == 6;
-			}
-		};
-
+	    String[] columnNames = { "ID", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros" };
+	    DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return column == 5 || column == 6;
+	        }
+	    };
+	    for (Clase clase : clases) {
+	        // Obtener información del entrenador (necesitarías agregar este método)
+	        String nombreEntrenador = obtenerNombreEntrenador(clase.getIdUsuario());
+	        
+	        // Obtener horarios formateados
+	        String horarios = formatearHorarios(clase.getHorarios());
+	        
+	        // Obtener turnos (podrías tener múltiples turnos)
+	        String turnos = formatearTurnos(clase.getHorarios());
+	        
+	        // Agregar fila a la tabla
+	        model.addRow(new Object[]{
+	            clase.getIdClase(),
+	            clase.getNombreClase(),
+	            nombreEntrenador,
+	            turnos,
+	            horarios,
+	            "Inscribir",
+	            "Registros"
+	        });
+	    }
 		JTable table = new JTable(model);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
@@ -1931,6 +1968,41 @@ public class HomeView {
 		frame.revalidate();
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
+	}
+	private String obtenerNombreEntrenador(int idUsuario) {
+	    InstrucoresModel model = new InstrucoresModel(); 
+	    Map<String, String> datos = model.obtenerDatosCompletosInstructor(idUsuario);
+	    return datos.getOrDefault("nombre", "Sin nombre");
+	}
+
+	private String formatearHorarios(List<ClaseHorario> horarios) {
+	    if (horarios == null || horarios.isEmpty()) {
+	        return "Sin horario";
+	    }
+	    
+	    StringBuilder sb = new StringBuilder();
+	    for (ClaseHorario horario : horarios) {
+	        if (sb.length() > 0) {
+	            sb.append(", ");
+	        }
+	        sb.append(horario.getDiaSemana().toString());
+	    }
+	    return sb.toString();
+	}
+
+	private String formatearTurnos(List<ClaseHorario> horarios) {
+	    if (horarios == null || horarios.isEmpty()) {
+	        return "Sin turno";
+	    }
+	    
+	    StringBuilder sb = new StringBuilder();
+	    for (ClaseHorario horario : horarios) {
+	        if (sb.length() > 0) {
+	            sb.append(", ");
+	        }
+	        sb.append(horario.getTurno().toString());
+	    }
+	    return sb.toString();
 	}
 
 	// Renderer para mostrar botones en tabla
@@ -2359,10 +2431,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.Clases();
-			}
+		        frame.dispose(); 
+		        HomeController hc = new HomeController();
+		        try {
+		            hc.Clases(); 
+		        } catch (SQLException ex) {
+		            ex.printStackTrace(); 
+		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+		        }
+		    }
 		});
 		panel.add(boton_CLASES);
 

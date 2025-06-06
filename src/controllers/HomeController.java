@@ -1,8 +1,11 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Clase;
+import models.ClaseModel;
 import models.InstrucoresModel;
 import models.Instructor;
 import models.Tarifa;
@@ -16,6 +19,7 @@ public class HomeController {
 	private List<User> clientes = new ArrayList<>();
 	private List<Instructor> instructores = new ArrayList<>();
 	private List<Tarifa> tarifas = new ArrayList<>();
+	private List<Clase> clases = new ArrayList<>();
 	private HomeView vista;
 	
 	public HomeController(){		
@@ -39,13 +43,13 @@ public class HomeController {
 		instructores = im.getall();
 		vista.Instructores(instructores);
 	}
-	public void Clases() {
-		vista.Clases();
+	public void Clases() throws SQLException {
+		ClaseModel cm = new ClaseModel();
+        clases = cm.obtenerTodasLasClases();
+        vista.Clases(clases);
 	}
 	public void Panel_checador() {
 		vista.Panel_checador();
-	}
-		
-	
+	}	
 
 }
