@@ -19,6 +19,8 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import models.InstrucoresModel;
+import models.Instructor;
 import models.User;
 import models.UsersModel;
 import views.UsersView;
@@ -27,6 +29,7 @@ public class UsersController {
 
 	private UsersView vista;
 	private List<User> clientes = new ArrayList<>();
+	private List<Instructor> instructores = new ArrayList<>();
 
 	public UsersController() {
 
@@ -148,8 +151,8 @@ public class UsersController {
 				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
 						new Phrase("Primer apellido:", fontDatosBold), marginLeft, marginTop, 0);
 				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
-						new Phrase(datos.getOrDefault("primer_apellido", " "), fontDatosNormal), 																									
-						marginLeft + 100, marginTop, 0);
+						new Phrase(datos.getOrDefault("primer_apellido", " "), fontDatosNormal), marginLeft + 100,
+						marginTop, 0);
 
 				marginTop -= 18;
 
@@ -225,9 +228,11 @@ public class UsersController {
 	public void Añadir_tarifa() {
 		vista.Añadir_tarifa();
 	}
+
 	public void Clientes_con_tarifa_ESTANDAR(String nombreTarifa) {
 		vista.Clientes_con_tarifa_ESTANDAR(nombreTarifa);
 	}
+
 	public void Credencial_usuario(int idcliente) {
 		vista.Credencial_usuario(idcliente);
 	}
@@ -236,16 +241,16 @@ public class UsersController {
 		vista.Ficha_de_instructor(idinstructor);
 	}
 
-	public void Historial_de_clase() {
-		vista.Historial_de_clase();
+	public void Historial_de_clase(int idinstructor) {
+		vista.Historial_de_clase(idinstructor);
 	}
 
-	public void Editar_instructor() {
-		vista.Editar_instructor();
+	public void Editar_instructor(int idinstructor) {
+		vista.Editar_instructor(idinstructor);
 	}
 
-	public void Credencial_instructor() {
-		vista.Credencial_instructor();
+	public void Credencial_instructor(int idinstructor) {
+		vista.Credencial_instructor(idinstructor);
 	}
 
 	public void Añadir_instructor() {
@@ -257,17 +262,132 @@ public class UsersController {
 		vista.Registro_de_clase(nombreclase);
 	}
 
-	public void Editar_eliminar_y_añadir_clases() {
-		vista.Editar_eliminar_y_añadir_clases();
+	public void Editar_eliminar_y_añadir_clases(int idclase) {
+		vista.Editar_eliminar_y_añadir_clases(idclase);
 	}
 
-	public void Editar_clases(String nombreClase) {
-		vista.Editar_clases(nombreClase);
+	public void Editar_clases(int idclase) {
+		vista.Editar_clases(idclase);
 	}
 
 	public void Añadir_clases() {
 		vista.Añadir_clases();
 
+	}
+
+	public void generarCredencialPDFInstructor(int idInstructor) {
+		InstrucoresModel model = new InstrucoresModel();
+		Map<String, String> datos = model.obtenerDatosParaPDFInstructor(idInstructor);
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Guardar Credencial de Instructor");
+		fileChooser.setSelectedFile(new File("credencial_instructor_" + idInstructor + ".pdf"));
+
+		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+			String rutaPDF = fileChooser.getSelectedFile().getAbsolutePath();
+
+			Document documento = new Document(new Rectangle(400f, 250f));
+			PdfWriter writer = null;
+
+			try {
+				writer = PdfWriter.getInstance(documento, new FileOutputStream(rutaPDF));
+				documento.open();
+
+				// Fuentes
+				com.itextpdf.text.Font fontTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
+				com.itextpdf.text.Font fontDatosBold = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+				com.itextpdf.text.Font fontDatosNormal = FontFactory.getFont(FontFactory.HELVETICA, 12);
+
+				// Título
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER,
+						new Phrase("CREDENCIAL DE INSTRUCTOR", fontTitulo), documento.getPageSize().getWidth() / 2,
+						documento.getPageSize().getHeight() - 30, 0);
+
+				// Imagen del instructor
+				try {
+					Image foto = Image.getInstance(getClass().getResource("/Imagenes/VADUROTISH.jpg"));
+					foto.scaleToFit(120, 140);
+					foto.setAbsolutePosition(40, documento.getPageSize().getHeight() - 180);
+					documento.add(foto);
+				} catch (Exception e) {
+					System.out.println("No se pudo cargar la foto: " + e.getMessage());
+				}
+
+				// Posición inicial para los datos
+				float marginLeft = 170;
+				float marginTop = documento.getPageSize().getHeight() - 90;
+
+				// Nombre
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase("Nombre:", fontDatosBold), marginLeft, marginTop, 0);
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase(datos.get("nombre"), fontDatosNormal), marginLeft + 60, marginTop, 0);
+
+				marginTop -= 18;
+
+				// Especialidad
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase("Especialidad:", fontDatosBold), marginLeft, marginTop, 0);
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase(datos.getOrDefault("especialidad", "No especificada"), fontDatosNormal),
+						marginLeft + 90, marginTop, 0);
+
+				marginTop -= 18;
+
+				// Clase asignada
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase("Clase asignada:", fontDatosBold), marginLeft, marginTop, 0);
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase(datos.getOrDefault("clase_asignada", "Ninguna"), fontDatosNormal), marginLeft + 100,
+						marginTop, 0);
+
+				marginTop -= 18;
+
+				// Horarios
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase("Horarios:", fontDatosBold), marginLeft, marginTop, 0);
+
+				// Manejo de horarios con múltiples líneas
+				String horarios = datos.getOrDefault("horarios", "Sin horarios asignados");
+				String[] lineasHorarios = horarios.split("\n");
+
+				for (String linea : lineasHorarios) {
+					ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+							new Phrase(linea, fontDatosNormal), marginLeft + 70, marginTop, 0);
+					marginTop -= 15;
+				}
+
+				marginTop -= 10;
+
+				// Número de identificación
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase("ID Instructor:", fontDatosBold), marginLeft, marginTop, 0);
+				ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT,
+						new Phrase(datos.get("id"), fontDatosNormal), marginLeft + 90, marginTop, 0);
+
+				// Logo del gimnasio
+				try {
+					Image logo = Image.getInstance(getClass().getResource("/Imagenes/logo ginmasio.png"));
+					logo.scaleToFit(50, 50);
+					logo.setAbsolutePosition(documento.getPageSize().getWidth() - 60, 20);
+					documento.add(logo);
+				} catch (Exception e) {
+					System.out.println("No se pudo cargar el logo: " + e.getMessage());
+				}
+
+				JOptionPane.showMessageDialog(null, "Credencial de instructor generada exitosamente en:\n" + rutaPDF,
+						"Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error al generar la credencial: " + e.getMessage(), "Error",
+						JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} finally {
+				if (documento != null && documento.isOpen()) {
+					documento.close();
+				}
+			}
+		}
 	}
 
 }

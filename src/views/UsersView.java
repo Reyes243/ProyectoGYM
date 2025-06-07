@@ -403,15 +403,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1244,15 +1244,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1334,7 +1334,6 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
 
 	private boolean actualizarTarifaCliente(int idCliente, String nombreTarifa) {
 		ConectionModel conexion = new ConectionModel();
@@ -1600,15 +1599,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -1873,15 +1872,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -1890,15 +1889,15 @@ public class UsersView {
 		boton_CHECADOR.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CHECADOR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CHECADOR.setBounds(10, 496, 136, 71);
 		panel.add(boton_CHECADOR);
@@ -2208,15 +2207,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -2843,15 +2842,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -2956,7 +2955,7 @@ public class UsersView {
 			System.err.println("Error al cargar tarifas: " + e.getMessage());
 		}
 	}
-	
+
 	private final int FILAS = 2;
 	private final int COLUMNAS = 3;
 	private final Point[][] posicionesMatriz = new Point[FILAS][COLUMNAS];
@@ -3275,15 +3274,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -3615,15 +3614,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -3951,15 +3950,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -4204,15 +4203,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -4464,7 +4463,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Credencial_instructor();
+				uc.Credencial_instructor(idinstructor);
 			}
 		});
 		panel_2.add(boton_descraga_credencial);
@@ -4474,7 +4473,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Editar_instructor();
+				uc.Editar_instructor(idinstructor);
 			}
 		});
 		boton_historial_asistencias.setBackground(new Color(255, 205, 17));
@@ -4490,7 +4489,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Historial_de_clase();
+				uc.Historial_de_clase(idinstructor);
 			}
 		});
 		panel_2.add(boton_historial_clase);
@@ -4565,15 +4564,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -4656,13 +4655,16 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Historial_de_clase() {
+	public void Historial_de_clase(int idinstructor) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		InstrucoresModel model = new InstrucoresModel();
+		List<Object[]> clases = model.getClasesPorInstructor(idinstructor);
+		List<Object[]> clientes = model.getClientesDeClasesDelInstructor(idinstructor);
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -4720,9 +4722,9 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] data = { { "Laura Mendez", "YOGA RELAX", "MATUTINO", "Lunes y Viernes 8:00 am a 9:00 am" } };
+		Object[][] data = clases.toArray(new Object[0][]);
 
-		String[] columnas = { "Entrenador", "Clase asignada", "Turno", "Horario" };
+		String[] columnas = { "Entrenador", "Clase asignada", "Turno", "Día" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
@@ -4739,7 +4741,7 @@ public class UsersView {
 		header.setReorderingAllowed(false);
 		scrollPane_Usuario.setViewportView(table);
 
-		Object[][] data2 = { { 2, "Laura", "Martínez", "0987654321", "laura@mail.com" } };
+		Object[][] data2 = clientes.toArray(new Object[0][]);
 
 		String[] columnas2 = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
@@ -4766,7 +4768,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(0);
+				uc.Ficha_de_instructor(idinstructor);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -4833,15 +4835,15 @@ public class UsersView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -4923,18 +4925,23 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Editar_instructor() {
+	public void Editar_instructor(int idinstructor) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		InstrucoresModel model = new InstrucoresModel();
+		Map<String, String> datosInstructor = model.obtenerDatosBasicosInstructor(idinstructor);
+		String claseActual = datosInstructor.getOrDefault("clase_asignada", "NINGUNA");
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		Map<String, String> valoresOriginales = new HashMap<>();
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(204, 204, 204));
@@ -5024,25 +5031,28 @@ public class UsersView {
 
 		// info de
 		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre = new JTextField("Laura Mendez");
-		Info_nombre.setBackground(new Color(204, 204, 204));
+		JTextField Info_nombre = new JTextField(datosInstructor.getOrDefault("nombre", ""));
+		valoresOriginales.put("nombre", Info_nombre.getText());
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_nombre.setBounds(420, 119, 320, 50);
 		panel_2.add(Info_nombre);
 
-		JTextField Info_especialidad = new JTextField("Pilates y Yoga");
+		JTextField Info_especialidad = new JTextField(datosInstructor.getOrDefault("especialidad", ""));
+		valoresOriginales.put("especialidad", Info_especialidad.getText());
 		Info_especialidad.setBackground(new Color(204, 204, 204));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_especialidad.setBounds(420, 184, 320, 50);
 		panel_2.add(Info_especialidad);
 
-		JTextField Info_telefono = new JTextField("612 187 0000");
+		JTextField Info_telefono = new JTextField(datosInstructor.getOrDefault("telefono", ""));
+		valoresOriginales.put("telefono", Info_telefono.getText());
 		Info_telefono.setBackground(new Color(204, 204, 204));
 		Info_telefono.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_telefono.setBounds(420, 308, 320, 50);
 		panel_2.add(Info_telefono);
 
-		JTextField Info_correo = new JTextField(" laura.mendez@evolvefit.com");
+		JTextField Info_correo = new JTextField(datosInstructor.getOrDefault("correo", ""));
+		valoresOriginales.put("correo", Info_correo.getText());
 		Info_correo.setBackground(new Color(204, 204, 204));
 		Info_correo.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_correo.setBounds(420, 369, 320, 50);
@@ -5051,24 +5061,96 @@ public class UsersView {
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		JComboBox comboBox_clases = new JComboBox();
+		JComboBox<String> comboBox_clases = new JComboBox();
 		comboBox_clases.setBackground(new Color(204, 204, 204));
 		comboBox_clases.setFont(new Font("Anton", Font.PLAIN, 16));
 		comboBox_clases.setBounds(420, 247, 320, 50);
-		String[] clases = { "NINGUNA", "TECNICA EN MAQUINAS", "TECNICA EN MAQUINAS", "YOGA RELAX", "HIIT FUNCIONAL",
-				"SPINNING INTENSO" };
-		for (String clase : clases) {
-			comboBox_clases.addItem(clase);
-		}
+		cargarClasesEnComboBox(comboBox_clases);
+		comboBox_clases.setSelectedItem(claseActual);
 		panel_2.add(comboBox_clases);
+
+		DocumentListener documentListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				cambiosRealizados = true;
+			}
+		};
+
+		Info_nombre.getDocument().addDocumentListener(documentListener);
+		Info_especialidad.getDocument().addDocumentListener(documentListener);
+		Info_telefono.getDocument().addDocumentListener(documentListener);
+		Info_correo.getDocument().addDocumentListener(documentListener);
 
 		// botones de accion para el instructor
 		// ///////////////////////////////////////////////////////////////////////
 		JButton boton_guardar = new JButton("Guardar");
 		boton_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!cambiosRealizados) {
+					mostrarDialogo(frame, "Información", "No se han realizado cambios para guardar.");
+					return;
+				}
+
+				// Validación de campos obligatorios
+				if (Info_nombre.getText().trim().isEmpty() || Info_especialidad.getText().trim().isEmpty()
+						|| Info_correo.getText().trim().isEmpty()) {
+					mostrarDialogo(frame, "Campos obligatorios",
+							"Nombre, especialidad y correo son campos obligatorios.");
+					return;
+				}
+
+				// Validación del teléfono (si se proporciona)
+				String telefono = Info_telefono.getText().trim();
+				if (!telefono.isEmpty() && !telefono.matches("\\d+")) {
+					mostrarDialogo(frame, "Error de teléfono", "El teléfono debe contener solo números.");
+					return;
+				}
+
+				// Validación del correo
+				String correo = Info_correo.getText().trim();
+				if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+					mostrarDialogo(frame, "Error de correo", "Por favor ingrese un correo electrónico válido.");
+					return;
+				}
+
+				// Confirmación antes de guardar
+				mostrarDialogoConfirmacion(frame, "¿Está seguro que desea guardar los cambios?", "Confirmar cambios",
+						new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								String claseSeleccionada = (String) comboBox_clases.getSelectedItem();
+								boolean exito = model.actualizarInstructor(idinstructor, Info_nombre.getText(),
+										Info_telefono.getText().isEmpty() ? null : Info_telefono.getText(),
+										Info_correo.getText(), Info_especialidad.getText(), claseSeleccionada);
+
+								if (exito) {
+									valoresOriginales.put("nombre", Info_nombre.getText());
+									valoresOriginales.put("especialidad", Info_especialidad.getText());
+									valoresOriginales.put("telefono", Info_telefono.getText());
+									valoresOriginales.put("correo", Info_correo.getText());
+									cambiosRealizados = false;
+
+								}
+								mostrarDialogo(frame, exito ? "Éxito" : "Error",
+										exito ? "Cambios guardados correctamente." : "Error al guardar los cambios.");
+								frame.dispose();
+								UsersController uc = new UsersController();
+								uc.Ficha_de_instructor(idinstructor);
+							}
+						});
 			}
 		});
+		panel_2.add(boton_guardar);
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setBackground(new Color(0, 206, 82));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 18));
@@ -5079,11 +5161,22 @@ public class UsersView {
 		boton_cancelar.setForeground(new Color(255, 255, 255));
 		boton_cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(0);
+				if (cambiosRealizados) {
+					mostrarDialogoConfirmacion(frame, "¿Está seguro que desea salir sin guardar los cambios?",
+							"Confirmar salida", new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									frame.dispose();
+									new UsersController().Ficha_de_instructor(idinstructor);
+								}
+							});
+				} else {
+					frame.dispose();
+					new UsersController().Ficha_de_instructor(idinstructor);
+				}
 			}
 		});
+		panel_2.add(boton_cancelar);
 		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 18));
 		boton_cancelar.setBackground(new Color(255, 0, 0));
 		boton_cancelar.setBounds(554, 510, 160, 43);
@@ -5151,16 +5244,17 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
-		});;
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
+		});
+		;
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
 
@@ -5242,12 +5336,102 @@ public class UsersView {
 		frame.setVisible(true);
 	}
 
-	public void Credencial_instructor() {
+	private void mostrarDialogo(JFrame parent, String titulo, String mensaje) {
+		JDialog dialogo = new JDialog(parent, titulo, true);
+		dialogo.setUndecorated(true);
+		dialogo.setSize(400, 180);
+		dialogo.setLocationRelativeTo(parent);
+		dialogo.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 0, 400, 180);
+		panel.setLayout(null);
+		dialogo.add(panel);
+
+		JPanel encabezado = new JPanel();
+		encabezado.setBackground(new Color(81, 151, 255));
+		encabezado.setBounds(0, 0, 400, 33);
+		panel.add(encabezado);
+
+		JLabel lblMensaje = new JLabel("<html><div style='text-align: center;'>" + mensaje + "</div></html>",
+				SwingConstants.CENTER);
+		lblMensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblMensaje.setBounds(30, 50, 340, 50);
+		panel.add(lblMensaje);
+
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBackground(new Color(0, 206, 82));
+		btnAceptar.setForeground(Color.WHITE);
+		btnAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		btnAceptar.setBounds(148, 110, 102, 33);
+		btnAceptar.addActionListener(a -> dialogo.dispose());
+		panel.add(btnAceptar);
+
+		dialogo.setVisible(true);
+	}
+
+	private void mostrarDialogoConfirmacion(JFrame parent, String mensaje, String titulo, ActionListener onConfirm) {
+		JDialog dialogo = new JDialog(parent, titulo, true);
+		dialogo.setUndecorated(true);
+		dialogo.setSize(400, 180);
+		dialogo.setLocationRelativeTo(parent);
+		dialogo.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 0, 400, 180);
+		panel.setLayout(null);
+		dialogo.add(panel);
+
+		JPanel encabezado = new JPanel();
+		encabezado.setBackground(new Color(81, 151, 255));
+		encabezado.setBounds(0, 0, 400, 33);
+		panel.add(encabezado);
+
+		JLabel lblMensaje = new JLabel("<html><div style='text-align: center;'>" + mensaje + "</div></html>",
+				SwingConstants.CENTER);
+		lblMensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+		lblMensaje.setBounds(30, 50, 340, 50);
+		panel.add(lblMensaje);
+
+		JButton btnSi = new JButton("Sí");
+		btnSi.setBackground(new Color(0, 206, 82));
+		btnSi.setForeground(Color.WHITE);
+		btnSi.setFont(new Font("Anton", Font.PLAIN, 14));
+		btnSi.setBounds(90, 110, 90, 33);
+		btnSi.addActionListener(a -> {
+			dialogo.dispose();
+			onConfirm.actionPerformed(a);
+		});
+
+		JButton btnNo = new JButton("No");
+		btnNo.setBackground(new Color(255, 70, 70));
+		btnNo.setForeground(Color.WHITE);
+		btnNo.setFont(new Font("Anton", Font.PLAIN, 14));
+		btnNo.setBounds(220, 110, 90, 33);
+		btnNo.addActionListener(a -> dialogo.dispose());
+
+		panel.add(btnSi);
+		panel.add(btnNo);
+
+		dialogo.setVisible(true);
+	}
+
+	public void Credencial_instructor(int idinstructor) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+		InstrucoresModel im = new InstrucoresModel();
+		Map<String, String> datosInstructor = im.obtenerDatosBasicosInstructor(idinstructor);
+
+		if (datosInstructor.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Instructor no encontrado. ID inválido: " + idinstructor, "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 
 		JFrame frame = new JFrame();
@@ -5336,6 +5520,11 @@ public class UsersView {
 		lblNewLabel_14.setBounds(325, 300, 152, 32);
 		panel_2.add(lblNewLabel_14);
 
+		JLabel lblNewLabel_13 = new JLabel("No. Identificador:");
+		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 18));
+		lblNewLabel_13.setBounds(688, 160, 150, 32);
+		panel_2.add(lblNewLabel_13);
+
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setBounds(779, 370, 100, 100);
 		lblNewLabel_7.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -5348,20 +5537,30 @@ public class UsersView {
 
 		// info de
 		// instructor/////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel Info_nombre = new JLabel("Laura Mendez ");
+		JLabel Info_nombre = new JLabel("");
+		Info_nombre.setText(datosInstructor.get("nombre"));
 		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
 		Info_nombre.setBounds(399, 162, 152, 29);
 		panel_2.add(Info_nombre);
 
-		JLabel Info_fecha_nacimiento = new JLabel("Pilates y Yoga");
-		Info_fecha_nacimiento.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_fecha_nacimiento.setBounds(435, 230, 136, 32);
-		panel_2.add(Info_fecha_nacimiento);
+		JLabel Info_especialidad = new JLabel("");
+		Info_especialidad.setText(datosInstructor.get("especialidad"));
+		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 22));
+		Info_especialidad.setBounds(340, 255, 300, 30);
+		panel_2.add(Info_especialidad);
 
-		JLabel Info_plan = new JLabel("Lunes, Miércoles y Viernes - 8:00 am a 12:00 pm");
-		Info_plan.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_plan.setBounds(325, 327, 461, 32);
-		panel_2.add(Info_plan);
+		JLabel Info_horarios = new JLabel("");
+		Info_horarios.setText(datosInstructor.get("horarios"));
+		Info_horarios.setFont(new Font("Anton", Font.PLAIN, 22));
+		Info_horarios.setBounds(340, 325, 400, 30);
+		panel_2.add(Info_horarios);
+
+		JLabel Info_identificador = new JLabel("");
+		Info_identificador.setText(datosInstructor.get("id"));
+		Info_identificador.setFont(new Font("Anton", Font.PLAIN, 22));
+		Info_identificador.setBounds(688, 185, 200, 30);
+
+		panel_2.add(Info_identificador);
 
 		// botones de accion para el cliente
 		// ///////////////////////////////////////////////////////////////////////
@@ -5369,6 +5568,12 @@ public class UsersView {
 		boton_descraga_credencial.setBackground(new Color(255, 205, 17));
 		boton_descraga_credencial.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_descraga_credencial.setBounds(740, 494, 147, 39);
+		boton_descraga_credencial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UsersController controller = new UsersController();
+				controller.generarCredencialPDFInstructor(idinstructor);
+			}
+		});
 		panel_2.add(boton_descraga_credencial);
 
 		JButton boton_regresar = new JButton("Regresar");
@@ -5379,7 +5584,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Ficha_de_instructor(0);
+				uc.Ficha_de_instructor(idinstructor);
 			}
 		});
 		panel_2.add(boton_regresar);
@@ -5440,15 +5645,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -5530,7 +5735,7 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
+
 	public void Añadir_instructor() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -5671,6 +5876,243 @@ public class UsersView {
 		JButton boton_guardar = new JButton("Guardar");
 		boton_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nombre = Info_nombre.getText().trim();
+				String especialidad = Info_especialidad.getText().trim();
+				String telefono = Info_telefono.getText().trim();
+				String correo = Info_correo.getText().trim();
+				String claseSeleccionada = (String) comboBox_clases.getSelectedItem();
+
+				Frame parentFrame = JOptionPane.getFrameForComponent(frame); // Para el JDialog
+
+				// Validación de campos obligatorios
+				if (nombre.isEmpty() || especialidad.isEmpty() || correo.isEmpty()) {
+					// Alerta personalizada de campos obligatorios
+					JDialog camposDialog = new JDialog(parentFrame, "Advertencia", true);
+					camposDialog.setSize(400, 180);
+					camposDialog.setLayout(null);
+					camposDialog.setUndecorated(true);
+					camposDialog.setLocationRelativeTo(frame);
+
+					JPanel camposObligatorios = new JPanel();
+					camposObligatorios.setBackground(new Color(255, 255, 255));
+					camposObligatorios.setBounds(0, 0, 400, 180);
+					camposObligatorios.setLayout(null);
+					camposDialog.add(camposObligatorios);
+
+					JPanel panelComplemento = new JPanel();
+					panelComplemento.setBackground(new Color(81, 151, 255));
+					panelComplemento.setBounds(0, 0, 400, 33);
+					camposObligatorios.add(panelComplemento);
+
+					JLabel mensajeCampos = new JLabel(
+							"<html><div style='text-align: center;'>Nombre, especialidad y correo son campos obligatorios<br></div></html>");
+					mensajeCampos.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeCampos.setBounds(43, 44, 312, 59);
+					camposObligatorios.add(mensajeCampos);
+
+					JButton botonAceptarCampos = new JButton("Aceptar");
+					botonAceptarCampos.setBackground(new Color(0, 206, 82));
+					botonAceptarCampos.setForeground(Color.WHITE);
+					botonAceptarCampos.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptarCampos.setBounds(151, 121, 102, 33);
+					camposObligatorios.add(botonAceptarCampos);
+
+					botonAceptarCampos.addActionListener(ev -> camposDialog.dispose());
+					camposDialog.setVisible(true);
+					return;
+				}
+
+				// Validación de caracteres en el nombre (solo letras)
+				if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+")) {
+					// Alerta personalizada si el nombre tiene caracteres no válidos
+					JDialog caracteresDialog = new JDialog(parentFrame, "Advertencia", true);
+					caracteresDialog.setSize(400, 180);
+					caracteresDialog.setLayout(null);
+					caracteresDialog.setUndecorated(true);
+					caracteresDialog.setLocationRelativeTo(frame);
+
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					caracteresDialog.add(panel);
+
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
+
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El nombre solo debe contener letras.</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
+
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> caracteresDialog.dispose());
+					caracteresDialog.setVisible(true);
+					return;
+				}
+
+				// Validación del teléfono (solo números, si se proporciona)
+				if (!telefono.isEmpty() && !telefono.matches("[0-9]+")) {
+					JDialog telefonoDialog = new JDialog(parentFrame, "Advertencia", true);
+					telefonoDialog.setSize(400, 180);
+					telefonoDialog.setLayout(null);
+					telefonoDialog.setUndecorated(true);
+					telefonoDialog.setLocationRelativeTo(frame);
+
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					telefonoDialog.add(panel);
+
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
+
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>El teléfono solo debe contener números.</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
+
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> telefonoDialog.dispose());
+					telefonoDialog.setVisible(true);
+					return;
+				}
+
+				// Validación del correo (formato básico)
+				if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+					JDialog correoDialog = new JDialog(parentFrame, "Advertencia", true);
+					correoDialog.setSize(400, 180);
+					correoDialog.setLayout(null);
+					correoDialog.setUndecorated(true);
+					correoDialog.setLocationRelativeTo(frame);
+
+					JPanel panel = new JPanel();
+					panel.setBackground(Color.WHITE);
+					panel.setBounds(0, 0, 400, 180);
+					panel.setLayout(null);
+					correoDialog.add(panel);
+
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panel.add(panelSuperior);
+
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Por favor ingrese un correo electrónico válido.</div></html>");
+					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensaje.setBounds(50, 44, 300, 59);
+					panel.add(mensaje);
+
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panel.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> correoDialog.dispose());
+					correoDialog.setVisible(true);
+					return;
+				}
+
+				// Registrar el instructor
+				InstrucoresModel im = new InstrucoresModel();
+				int idUsuario = im.registrarInstructor(nombre, telefono.isEmpty() ? null : telefono, correo,
+						especialidad, claseSeleccionada);
+
+				if (idUsuario != -1) {
+					// Éxito - Instructor registrado correctamente
+					JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
+					exitoDialog.setSize(400, 180);
+					exitoDialog.setLayout(null);
+					exitoDialog.setUndecorated(true);
+					exitoDialog.setLocationRelativeTo(frame);
+
+					JPanel panelExito = new JPanel();
+					panelExito.setBackground(Color.WHITE);
+					panelExito.setBounds(0, 0, 400, 180);
+					panelExito.setLayout(null);
+					exitoDialog.add(panelExito);
+
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panelExito.add(panelSuperior);
+
+					JLabel mensajeExito = new JLabel(
+							"<html><div style='text-align: center;'>Instructor registrado correctamente<br></div></html>");
+					mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeExito.setBounds(70, 44, 300, 59);
+					panelExito.add(mensajeExito);
+
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panelExito.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> {
+						exitoDialog.dispose();
+						frame.dispose();
+						new HomeController().Instructores();
+					});
+
+					exitoDialog.setVisible(true);
+				} else {
+					// Error al registrar el instructor
+					JDialog errorDialog = new JDialog(parentFrame, "Error", true);
+					errorDialog.setSize(400, 180);
+					errorDialog.setLayout(null);
+					errorDialog.setUndecorated(true);
+					errorDialog.setLocationRelativeTo(frame);
+
+					JPanel panelError = new JPanel();
+					panelError.setBackground(Color.WHITE);
+					panelError.setBounds(0, 0, 400, 180);
+					panelError.setLayout(null);
+					errorDialog.add(panelError);
+
+					JPanel panelSuperior = new JPanel();
+					panelSuperior.setBackground(new Color(81, 151, 255));
+					panelSuperior.setBounds(0, 0, 400, 33);
+					panelError.add(panelSuperior);
+
+					JLabel mensajeError = new JLabel(
+							"<html><div style='text-align: center;'>Error al registrar el instructor<br></div></html>");
+					mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
+					mensajeError.setBounds(70, 44, 300, 59);
+					panelError.add(mensajeError);
+
+					JButton botonAceptar = new JButton("Aceptar");
+					botonAceptar.setBackground(new Color(0, 206, 82));
+					botonAceptar.setForeground(Color.WHITE);
+					botonAceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					botonAceptar.setBounds(151, 121, 102, 33);
+					panelError.add(botonAceptar);
+
+					botonAceptar.addActionListener(ev -> errorDialog.dispose());
+					errorDialog.setVisible(true);
+				}
 			}
 		});
 		boton_guardar.setForeground(new Color(255, 255, 255));
@@ -5756,15 +6198,15 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -5846,6 +6288,7 @@ public class UsersView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
 	private void cargarClasesEnComboBox(JComboBox<String> comboBox) {
 		comboBox.removeAllItems(); // Limpia opciones previas
 		comboBox.addItem("NINGUNA"); // Opción predeterminada
@@ -6006,15 +6449,15 @@ public class UsersView {
 		boton_regresar.setBounds(608, 510, 145, 43);
 		boton_regresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel_2.add(boton_regresar);
 
@@ -6319,7 +6762,7 @@ public class UsersView {
 		}
 	}
 
-	public void Editar_eliminar_y_añadir_clases() {
+	public void Editar_eliminar_y_añadir_clases(int idclase) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8);
@@ -6388,9 +6831,10 @@ public class UsersView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { {1, "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
+		Object[][] data = { { 1, "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
 
-		String[] columnNames = { "ID de clase","Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar", "Eliminar" };
+		String[] columnNames = { "ID de clase", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar",
+				"Eliminar" };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
@@ -6439,15 +6883,15 @@ public class UsersView {
 		boton_cancelar.setBounds(608, 522, 145, 31);
 		boton_cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel_2.add(boton_cancelar);
 
@@ -6682,13 +7126,13 @@ public class UsersView {
 		public Object getCellEditorValue() {
 			if (clicked) {
 				if (label.equals("Editar")) {
-					String nombreClase = (String) table.getValueAt(row, 0); // Obtén el nombre
+					int idclase = (int) table.getValueAt(row, 0); // Obtén el nombre
 					Window window = SwingUtilities.getWindowAncestor(table);
 					if (window != null) {
 						window.dispose();
 					}
 					UsersController uc = new UsersController();
-					uc.Editar_clases(nombreClase);
+					uc.Editar_clases(idclase);
 					// Aquí conecta con la base de datos para borrar el registro según el ID de la
 					// fila seleccionada
 					// y luego actualiza la tabla recargando datos.
@@ -6764,7 +7208,7 @@ public class UsersView {
 		}
 	}
 
-	public void Editar_clases(String nombreClase) {
+	public void Editar_clases(int idclase) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("Button.arc", 8); // Esquinas redondeadas
@@ -6858,38 +7302,28 @@ public class UsersView {
 		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
-
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		JComboBox comboBox_turno = new JComboBox();
+		JComboBox<String> comboBox_turno = new JComboBox();
 		comboBox_turno.setBackground(new Color(204, 204, 204));
 		comboBox_turno.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_turno.setBounds(123, 238, 200, 31);
-		String[] turnos = { "NINGUNA", "MATUTINO", "VESPERTINO", "MIXTO" };
-		for (String turno : turnos) {
-			comboBox_turno.addItem(turno);
-		}
+		cargarTurnoEnComboBox(comboBox_turno);
 		panel_2.add(comboBox_turno);
 
-		JComboBox comboBox_entrenador = new JComboBox();
+		JComboBox<String> comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
 		comboBox_entrenador.setBounds(247, 161, 328, 31);
-		String[] entrenador = { "NINGUNA", "Sebastian Torres", "Laura Mendez", "Camila Rodriguez", "Marco Rojas" };
-		for (String entrenadores : entrenador) {
-			comboBox_entrenador.addItem(entrenadores);
-		}
+		cargarInstructoresEnComboBox(comboBox_entrenador);
 		panel_2.add(comboBox_entrenador);
-		
-		JComboBox comboBox_dias = new JComboBox();
+
+		JComboBox<String> comboBox_dias = new JComboBox();
 		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_dias.setBackground(new Color(204, 204, 204));
 		comboBox_dias.setBounds(247, 319, 328, 31);
-		String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"};
-		for (String dias_semana : dias) {
-			comboBox_dias.addItem(dias_semana);
-		}
+		cargarDiasSemanaEnComboBox(comboBox_dias);
 		panel_2.add(comboBox_dias);
 
 		// botones de accion para el instructor
@@ -6911,7 +7345,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Editar_eliminar_y_añadir_clases();
+				uc.Editar_eliminar_y_añadir_clases(idclase);
 
 			}
 		});
@@ -7157,38 +7591,28 @@ public class UsersView {
 		Info_nombre.setBounds(247, 83, 328, 37);
 		panel_2.add(Info_nombre);
 
-
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
-		JComboBox comboBox_turno = new JComboBox();
+		JComboBox<String> comboBox_turno = new JComboBox();
 		comboBox_turno.setBackground(new Color(204, 204, 204));
 		comboBox_turno.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_turno.setBounds(123, 238, 200, 31);
-		String[] turnos = { "NINGUNA", "MATUTINO", "VESPERTINO", "MIXTO" };
-		for (String turno : turnos) {
-			comboBox_turno.addItem(turno);
-		}
+		cargarTurnoEnComboBox(comboBox_turno);
 		panel_2.add(comboBox_turno);
 
-		JComboBox comboBox_entrenador = new JComboBox();
+		JComboBox<String> comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
 		comboBox_entrenador.setBounds(247, 161, 328, 31);
-		String[] entrenador = { "NINGUNA", "Sebastian Torres", "Laura Mendez", "Camila Rodriguez", "Marco Rojas" };
-		for (String entrenadores : entrenador) {
-			comboBox_entrenador.addItem(entrenadores);
-		}
+		cargarInstructoresEnComboBox(comboBox_entrenador);
 		panel_2.add(comboBox_entrenador);
-		
-		JComboBox comboBox_dias = new JComboBox();
+
+		JComboBox<String> comboBox_dias = new JComboBox();
 		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_dias.setBackground(new Color(204, 204, 204));
 		comboBox_dias.setBounds(247, 319, 328, 31);
-		String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"};
-		for (String dias_semana : dias) {
-			comboBox_dias.addItem(dias_semana);
-		}
+		cargarDiasSemanaEnComboBox(comboBox_dias);
 		panel_2.add(comboBox_dias);
 
 		// botones de accion para el instructor
@@ -7210,7 +7634,7 @@ public class UsersView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Editar_eliminar_y_añadir_clases();
+				uc.Editar_eliminar_y_añadir_clases(0);
 			}
 		});
 		boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 18));
@@ -7359,6 +7783,103 @@ public class UsersView {
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+
+	private void cargarInstructoresEnComboBox(JComboBox<String> comboBox) {
+		comboBox.removeAllItems(); // Limpia opciones previas
+		comboBox.addItem("NINGUNO"); // Opción predeterminada
+
+		// Consulta para obtener los nombres de los instructores (rol = 3)
+		String sql = "SELECT id_usuario, nombre FROM usuario WHERE id_rol = 3 ORDER BY nombre";
+
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// Obtener el ID y nombre del instructor
+				int idInstructor = rs.getInt("id_usuario");
+				String nombreInstructor = rs.getString("nombre");
+
+				// Agregar al ComboBox (puedes mostrar solo el nombre o nombre + ID)
+				comboBox.addItem(nombreInstructor);
+
+				// Opcional: Guardar el ID como dato asociado al item
+				comboBox.setSelectedItem(nombreInstructor);
+				comboBox.putClientProperty(nombreInstructor, idInstructor);
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar instructores: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	private void cargarDiasSemanaEnComboBox(JComboBox<String> comboBox) {
+		comboBox.removeAllItems(); // Limpiar opciones previas
+		comboBox.addItem("NINGUNO");
+
+		// Opción 1: Si quieres cargar los días directamente desde la base de datos
+		String sql = "SHOW COLUMNS FROM clase_horario LIKE 'dia_semana'";
+
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				// Extraer la definición del ENUM
+				String enumDefinition = rs.getString("Type");
+				// Procesar la cadena para obtener los valores (ej: 'LUNES','MARTES',...)
+				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
+
+				for (String dia : enumValues) {
+					comboBox.addItem(dia);
+				}
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar días de la semana: " + e.getMessage());
+			e.printStackTrace();
+
+		}
+	}
+
+	private void cargarTurnoEnComboBox(JComboBox<String> comboBox) {
+		comboBox.removeAllItems(); // Limpiar opciones previas
+		comboBox.addItem("NINGUNO");
+
+		// Opción 1: Si quieres cargar los días directamente desde la base de datos
+		String sql = "SHOW COLUMNS FROM clase_horario LIKE 'turno'";
+
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				// Extraer la definición del ENUM
+				String enumDefinition = rs.getString("Type");
+				// Procesar la cadena para obtener los valores (ej: 'LUNES','MARTES',...)
+				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
+
+				for (String turno : enumValues) {
+					comboBox.addItem(turno);
+				}
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar turno: " + e.getMessage());
+			e.printStackTrace();
+
+		}
 	}
 
 }

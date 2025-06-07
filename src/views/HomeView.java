@@ -1820,7 +1820,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				UsersController uc = new UsersController();
-				uc.Editar_eliminar_y_añadir_clases();
+				uc.Editar_eliminar_y_añadir_clases(0);
 			}
 		});
 		boton_Editar_clases.setForeground(new Color(0, 0, 0));
