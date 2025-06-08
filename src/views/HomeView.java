@@ -2216,169 +2216,195 @@ public class HomeView {
 			super.fireEditingStopped();
 		}
 	}
+	
+	private JTable tablaAsistencias;
+	private DefaultTableModel modeloTablaAsistencias;
 
 	public void Panel_checador() {
-		try {
-			UIManager.setLookAndFeel(new FlatLightLaf());
-			UIManager.put("Button.arc", 8); // Esquinas redondeadas
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	    try {
+	        UIManager.setLookAndFeel(new FlatLightLaf());
+	        UIManager.put("Button.arc", 8);
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    }
 
-		JFrame frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(0, 0, 1100, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JFrame frame = new JFrame();
+	    frame.setResizable(false);
+	    frame.setBounds(0, 0, 1100, 700);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(204, 204, 204));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+	    JPanel panel = new JPanel();
+	    panel.setBackground(new Color(204, 204, 204));
+	    frame.getContentPane().add(panel, BorderLayout.CENTER);
+	    panel.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(0, 0, 1084, 75);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+	    // Panel superior
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(255, 255, 255));
+	    panel_1.setBounds(0, 0, 1084, 75);
+	    panel.add(panel_1);
+	    panel_1.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(10, 11, 53, 53);
-		ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
-		Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(imagen));
-		panel_1.add(lblNewLabel_1);
+	    JLabel lblNewLabel_1 = new JLabel("");
+	    lblNewLabel_1.setBounds(10, 11, 53, 53);
+	    ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo sin letras.png"));
+	    Image imagen = icon.getImage().getScaledInstance(53, 53, Image.SCALE_SMOOTH);
+	    lblNewLabel_1.setIcon(new ImageIcon(imagen));
+	    panel_1.add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
-		lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
-		lblNewLabel_2.setBounds(73, 11, 128, 35);
-		panel_1.add(lblNewLabel_2);
+	    JLabel lblNewLabel_2 = new JLabel("EVOLVEFIT");
+	    lblNewLabel_2.setFont(new Font("Anton", Font.PLAIN, 30));
+	    lblNewLabel_2.setBounds(73, 11, 128, 35);
+	    panel_1.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
-		lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(73, 42, 107, 22);
-		panel_1.add(lblNewLabel_3);
+	    JLabel lblNewLabel_3 = new JLabel("HEALTH & FITNESS");
+	    lblNewLabel_3.setFont(new Font("Anton", Font.PLAIN, 14));
+	    lblNewLabel_3.setBounds(73, 42, 107, 22);
+	    panel_1.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
-		lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
-		lblNewLabel_4.setBounds(407, 11, 270, 53);
-		panel_1.add(lblNewLabel_4);
+	    JLabel lblNewLabel_4 = new JLabel("Panel administrativo");
+	    lblNewLabel_4.setFont(new Font("Anton", Font.PLAIN, 32));
+	    lblNewLabel_4.setBounds(407, 11, 270, 53);
+	    panel_1.add(lblNewLabel_4);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(156, 86, 918, 564);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+	    // Panel principal
+	    JPanel panel_2 = new JPanel();
+	    panel_2.setBackground(new Color(255, 255, 255));
+	    panel_2.setBounds(156, 86, 918, 564);
+	    panel.add(panel_2);
+	    panel_2.setLayout(null);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(0, 0, 0));
-		panel_3.setBounds(0, 0, 918, 50);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
+	    JPanel panel_3 = new JPanel();
+	    panel_3.setBackground(new Color(0, 0, 0));
+	    panel_3.setBounds(0, 0, 918, 50);
+	    panel_2.add(panel_3);
+	    panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("CHECADOR");// titulo de inicio
-		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(60, 11, 309, 28);
-		panel_3.add(lblNewLabel);
+	    JLabel lblNewLabel = new JLabel("CHECADOR");
+	    lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
+	    lblNewLabel.setForeground(new Color(255, 255, 255));
+	    lblNewLabel.setBounds(60, 11, 309, 28);
+	    panel_3.add(lblNewLabel);
 
-		Object[][] data = { { 1, "Brandon Arce Ulloa", "12:02 pm" } };
+	    // Tabla de asistencias
+	    JScrollPane scrollPane_Usuario = new JScrollPane();
+	    scrollPane_Usuario.setBounds(10, 61, 898, 431);
+	    panel_2.add(scrollPane_Usuario);
 
-		String[] columnas = { "ID cliente", "Nombre(s)", "Entrada" };
+	    String[] columnas = { "ID Cliente", "Nombre", "Fecha", "Hora" };
+	    modeloTablaAsistencias = new DefaultTableModel(columnas, 0);
+	    tablaAsistencias = new JTable(modeloTablaAsistencias);
+	    tablaAsistencias.setFont(new Font("Anton", Font.PLAIN, 12));
+	    tablaAsistencias.setBackground(new Color(204, 204, 204));
+	    JTableHeader header = tablaAsistencias.getTableHeader();
+	    header.setBackground(Color.BLACK);
+	    header.setForeground(Color.WHITE);
+	    header.setFont(new Font("Anton", Font.PLAIN, 14));
+	    header.setReorderingAllowed(false);
+	    scrollPane_Usuario.setViewportView(tablaAsistencias);
 
-		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
-		scrollPane_Usuario.setBounds(10, 61, 898, 431);
-		panel_2.add(scrollPane_Usuario);
-		JTable table = new JTable(data, columnas);
-		table.setFont(new Font("Anton", Font.PLAIN, 12));
-		table.setBackground(new Color(204, 204, 204));
-		scrollPane_Usuario.setViewportView(table);
+	    cargarAsistenciasEnTabla(); // carga inicial
 
-		JTableHeader header = table.getTableHeader();
-		header.setBackground(Color.BLACK);
-		header.setForeground(Color.WHITE);
-		header.setFont(new Font("Anton", Font.PLAIN, 14));
-		header.setReorderingAllowed(false);
-		scrollPane_Usuario.setViewportView(table);
-		// inicio del boton Añadir
-		// entrada/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JButton boton_Añadir_entrada = new JButton("Añadir entrada");
-		boton_Añadir_entrada.setForeground(new Color(255, 255, 255));
-		boton_Añadir_entrada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JDialog dialogoAlerta = new JDialog(frame, "Registrar Entrada", true);
-				dialogoAlerta.setSize(400, 220);
-				dialogoAlerta.setLocationRelativeTo(frame);
-				dialogoAlerta.setResizable(false);
-				dialogoAlerta.setUndecorated(true);
-				dialogoAlerta.setLayout(null);
+	    // Botón Añadir entrada
+	    JButton boton_Añadir_entrada = new JButton("Añadir entrada");
+	    boton_Añadir_entrada.setFont(new Font("Anton", Font.PLAIN, 20));
+	    boton_Añadir_entrada.setForeground(Color.WHITE);
+	    boton_Añadir_entrada.setBackground(new Color(0, 206, 82));
+	    boton_Añadir_entrada.setBounds(724, 503, 184, 50);
+	    panel_2.add(boton_Añadir_entrada);
 
-				JPanel cliente_entrada = new JPanel();
-				cliente_entrada.setBackground(Color.WHITE);
-				cliente_entrada.setBounds(0, 0, 400, 220);
-				cliente_entrada.setLayout(null);
-				dialogoAlerta.add(cliente_entrada);
+	    boton_Añadir_entrada.addActionListener(e -> {
+	        JDialog dialogoAlerta = new JDialog(frame, "Registrar Entrada", true);
+	        dialogoAlerta.setSize(400, 200);
+	        dialogoAlerta.setLocationRelativeTo(frame);
+	        dialogoAlerta.setResizable(false);
+	        dialogoAlerta.setUndecorated(true);
+	        dialogoAlerta.setLayout(null);
 
-				JPanel panel_complemento = new JPanel();
-				panel_complemento.setBackground(new Color(81, 151, 255));
-				panel_complemento.setBounds(0, 0, 400, 33);
-				cliente_entrada.add(panel_complemento);
+	        JPanel cliente_entrada = new JPanel();
+	        cliente_entrada.setBackground(Color.WHITE);
+	        cliente_entrada.setBounds(0, 0, 400, 200);
+	        cliente_entrada.setLayout(null);
+	        dialogoAlerta.add(cliente_entrada);
 
-				JLabel Label_alerta = new JLabel("Introduce el ID para registrar la hora de entrada");
-				Label_alerta.setFont(new Font("Anton", Font.PLAIN, 16));
-				Label_alerta.setBounds(38, 44, 319, 22);
-				cliente_entrada.add(Label_alerta);
+	        JPanel panel_complemento = new JPanel();
+	        panel_complemento.setBackground(new Color(81, 151, 255));
+	        panel_complemento.setBounds(0, 0, 400, 33);
+	        cliente_entrada.add(panel_complemento);
 
-				JLabel label_ID = new JLabel("ID :");
-				label_ID.setFont(new Font("Anton", Font.PLAIN, 16));
-				label_ID.setBounds(130, 86, 46, 22);
-				cliente_entrada.add(label_ID);
+	        JLabel Label_alerta = new JLabel("Introduce el ID para registrar la entrada");
+	        Label_alerta.setFont(new Font("Anton", Font.PLAIN, 16));
+	        Label_alerta.setBounds(38, 50, 319, 22);
+	        cliente_entrada.add(Label_alerta);
 
-				// Este es donde se ingresa el
-				// ID////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				JTextField textField_del_id = new JTextField();
-				textField_del_id.setBackground(new Color(204, 204, 204));
-				textField_del_id.setFont(new Font("Anton", Font.PLAIN, 14));
-				textField_del_id.setBounds(160, 86, 86, 22);
-				cliente_entrada.add(textField_del_id);
-				textField_del_id.setColumns(10);
-				// boton cancelar
-				// alerta///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				JButton boton_cancelar_de_alerta = new JButton("Cancelar");
-				boton_cancelar_de_alerta.setForeground(Color.WHITE);
-				boton_cancelar_de_alerta.setBackground(Color.RED);
-				boton_cancelar_de_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_cancelar_de_alerta.setBounds(38, 136, 102, 33);
-				cliente_entrada.add(boton_cancelar_de_alerta);
-				boton_cancelar_de_alerta.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dialogoAlerta.dispose();
-					}
-				});
-				// boton aceptar
-				// alerta/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				JButton boton_aceptar_de_alerta = new JButton("Aceptar");
-				boton_aceptar_de_alerta.setBackground(new Color(0, 206, 82));
-				boton_aceptar_de_alerta.setForeground(Color.WHITE);
-				boton_aceptar_de_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_aceptar_de_alerta.setBounds(255, 136, 102, 33);
-				cliente_entrada.add(boton_aceptar_de_alerta);
-				boton_aceptar_de_alerta.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dialogoAlerta.dispose();// quitar cuando pongan funcionalidad
-					}
-				});
+	        JLabel label_ID = new JLabel("ID:");
+	        label_ID.setFont(new Font("Anton", Font.PLAIN, 14));
+	        label_ID.setBounds(38, 85, 100, 22);
+	        cliente_entrada.add(label_ID);
 
-				dialogoAlerta.setVisible(true);
-			}
-		});
-		boton_Añadir_entrada.setFont(new Font("Anton", Font.PLAIN, 20));
-		boton_Añadir_entrada.setBackground(new Color(0, 206, 82));
-		boton_Añadir_entrada.setBounds(724, 503, 184, 50);
-		panel_2.add(boton_Añadir_entrada);
+	        JTextField textField_del_id = new JTextField();
+	        textField_del_id.setBackground(new Color(204, 204, 204));
+	        textField_del_id.setFont(new Font("Anton", Font.PLAIN, 14));
+	        textField_del_id.setBounds(90, 85, 100, 22);
+	        cliente_entrada.add(textField_del_id);
 
-		// botones
-		// laterales/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JButton boton_INICIO = new JButton("INICIO");
+	        JButton boton_cancelar = new JButton("Cancelar");
+	        boton_cancelar.setForeground(Color.WHITE);
+	        boton_cancelar.setBackground(Color.RED);
+	        boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+	        boton_cancelar.setBounds(50, 130, 120, 35);
+	        boton_cancelar.addActionListener(ev -> dialogoAlerta.dispose());
+	        cliente_entrada.add(boton_cancelar);
+
+	        JButton boton_aceptar = new JButton("Aceptar");
+	        boton_aceptar.setBackground(new Color(0, 206, 82));
+	        boton_aceptar.setForeground(Color.WHITE);
+	        boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+	        boton_aceptar.setBounds(210, 130, 120, 35);
+	        cliente_entrada.add(boton_aceptar);
+
+	        boton_aceptar.addActionListener(ev -> {
+	            try {
+	                int idUsuario = Integer.parseInt(textField_del_id.getText().trim());
+	                UsersModel um = new UsersModel();
+
+	                if (!um.esCliente(idUsuario)) {
+	                    JOptionPane.showMessageDialog(dialogoAlerta, "Este ID no pertenece a un cliente (rol 2).", "Error", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+
+	                if (um.yaRegistroHoy(idUsuario)) {
+	                    int opcion = JOptionPane.showConfirmDialog(dialogoAlerta,
+	                            "Este usuario ya registró asistencia hoy. ¿Deseas registrar otra vez?",
+	                            "Ya registrado", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+	                    if (opcion != JOptionPane.YES_OPTION) {
+	                        dialogoAlerta.dispose();
+	                        return;
+	                    }
+	                }
+
+	                String fecha = java.time.LocalDate.now().toString();
+	                String hora = java.time.LocalTime.now().withSecond(0).withNano(0).toString();
+
+	                if (um.registrarAsistenciaManual(idUsuario, fecha, hora)) {
+	                    JOptionPane.showMessageDialog(dialogoAlerta, "Asistencia registrada correctamente.");
+	                    cargarAsistenciasEnTabla();
+	                } else {
+	                    JOptionPane.showMessageDialog(dialogoAlerta, "Error al registrar la asistencia.", "Error", JOptionPane.ERROR_MESSAGE);
+	                }
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(dialogoAlerta, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+
+	            dialogoAlerta.dispose();
+	        });
+
+	        dialogoAlerta.setVisible(true);
+	    });
+	    
+	    //laterales/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    JButton boton_INICIO = new JButton("INICIO");
 		boton_INICIO.setBackground(new Color(255, 205, 17));
 		boton_INICIO.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INICIO.setBounds(10, 86, 136, 71);
@@ -2517,53 +2543,17 @@ public class HomeView {
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-//		JPanel ID_cliente_entrada = new JPanel();
-//		ID_cliente_entrada.setBackground(new Color(255, 255, 255));
-//		ID_cliente_entrada.setBounds(335, 234, 400, 180);
-//		frame.getContentPane().add(ID_cliente_entrada);
-//		ID_cliente_entrada.setLayout(null);
-		//
-//		JPanel panel_complemento= new JPanel();
-//		panel_complemento.setBackground(new Color(81, 151, 255));
-//		panel_complemento.setBounds(0, 0, 400, 33);
-//		ID_cliente_entrada.add(panel_complemento);
-		//
-//		JLabel lblEntradaRegistradaCon = new JLabel("Entrada registrada con éxito");
-//		lblEntradaRegistradaCon.setFont(new Font("Anton", Font.PLAIN, 20));
-//		lblEntradaRegistradaCon.setBounds(93, 70, 264, 22);
-//		ID_cliente_entrada.add(lblEntradaRegistradaCon);
-		//
-//		JButton boton_aceptar_de_alerta = new JButton("Aceptar");
-//		boton_aceptar_de_alerta.setBackground(new Color(0, 206, 82));
-//		boton_aceptar_de_alerta.setForeground(new Color(255, 255, 255));
-//		boton_aceptar_de_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-//		boton_aceptar_de_alerta.setBounds(145, 114, 102, 33);
-//		ID_cliente_entrada.add(boton_aceptar_de_alerta);
-		//
-//		JPanel ID_cliente_entrada = new JPanel();
-//		ID_cliente_entrada.setBackground(new Color(255, 255, 255));
-//		ID_cliente_entrada.setBounds(335, 234, 400, 180);
-//		frame.getContentPane().add(ID_cliente_entrada);
-//		ID_cliente_entrada.setLayout(null);
-//		
-//		JPanel panel_complemento= new JPanel();
-//		panel_complemento.setBackground(new Color(81, 151, 255));
-//		panel_complemento.setBounds(0, 0, 400, 33);
-//		ID_cliente_entrada.add(panel_complemento);
-//		
-//		JLabel lblEntradaRegistradaCon = new JLabel("Cliente no encontrado. Verifica que el ID sea correcto.");
-//		lblEntradaRegistradaCon.setFont(new Font("Anton", Font.PLAIN, 16));
-//		lblEntradaRegistradaCon.setBounds(24, 68, 386, 22);
-//		ID_cliente_entrada.add(lblEntradaRegistradaCon);
-//		
-//		JButton boton_aceptar_de_alerta = new JButton("Aceptar");
-//		boton_aceptar_de_alerta.setBackground(new Color(0, 206, 82));
-//		boton_aceptar_de_alerta.setForeground(new Color(255, 255, 255));
-//		boton_aceptar_de_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-//		boton_aceptar_de_alerta.setBounds(145, 114, 102, 33);
-//		ID_cliente_entrada.add(boton_aceptar_de_alerta);
-
+	}
+	
+	private void cargarAsistenciasEnTabla() {
+	    UsersModel um = new UsersModel();
+	    List<String[]> registros = um.obtenerAsistenciasRecientes();
+	    modeloTablaAsistencias.setRowCount(0);
+	    for (String[] fila : registros) {
+	        modeloTablaAsistencias.addRow(fila);
+	    }
 	}
 
 }
+	
+	

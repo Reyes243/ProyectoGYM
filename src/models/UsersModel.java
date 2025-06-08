@@ -461,5 +461,128 @@ public class UsersModel {
 	    }
 	}
 
+	public boolean registrarAsistenciaManual(int idUsuario, String fecha, String hora) {
+	    ConectionModel conexion = new ConectionModel();
+	    String sql = "INSERT INTO asistencia (id_usuario, fecha, hora) VALUES (?, ?, ?)";
 
+	    try {
+	        Connection conn = conexion.getConnection();
+	        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	            ps.setInt(1, idUsuario);
+	            ps.setString(2, fecha);  // "2025-06-08"
+	            ps.setString(3, hora);   // "14:30"
+	            return ps.executeUpdate() > 0;
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al registrar asistencia manual: " + e.getMessage());
+	        return false;
+	    } finally {
+	        conexion.close();
+	    }
+	}
+	public boolean esCliente(int idUsuario) {
+	    ConectionModel conexion = new ConectionModel();
+	    String sql = "SELECT id_rol FROM usuario WHERE id_usuario = ?";
+
+	    try {
+	        Connection conn = conexion.getConnection();
+	        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	            ps.setInt(1, idUsuario);
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                return rs.getInt("id_rol") == 2;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al verificar si es cliente: " + e.getMessage());
+	    } finally {
+	        conexion.close();
+	    }
+
+	    return false;
+	}
+	
+	public List<String[]> obtenerAsistenciasRecientes() {
+	    List<String[]> lista = new ArrayList<>();
+	    ConectionModel conexion = new ConectionModel();
+	    String sql = """
+	        SELECT a.id_usuario, u.nombre, u.primer_apellido, a.fecha, a.hora
+	        FROM asistencia a
+	        JOIN usuario u ON a.id_usuario = u.id_usuario
+	        ORDER BY a.fecha DESC, a.hora DESC
+	        LIMIT 50
+	    """;
+
+	    try (Connection conn = conexion.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql);
+	         ResultSet rs = ps.executeQuery()) {
+
+	        while (rs.next()) {
+	            String[] fila = {
+	                String.valueOf(rs.getInt("id_usuario")),
+	                rs.getString("nombre") + " " + rs.getString("primer_apellido"),
+	                rs.getString("fecha"),
+	                rs.getString("hora")
+	            };
+	            lista.add(fila);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        conexion.close();
+	    }
+
+	    return lista;
+	}
+	public boolean yaRegistroHoy(int idUsuario) {
+	    ConectionModel conexion = new ConectionModel();
+	    String sql = "SELECT COUNT(*) FROM asistencia WHERE id_usuario = ? AND fecha = CURRENT_DATE";
+
+	    try (Connection conn = conexion.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setInt(1, idUsuario);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt(1) > 0;
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al verificar asistencia del día: " + e.getMessage());
+	    } finally {
+	        conexion.close();
+	    }
+
+	    return false;
+	}
+	public List<String[]> obtenerHistorialAsistencia(int idUsuario) {
+	    List<String[]> historial = new ArrayList<>();
+	    ConectionModel conexion = new ConectionModel();
+
+	    String sql = "SELECT fecha, hora FROM asistencia WHERE id_usuario = ? ORDER BY fecha DESC, hora DESC";
+
+	    try (Connection conn = conexion.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setInt(1, idUsuario);
+	        ResultSet rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            String fecha = rs.getString("fecha"); // formato: YYYY-MM-DD
+	            String[] partes = fecha.split("-");
+	            historial.add(new String[] {
+	                partes[2], // día
+	                partes[1], // mes
+	                partes[0], // año
+	                rs.getString("hora")
+	            });
+	        }
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al obtener historial de asistencia: " + e.getMessage());
+	    } finally {
+	        conexion.close();
+	    }
+
+	    return historial;
+	}
 }

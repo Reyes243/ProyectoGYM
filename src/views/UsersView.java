@@ -64,7 +64,7 @@ public class UsersView {
 	private Font antonFont;
 	
 	private int obtenerIdEntrenadorPorNombre(String nombreEntrenador, Connection conn) throws SQLException {
-	    String sql = "SELECT id_usuario FROM usuario WHERE nombre = ? AND id_rol = 3"; // 3 = Entrenador
+	    String sql = "SELECT id_usuario FROM usuario WHERE nombre = ? AND id_rol = 3"; 
 	    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 	        stmt.setString(1, nombreEntrenador);
 	        ResultSet rs = stmt.executeQuery();
@@ -1504,11 +1504,17 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre").split(" ")[0], // Nombre
-				datosCliente.get("nombre").split(" ").length > 1 ? datosCliente.get("nombre").split(" ")[1] : "", // Apellido
-				datosCliente.get("telefono"), datosCliente.get("correo") } };
+		Object[][] dataCliente = {
+			    {
+			        datosCliente.get("id"),
+			        datosCliente.get("nombre"),               // nombre(s)
+			        datosCliente.get("primer_apellido"),      // primer apellido
+			        datosCliente.get("telefono"),
+			        datosCliente.get("correo")
+			    }
+			};
 
-		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
+			String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
@@ -1525,9 +1531,19 @@ public class UsersView {
 		header.setReorderingAllowed(false);
 		scrollPane_Usuario.setViewportView(table);
 
-		Object[][] data2 = { { 15632948, "PREMIUM", "600.00", "16/08/2024" } };
+		String plan = datosCliente.get("tarifa") != null ? datosCliente.get("tarifa") : "NINGUNO";
+		String precio = datosCliente.get("precio_tarifa") != null ? datosCliente.get("precio_tarifa") : "0.00";
 
-		String[] columnas2 = { "ID Pago", "Plan", "Tarifa", "Fecha" };
+		Object[][] data2 = {
+		    {
+		        datosCliente.get("id"),
+		        plan.toUpperCase(),
+		        "$" + precio,
+		        "$" + precio // mismo monto como "siguiente pago"
+		    }
+		};
+
+		String[] columnas2 = { "ID Cliente", "Plan", "Tarifa", "Siguiente pago" };
 
 		JScrollPane scrollPane_Pagos = new JScrollPane();// tabla de pagos
 		scrollPane_Pagos.setBounds(10, 122, 898, 168);
@@ -1776,45 +1792,60 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre").split(" ")[0], // Nombre
-				datosCliente.get("nombre").split(" ").length > 1 ? datosCliente.get("nombre").split(" ")[1] : "", // Apellido
-				datosCliente.get("telefono"), datosCliente.get("correo") } };
+		// Tabla con los datos básicos del cliente
+		Object[][] dataCliente = {
+		    {
+		        datosCliente.get("id"),
+		        datosCliente.get("nombre"),               // nombre(s)
+		        datosCliente.get("primer_apellido"),      // primer apellido
+		        datosCliente.get("telefono"),
+		        datosCliente.get("correo")
+		    }
+		};
 
 		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
-		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
+		JScrollPane scrollPane_Usuario = new JScrollPane(); // tabla del usuario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
 		panel_2.add(scrollPane_Usuario);
+
 		JTable table = new JTable(dataCliente, columnas);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
 		scrollPane_Usuario.setViewportView(table);
 
+		// Estilo del encabezado
 		JTableHeader header = table.getTableHeader();
 		header.setBackground(Color.BLACK);
 		header.setForeground(Color.WHITE);
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
-		scrollPane_Usuario.setViewportView(table);
 
-		Object[][] data2 = { { "15", "06", "2024", "3:50 pm" } };
 
-		String[] columnas2 = { "Dia", "Mes", "Año", "Hora de entrada" };
+		String[] columnas2 = { "Día", "Mes", "Año", "Hora de entrada" };
+		DefaultTableModel modeloHistorial = new DefaultTableModel(columnas2, 0);
+		JTable tablaHistorial = new JTable(modeloHistorial);
 
-		JScrollPane scrollPane_Pagos = new JScrollPane();// tabla de pagos
-		scrollPane_Pagos.setBounds(10, 122, 898, 168);
-		panel_2.add(scrollPane_Pagos);
-		JTable table_1 = new JTable(data2, columnas2);
-		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
-		table_1.setBackground(new Color(204, 204, 204));
-		scrollPane_Pagos.setViewportView(table_1);
+		tablaHistorial.setFont(new Font("Anton", Font.PLAIN, 12));
+		tablaHistorial.setBackground(new Color(204, 204, 204));
 
-		JTableHeader header2 = table_1.getTableHeader();
+		JScrollPane scrollPaneHistorial = new JScrollPane(tablaHistorial);
+		scrollPaneHistorial.setBounds(10, 122, 898, 168);
+		panel_2.add(scrollPaneHistorial);
+
+		// Personalizar encabezado
+		JTableHeader header2 = tablaHistorial.getTableHeader();
 		header2.setBackground(Color.BLACK);
 		header2.setForeground(Color.WHITE);
 		header2.setFont(new Font("Anton", Font.PLAIN, 14));
 		header2.setReorderingAllowed(false);
-		scrollPane_Pagos.setViewportView(table_1);
+
+		// Cargar historial desde BD
+		List<String[]> asistencias = um.obtenerHistorialAsistencia(idcliente);
+		for (String[] fila : asistencias) {
+		    modeloHistorial.addRow(fila);
+		}
+
 
 		JButton boton_regresar = new JButton("Regresar");// boton regresar
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
@@ -4732,7 +4763,7 @@ public class UsersView {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("HISTORIAL DE CLASE");// titulo de inicio
+		JLabel lblNewLabel = new JLabel("HISTORIAL DE CLASES");// titulo de inicio
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 309, 28);
@@ -4743,7 +4774,7 @@ public class UsersView {
 		String[] columnas = { "Entrenador", "Clase asignada", "Turno", "Día" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
-		scrollPane_Usuario.setBounds(10, 61, 898, 50);
+		scrollPane_Usuario.setBounds(10, 61, 898, 431);
 		panel_2.add(scrollPane_Usuario);
 		JTable table = new JTable(data, columnas);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
@@ -4757,24 +4788,6 @@ public class UsersView {
 		header.setReorderingAllowed(false);
 		scrollPane_Usuario.setViewportView(table);
 
-		Object[][] data2 = clientes.toArray(new Object[0][]);
-
-		String[] columnas2 = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
-
-		JScrollPane scrollPane_Pagos = new JScrollPane();// tabla de pagos
-		scrollPane_Pagos.setBounds(10, 122, 898, 168);
-		panel_2.add(scrollPane_Pagos);
-		JTable table_1 = new JTable(data2, columnas2);
-		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
-		table_1.setBackground(new Color(204, 204, 204));
-		scrollPane_Pagos.setViewportView(table_1);
-
-		JTableHeader header2 = table_1.getTableHeader();
-		header2.setBackground(Color.BLACK);
-		header2.setForeground(Color.WHITE);
-		header2.setFont(new Font("Anton", Font.PLAIN, 14));
-		header2.setReorderingAllowed(false);
-		scrollPane_Pagos.setViewportView(table_1);
 
 		JButton boton_regresar = new JButton("Regresar");// boton regresar
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
