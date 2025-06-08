@@ -59,4 +59,22 @@ public class Clase {
                 ", horarios=" + horarios +
                 '}';
     }
+    private String nombreEntrenador;
+    private String turno;
+
+    public String getNombreEntrenador() {
+        return nombreEntrenador;
+    }
+
+    public void setNombreEntrenador(String nombreEntrenador) {
+        this.nombreEntrenador = nombreEntrenador;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
 }

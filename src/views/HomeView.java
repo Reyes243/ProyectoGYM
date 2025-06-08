@@ -9,6 +9,9 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +49,7 @@ import controllers.HomeController;
 import controllers.UsersController;
 import models.Clase;
 import models.ClaseHorario;
+import models.ClaseModel;
 import models.ConectionModel;
 import models.Instructor;
 import models.Tarifa;
@@ -58,15 +62,16 @@ public class HomeView {
 	private Font antonFont;
 
 	private void cargarFuentePersonalizada() {
-	    try {
-	        antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf")).deriveFont(Font.PLAIN, 18f);
-	        // Registra la fuente en el sistema gráfico de Java
-	        java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
-	        ge.registerFont(antonFont);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
-	    }
+		try {
+			antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf"))
+					.deriveFont(Font.PLAIN, 18f);
+			// Registra la fuente en el sistema gráfico de Java
+			java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(antonFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			antonFont = new Font("SansSerif", Font.PLAIN, 18); // Fuente por defecto si falla
+		}
 	}
 
 	public HomeView() {
@@ -271,15 +276,15 @@ public class HomeView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -358,7 +363,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -582,15 +587,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -669,7 +674,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -719,6 +724,7 @@ public class HomeView {
 		private boolean clicked;
 		private int row;
 		private JTable table;
+		private boolean debeEliminar = false;
 
 		public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
 			super(checkBox);
@@ -727,18 +733,16 @@ public class HomeView {
 			button = new JButton();
 			button.setOpaque(true);
 			button.setForeground(Color.BLACK);
-			button.setBackground(new Color(255, 205, 17));
+			button.setBackground(label.equals("Eliminar") ? new Color(205, 0, 0) : new Color(255, 205, 17));
 			button.setFont(new Font("Anton", Font.PLAIN, 14));
 			button.setHorizontalAlignment(SwingConstants.CENTER);
 
-			// Cargar icono según etiqueta
 			if (label.equals("Consulta")) {
 				button.setIcon(loadIcon("/Imagenes/editar.png"));
 			} else if (label.equals("Eliminar")) {
 				button.setIcon(loadIcon("/Imagenes/eliminar.png"));
 			}
-			button.setText(null); // Sin texto
-
+			button.setText(null);
 			button.addActionListener(e -> fireEditingStopped());
 		}
 
@@ -767,31 +771,25 @@ public class HomeView {
 			if (clicked) {
 				if (label.equals("Eliminar")) {
 					int idCliente = (int) table.getValueAt(row, 0);
-
-					// Crear el JDialog personalizado (ALERTA DE CONFIRMACIÓN)
-					final boolean[] confirmado = {false};
-
-					// Usamos Window como padre para evitar errores de constructor
 					Frame parentFrame = JOptionPane.getFrameForComponent(table);
+
 					JDialog dialog = new JDialog(parentFrame, "Confirmación", true);
 					dialog.setSize(400, 180);
-					dialog.setLayout(null);
 					dialog.setUndecorated(true);
 					dialog.setLocationRelativeTo(table);
+					dialog.setLayout(null);
 
-					// Panel superior decorativo
 					JPanel header = new JPanel();
 					header.setBackground(new Color(81, 151, 255));
 					header.setBounds(0, 0, 400, 33);
 					dialog.add(header);
 
-					// Mensaje de confirmación
-					JLabel mensaje = new JLabel("<html><div style='text-align: center;'>Se borrará al cliente permanentemente<br>¿Desea continuar?</div></html>");
+					JLabel mensaje = new JLabel(
+							"<html><div style='text-align: center;'>Se borrará al cliente permanentemente<br>¿Desea continuar?</div></html>");
 					mensaje.setFont(new Font("Anton", Font.PLAIN, 16));
 					mensaje.setBounds(69, 44, 297, 59);
 					dialog.add(mensaje);
 
-					// Botón ACEPTAR
 					JButton aceptar = new JButton("Aceptar");
 					aceptar.setBackground(new Color(0, 206, 82));
 					aceptar.setForeground(Color.WHITE);
@@ -799,7 +797,6 @@ public class HomeView {
 					aceptar.setBounds(264, 123, 102, 33);
 					dialog.add(aceptar);
 
-					// Botón CANCELAR
 					JButton cancelar = new JButton("Cancelar");
 					cancelar.setBackground(Color.RED);
 					cancelar.setForeground(Color.WHITE);
@@ -807,100 +804,31 @@ public class HomeView {
 					cancelar.setBounds(38, 123, 102, 33);
 					dialog.add(cancelar);
 
-					// Listeners
-					aceptar.addActionListener(e -> {
+					final boolean[] confirmado = { false };
+					aceptar.addActionListener(ev -> {
 						confirmado[0] = true;
 						dialog.dispose();
 					});
+					cancelar.addActionListener(ev -> dialog.dispose());
 
-					cancelar.addActionListener(e -> {
-						dialog.dispose();
-					});
-
-					// Mostrar alerta (modal)
 					dialog.setVisible(true);
 
-					// Si el usuario confirmó
 					if (confirmado[0]) {
 						UsersModel model = new UsersModel();
 						boolean eliminado = model.eliminarCliente(idCliente);
 
 						if (eliminado) {
-							DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-							tableModel.removeRow(row);
-
-							JDialog exitoDialog = new JDialog(parentFrame, "Éxito", true);
-		                    exitoDialog.setSize(400, 180);
-		                    exitoDialog.setLayout(null);
-		                    exitoDialog.setUndecorated(true);
-		                    exitoDialog.setLocationRelativeTo(table);
-
-		                    JPanel eliminarExito = new JPanel();
-		                    eliminarExito.setBackground(new Color(255, 255, 255));
-		                    eliminarExito.setBounds(0, 0, 400, 180);
-		                    eliminarExito.setLayout(null);
-		                    exitoDialog.add(eliminarExito);
-
-		                    JPanel panelComplementoExito = new JPanel();
-		                    panelComplementoExito.setBackground(new Color(81, 151, 255));
-		                    panelComplementoExito.setBounds(0, 0, 400, 33);
-		                    eliminarExito.add(panelComplementoExito);
-
-		                    JLabel mensajeExito = new JLabel("<html><div style='text-align: center;'>Cliente eliminado correctamente<br></div></html>");
-		                    mensajeExito.setFont(new Font("Anton", Font.PLAIN, 16));
-		                    mensajeExito.setBounds(85, 44, 305, 59);
-		                    eliminarExito.add(mensajeExito);
-
-		                    JButton botonAceptarExito = new JButton("Aceptar");
-		                    botonAceptarExito.setBackground(new Color(0, 206, 82));
-		                    botonAceptarExito.setForeground(Color.WHITE);
-		                    botonAceptarExito.setFont(new Font("Anton", Font.PLAIN, 14));
-		                    botonAceptarExito.setBounds(151, 121, 102, 33);
-		                    eliminarExito.add(botonAceptarExito);
-
-		                    botonAceptarExito.addActionListener(e -> exitoDialog.dispose());
-
-		                    exitoDialog.setVisible(true);
-		                    
+							debeEliminar = true;
+							JOptionPane.showMessageDialog(table, "Cliente eliminado correctamente.", "Éxito",
+									JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JDialog errorDialog = new JDialog(parentFrame, "Error", true);
-		                    errorDialog.setSize(400, 180);
-		                    errorDialog.setLayout(null);
-		                    errorDialog.setUndecorated(true);
-		                    errorDialog.setLocationRelativeTo(table);
-
-		                    JPanel eliminarError = new JPanel();
-		                    eliminarError.setBackground(new Color(255, 255, 255));
-		                    eliminarError.setBounds(0, 0, 400, 180);
-		                    eliminarError.setLayout(null);
-		                    errorDialog.add(eliminarError);
-
-		                    JPanel panelComplementoError = new JPanel();
-		                    panelComplementoError.setBackground(new Color(81, 151, 255));
-		                    panelComplementoError.setBounds(0, 0, 400, 33);
-		                    eliminarError.add(panelComplementoError);
-
-		                    JLabel mensajeError = new JLabel("<html><div style='text-align: center;'>Error al eliminar el cliente<br></div></html>");
-		                    mensajeError.setFont(new Font("Anton", Font.PLAIN, 16));
-		                    mensajeError.setBounds(113, 44, 277, 59);
-		                    eliminarError.add(mensajeError);
-
-		                    JButton botonAceptarError = new JButton("Aceptar");
-		                    botonAceptarError.setBackground(new Color(0, 206, 82));
-		                    botonAceptarError.setForeground(Color.WHITE);
-		                    botonAceptarError.setFont(new Font("Anton", Font.PLAIN, 14));
-		                    botonAceptarError.setBounds(151, 121, 102, 33);
-		                    eliminarError.add(botonAceptarError);
-
-		                    botonAceptarError.addActionListener(e -> errorDialog.dispose());
-
-		                    errorDialog.setVisible(true);
+							JOptionPane.showMessageDialog(table, "Error al eliminar el cliente.", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 
 				} else if (label.equals("Consulta")) {
 					int idCliente = (int) table.getValueAt(row, 0);
-
 					Window window = SwingUtilities.getWindowAncestor(table);
 					if (window != null) {
 						window.dispose();
@@ -909,11 +837,20 @@ public class HomeView {
 					controller.Informacion_de_cliente(idCliente);
 				}
 			}
+
 			clicked = false;
+
+			if (debeEliminar && row >= 0 && row < table.getRowCount()) {
+				SwingUtilities.invokeLater(() -> {
+					if (row >= 0 && row < table.getRowCount()) {
+						((DefaultTableModel) table.getModel()).removeRow(row);
+					}
+				});
+				debeEliminar = false;
+			}
+
 			return label;
 		}
-
-
 
 		@Override
 		public boolean stopCellEditing() {
@@ -925,7 +862,6 @@ public class HomeView {
 		protected void fireEditingStopped() {
 			super.fireEditingStopped();
 		}
-
 	}
 
 	public void Tarifas(List<Tarifa> tarifas) {
@@ -979,7 +915,7 @@ public class HomeView {
 		panel_2.setBounds(156, 86, 918, 564);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		int x = 30;
 		int y = 81;
 		int ancho = 275;
@@ -989,97 +925,96 @@ public class HomeView {
 		int columnas = 3;
 
 		for (int i = 0; i < tarifas.size(); i++) {
-		    Tarifa t = tarifas.get(i);
+			Tarifa t = tarifas.get(i);
 
-		    JPanel panelTarifa = new JPanel();
-		    panelTarifa.setLayout(null);
-		    panelTarifa.setBackground(Color.WHITE);
-		    panelTarifa.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			JPanel panelTarifa = new JPanel();
+			panelTarifa.setLayout(null);
+			panelTarifa.setBackground(Color.WHITE);
+			panelTarifa.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-		    int col = i % columnas;
-		    int fila = i / columnas;
-		    int px = x + col * (ancho + espacioX);
-		    int py = y + fila * (alto + espacioY);
-		    panelTarifa.setBounds(px, py, ancho, alto);
+			int col = i % columnas;
+			int fila = i / columnas;
+			int px = x + col * (ancho + espacioX);
+			int py = y + fila * (alto + espacioY);
+			panelTarifa.setBounds(px, py, ancho, alto);
 
-		    JLabel lblTitulo = new JLabel("Plan");
-		    lblTitulo.setFont(new Font("Anton", Font.PLAIN, 22));
-		    lblTitulo.setBounds(20, 26, 100, 35);
-		    panelTarifa.add(lblTitulo);
+			JLabel lblTitulo = new JLabel("Plan");
+			lblTitulo.setFont(new Font("Anton", Font.PLAIN, 22));
+			lblTitulo.setBounds(20, 26, 100, 35);
+			panelTarifa.add(lblTitulo);
 
-		    JLabel lblNombre = new JLabel(t.getNombreTarifa().toUpperCase());
-		    lblNombre.setFont(new Font("Anton", Font.PLAIN, 28));
-		    lblNombre.setBounds(20, 72, 200, 35);
-		    panelTarifa.add(lblNombre);
+			JLabel lblNombre = new JLabel(t.getNombreTarifa().toUpperCase());
+			lblNombre.setFont(new Font("Anton", Font.PLAIN, 28));
+			lblNombre.setBounds(20, 72, 200, 35);
+			panelTarifa.add(lblNombre);
 
-		    JLabel lblPrecio = new JLabel("$" + t.getPrecio() + " / mes");
-		    lblPrecio.setFont(new Font("Anton", Font.PLAIN, 28));
-		    lblPrecio.setBounds(20, 118, 250, 35);
-		    panelTarifa.add(lblPrecio);
+			JLabel lblPrecio = new JLabel("$" + t.getPrecio() + " / mes");
+			lblPrecio.setFont(new Font("Anton", Font.PLAIN, 28));
+			lblPrecio.setBounds(20, 118, 250, 35);
+			panelTarifa.add(lblPrecio);
 
-		    JButton botonInfo = new JButton("");
-		    botonInfo.setBackground(new Color(255, 205, 17));
-		    botonInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		    botonInfo.setBounds(225, 139, 40, 40);
-		    ImageIcon iconInfo = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
-		    Image infoImg = iconInfo.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		    botonInfo.setIcon(new ImageIcon(infoImg));
-		    botonInfo.addActionListener(ev -> {
-		        JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa", true);
-		        alertaTarifa.setBounds(400, 250, 500, 280);
-		        alertaTarifa.setLocationRelativeTo(frame);
-		        alertaTarifa.setUndecorated(true);
-		        alertaTarifa.setLayout(null);
+			JButton botonInfo = new JButton("");
+			botonInfo.setBackground(new Color(255, 205, 17));
+			botonInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			botonInfo.setBounds(225, 139, 40, 40);
+			ImageIcon iconInfo = new ImageIcon(getClass().getResource("/Imagenes/descripcion.png"));
+			Image infoImg = iconInfo.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			botonInfo.setIcon(new ImageIcon(infoImg));
+			botonInfo.addActionListener(ev -> {
+				JDialog alertaTarifa = new JDialog(frame, "Información de Tarifa", true);
+				alertaTarifa.setBounds(400, 250, 500, 280);
+				alertaTarifa.setLocationRelativeTo(frame);
+				alertaTarifa.setUndecorated(true);
+				alertaTarifa.setLayout(null);
 
-		        JPanel inf_tarifa = new JPanel();
-		        inf_tarifa.setBackground(new Color(255, 255, 255));
-		        inf_tarifa.setBounds(0, 0, 500, 280);
-		        alertaTarifa.add(inf_tarifa);
-		        inf_tarifa.setLayout(null);
+				JPanel inf_tarifa = new JPanel();
+				inf_tarifa.setBackground(new Color(255, 255, 255));
+				inf_tarifa.setBounds(0, 0, 500, 280);
+				alertaTarifa.add(inf_tarifa);
+				inf_tarifa.setLayout(null);
 
-		        JPanel panel_complemento = new JPanel();
-		        panel_complemento.setBackground(new Color(81, 151, 255));
-		        panel_complemento.setBounds(0, 0, 500, 33);
-		        inf_tarifa.add(panel_complemento);
+				JPanel panel_complemento = new JPanel();
+				panel_complemento.setBackground(new Color(81, 151, 255));
+				panel_complemento.setBounds(0, 0, 500, 33);
+				inf_tarifa.add(panel_complemento);
 
-		        JTextArea area = new JTextArea();
-		        area.setText("Plan: " + t.getNombreTarifa() + "\n\n" + t.getDescripcion());
-		        area.setBounds(10, 40, 480, 151);
-		        area.setLineWrap(true);
-		        area.setWrapStyleWord(true);
-		        area.setFont(new Font("Anton", Font.PLAIN, 16));
-		        area.setEditable(false);
-		        inf_tarifa.add(area);
+				JTextArea area = new JTextArea();
+				area.setText("Plan: " + t.getNombreTarifa() + "\n\n" + t.getDescripcion());
+				area.setBounds(10, 40, 480, 151);
+				area.setLineWrap(true);
+				area.setWrapStyleWord(true);
+				area.setFont(new Font("Anton", Font.PLAIN, 16));
+				area.setEditable(false);
+				inf_tarifa.add(area);
 
-		        JButton btnAceptar = new JButton("Aceptar");
-		        btnAceptar.setBounds(344, 230, 146, 39);
-		        btnAceptar.setFont(new Font("Anton", Font.PLAIN, 15));
-		        btnAceptar.setBackground(new Color(0, 206, 82));
-		        btnAceptar.setForeground(Color.WHITE);
-		        btnAceptar.addActionListener(e -> alertaTarifa.dispose());
-		        inf_tarifa.add(btnAceptar);
+				JButton btnAceptar = new JButton("Aceptar");
+				btnAceptar.setBounds(344, 230, 146, 39);
+				btnAceptar.setFont(new Font("Anton", Font.PLAIN, 15));
+				btnAceptar.setBackground(new Color(0, 206, 82));
+				btnAceptar.setForeground(Color.WHITE);
+				btnAceptar.addActionListener(e -> alertaTarifa.dispose());
+				inf_tarifa.add(btnAceptar);
 
-		        alertaTarifa.setVisible(true);
-		    });
+				alertaTarifa.setVisible(true);
+			});
 
-		    panelTarifa.add(botonInfo);
-		    
-		    JButton botonClientes = new JButton("");
-		    botonClientes.setBackground(new Color(255, 205, 17));
-		    botonClientes.setBounds(225, 88, 40, 40); // igual que el original
-		    botonClientes.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		    ImageIcon iconUsuarios = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
-		    Image imagenUsuarios = iconUsuarios.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		    botonClientes.setIcon(new ImageIcon(imagenUsuarios));
-		    botonClientes.addActionListener(ev -> {
-		        frame.dispose();
-		        UsersController uc = new UsersController();
-		        uc.Clientes_con_tarifa_ESTANDAR(t.getNombreTarifa());
-		    });
-		    panelTarifa.add(botonClientes);
-		    panel_2.add(panelTarifa);
+			panelTarifa.add(botonInfo);
+
+			JButton botonClientes = new JButton("");
+			botonClientes.setBackground(new Color(255, 205, 17));
+			botonClientes.setBounds(225, 88, 40, 40); // igual que el original
+			botonClientes.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			ImageIcon iconUsuarios = new ImageIcon(getClass().getResource("/Imagenes/usuarios.png"));
+			Image imagenUsuarios = iconUsuarios.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			botonClientes.setIcon(new ImageIcon(imagenUsuarios));
+			botonClientes.addActionListener(ev -> {
+				frame.dispose();
+				UsersController uc = new UsersController();
+				uc.Clientes_con_tarifa_ESTANDAR(t.getNombreTarifa());
+			});
+			panelTarifa.add(botonClientes);
+			panel_2.add(panelTarifa);
 		}
-
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(0, 0, 0));
@@ -1093,7 +1028,7 @@ public class HomeView {
 		lblNewLabel.setBounds(60, 11, 105, 28);
 		panel_3.add(lblNewLabel);
 		// tarifas//////////////////////////////////////////////////////////////////////
-	
+
 		JButton boton_editar_tarifas = new JButton("Editar tarifas");
 		boton_editar_tarifas.setBackground(new Color(255, 205, 17));
 		boton_editar_tarifas.setFont(new Font("Anton", Font.PLAIN, 16));
@@ -1164,15 +1099,15 @@ public class HomeView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		panel.add(boton_CLASES);
@@ -1251,10 +1186,10 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
+
 	public void Instructores(List<Instructor> instructores) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -1324,17 +1259,14 @@ public class HomeView {
 		panel_2.add(scrollPane);
 		// tabla/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		
-
 		String[] columnNames = { "ID", "Nombre", "Especialidad", "Correo", "Detalles", "Eliminar" };
 
-		DefaultTableModel model = new DefaultTableModel(columnNames,0) {
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return column == 4 || column == 5;
 			}
 		};
-		
 
 		JTable table = new JTable(model);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
@@ -1346,9 +1278,9 @@ public class HomeView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
-		
+
 		for (Instructor instructor : instructores) {
-			Object[] fila = { instructor.getId(), instructor.getNombre(), instructor.getEspecialidad(), 
+			Object[] fila = { instructor.getId(), instructor.getNombre(), instructor.getEspecialidad(),
 					instructor.getCorreo(), "", "" };
 			model.addRow(fila);
 		}
@@ -1431,15 +1363,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -1518,7 +1450,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -1562,12 +1494,14 @@ public class HomeView {
 	}
 
 	// Editor para que los botones con imagen funcionen en tabla
+// Editor para que los botones con imagen funcionen en tabla
 	public class ButtonEditor2 extends DefaultCellEditor {
 		protected JButton button;
 		private String label;
 		private boolean clicked;
 		private int row;
 		private JTable table;
+		private boolean debeEliminar = false;
 
 		public ButtonEditor2(JCheckBox checkBox, String label, JTable table) {
 			super(checkBox);
@@ -1588,7 +1522,7 @@ public class HomeView {
 			}
 			button.setText(null); // Sin texto
 
-			button.addActionListener(e -> fireEditingStopped());
+			// NO LLAMES fireEditingStopped aquí
 		}
 
 		private ImageIcon loadIcon(String path) {
@@ -1608,6 +1542,11 @@ public class HomeView {
 				int column) {
 			this.row = row;
 			clicked = true;
+
+			// 🔧 Importante: detener la edición antes de realizar acciones que modifican la
+			// tabla
+			SwingUtilities.invokeLater(() -> fireEditingStopped());
+
 			return button;
 		}
 
@@ -1615,73 +1554,95 @@ public class HomeView {
 		public Object getCellEditorValue() {
 			if (clicked) {
 				if (label.equals("Eliminar")) {
+					int idInstructor = (int) table.getValueAt(row, 0);
+
 					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-	                dialog.setSize(400, 220);
-	                dialog.setLocationRelativeTo(null);
-	                dialog.setUndecorated(true);
-	                dialog.setLayout(null);
+					dialog.setSize(400, 220);
+					dialog.setLocationRelativeTo(null);
+					dialog.setUndecorated(true);
+					dialog.setLayout(null);
 
-	                // Panel principal de la alerta
-	                JPanel confirmar_eliminacion = new JPanel();
-	                confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-	                confirmar_eliminacion.setBounds(0, 0, 400, 220);
-	                confirmar_eliminacion.setLayout(null);
-	                dialog.add(confirmar_eliminacion);
+					JPanel confirmar_eliminacion = new JPanel();
+					confirmar_eliminacion.setBackground(new Color(255, 255, 255));
+					confirmar_eliminacion.setBounds(0, 0, 400, 220);
+					confirmar_eliminacion.setLayout(null);
+					dialog.add(confirmar_eliminacion);
 
-	                // Panel superior de la alerta (azul)
-	                JPanel panel_complemento = new JPanel();
-	                panel_complemento.setBackground(new Color(81, 151, 255));
-	                panel_complemento.setBounds(0, 0, 400, 33);
-	                confirmar_eliminacion.add(panel_complemento);
+					JPanel panel_complemento = new JPanel();
+					panel_complemento.setBackground(new Color(81, 151, 255));
+					panel_complemento.setBounds(0, 0, 400, 33);
+					confirmar_eliminacion.add(panel_complemento);
 
-	                // Etiqueta de confirmación
-	                JLabel pregunta_de_confirmacion = new JLabel(
-	                        "<html><div style='text-align: center;'>El instructor se borrará permanentemente<br>¿Desea continuar?</div></html>");
-	                pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-	                pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-	                confirmar_eliminacion.add(pregunta_de_confirmacion);
+					JLabel pregunta_de_confirmacion = new JLabel(
+							"<html><div style='text-align: center;'>El instructor se borrará permanentemente<br>¿Desea continuar?</div></html>");
+					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
+					pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
+					confirmar_eliminacion.add(pregunta_de_confirmacion);
 
-	                // Botón "Cancelar"
-	                JButton boton_cancelar_alerta = new JButton("Cancelar");
-	                boton_cancelar_alerta.setForeground(Color.WHITE);
-	                boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_cancelar_alerta.setBackground(Color.RED);
-	                boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_cancelar_alerta);
+					JButton boton_cancelar_alerta = new JButton("Cancelar");
+					boton_cancelar_alerta.setForeground(Color.WHITE);
+					boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_cancelar_alerta.setBackground(Color.RED);
+					boton_cancelar_alerta.setBounds(50, 140, 120, 35);
+					confirmar_eliminacion.add(boton_cancelar_alerta);
 
-	                // Botón "Aceptar"
-	                JButton boton_aceptar = new JButton("Aceptar");
-	                boton_aceptar.setBackground(new Color(0, 206, 82));
-	                boton_aceptar.setForeground(Color.WHITE);
-	                boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-	                boton_aceptar.setBounds(230, 140, 120, 35);
-	                confirmar_eliminacion.add(boton_aceptar);
+					JButton boton_aceptar = new JButton("Aceptar");
+					boton_aceptar.setBackground(new Color(0, 206, 82));
+					boton_aceptar.setForeground(Color.WHITE);
+					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_aceptar.setBounds(230, 140, 120, 35);
+					confirmar_eliminacion.add(boton_aceptar);
 
-	                // Acción al hacer clic en "Cancelar"
-	                boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+					boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
+					
+					
+					
+					boton_aceptar.addActionListener(ev -> {
+					    dialog.dispose();
 
-	                // Acción al hacer clic en "Aceptar"
-	                boton_aceptar.addActionListener(ev -> {
-	                    dialog.dispose();
-	                    
-	                });
+					    if (row >= 0 && row < table.getRowCount()) {
+					        try {
+					          
 
-	                dialog.setVisible(true);
+					        	UsersModel model = new UsersModel();
+					            boolean eliminado = model.eliminarInstructor(idInstructor);
+
+					            if (eliminado) {
+					                debeEliminar = true; // ← Esperar para eliminar
+					                JOptionPane.showMessageDialog(null, "Instructor eliminado correctamente.");
+					            } else {
+					                JOptionPane.showMessageDialog(null, "No se pudo eliminar el instructor.");
+					            }
+
+					        } catch (Exception ex) {
+					            ex.printStackTrace();
+					            JOptionPane.showMessageDialog(null, "Error al eliminar el instructor.");
+					        }
+					    }
+					});
+
+					dialog.setVisible(true);
+
 				} else if (label.equals("Detalles")) {
-					int idInstructor = (int) table.getValueAt(row, 0); // Obtén el nombre
+					int idInstructor = (int) table.getValueAt(row, 0);
 					Window window = SwingUtilities.getWindowAncestor(table);
-					if (window != null) {
+					if (window != null)
 						window.dispose();
-					}
 
 					UsersController uc = new UsersController();
-		            uc.Ficha_de_instructor(idInstructor); 
-					// Aquí abre un formulario para editar la fila,
-					// luego guarda cambios en la base de datos con un UPDATE,
-					// y recarga la tabla con los datos actualizados.
+					uc.Ficha_de_instructor(idInstructor);
 				}
 			}
+
 			clicked = false;
+			if (debeEliminar && row >= 0 && row < table.getRowCount()) {
+			    SwingUtilities.invokeLater(() -> {
+			        if (row >= 0 && row < table.getRowCount()) {
+			            ((DefaultTableModel) table.getModel()).removeRow(row);
+			        }
+			    });
+			    debeEliminar = false;
+			}
 			return label;
 		}
 
@@ -1695,7 +1656,6 @@ public class HomeView {
 		protected void fireEditingStopped() {
 			super.fireEditingStopped();
 		}
-
 	}
 
 	public void Clases(List<Clase> clases) {
@@ -1768,34 +1728,28 @@ public class HomeView {
 		// TAbla de
 		// clases////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	    String[] columnNames = { "ID", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir", "Registros" };
-	    DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
-	        @Override
-	        public boolean isCellEditable(int row, int column) {
-	            return column == 5 || column == 6;
-	        }
-	    };
-	    for (Clase clase : clases) {
-	        // Obtener información del entrenador (necesitarías agregar este método)
-	        String nombreEntrenador = obtenerNombreEntrenador(clase.getIdUsuario());
-	        
-	        // Obtener horarios formateados
-	        String horarios = formatearHorarios(clase.getHorarios());
-	        
-	        // Obtener turnos (podrías tener múltiples turnos)
-	        String turnos = formatearTurnos(clase.getHorarios());
-	        
-	        // Agregar fila a la tabla
-	        model.addRow(new Object[]{
-	            clase.getIdClase(),
-	            clase.getNombreClase(),
-	            nombreEntrenador,
-	            turnos,
-	            horarios,
-	            "Inscribir",
-	            "Registros"
-	        });
-	    }
+		String[] columnNames = { "ID", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Inscribir",
+				"Registros" };
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column == 5 || column == 6;
+			}
+		};
+		for (Clase clase : clases) {
+			// Obtener información del entrenador (necesitarías agregar este método)
+			String nombreEntrenador = obtenerNombreEntrenador(clase.getIdUsuario());
+
+			// Obtener horarios formateados
+			String horarios = formatearHorarios(clase.getHorarios());
+
+			// Obtener turnos (podrías tener múltiples turnos)
+			String turnos = formatearTurnos(clase.getHorarios());
+
+			// Agregar fila a la tabla
+			model.addRow(new Object[] { clase.getIdClase(), clase.getNombreClase(), nombreEntrenador, turnos, horarios,
+					"Inscribir", "Registros" });
+		}
 		JTable table = new JTable(model);
 		table.setFont(new Font("Anton", Font.PLAIN, 12));
 		table.setBackground(new Color(204, 204, 204));
@@ -1967,43 +1921,44 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
 	private String obtenerNombreEntrenador(int idUsuario) {
-	    InstrucoresModel model = new InstrucoresModel(); 
-	    Map<String, String> datos = model.obtenerDatosCompletosInstructor(idUsuario);
-	    return datos.getOrDefault("nombre", "Sin nombre");
+		InstrucoresModel model = new InstrucoresModel();
+		Map<String, String> datos = model.obtenerDatosCompletosInstructor(idUsuario);
+		return datos.getOrDefault("nombre", "Sin nombre");
 	}
 
 	private String formatearHorarios(List<ClaseHorario> horarios) {
-	    if (horarios == null || horarios.isEmpty()) {
-	        return "Sin horario";
-	    }
-	    
-	    StringBuilder sb = new StringBuilder();
-	    for (ClaseHorario horario : horarios) {
-	        if (sb.length() > 0) {
-	            sb.append(", ");
-	        }
-	        sb.append(horario.getDiaSemana().toString());
-	    }
-	    return sb.toString();
+		if (horarios == null || horarios.isEmpty()) {
+			return "Sin horario";
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (ClaseHorario horario : horarios) {
+			if (sb.length() > 0) {
+				sb.append(", ");
+			}
+			sb.append(horario.getDiaSemana().toString());
+		}
+		return sb.toString();
 	}
 
 	private String formatearTurnos(List<ClaseHorario> horarios) {
-	    if (horarios == null || horarios.isEmpty()) {
-	        return "Sin turno";
-	    }
-	    
-	    StringBuilder sb = new StringBuilder();
-	    for (ClaseHorario horario : horarios) {
-	        if (sb.length() > 0) {
-	            sb.append(", ");
-	        }
-	        sb.append(horario.getTurno().toString());
-	    }
-	    return sb.toString();
+		if (horarios == null || horarios.isEmpty()) {
+			return "Sin turno";
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (ClaseHorario horario : horarios) {
+			if (sb.length() > 0) {
+				sb.append(", ");
+			}
+			sb.append(horario.getTurno().toString());
+		}
+		return sb.toString();
 	}
 
 	// Renderer para mostrar botones en tabla
@@ -2132,9 +2087,8 @@ public class HomeView {
 
 					// Texto explicativo
 					JLabel pregunta_de_confirmacion = new JLabel(
-					    "<html><div style='text-align: center;'>Ingrese el ID del usuario a inscribir a la clase:</div></html>",
-					    SwingConstants.CENTER
-					);
+							"<html><div style='text-align: center;'>Ingrese el ID del usuario a inscribir a la clase:</div></html>",
+							SwingConstants.CENTER);
 					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
 					pregunta_de_confirmacion.setBounds(25, 40, 350, 40);
 					id_de_usuario_clase.add(pregunta_de_confirmacion);
@@ -2161,14 +2115,71 @@ public class HomeView {
 
 					// Acción del botón Aceptar
 					boton_aceptar.addActionListener(e -> {
-					    String idUsuario = textField.getText().trim();
-					    if (!idUsuario.isEmpty()) {
-					        // Aquí haces lo que necesitas con el ID, como inscribir al usuario
-					        System.out.println("ID ingresado: " + idUsuario);
-					        idDialog.dispose();
-					    } else {
-					        JOptionPane.showMessageDialog(idDialog, "Por favor, ingrese un ID válido.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-					    }
+						String idUsuario = textField.getText().trim();
+						if (!idUsuario.isEmpty()) {
+							try {
+								int idUsuarioInt = Integer.parseInt(idUsuario);
+								int idClase = (int) table.getValueAt(row, 0); // ID clase de esa fila
+
+								Connection conn = new ConectionModel().getConnection();
+
+								// Verificar que el usuario existe y es cliente (id_rol = 2)
+								String verificarUsuario = "SELECT COUNT(*) FROM usuario WHERE id_usuario = ? AND id_rol = 2";
+								try (PreparedStatement verificarStmt = conn.prepareStatement(verificarUsuario)) {
+									verificarStmt.setInt(1, idUsuarioInt);
+									ResultSet rs = verificarStmt.executeQuery();
+									if (rs.next() && rs.getInt(1) == 0) {
+										JOptionPane.showMessageDialog(idDialog,
+												"Solo se pueden inscribir usuarios con rol de cliente.",
+												"Usuario no válido", JOptionPane.WARNING_MESSAGE);
+										return;
+									}
+								}
+
+								// Obtener el nuevo ID de inscripción
+								int nuevoIdInscripcion = 1;
+								String sqlId = "SELECT MAX(id_inscripcion) FROM inscripcion";
+								try (PreparedStatement stmt = conn.prepareStatement(sqlId);
+										ResultSet rs = stmt.executeQuery()) {
+									if (rs.next()) {
+										nuevoIdInscripcion = rs.getInt(1) + 1;
+									}
+								}
+
+								// Llamar al método del modelo
+								ClaseModel claseModel = new ClaseModel(conn);
+								int resultado = claseModel.inscribirUsuarioAClase(nuevoIdInscripcion, idUsuarioInt,
+										idClase);
+
+								switch (resultado) {
+								case 1:
+									JOptionPane.showMessageDialog(idDialog,
+											"Usuario inscrito correctamente a la clase.");
+									break;
+								case 0:
+									JOptionPane.showMessageDialog(idDialog,
+											"El usuario ya está inscrito en esta clase.");
+									break;
+								default:
+									JOptionPane.showMessageDialog(idDialog,
+											"No se pudo inscribir al usuario. Verifica los datos.");
+								}
+
+								idDialog.dispose();
+
+							} catch (NumberFormatException nfe) {
+								JOptionPane.showMessageDialog(idDialog, "El ID debe ser un número entero.",
+										"Error de formato", JOptionPane.ERROR_MESSAGE);
+							} catch (Exception ex) {
+								ex.printStackTrace();
+								JOptionPane.showMessageDialog(idDialog, "Error de base de datos.", "Error",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+						} else {
+							JOptionPane.showMessageDialog(idDialog, "Por favor, ingrese un ID válido.", "Campo vacío",
+									JOptionPane.WARNING_MESSAGE);
+						}
 					});
 
 					// Botón Cancelar
@@ -2184,7 +2195,6 @@ public class HomeView {
 
 					// Mostrar el diálogo
 					idDialog.setVisible(true);
-
 
 					// Aquí abre un formulario para editar la fila,
 					// luego guarda cambios en la base de datos con un UPDATE,
@@ -2366,8 +2376,6 @@ public class HomeView {
 		boton_Añadir_entrada.setBounds(724, 503, 184, 50);
 		panel_2.add(boton_Añadir_entrada);
 
-		
-
 		// botones
 		// laterales/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO = new JButton("INICIO");
@@ -2428,15 +2436,15 @@ public class HomeView {
 		boton_CLASES.setBounds(10, 414, 136, 71);
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		        HomeController hc = new HomeController();
-		        try {
-		            hc.Clases(); 
-		        } catch (SQLException ex) {
-		            ex.printStackTrace(); 
-		            JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-		        }
-		    }
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
 		});
 		panel.add(boton_CLASES);
 
@@ -2507,7 +2515,7 @@ public class HomeView {
 		frame.add(panel);
 		frame.repaint();
 		frame.revalidate();
-		frame.setLocationRelativeTo(null); 
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 //		JPanel ID_cliente_entrada = new JPanel();

@@ -1,11 +1,13 @@
 package controllers;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import models.Clase;
 import models.ClaseModel;
+import models.ConectionModel;
 import models.InstrucoresModel;
 import models.Instructor;
 import models.Tarifa;
@@ -43,10 +45,16 @@ public class HomeController {
 		instructores = im.getall();
 		vista.Instructores(instructores);
 	}
-	public void Clases() throws SQLException {
-		ClaseModel cm = new ClaseModel();
-        clases = cm.obtenerTodasLasClases();
-        vista.Clases(clases);
+	public void Clases() {
+	    try {
+	        Connection conn = new ConectionModel().getConnection(); // Obtener conexión
+	        ClaseModel cm = new ClaseModel(conn);                   // Usar el constructor correcto
+	        clases = cm.obtenerTodasLasClases();
+	        vista.Clases(clases);
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	        // Puedes mostrar un error en la vista si lo deseas
+	    }
 	}
 	public void Panel_checador() {
 		vista.Panel_checador();

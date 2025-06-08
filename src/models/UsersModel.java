@@ -408,4 +408,58 @@ public class UsersModel {
 
 		return clientes;
 	}
+	
+	// En UsersModel o InstructorModel
+	public boolean eliminarInstructor(int idInstructor) {
+	    Connection conn = null;
+	    PreparedStatement psDeleteHorarios = null;
+	    PreparedStatement psDeleteClases = null;
+	    PreparedStatement psDeleteUsuario = null;
+
+	    try {
+	        conn = new ConectionModel().getConnection();
+	        conn.setAutoCommit(false); // 🔒 Empezar transacción
+
+	        // 1. Eliminar horarios de clases que imparte este instructor
+	        String sqlDeleteHorarios = """
+	            DELETE ch FROM clase_horario ch
+	            JOIN clase c ON ch.id_clase = c.id_clase
+	            WHERE c.id_usuario = ?
+	        """;
+	        psDeleteHorarios = conn.prepareStatement(sqlDeleteHorarios);
+	        psDeleteHorarios.setInt(1, idInstructor);
+	        psDeleteHorarios.executeUpdate();
+
+	        // 2. Eliminar clases del instructor
+	        String sqlDeleteClases = "DELETE FROM clase WHERE id_usuario = ?";
+	        psDeleteClases = conn.prepareStatement(sqlDeleteClases);
+	        psDeleteClases.setInt(1, idInstructor);
+	        psDeleteClases.executeUpdate();
+
+	        // 3. Eliminar al instructor de la tabla usuario
+	        String sqlDeleteUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 3";
+	        psDeleteUsuario = conn.prepareStatement(sqlDeleteUsuario);
+	        psDeleteUsuario.setInt(1, idInstructor);
+	        int filas = psDeleteUsuario.executeUpdate();
+
+	        conn.commit(); // ✅ Confirmar
+	        return filas > 0;
+
+	    } catch (SQLException e) {
+	        if (conn != null) try { conn.rollback(); } catch (SQLException ignored) {}
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        try {
+	            if (psDeleteHorarios != null) psDeleteHorarios.close();
+	            if (psDeleteClases != null) psDeleteClases.close();
+	            if (psDeleteUsuario != null) psDeleteUsuario.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
+
 }

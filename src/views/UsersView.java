@@ -15,9 +15,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -48,6 +50,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import controllers.HomeController;
 import controllers.UsersController;
+import models.Clase;
+import models.ClaseModel;
 import models.ConectionModel;
 import models.InstrucoresModel;
 import models.UsersModel;
@@ -58,7 +62,19 @@ import models.User;
 public class UsersView {
 	private boolean cambiosRealizados = false;
 	private Font antonFont;
-
+	
+	private int obtenerIdEntrenadorPorNombre(String nombreEntrenador, Connection conn) throws SQLException {
+	    String sql = "SELECT id_usuario FROM usuario WHERE nombre = ? AND id_rol = 3"; // 3 = Entrenador
+	    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        stmt.setString(1, nombreEntrenador);
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_usuario");
+	        } else {
+	            throw new SQLException("No se encontró el entrenador con ese nombre.");
+	        }
+	    }
+	}
 	private void cargarFuentePersonalizada() {
 		try {
 			antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf"))
@@ -407,7 +423,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -1248,7 +1264,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -1603,7 +1619,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -1876,7 +1892,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -1893,7 +1909,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -2211,7 +2227,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -2846,7 +2862,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -3278,7 +3294,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -3618,7 +3634,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -3954,7 +3970,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -4207,7 +4223,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -4568,7 +4584,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -4839,7 +4855,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -5248,7 +5264,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -5649,7 +5665,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -6202,7 +6218,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -6312,6 +6328,8 @@ public class UsersView {
 		}
 	}
 
+	
+	
 	public void Registro_de_clase(int nombreclase) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -6397,21 +6415,59 @@ public class UsersView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
-
-		Object[][] data2 = { { 3, "Renata", "Ochoa", "612 765 0000", "Renata_123@gmail.com" } };
-
-		String[] columnas2 = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico",
-				"Eliminar" };
-
-		JScrollPane scrollPane_Pagos = new JScrollPane();// tabla de pagos
-		scrollPane_Pagos.setBounds(10, 128, 898, 56);
+		
+		JScrollPane scrollPane_Pagos = new JScrollPane();
+		scrollPane_Pagos.setBounds(10, 128, 898, 371);
 		panel_2.add(scrollPane_Pagos);
-		DefaultTableModel model = new DefaultTableModel(data2, columnas2) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return column == 5;
-			}
-		};
+
+		DefaultTableModel model;
+
+		try {
+		    Connection conn = new ConectionModel().getConnection();
+		    PreparedStatement stmt = conn.prepareStatement(
+		        "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, u.telefono, u.correo " +
+		        "FROM inscripcion i " +
+		        "JOIN usuario u ON i.id_usuario = u.id_usuario " +
+		        "WHERE i.id_clase = ? AND u.id_rol = 2"
+		    );
+		    stmt.setInt(1, nombreclase); // El ID de la clase que viene como parámetro
+
+		    ResultSet rs = stmt.executeQuery();
+
+		    Vector<String> columnNames1 = new Vector<>(Arrays.asList(
+		        "ID cliente", "Nombre(s)", "Primer apellido", "Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar"
+		    ));
+		    Vector<Vector<Object>> data1 = new Vector<>();
+
+		    while (rs.next()) {
+		        Vector<Object> row = new Vector<>();
+		        row.add(rs.getInt("id_usuario"));
+		        row.add(rs.getString("nombre"));
+		        row.add(rs.getString("primer_apellido"));
+		        row.add(rs.getString("segundo_apellido"));
+		        row.add(rs.getString("telefono"));
+		        row.add(rs.getString("correo"));
+		        row.add("Eliminar"); // Texto que activa el botón
+		        data1.add(row);
+		    }
+
+		    rs.close();
+		    stmt.close();
+		    conn.close();
+
+		    model = new DefaultTableModel(data1, columnNames1) {
+		        @Override
+		        public boolean isCellEditable(int row, int column) {
+		            return column == 6; // Solo el botón "Eliminar" es editable
+		        }
+		    };
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    model = new DefaultTableModel(new Object[][] {}, new String[] {
+		        "ID cliente", "Nombre(s)", "Primer apellido", "Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar"
+		    });
+		}
 
 		JTable table_1 = new JTable(model);
 		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
@@ -6424,42 +6480,41 @@ public class UsersView {
 		header2.setForeground(Color.WHITE);
 		header2.setFont(new Font("Anton", Font.PLAIN, 14));
 		header2.setReorderingAllowed(false);
-		scrollPane_Pagos.setViewportView(table_1);
 
 		// Renderizar botones en la tabla
 		table_1.getColumn("Eliminar").setCellRenderer(new ButtonRenderer3("Eliminar"));
-		table_1.getColumn("Eliminar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table_1));
-
-		// Botón Añadir cliente
+		table_1.getColumn("Eliminar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table_1, nombreclase));
+		
+		
 		JButton boton_descargar = new JButton("Descargar");
-		boton_descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		boton_descargar.setForeground(new Color(0, 0, 0));
-		boton_descargar.setBackground(new Color(255, 205, 17));
-		boton_descargar.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_descargar.setBounds(763, 510, 145, 43);
-		panel_2.add(boton_descargar);
-
-		JButton boton_regresar = new JButton("Regresar");
-		boton_regresar.setForeground(Color.BLACK);
-		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
-		boton_regresar.setBackground(new Color(255, 205, 17));
-		boton_regresar.setBounds(608, 510, 145, 43);
-		boton_regresar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				try {
-					hc.Clases();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-				}
-			}
-		});
-		panel_2.add(boton_regresar);
+        boton_descargar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        boton_descargar.setForeground(new Color(0, 0, 0));
+        boton_descargar.setBackground(new Color(255, 205, 17));
+        boton_descargar.setFont(new Font("Anton", Font.PLAIN, 14));
+        boton_descargar.setBounds(763, 510, 145, 43);
+        panel_2.add(boton_descargar);
+        
+        JButton boton_regresar = new JButton("Regresar");
+        boton_regresar.setForeground(Color.BLACK);
+        boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
+        boton_regresar.setBackground(new Color(255, 205, 17));
+        boton_regresar.setBounds(608, 510, 145, 43);
+        boton_regresar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                HomeController hc = new HomeController();
+                try {
+                    hc.Clases();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+                }
+            }
+        });
+        panel_2.add(boton_regresar);
 
 		// Botones laterales de la ventana
 		JButton boton_INICIO = new JButton("INICIO");
@@ -6644,11 +6699,14 @@ public class UsersView {
 		private boolean clicked;
 		private int row;
 		private JTable table_1;
+		private int nombreclase;
+		private boolean debeEliminar = false;
 
-		public ButtonEditor3(JCheckBox checkBox, String label, JTable table) {
+		public ButtonEditor3(JCheckBox checkBox, String label, JTable table, int nombreclase) {
 			super(checkBox);
 			this.label = label;
 			this.table_1 = table;
+			this.nombreclase = nombreclase;
 			button = new JButton();
 			button.setOpaque(true);
 			button.setForeground(Color.BLACK);
@@ -6740,12 +6798,42 @@ public class UsersView {
 					boton_aceptar.addActionListener(ev -> {
 						dialog.dispose();
 
+						if (row >= 0 && row < table_1.getRowCount()) {
+							try {
+								int idUsuario = (int) table_1.getValueAt(row, 0);
+								Connection conn = new ConectionModel().getConnection();
+								PreparedStatement ps = conn.prepareStatement("DELETE FROM inscripcion WHERE id_usuario = ? AND id_clase = ?");
+								ps.setInt(1, idUsuario);
+								ps.setInt(2, nombreclase);
+								ps.executeUpdate();
+								ps.close();
+								conn.close();
+
+								// ✅ NO eliminar aquí directamente
+								debeEliminar = true;
+								JOptionPane.showMessageDialog(null, "Miembro eliminado de la clase.");
+
+							} catch (SQLException ex) {
+								ex.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Error al eliminar inscripción.");
+							}
+						}
 					});
+
+
 
 					dialog.setVisible(true); // Mostrar el diálogo de confirmación
 				}
 			}
 			clicked = false;
+			if (debeEliminar && row >= 0 && row < table_1.getRowCount()) {
+				SwingUtilities.invokeLater(() -> {
+					if (row >= 0 && row < table_1.getRowCount()) {
+						((DefaultTableModel) table_1.getModel()).removeRow(row);
+					}
+				});
+				debeEliminar = false;
+			}
 			return label;
 
 		}
@@ -6831,7 +6919,24 @@ public class UsersView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { { 1, "YOGA RELAX", "Laura Mendez", "VESPERTINO", "Lunes y Viernes ", "", "" } };
+		ClaseModel modelClase = new ClaseModel(new ConectionModel().getConnection());
+		List<Clase> clases = modelClase.obtenerTodasLasClases(); // Debes tener este método ya implementado
+
+		Object[][] data = new Object[clases.size()][7];
+
+		for (int i = 0; i < clases.size(); i++) {
+		    Clase c = clases.get(i);
+		    String dias = modelClase.getDiasPorClase(c.getIdClase());  // ← Aquí traes los días reales
+
+		    data[i][0] = c.getIdClase();
+		    data[i][1] = c.getNombreClase();
+		    data[i][2] = c.getNombreEntrenador();
+		    data[i][3] = c.getTurno();
+		    data[i][4] = dias;  // 👈 ahora sí, días reales
+		    data[i][5] = "Editar";
+		    data[i][6] = "Eliminar";
+		}
+
 
 		String[] columnNames = { "ID de clase", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar",
 				"Eliminar" };
@@ -6887,7 +6992,7 @@ public class UsersView {
 				HomeController hc = new HomeController();
 				try {
 					hc.Clases();
-				} catch (SQLException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
 				}
@@ -7074,139 +7179,156 @@ public class UsersView {
 
 	// Editor para que los botones con imagen funcionen en tabla
 	public class ButtonEditor extends DefaultCellEditor {
-		protected JButton button;
-		private String label;
-		private boolean clicked;
-		private int row;
-		private JTable table;
+	protected JButton button;
+	private String label;
+	private boolean clicked;
+	private int row;
+	private JTable table;
+	private boolean debeEliminar = false;
 
-		public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
-			super(checkBox);
-			this.label = label;
-			this.table = table;
-			button = new JButton();
-			button.setOpaque(true);
-			button.setForeground(Color.BLACK);
-			button.setBackground(new Color(255, 205, 17));
-			button.setFont(new Font("Anton", Font.PLAIN, 14));
-			button.setHorizontalAlignment(SwingConstants.CENTER);
+	public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
+		super(checkBox);
+		this.label = label;
+		this.table = table;
+		button = new JButton();
+		button.setOpaque(true);
+		button.setForeground(Color.BLACK);
+		button.setBackground(label.equals("Eliminar") ? new Color(255, 0, 0) : new Color(255, 205, 17));
+		button.setFont(new Font("Anton", Font.PLAIN, 14));
+		button.setHorizontalAlignment(SwingConstants.CENTER);
 
-			// Cargar icono según etiqueta
-			if (label.equals("Editar")) {
-				button.setIcon(loadIcon("/Imagenes/editar.png"));
-			} else if (label.equals("Eliminar")) {
-				button.setIcon(loadIcon("/Imagenes/eliminar.png"));
-			}
-			button.setText(null); // Sin texto
-
-			button.addActionListener(e -> fireEditingStopped());
+		// Cargar icono
+		if (label.equals("Editar")) {
+			button.setIcon(loadIcon("/Imagenes/editar.png"));
+		} else if (label.equals("Eliminar")) {
+			button.setIcon(loadIcon("/Imagenes/eliminar.png"));
 		}
+		button.setText(null);
 
-		private ImageIcon loadIcon(String path) {
-			java.net.URL imgURL = getClass().getResource(path);
-			if (imgURL != null) {
-				ImageIcon icon = new ImageIcon(imgURL);
-				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-				return new ImageIcon(img);
-			} else {
-				System.err.println("No se pudo encontrar la imagen: " + path);
-				return null;
-			}
-		}
+		button.addActionListener(e -> fireEditingStopped());
+	}
 
-		@Override
-		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
-				int column) {
-			this.row = row;
-			clicked = true;
-			return button;
-		}
-
-		@Override
-		public Object getCellEditorValue() {
-			if (clicked) {
-				if (label.equals("Editar")) {
-					int idclase = (int) table.getValueAt(row, 0); // Obtén el nombre
-					Window window = SwingUtilities.getWindowAncestor(table);
-					if (window != null) {
-						window.dispose();
-					}
-					UsersController uc = new UsersController();
-					uc.Editar_clases(idclase);
-					// Aquí conecta con la base de datos para borrar el registro según el ID de la
-					// fila seleccionada
-					// y luego actualiza la tabla recargando datos.
-				} else if (label.equals("Eliminar")) {
-
-					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-					dialog.setSize(400, 220);
-					dialog.setLocationRelativeTo(null);
-					dialog.setUndecorated(true);
-					dialog.setLayout(null);
-
-					// Panel principal de la alerta
-					JPanel confirmar_eliminacion = new JPanel();
-					confirmar_eliminacion.setBackground(new Color(255, 255, 255));
-					confirmar_eliminacion.setBounds(0, 0, 400, 220);
-					confirmar_eliminacion.setLayout(null);
-					dialog.add(confirmar_eliminacion);
-
-					// Panel superior de la alerta (azul)
-					JPanel panel_complemento = new JPanel();
-					panel_complemento.setBackground(new Color(81, 151, 255));
-					panel_complemento.setBounds(0, 0, 400, 33);
-					confirmar_eliminacion.add(panel_complemento);
-
-					// Etiqueta de confirmación
-					JLabel pregunta_de_confirmacion = new JLabel(
-							"<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
-					pregunta_de_confirmacion.setFont(new Font("Anton", Font.PLAIN, 16));
-					pregunta_de_confirmacion.setBounds(66, 44, 346, 59);
-					confirmar_eliminacion.add(pregunta_de_confirmacion);
-
-					// Botón "Cancelar"
-					JButton boton_cancelar_alerta = new JButton("Cancelar");
-					boton_cancelar_alerta.setForeground(Color.WHITE);
-					boton_cancelar_alerta.setFont(new Font("Anton", Font.PLAIN, 14));
-					boton_cancelar_alerta.setBackground(Color.RED);
-					boton_cancelar_alerta.setBounds(50, 140, 120, 35);
-					confirmar_eliminacion.add(boton_cancelar_alerta);
-
-					// Botón "Aceptar"
-					JButton boton_aceptar = new JButton("Aceptar");
-					boton_aceptar.setBackground(new Color(0, 206, 82));
-					boton_aceptar.setForeground(Color.WHITE);
-					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-					boton_aceptar.setBounds(230, 140, 120, 35);
-					confirmar_eliminacion.add(boton_aceptar);
-
-					// Acción al hacer clic en "Cancelar"
-					boton_cancelar_alerta.addActionListener(ev -> dialog.dispose());
-
-					// Acción al hacer clic en "Aceptar"
-					boton_aceptar.addActionListener(ev -> {
-						dialog.dispose();
-
-					});
-
-					dialog.setVisible(true);
-				}
-			}
-			clicked = false;
-			return label;
-		}
-
-		@Override
-		public boolean stopCellEditing() {
-			clicked = false;
-			return super.stopCellEditing();
-		}
-
-		@Override
-		protected void fireEditingStopped() {
-			super.fireEditingStopped();
+	private ImageIcon loadIcon(String path) {
+		java.net.URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
+			ImageIcon icon = new ImageIcon(imgURL);
+			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			return new ImageIcon(img);
+		} else {
+			System.err.println("No se pudo encontrar la imagen: " + path);
+			return null;
 		}
 	}
+
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		this.row = row;
+		clicked = true;
+		return button;
+	}
+
+	@Override
+	public Object getCellEditorValue() {
+		if (clicked) {
+			if (label.equals("Editar")) {
+				if (row >= 0 && row < table.getRowCount()) {
+					try {
+						int idclase = (int) table.getValueAt(row, 0);
+						Window window = SwingUtilities.getWindowAncestor(table);
+						if (window != null) window.dispose();
+
+						UsersController uc = new UsersController();
+						uc.Editar_clases(idclase);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al editar la clase.");
+					}
+				}
+			} else if (label.equals("Eliminar")) {
+				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+				dialog.setSize(400, 220);
+				dialog.setLocationRelativeTo(null);
+				dialog.setUndecorated(true);
+				dialog.setLayout(null);
+
+				JPanel confirmar_eliminacion = new JPanel();
+				confirmar_eliminacion.setBackground(Color.WHITE);
+				confirmar_eliminacion.setBounds(0, 0, 400, 220);
+				confirmar_eliminacion.setLayout(null);
+				dialog.add(confirmar_eliminacion);
+
+				JPanel panel_complemento = new JPanel();
+				panel_complemento.setBackground(new Color(81, 151, 255));
+				panel_complemento.setBounds(0, 0, 400, 33);
+				confirmar_eliminacion.add(panel_complemento);
+
+				JLabel pregunta = new JLabel("<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
+				pregunta.setFont(new Font("Anton", Font.PLAIN, 16));
+				pregunta.setBounds(66, 44, 346, 59);
+				confirmar_eliminacion.add(pregunta);
+
+				JButton boton_cancelar = new JButton("Cancelar");
+				boton_cancelar.setForeground(Color.WHITE);
+				boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_cancelar.setBackground(Color.RED);
+				boton_cancelar.setBounds(50, 140, 120, 35);
+				confirmar_eliminacion.add(boton_cancelar);
+
+				JButton boton_aceptar = new JButton("Aceptar");
+				boton_aceptar.setBackground(new Color(0, 206, 82));
+				boton_aceptar.setForeground(Color.WHITE);
+				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+				boton_aceptar.setBounds(230, 140, 120, 35);
+				confirmar_eliminacion.add(boton_aceptar);
+
+				boton_cancelar.addActionListener(ev -> dialog.dispose());
+
+				boton_aceptar.addActionListener(ev -> {
+					dialog.dispose();
+					if (row >= 0 && row < table.getRowCount()) {
+						try {
+							int idClase = (int) table.getValueAt(row, 0);
+							ClaseModel modelClase = new ClaseModel(new ConectionModel().getConnection());
+							modelClase.eliminarClase(idClase);
+							debeEliminar = true;
+							JOptionPane.showMessageDialog(null, "Clase eliminada correctamente.");
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Error al eliminar la clase.");
+						}
+					}
+				});
+
+				dialog.setVisible(true);
+			}
+		}
+
+		clicked = false;
+
+		if (debeEliminar && row >= 0 && row < table.getRowCount()) {
+		    // Esperar a que Swing termine el ciclo de edición
+		    SwingUtilities.invokeLater(() -> {
+		        if (row >= 0 && row < table.getRowCount()) {
+		            ((DefaultTableModel) table.getModel()).removeRow(row);
+		        }
+		    });
+		    debeEliminar = false;
+		}
+
+		return label;
+	}
+
+	@Override
+	public boolean stopCellEditing() {
+		clicked = false;
+		return super.stopCellEditing();
+	}
+
+	@Override
+	protected void fireEditingStopped() {
+		super.fireEditingStopped();
+	}
+}
 
 	public void Editar_clases(int idclase) {
 		try {
@@ -7294,17 +7416,14 @@ public class UsersView {
 		lblNewLabel_13.setFont(new Font("Anton", Font.PLAIN, 20));
 		lblNewLabel_13.setBounds(58, 323, 179, 22);
 		panel_2.add(lblNewLabel_13);
-		// info de
-		// intructor///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JTextField Info_nombre = new JTextField("YOGA RELAX");
-		Info_nombre.setBackground(new Color(204, 204, 204));
-		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_nombre.setBounds(247, 83, 328, 37);
-		panel_2.add(Info_nombre);
+
+	
 
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
+
+		// ComboBox de turno
 		JComboBox<String> comboBox_turno = new JComboBox();
 		comboBox_turno.setBackground(new Color(204, 204, 204));
 		comboBox_turno.setFont(new Font("Anton", Font.PLAIN, 20));
@@ -7312,6 +7431,7 @@ public class UsersView {
 		cargarTurnoEnComboBox(comboBox_turno);
 		panel_2.add(comboBox_turno);
 
+		// ComboBox de entrenador
 		JComboBox<String> comboBox_entrenador = new JComboBox();
 		comboBox_entrenador.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_entrenador.setBackground(new Color(204, 204, 204));
@@ -7319,6 +7439,7 @@ public class UsersView {
 		cargarInstructoresEnComboBox(comboBox_entrenador);
 		panel_2.add(comboBox_entrenador);
 
+		// ComboBox de días
 		JComboBox<String> comboBox_dias = new JComboBox();
 		comboBox_dias.setFont(new Font("Anton", Font.PLAIN, 20));
 		comboBox_dias.setBackground(new Color(204, 204, 204));
@@ -7326,18 +7447,82 @@ public class UsersView {
 		cargarDiasSemanaEnComboBox(comboBox_dias);
 		panel_2.add(comboBox_dias);
 
+		// Conexión y modelo
+		Connection conn = new ConectionModel().getConnection();
+		ClaseModel model = new ClaseModel(conn);
+		Clase clase = model.obtenerClasePorId(idclase);
+
+		// Campo de texto del nombre de la clase
+		JTextField Info_nombre1 = new JTextField(clase.getNombreClase());
+		Info_nombre1.setBackground(new Color(204, 204, 204));
+		Info_nombre1.setFont(new Font("Anton", Font.PLAIN, 20));
+		Info_nombre1.setBounds(247, 83, 328, 37);
+		panel_2.add(Info_nombre1);
+
+		// Seleccionar entrenador
+		comboBox_entrenador.setSelectedItem(clase.getNombreEntrenador());
+
+		// Seleccionar turno (normalizado para coincidir con ComboBox)
+		if (clase.getTurno() != null) {
+			comboBox_turno.setSelectedItem(normalizarTexto(clase.getTurno()));
+		}
+
+		// Seleccionar día (también normalizado)
+		if (clase.getHorarios() != null && !clase.getHorarios().isEmpty()) {
+			String dia = clase.getHorarios().get(0).getDiaSemana().name();
+			comboBox_dias.setSelectedItem(normalizarTexto(dia));
+		}
+
+
+
 		// botones de accion para el instructor
 		// ///////////////////////////////////////////////////////////////////////
 		JButton boton_guardar = new JButton("Guardar");
 		boton_guardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String nuevoNombre = Info_nombre1.getText().trim();
+		        String turno = comboBox_turno.getSelectedItem().toString();
+		        String dia = comboBox_dias.getSelectedItem().toString();
+		        String entrenador = comboBox_entrenador.getSelectedItem().toString();
+
+		        if (nuevoNombre.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "El nombre de la clase no puede estar vacío.");
+		            return;
+		        }
+
+		        try {
+		            Connection conn = new ConectionModel().getConnection();
+		            ClaseModel model = new ClaseModel(conn);
+
+		            // Obtener el ID del entrenador por nombre
+		            int idEntrenador = obtenerIdEntrenadorPorNombre(entrenador, conn);
+
+		            // Actualizar clase principal
+		            boolean exito = model.actualizarClase(idclase, nuevoNombre, idEntrenador, turno, dia);
+
+		            if (exito) {
+		                JOptionPane.showMessageDialog(null, "Clase actualizada correctamente.");
+		                frame.dispose();
+		                HomeController hc = new HomeController();
+		                hc.Clases();
+		            } else {
+		                JOptionPane.showMessageDialog(null, "No se pudo actualizar la clase.");
+		            }
+
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error de base de datos.");
+		        }
+		    }
 		});
+		
+
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setBackground(new Color(0, 206, 82));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 18));
 		boton_guardar.setBounds(748, 510, 160, 43);
 		panel_2.add(boton_guardar);
+		
 
 		JButton boton_cancelar = new JButton("Cancelar");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
@@ -7620,8 +7805,45 @@ public class UsersView {
 		JButton boton_guardar = new JButton("Guardar");
 		boton_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nombreClase = Info_nombre.getText().trim();
+				String turno = comboBox_turno.getSelectedItem().toString();
+				String dia = comboBox_dias.getSelectedItem().toString();
+				String entrenadorNombre = comboBox_entrenador.getSelectedItem().toString();
+
+				if (nombreClase.isEmpty() || turno.equals("NINGUNO") || dia.equals("NINGUNO")) {
+					JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos obligatorios.");
+					return;
+				}
+
+				try {
+					Connection conn = new ConectionModel().getConnection();
+					ClaseModel model = new ClaseModel(conn);
+
+					// Obtener ID del entrenador
+					int idEntrenador = obtenerIdEntrenadorPorNombre(entrenadorNombre, conn); // Debes tener este método
+					if (idEntrenador == -1) {
+						JOptionPane.showMessageDialog(frame, "Entrenador no válido.");
+						return;
+					}
+
+					// Insertar clase
+					int idClase = model.insertarClase(nombreClase, idEntrenador);
+
+					// Insertar horario
+					model.insertarHorario(idClase, dia, turno);
+
+					JOptionPane.showMessageDialog(frame, "Clase añadida correctamente.");
+					frame.dispose();
+					UsersController uc = new UsersController();
+					uc.Editar_eliminar_y_añadir_clases(0); // Refrescar vista
+
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(frame, "Error al guardar la clase.");
+				}
 			}
 		});
+
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setBackground(new Color(0, 206, 82));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 18));
@@ -7822,7 +8044,6 @@ public class UsersView {
 		comboBox.removeAllItems(); // Limpiar opciones previas
 		comboBox.addItem("NINGUNO");
 
-		// Opción 1: Si quieres cargar los días directamente desde la base de datos
 		String sql = "SHOW COLUMNS FROM clase_horario LIKE 'dia_semana'";
 
 		try {
@@ -7832,13 +8053,11 @@ public class UsersView {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				// Extraer la definición del ENUM
 				String enumDefinition = rs.getString("Type");
-				// Procesar la cadena para obtener los valores (ej: 'LUNES','MARTES',...)
 				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
 
 				for (String dia : enumValues) {
-					comboBox.addItem(dia);
+					comboBox.addItem(normalizarTexto(dia));  // 👈 se normaliza
 				}
 			}
 
@@ -7846,40 +8065,42 @@ public class UsersView {
 		} catch (SQLException e) {
 			System.err.println("Error al cargar días de la semana: " + e.getMessage());
 			e.printStackTrace();
-
 		}
 	}
 
+
 	private void cargarTurnoEnComboBox(JComboBox<String> comboBox) {
-		comboBox.removeAllItems(); // Limpiar opciones previas
-		comboBox.addItem("NINGUNO");
+	comboBox.removeAllItems(); // Limpiar opciones previas
+	comboBox.addItem("NINGUNO");
 
-		// Opción 1: Si quieres cargar los días directamente desde la base de datos
-		String sql = "SHOW COLUMNS FROM clase_horario LIKE 'turno'";
+	String sql = "SHOW COLUMNS FROM clase_horario LIKE 'turno'";
 
-		try {
-			ConectionModel conexion = new ConectionModel();
-			Connection conn = conexion.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+	try {
+		ConectionModel conexion = new ConectionModel();
+		Connection conn = conexion.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				// Extraer la definición del ENUM
-				String enumDefinition = rs.getString("Type");
-				// Procesar la cadena para obtener los valores (ej: 'LUNES','MARTES',...)
-				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
+		if (rs.next()) {
+			String enumDefinition = rs.getString("Type");
+			String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
 
-				for (String turno : enumValues) {
-					comboBox.addItem(turno);
-				}
+			for (String turno : enumValues) {
+				comboBox.addItem(normalizarTexto(turno));  // 👈 se normaliza
 			}
-
-			conexion.close();
-		} catch (SQLException e) {
-			System.err.println("Error al cargar turno: " + e.getMessage());
-			e.printStackTrace();
-
 		}
+
+		conexion.close();
+	} catch (SQLException e) {
+		System.err.println("Error al cargar turno: " + e.getMessage());
+		e.printStackTrace();
+	}
+}
+
+	private String normalizarTexto(String texto) {
+		return java.text.Normalizer.normalize(texto, java.text.Normalizer.Form.NFD)
+				.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "")
+				.toUpperCase();
 	}
 
 }

@@ -156,7 +156,7 @@ public class Registro_de_clase {
 		String[] columnas2 ={"ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico","Eliminar"};
 		
 		JScrollPane scrollPane_Pagos = new JScrollPane();//tabla de pagos
-		scrollPane_Pagos.setBounds(10, 128, 898, 56);
+		scrollPane_Pagos.setBounds(10, 128, 898, 371);
 		panel_2.add(scrollPane_Pagos);
 		model = new DefaultTableModel(data2, columnas2) {
 			@Override
