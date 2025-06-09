@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -19,6 +20,9 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import models.Clase;
+import models.ClaseModel;
+import models.ConectionModel;
 import models.InstrucoresModel;
 import models.Instructor;
 import models.User;
@@ -380,6 +384,121 @@ public class UsersController {
 
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Error al generar la credencial: " + e.getMessage(), "Error",
+						JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} finally {
+				if (documento != null && documento.isOpen()) {
+					documento.close();
+				}
+			}
+		}
+	}
+
+	public void generarPDFRegistroClase(int idClase, List<Object[]> instructorData, DefaultTableModel alumnosModel) {
+		// Pedir al usuario dónde guardar el PDF
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Guardar Registro de Clase");
+		fileChooser.setSelectedFile(new File("registro_clase_" + idClase + ".pdf"));
+
+		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+			String rutaPDF = fileChooser.getSelectedFile().getAbsolutePath();
+
+			Document documento = new Document();
+			PdfWriter writer = null;
+			try {
+				writer = PdfWriter.getInstance(documento, new FileOutputStream(rutaPDF));
+				documento.open();
+
+				// Fuentes
+				com.itextpdf.text.Font fontTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
+				com.itextpdf.text.Font fontSubtitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+				com.itextpdf.text.Font fontNormal = FontFactory.getFont(FontFactory.HELVETICA, 12);
+				com.itextpdf.text.Font fontCabecera = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+
+				// Obtener nombre de la clase
+				ClaseModel claseModel = new ClaseModel(new ConectionModel().getConnection());
+				Clase clase = claseModel.obtenerClasePorId(idClase);
+				String nombreClase = (clase != null) ? clase.getNombreClase() : "Clase no encontrada";
+
+				// Título
+				Paragraph titulo = new Paragraph("REGISTRO: " + nombreClase.toUpperCase(), fontTitulo);
+				titulo.setAlignment(Element.ALIGN_CENTER);
+				documento.add(titulo);
+				documento.add(new Paragraph("\n"));
+
+				// Información del instructor
+				if (!instructorData.isEmpty()) {
+					Object[] instructor = instructorData.get(0);
+					Paragraph subtituloInstructor = new Paragraph("INFORMACIÓN DEL INSTRUCTOR", fontSubtitulo);
+					documento.add(subtituloInstructor);
+
+					// Crear tabla para instructor
+					com.itextpdf.text.pdf.PdfPTable tablaInstructor = new com.itextpdf.text.pdf.PdfPTable(4);
+					tablaInstructor.setWidthPercentage(100);
+
+					// Cabeceras
+					tablaInstructor.addCell(new Phrase("Entrenador", fontCabecera));
+					tablaInstructor.addCell(new Phrase("Correo", fontCabecera));
+					tablaInstructor.addCell(new Phrase("Turno", fontCabecera));
+					tablaInstructor.addCell(new Phrase("Horario", fontCabecera));
+
+					// Datos
+					tablaInstructor.addCell(new Phrase(instructor[0].toString(), fontNormal));
+					tablaInstructor.addCell(new Phrase(instructor[1].toString(), fontNormal));
+					tablaInstructor.addCell(new Phrase(instructor[2].toString(), fontNormal));
+					tablaInstructor.addCell(new Phrase(instructor[3].toString(), fontNormal));
+
+					documento.add(tablaInstructor);
+					documento.add(new Paragraph("\n"));
+				}
+
+				// Lista de alumnos
+				Paragraph subtituloAlumnos = new Paragraph("ALUMNOS INSCRITOS", fontSubtitulo);
+				documento.add(subtituloAlumnos);
+
+				// Crear tabla para alumnos (6 columnas sin la columna Eliminar)
+				com.itextpdf.text.pdf.PdfPTable tablaAlumnos = new com.itextpdf.text.pdf.PdfPTable(6);
+				tablaAlumnos.setWidthPercentage(100);
+
+				// Cabeceras
+				tablaAlumnos.addCell(new Phrase("ID cliente", fontCabecera));
+				tablaAlumnos.addCell(new Phrase("Nombre", fontCabecera));
+				tablaAlumnos.addCell(new Phrase("Primer apellido", fontCabecera));
+				tablaAlumnos.addCell(new Phrase("Segundo apellido", fontCabecera));
+				tablaAlumnos.addCell(new Phrase("Teléfono", fontCabecera));
+				tablaAlumnos.addCell(new Phrase("Correo electrónico", fontCabecera));
+
+				// Datos de alumnos (omitimos la última columna que es "Eliminar")
+				for (int i = 0; i < alumnosModel.getRowCount(); i++) {
+					for (int j = 0; j < alumnosModel.getColumnCount() - 1; j++) {
+						Object value = alumnosModel.getValueAt(i, j);
+						tablaAlumnos.addCell(new Phrase(value != null ? value.toString() : "", fontNormal));
+					}
+				}
+
+				documento.add(tablaAlumnos);
+
+				// Agregar el logo en la esquina inferior derecha
+				try {
+					Image logo = Image.getInstance(getClass().getResource("/Imagenes/logo ginmasio.png"));
+					logo.scaleToFit(80, 80); // Tamaño del logo (ajustar según necesidad)
+
+					// Posicionamiento absoluto en la esquina inferior derecha
+					float x = documento.getPageSize().getWidth() - logo.getScaledWidth() - 36; // 36 = ~0.5 pulgadas de
+																								// margen
+					float y = logo.getScaledHeight() + 5;
+					logo.setAbsolutePosition(x, y);
+
+					documento.add(logo);
+				} catch (Exception e) {
+					System.out.println("No se pudo cargar el logo: " + e.getMessage());
+				}
+
+				JOptionPane.showMessageDialog(null, "PDF generado exitosamente en:\n" + rutaPDF, "Éxito",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + e.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			} finally {

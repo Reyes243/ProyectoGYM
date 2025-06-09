@@ -127,7 +127,7 @@ public class UsersModel {
 
 	private boolean registrarUsuarioTarifa(int idUsuario, int idTarifa) {
 		if (idTarifa == -1)
-			return false; 
+			return false;
 
 		ConectionModel conexion = new ConectionModel();
 		String sql = "INSERT INTO usuario_tarifa (id_usuario, id_tarifa) VALUES (?, ?)";
@@ -194,9 +194,11 @@ public class UsersModel {
 		ConectionModel conexion = new ConectionModel();
 
 		String sql = "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, "
-				+ "u.telefono, u.correo, t.nombre_tarifa, t.precio " + "FROM usuario u "
+				+ "u.telefono, u.correo, t.nombre_tarifa, t.precio, c.nombre_clase " + "FROM usuario u "
 				+ "LEFT JOIN usuario_tarifa ut ON u.id_usuario = ut.id_usuario "
-				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa " + "WHERE u.id_usuario = ? AND u.id_rol = 2";
+				+ "LEFT JOIN tarifa t ON ut.id_tarifa = t.id_tarifa "
+				+ "LEFT JOIN inscripcion i ON u.id_usuario = i.id_usuario "
+				+ "LEFT JOIN clase c ON i.id_clase = c.id_clase " + "WHERE u.id_usuario = ? AND u.id_rol = 2";
 
 		try {
 			Connection conn = conexion.getConnection();
@@ -211,7 +213,10 @@ public class UsersModel {
 						datosCliente.put("segundo_apellido", rs.getString("segundo_apellido"));
 						datosCliente.put("telefono", rs.getString("telefono"));
 						datosCliente.put("correo", rs.getString("correo"));
-						datosCliente.put("tarifa", rs.getString("nombre_tarifa"));
+						datosCliente.put("tarifa",
+								rs.getString("nombre_tarifa") != null ? rs.getString("nombre_tarifa") : "Ninguna");
+						datosCliente.put("clase",
+								rs.getString("nombre_clase") != null ? rs.getString("nombre_clase") : "Ninguna");
 
 						if (rs.getString("nombre_tarifa") != null) {
 							datosCliente.put("precio_tarifa", String.valueOf(rs.getDouble("precio")));
@@ -408,181 +413,185 @@ public class UsersModel {
 
 		return clientes;
 	}
-	
+
 	// En UsersModel o InstructorModel
 	public boolean eliminarInstructor(int idInstructor) {
-	    Connection conn = null;
-	    PreparedStatement psDeleteHorarios = null;
-	    PreparedStatement psDeleteClases = null;
-	    PreparedStatement psDeleteUsuario = null;
+		Connection conn = null;
+		PreparedStatement psDeleteHorarios = null;
+		PreparedStatement psDeleteClases = null;
+		PreparedStatement psDeleteUsuario = null;
 
-	    try {
-	        conn = new ConectionModel().getConnection();
-	        conn.setAutoCommit(false); // 🔒 Empezar transacción
+		try {
+			conn = new ConectionModel().getConnection();
+			conn.setAutoCommit(false); // 🔒 Empezar transacción
 
-	        // 1. Eliminar horarios de clases que imparte este instructor
-	        String sqlDeleteHorarios = """
-	            DELETE ch FROM clase_horario ch
-	            JOIN clase c ON ch.id_clase = c.id_clase
-	            WHERE c.id_usuario = ?
-	        """;
-	        psDeleteHorarios = conn.prepareStatement(sqlDeleteHorarios);
-	        psDeleteHorarios.setInt(1, idInstructor);
-	        psDeleteHorarios.executeUpdate();
+			// 1. Eliminar horarios de clases que imparte este instructor
+			String sqlDeleteHorarios = """
+					    DELETE ch FROM clase_horario ch
+					    JOIN clase c ON ch.id_clase = c.id_clase
+					    WHERE c.id_usuario = ?
+					""";
+			psDeleteHorarios = conn.prepareStatement(sqlDeleteHorarios);
+			psDeleteHorarios.setInt(1, idInstructor);
+			psDeleteHorarios.executeUpdate();
 
-	        // 2. Eliminar clases del instructor
-	        String sqlDeleteClases = "DELETE FROM clase WHERE id_usuario = ?";
-	        psDeleteClases = conn.prepareStatement(sqlDeleteClases);
-	        psDeleteClases.setInt(1, idInstructor);
-	        psDeleteClases.executeUpdate();
+			// 2. Eliminar clases del instructor
+			String sqlDeleteClases = "DELETE FROM clase WHERE id_usuario = ?";
+			psDeleteClases = conn.prepareStatement(sqlDeleteClases);
+			psDeleteClases.setInt(1, idInstructor);
+			psDeleteClases.executeUpdate();
 
-	        // 3. Eliminar al instructor de la tabla usuario
-	        String sqlDeleteUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 3";
-	        psDeleteUsuario = conn.prepareStatement(sqlDeleteUsuario);
-	        psDeleteUsuario.setInt(1, idInstructor);
-	        int filas = psDeleteUsuario.executeUpdate();
+			// 3. Eliminar al instructor de la tabla usuario
+			String sqlDeleteUsuario = "DELETE FROM usuario WHERE id_usuario = ? AND id_rol = 3";
+			psDeleteUsuario = conn.prepareStatement(sqlDeleteUsuario);
+			psDeleteUsuario.setInt(1, idInstructor);
+			int filas = psDeleteUsuario.executeUpdate();
 
-	        conn.commit(); // ✅ Confirmar
-	        return filas > 0;
+			conn.commit(); // ✅ Confirmar
+			return filas > 0;
 
-	    } catch (SQLException e) {
-	        if (conn != null) try { conn.rollback(); } catch (SQLException ignored) {}
-	        e.printStackTrace();
-	        return false;
-	    } finally {
-	        try {
-	            if (psDeleteHorarios != null) psDeleteHorarios.close();
-	            if (psDeleteClases != null) psDeleteClases.close();
-	            if (psDeleteUsuario != null) psDeleteUsuario.close();
-	            if (conn != null) conn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+		} catch (SQLException e) {
+			if (conn != null)
+				try {
+					conn.rollback();
+				} catch (SQLException ignored) {
+				}
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (psDeleteHorarios != null)
+					psDeleteHorarios.close();
+				if (psDeleteClases != null)
+					psDeleteClases.close();
+				if (psDeleteUsuario != null)
+					psDeleteUsuario.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public boolean registrarAsistenciaManual(int idUsuario, String fecha, String hora) {
-	    ConectionModel conexion = new ConectionModel();
-	    String sql = "INSERT INTO asistencia (id_usuario, fecha, hora) VALUES (?, ?, ?)";
+		ConectionModel conexion = new ConectionModel();
+		String sql = "INSERT INTO asistencia (id_usuario, fecha, hora) VALUES (?, ?, ?)";
 
-	    try {
-	        Connection conn = conexion.getConnection();
-	        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-	            ps.setInt(1, idUsuario);
-	            ps.setString(2, fecha);  // "2025-06-08"
-	            ps.setString(3, hora);   // "14:30"
-	            return ps.executeUpdate() > 0;
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Error al registrar asistencia manual: " + e.getMessage());
-	        return false;
-	    } finally {
-	        conexion.close();
-	    }
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement ps = conn.prepareStatement(sql)) {
+				ps.setInt(1, idUsuario);
+				ps.setString(2, fecha); // "2025-06-08"
+				ps.setString(3, hora); // "14:30"
+				return ps.executeUpdate() > 0;
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al registrar asistencia manual: " + e.getMessage());
+			return false;
+		} finally {
+			conexion.close();
+		}
 	}
+
 	public boolean esCliente(int idUsuario) {
-	    ConectionModel conexion = new ConectionModel();
-	    String sql = "SELECT id_rol FROM usuario WHERE id_usuario = ?";
+		ConectionModel conexion = new ConectionModel();
+		String sql = "SELECT id_rol FROM usuario WHERE id_usuario = ?";
 
-	    try {
-	        Connection conn = conexion.getConnection();
-	        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-	            ps.setInt(1, idUsuario);
-	            ResultSet rs = ps.executeQuery();
-	            if (rs.next()) {
-	                return rs.getInt("id_rol") == 2;
-	            }
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Error al verificar si es cliente: " + e.getMessage());
-	    } finally {
-	        conexion.close();
-	    }
+		try {
+			Connection conn = conexion.getConnection();
+			try (PreparedStatement ps = conn.prepareStatement(sql)) {
+				ps.setInt(1, idUsuario);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					return rs.getInt("id_rol") == 2;
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al verificar si es cliente: " + e.getMessage());
+		} finally {
+			conexion.close();
+		}
 
-	    return false;
+		return false;
 	}
-	
+
 	public List<String[]> obtenerAsistenciasRecientes() {
-	    List<String[]> lista = new ArrayList<>();
-	    ConectionModel conexion = new ConectionModel();
-	    String sql = """
-	        SELECT a.id_usuario, u.nombre, u.primer_apellido, a.fecha, a.hora
-	        FROM asistencia a
-	        JOIN usuario u ON a.id_usuario = u.id_usuario
-	        ORDER BY a.fecha DESC, a.hora DESC
-	        LIMIT 50
-	    """;
+		List<String[]> lista = new ArrayList<>();
+		ConectionModel conexion = new ConectionModel();
+		String sql = """
+				    SELECT a.id_usuario, u.nombre, u.primer_apellido, a.fecha, a.hora
+				    FROM asistencia a
+				    JOIN usuario u ON a.id_usuario = u.id_usuario
+				    ORDER BY a.fecha DESC, a.hora DESC
+				    LIMIT 50
+				""";
 
-	    try (Connection conn = conexion.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(sql);
-	         ResultSet rs = ps.executeQuery()) {
+		try (Connection conn = conexion.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery()) {
 
-	        while (rs.next()) {
-	            String[] fila = {
-	                String.valueOf(rs.getInt("id_usuario")),
-	                rs.getString("nombre") + " " + rs.getString("primer_apellido"),
-	                rs.getString("fecha"),
-	                rs.getString("hora")
-	            };
-	            lista.add(fila);
-	        }
+			while (rs.next()) {
+				String[] fila = { String.valueOf(rs.getInt("id_usuario")),
+						rs.getString("nombre") + " " + rs.getString("primer_apellido"), rs.getString("fecha"),
+						rs.getString("hora") };
+				lista.add(fila);
+			}
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        conexion.close();
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
 
-	    return lista;
+		return lista;
 	}
+
 	public boolean yaRegistroHoy(int idUsuario) {
-	    ConectionModel conexion = new ConectionModel();
-	    String sql = "SELECT COUNT(*) FROM asistencia WHERE id_usuario = ? AND fecha = CURRENT_DATE";
+		ConectionModel conexion = new ConectionModel();
+		String sql = "SELECT COUNT(*) FROM asistencia WHERE id_usuario = ? AND fecha = CURRENT_DATE";
 
-	    try (Connection conn = conexion.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
-	        ps.setInt(1, idUsuario);
-	        ResultSet rs = ps.executeQuery();
-	        if (rs.next()) {
-	            return rs.getInt(1) > 0;
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Error al verificar asistencia del día: " + e.getMessage());
-	    } finally {
-	        conexion.close();
-	    }
+		try (Connection conn = conexion.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, idUsuario);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) > 0;
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al verificar asistencia del día: " + e.getMessage());
+		} finally {
+			conexion.close();
+		}
 
-	    return false;
+		return false;
 	}
+
 	public List<String[]> obtenerHistorialAsistencia(int idUsuario) {
-	    List<String[]> historial = new ArrayList<>();
-	    ConectionModel conexion = new ConectionModel();
+		List<String[]> historial = new ArrayList<>();
+		ConectionModel conexion = new ConectionModel();
 
-	    String sql = "SELECT fecha, hora FROM asistencia WHERE id_usuario = ? ORDER BY fecha DESC, hora DESC";
+		String sql = "SELECT fecha, hora FROM asistencia WHERE id_usuario = ? ORDER BY fecha DESC, hora DESC";
 
-	    try (Connection conn = conexion.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = conexion.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-	        ps.setInt(1, idUsuario);
-	        ResultSet rs = ps.executeQuery();
+			ps.setInt(1, idUsuario);
+			ResultSet rs = ps.executeQuery();
 
-	        while (rs.next()) {
-	            String fecha = rs.getString("fecha"); // formato: YYYY-MM-DD
-	            String[] partes = fecha.split("-");
-	            historial.add(new String[] {
-	                partes[2], // día
-	                partes[1], // mes
-	                partes[0], // año
-	                rs.getString("hora")
-	            });
-	        }
+			while (rs.next()) {
+				String fecha = rs.getString("fecha"); // formato: YYYY-MM-DD
+				String[] partes = fecha.split("-");
+				historial.add(new String[] { partes[2], // día
+						partes[1], // mes
+						partes[0], // año
+						rs.getString("hora") });
+			}
 
-	    } catch (SQLException e) {
-	        System.err.println("Error al obtener historial de asistencia: " + e.getMessage());
-	    } finally {
-	        conexion.close();
-	    }
+		} catch (SQLException e) {
+			System.err.println("Error al obtener historial de asistencia: " + e.getMessage());
+		} finally {
+			conexion.close();
+		}
 
-	    return historial;
+		return historial;
 	}
 }

@@ -406,28 +406,26 @@ public class InstrucoresModel {
 		return lista;
 	}
 
-	public List<Object[]> getClientesDeClasesDelInstructor(int idInstructor) {
+	public List<Object[]> getInstructor(int idClase) {
 		List<Object[]> lista = new ArrayList<>();
-		String sql = "SELECT u.id_usuario AS id_cliente, u.nombre, u.primer_apellido, u.telefono, u.correo "
-				+ "FROM usuario u " + "JOIN inscripcion i ON u.id_usuario = i.id_usuario "
-				+ "JOIN clase c ON i.id_clase = c.id_clase " + "WHERE c.id_usuario = ? AND u.id_rol = 2";
+		String sql = "SELECT u.nombre AS entrenador, u.correo, ch.turno, ch.dia_semana " + "FROM usuario u "
+				+ "JOIN clase c ON u.id_usuario = c.id_usuario "
+				+ "LEFT JOIN clase_horario ch ON c.id_clase = ch.id_clase " + "WHERE c.id_clase = ?"; 
 
 		try (Connection conn = new ConectionModel().getConnection();
 				PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			stmt.setInt(1, idInstructor);
+			stmt.setInt(1, idClase); // Ahora sí coincide el parámetro con el filtro
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				lista.add(new Object[] { rs.getInt("id_cliente"), rs.getString("nombre"),
-						rs.getString("primer_apellido"), rs.getString("telefono"), rs.getString("correo") });
+				lista.add(new Object[] { rs.getString("entrenador"), rs.getString("correo"), rs.getString("turno"),
+						rs.getString("dia_semana") });
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return lista;
 	}
-	
-	
 
 }

@@ -23,7 +23,6 @@ public class ClaseModel {
                 .toUpperCase();
     }
 
-    // 👇 Y luego tu método corregido
     public List<ClaseHorario> obtenerHorariosPorClase(int idClase) {
         List<ClaseHorario> horarios = new ArrayList<>();
         String sql = "SELECT * FROM clase_horario WHERE id_clase = ?";
@@ -57,7 +56,6 @@ public class ClaseModel {
     }
 
 
-	// Método para crear una nueva clase con sus horarios
 	public boolean crearClase(Clase clase) throws SQLException {
 		String sqlClase = "INSERT INTO clase (id_usuario, nombre_clase) VALUES (?, ?)";
 

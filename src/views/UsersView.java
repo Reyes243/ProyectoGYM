@@ -62,19 +62,20 @@ import models.User;
 public class UsersView {
 	private boolean cambiosRealizados = false;
 	private Font antonFont;
-	
+
 	private int obtenerIdEntrenadorPorNombre(String nombreEntrenador, Connection conn) throws SQLException {
-	    String sql = "SELECT id_usuario FROM usuario WHERE nombre = ? AND id_rol = 3"; 
-	    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-	        stmt.setString(1, nombreEntrenador);
-	        ResultSet rs = stmt.executeQuery();
-	        if (rs.next()) {
-	            return rs.getInt("id_usuario");
-	        } else {
-	            throw new SQLException("No se encontró el entrenador con ese nombre.");
-	        }
-	    }
+		String sql = "SELECT id_usuario FROM usuario WHERE nombre = ? AND id_rol = 3";
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, nombreEntrenador);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("id_usuario");
+			} else {
+				throw new SQLException("No se encontró el entrenador con ese nombre.");
+			}
+		}
 	}
+
 	private void cargarFuentePersonalizada() {
 		try {
 			antonFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/Anton-Regular.ttf"))
@@ -258,7 +259,8 @@ public class UsersView {
 		Info_telefono.setBounds(296, 310, 152, 22);
 		panel_2.add(Info_telefono);
 
-		JLabel Info_clase = new JLabel("TECNICA EN MAQUINAS");
+		JLabel Info_clase = new JLabel("");
+		Info_clase.setText(datosCliente.getOrDefault("clase", "Ninguna"));
 		Info_clase.setFont(new Font("Anton", Font.PLAIN, 16));
 		Info_clase.setBounds(362, 362, 167, 28);
 		panel_2.add(Info_clase);
@@ -1504,17 +1506,11 @@ public class UsersView {
 		lblNewLabel.setBounds(60, 11, 309, 28);
 		panel_3.add(lblNewLabel);
 
-		Object[][] dataCliente = {
-			    {
-			        datosCliente.get("id"),
-			        datosCliente.get("nombre"),               // nombre(s)
-			        datosCliente.get("primer_apellido"),      // primer apellido
-			        datosCliente.get("telefono"),
-			        datosCliente.get("correo")
-			    }
-			};
+		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre"), // nombre(s)
+				datosCliente.get("primer_apellido"), // primer apellido
+				datosCliente.get("telefono"), datosCliente.get("correo") } };
 
-			String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
+		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
 		scrollPane_Usuario.setBounds(10, 61, 898, 50);
@@ -1534,14 +1530,11 @@ public class UsersView {
 		String plan = datosCliente.get("tarifa") != null ? datosCliente.get("tarifa") : "NINGUNO";
 		String precio = datosCliente.get("precio_tarifa") != null ? datosCliente.get("precio_tarifa") : "0.00";
 
-		Object[][] data2 = {
-		    {
-		        datosCliente.get("id"),
-		        plan.toUpperCase(),
-		        "$" + precio,
-		        "$" + precio // mismo monto como "siguiente pago"
-		    }
-		};
+		Object[][] data2 = { { datosCliente.get("id"), plan.toUpperCase(), "$" + precio, "$" + precio // mismo monto
+																										// como
+																										// "siguiente
+																										// pago"
+				} };
 
 		String[] columnas2 = { "ID Cliente", "Plan", "Tarifa", "Siguiente pago" };
 
@@ -1793,15 +1786,9 @@ public class UsersView {
 		panel_3.add(lblNewLabel);
 
 		// Tabla con los datos básicos del cliente
-		Object[][] dataCliente = {
-		    {
-		        datosCliente.get("id"),
-		        datosCliente.get("nombre"),               // nombre(s)
-		        datosCliente.get("primer_apellido"),      // primer apellido
-		        datosCliente.get("telefono"),
-		        datosCliente.get("correo")
-		    }
-		};
+		Object[][] dataCliente = { { datosCliente.get("id"), datosCliente.get("nombre"), // nombre(s)
+				datosCliente.get("primer_apellido"), // primer apellido
+				datosCliente.get("telefono"), datosCliente.get("correo") } };
 
 		String[] columnas = { "ID cliente", "Nombre(s)", "Primer apellido", "Teléfono", "Correo electrónico" };
 
@@ -1820,7 +1807,6 @@ public class UsersView {
 		header.setForeground(Color.WHITE);
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
-
 
 		String[] columnas2 = { "Día", "Mes", "Año", "Hora de entrada" };
 		DefaultTableModel modeloHistorial = new DefaultTableModel(columnas2, 0);
@@ -1843,9 +1829,8 @@ public class UsersView {
 		// Cargar historial desde BD
 		List<String[]> asistencias = um.obtenerHistorialAsistencia(idcliente);
 		for (String[] fila : asistencias) {
-		    modeloHistorial.addRow(fila);
+			modeloHistorial.addRow(fila);
 		}
-
 
 		JButton boton_regresar = new JButton("Regresar");// boton regresar
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
@@ -4711,7 +4696,7 @@ public class UsersView {
 		}
 		InstrucoresModel model = new InstrucoresModel();
 		List<Object[]> clases = model.getClasesPorInstructor(idinstructor);
-		List<Object[]> clientes = model.getClientesDeClasesDelInstructor(idinstructor);
+		List<Object[]> clientes = model.getInstructor(idinstructor);
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -4787,7 +4772,6 @@ public class UsersView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane_Usuario.setViewportView(table);
-
 
 		JButton boton_regresar = new JButton("Regresar");// boton regresar
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
@@ -6341,8 +6325,6 @@ public class UsersView {
 		}
 	}
 
-	
-	
 	public void Registro_de_clase(int nombreclase) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -6350,6 +6332,12 @@ public class UsersView {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		ClaseModel claseModel = new ClaseModel(new ConectionModel().getConnection());
+		Clase clase = claseModel.obtenerClasePorId(nombreclase);
+		String nombreClase = (clase != null) ? clase.getNombreClase() : "Clase no encontrada";
+
+		InstrucoresModel model = new InstrucoresModel();
+		List<Object[]> instructor = model.getInstructor(nombreclase);
 
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -6401,7 +6389,7 @@ public class UsersView {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("REGISTRO: YOGA RELAX");
+		JLabel lblNewLabel = new JLabel("REGISTRO: " + nombreClase.toUpperCase());
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(60, 11, 508, 28);
@@ -6412,9 +6400,7 @@ public class UsersView {
 		panel_2.add(scrollPane);
 
 		// Datos de ejemplo
-		Object[][] data = { { "Laura Mendez", "laura.mendez@evolvefit.com", "MATUTINO", "Lunes y Viernes" }
-
-		};
+		Object[][] data = instructor.toArray(new Object[0][]);
 
 		String[] columnNames = { "Entrenador", "Correo", "Turno", "Horario" };
 
@@ -6428,61 +6414,57 @@ public class UsersView {
 		header.setFont(new Font("Anton", Font.PLAIN, 14));
 		header.setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
-		
+
 		JScrollPane scrollPane_Pagos = new JScrollPane();
 		scrollPane_Pagos.setBounds(10, 128, 898, 371);
 		panel_2.add(scrollPane_Pagos);
 
-		DefaultTableModel model;
+		DefaultTableModel model1;
 
 		try {
-		    Connection conn = new ConectionModel().getConnection();
-		    PreparedStatement stmt = conn.prepareStatement(
-		        "SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, u.telefono, u.correo " +
-		        "FROM inscripcion i " +
-		        "JOIN usuario u ON i.id_usuario = u.id_usuario " +
-		        "WHERE i.id_clase = ? AND u.id_rol = 2"
-		    );
-		    stmt.setInt(1, nombreclase); // El ID de la clase que viene como parámetro
+			Connection conn = new ConectionModel().getConnection();
+			PreparedStatement stmt = conn.prepareStatement(
+					"SELECT u.id_usuario, u.nombre, u.primer_apellido, u.segundo_apellido, u.telefono, u.correo "
+							+ "FROM inscripcion i " + "JOIN usuario u ON i.id_usuario = u.id_usuario "
+							+ "WHERE i.id_clase = ? AND u.id_rol = 2");
+			stmt.setInt(1, nombreclase); // El ID de la clase que viene como parámetro
 
-		    ResultSet rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-		    Vector<String> columnNames1 = new Vector<>(Arrays.asList(
-		        "ID cliente", "Nombre(s)", "Primer apellido", "Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar"
-		    ));
-		    Vector<Vector<Object>> data1 = new Vector<>();
+			Vector<String> columnNames1 = new Vector<>(Arrays.asList("ID cliente", "Nombre(s)", "Primer apellido",
+					"Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar"));
+			Vector<Vector<Object>> data1 = new Vector<>();
 
-		    while (rs.next()) {
-		        Vector<Object> row = new Vector<>();
-		        row.add(rs.getInt("id_usuario"));
-		        row.add(rs.getString("nombre"));
-		        row.add(rs.getString("primer_apellido"));
-		        row.add(rs.getString("segundo_apellido"));
-		        row.add(rs.getString("telefono"));
-		        row.add(rs.getString("correo"));
-		        row.add("Eliminar"); // Texto que activa el botón
-		        data1.add(row);
-		    }
+			while (rs.next()) {
+				Vector<Object> row = new Vector<>();
+				row.add(rs.getInt("id_usuario"));
+				row.add(rs.getString("nombre"));
+				row.add(rs.getString("primer_apellido"));
+				row.add(rs.getString("segundo_apellido"));
+				row.add(rs.getString("telefono"));
+				row.add(rs.getString("correo"));
+				row.add("Eliminar"); // Texto que activa el botón
+				data1.add(row);
+			}
 
-		    rs.close();
-		    stmt.close();
-		    conn.close();
+			rs.close();
+			stmt.close();
+			conn.close();
 
-		    model = new DefaultTableModel(data1, columnNames1) {
-		        @Override
-		        public boolean isCellEditable(int row, int column) {
-		            return column == 6; // Solo el botón "Eliminar" es editable
-		        }
-		    };
+			model1 = new DefaultTableModel(data1, columnNames1) {
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return column == 6; // Solo el botón "Eliminar" es editable
+				}
+			};
 
 		} catch (Exception e) {
-		    e.printStackTrace();
-		    model = new DefaultTableModel(new Object[][] {}, new String[] {
-		        "ID cliente", "Nombre(s)", "Primer apellido", "Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar"
-		    });
+			e.printStackTrace();
+			model1 = new DefaultTableModel(new Object[][] {}, new String[] { "ID cliente", "Nombre(s)",
+					"Primer apellido", "Segundo apellido", "Teléfono", "Correo electrónico", "Eliminar" });
 		}
 
-		JTable table_1 = new JTable(model);
+		JTable table_1 = new JTable(model1);
 		table_1.setFont(new Font("Anton", Font.PLAIN, 12));
 		table_1.setBackground(new Color(204, 204, 204));
 		table_1.setRowHeight(30);
@@ -6496,38 +6478,41 @@ public class UsersView {
 
 		// Renderizar botones en la tabla
 		table_1.getColumn("Eliminar").setCellRenderer(new ButtonRenderer3("Eliminar"));
-		table_1.getColumn("Eliminar").setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table_1, nombreclase));
-		
-		
+		table_1.getColumn("Eliminar")
+				.setCellEditor(new ButtonEditor3(new JCheckBox(), "Eliminar", table_1, nombreclase));
+
 		JButton boton_descargar = new JButton("Descargar");
-        boton_descargar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        boton_descargar.setForeground(new Color(0, 0, 0));
-        boton_descargar.setBackground(new Color(255, 205, 17));
-        boton_descargar.setFont(new Font("Anton", Font.PLAIN, 14));
-        boton_descargar.setBounds(763, 510, 145, 43);
-        panel_2.add(boton_descargar);
-        
-        JButton boton_regresar = new JButton("Regresar");
-        boton_regresar.setForeground(Color.BLACK);
-        boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
-        boton_regresar.setBackground(new Color(255, 205, 17));
-        boton_regresar.setBounds(608, 510, 145, 43);
-        boton_regresar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                HomeController hc = new HomeController();
-                try {
-                    hc.Clases();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
-                }
-            }
-        });
-        panel_2.add(boton_regresar);
+		boton_descargar.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+			        DefaultTableModel modeloTablaAlumnos = (DefaultTableModel) table_1.getModel();
+			        UsersController controller = new UsersController(); // O usa la instancia existente
+			        controller.generarPDFRegistroClase(nombreclase, instructor, modeloTablaAlumnos);
+			    }
+			});
+		boton_descargar.setForeground(new Color(0, 0, 0));
+		boton_descargar.setBackground(new Color(255, 205, 17));
+		boton_descargar.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_descargar.setBounds(763, 510, 145, 43);
+		panel_2.add(boton_descargar);
+
+		JButton boton_regresar = new JButton("Regresar");
+		boton_regresar.setForeground(Color.BLACK);
+		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 14));
+		boton_regresar.setBackground(new Color(255, 205, 17));
+		boton_regresar.setBounds(608, 510, 145, 43);
+		boton_regresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				try {
+					hc.Clases();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar las clases.");
+				}
+			}
+		});
+		panel_2.add(boton_regresar);
 
 		// Botones laterales de la ventana
 		JButton boton_INICIO = new JButton("INICIO");
@@ -6815,7 +6800,8 @@ public class UsersView {
 							try {
 								int idUsuario = (int) table_1.getValueAt(row, 0);
 								Connection conn = new ConectionModel().getConnection();
-								PreparedStatement ps = conn.prepareStatement("DELETE FROM inscripcion WHERE id_usuario = ? AND id_clase = ?");
+								PreparedStatement ps = conn.prepareStatement(
+										"DELETE FROM inscripcion WHERE id_usuario = ? AND id_clase = ?");
 								ps.setInt(1, idUsuario);
 								ps.setInt(2, nombreclase);
 								ps.executeUpdate();
@@ -6832,8 +6818,6 @@ public class UsersView {
 							}
 						}
 					});
-
-
 
 					dialog.setVisible(true); // Mostrar el diálogo de confirmación
 				}
@@ -6938,18 +6922,17 @@ public class UsersView {
 		Object[][] data = new Object[clases.size()][7];
 
 		for (int i = 0; i < clases.size(); i++) {
-		    Clase c = clases.get(i);
-		    String dias = modelClase.getDiasPorClase(c.getIdClase());  // ← Aquí traes los días reales
+			Clase c = clases.get(i);
+			String dias = modelClase.getDiasPorClase(c.getIdClase()); // ← Aquí traes los días reales
 
-		    data[i][0] = c.getIdClase();
-		    data[i][1] = c.getNombreClase();
-		    data[i][2] = c.getNombreEntrenador();
-		    data[i][3] = c.getTurno();
-		    data[i][4] = dias;  // 👈 ahora sí, días reales
-		    data[i][5] = "Editar";
-		    data[i][6] = "Eliminar";
+			data[i][0] = c.getIdClase();
+			data[i][1] = c.getNombreClase();
+			data[i][2] = c.getNombreEntrenador();
+			data[i][3] = c.getTurno();
+			data[i][4] = dias; // 👈 ahora sí, días reales
+			data[i][5] = "Editar";
+			data[i][6] = "Eliminar";
 		}
-
 
 		String[] columnNames = { "ID de clase", "Nombre de la clase", "Entrenador", "Turno", "Horario", "Editar",
 				"Eliminar" };
@@ -7192,156 +7175,159 @@ public class UsersView {
 
 	// Editor para que los botones con imagen funcionen en tabla
 	public class ButtonEditor extends DefaultCellEditor {
-	protected JButton button;
-	private String label;
-	private boolean clicked;
-	private int row;
-	private JTable table;
-	private boolean debeEliminar = false;
+		protected JButton button;
+		private String label;
+		private boolean clicked;
+		private int row;
+		private JTable table;
+		private boolean debeEliminar = false;
 
-	public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
-		super(checkBox);
-		this.label = label;
-		this.table = table;
-		button = new JButton();
-		button.setOpaque(true);
-		button.setForeground(Color.BLACK);
-		button.setBackground(label.equals("Eliminar") ? new Color(255, 0, 0) : new Color(255, 205, 17));
-		button.setFont(new Font("Anton", Font.PLAIN, 14));
-		button.setHorizontalAlignment(SwingConstants.CENTER);
+		public ButtonEditor(JCheckBox checkBox, String label, JTable table) {
+			super(checkBox);
+			this.label = label;
+			this.table = table;
+			button = new JButton();
+			button.setOpaque(true);
+			button.setForeground(Color.BLACK);
+			button.setBackground(label.equals("Eliminar") ? new Color(255, 0, 0) : new Color(255, 205, 17));
+			button.setFont(new Font("Anton", Font.PLAIN, 14));
+			button.setHorizontalAlignment(SwingConstants.CENTER);
 
-		// Cargar icono
-		if (label.equals("Editar")) {
-			button.setIcon(loadIcon("/Imagenes/editar.png"));
-		} else if (label.equals("Eliminar")) {
-			button.setIcon(loadIcon("/Imagenes/eliminar.png"));
-		}
-		button.setText(null);
-
-		button.addActionListener(e -> fireEditingStopped());
-	}
-
-	private ImageIcon loadIcon(String path) {
-		java.net.URL imgURL = getClass().getResource(path);
-		if (imgURL != null) {
-			ImageIcon icon = new ImageIcon(imgURL);
-			Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			return new ImageIcon(img);
-		} else {
-			System.err.println("No se pudo encontrar la imagen: " + path);
-			return null;
-		}
-	}
-
-	@Override
-	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		this.row = row;
-		clicked = true;
-		return button;
-	}
-
-	@Override
-	public Object getCellEditorValue() {
-		if (clicked) {
+			// Cargar icono
 			if (label.equals("Editar")) {
-				if (row >= 0 && row < table.getRowCount()) {
-					try {
-						int idclase = (int) table.getValueAt(row, 0);
-						Window window = SwingUtilities.getWindowAncestor(table);
-						if (window != null) window.dispose();
-
-						UsersController uc = new UsersController();
-						uc.Editar_clases(idclase);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Error al editar la clase.");
-					}
-				}
+				button.setIcon(loadIcon("/Imagenes/editar.png"));
 			} else if (label.equals("Eliminar")) {
-				JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
-				dialog.setSize(400, 220);
-				dialog.setLocationRelativeTo(null);
-				dialog.setUndecorated(true);
-				dialog.setLayout(null);
+				button.setIcon(loadIcon("/Imagenes/eliminar.png"));
+			}
+			button.setText(null);
 
-				JPanel confirmar_eliminacion = new JPanel();
-				confirmar_eliminacion.setBackground(Color.WHITE);
-				confirmar_eliminacion.setBounds(0, 0, 400, 220);
-				confirmar_eliminacion.setLayout(null);
-				dialog.add(confirmar_eliminacion);
+			button.addActionListener(e -> fireEditingStopped());
+		}
 
-				JPanel panel_complemento = new JPanel();
-				panel_complemento.setBackground(new Color(81, 151, 255));
-				panel_complemento.setBounds(0, 0, 400, 33);
-				confirmar_eliminacion.add(panel_complemento);
-
-				JLabel pregunta = new JLabel("<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
-				pregunta.setFont(new Font("Anton", Font.PLAIN, 16));
-				pregunta.setBounds(66, 44, 346, 59);
-				confirmar_eliminacion.add(pregunta);
-
-				JButton boton_cancelar = new JButton("Cancelar");
-				boton_cancelar.setForeground(Color.WHITE);
-				boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_cancelar.setBackground(Color.RED);
-				boton_cancelar.setBounds(50, 140, 120, 35);
-				confirmar_eliminacion.add(boton_cancelar);
-
-				JButton boton_aceptar = new JButton("Aceptar");
-				boton_aceptar.setBackground(new Color(0, 206, 82));
-				boton_aceptar.setForeground(Color.WHITE);
-				boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
-				boton_aceptar.setBounds(230, 140, 120, 35);
-				confirmar_eliminacion.add(boton_aceptar);
-
-				boton_cancelar.addActionListener(ev -> dialog.dispose());
-
-				boton_aceptar.addActionListener(ev -> {
-					dialog.dispose();
-					if (row >= 0 && row < table.getRowCount()) {
-						try {
-							int idClase = (int) table.getValueAt(row, 0);
-							ClaseModel modelClase = new ClaseModel(new ConectionModel().getConnection());
-							modelClase.eliminarClase(idClase);
-							debeEliminar = true;
-							JOptionPane.showMessageDialog(null, "Clase eliminada correctamente.");
-						} catch (Exception ex) {
-							ex.printStackTrace();
-							JOptionPane.showMessageDialog(null, "Error al eliminar la clase.");
-						}
-					}
-				});
-
-				dialog.setVisible(true);
+		private ImageIcon loadIcon(String path) {
+			java.net.URL imgURL = getClass().getResource(path);
+			if (imgURL != null) {
+				ImageIcon icon = new ImageIcon(imgURL);
+				Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				return new ImageIcon(img);
+			} else {
+				System.err.println("No se pudo encontrar la imagen: " + path);
+				return null;
 			}
 		}
 
-		clicked = false;
-
-		if (debeEliminar && row >= 0 && row < table.getRowCount()) {
-		    // Esperar a que Swing termine el ciclo de edición
-		    SwingUtilities.invokeLater(() -> {
-		        if (row >= 0 && row < table.getRowCount()) {
-		            ((DefaultTableModel) table.getModel()).removeRow(row);
-		        }
-		    });
-		    debeEliminar = false;
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+				int column) {
+			this.row = row;
+			clicked = true;
+			return button;
 		}
 
-		return label;
-	}
+		@Override
+		public Object getCellEditorValue() {
+			if (clicked) {
+				if (label.equals("Editar")) {
+					if (row >= 0 && row < table.getRowCount()) {
+						try {
+							int idclase = (int) table.getValueAt(row, 0);
+							Window window = SwingUtilities.getWindowAncestor(table);
+							if (window != null)
+								window.dispose();
 
-	@Override
-	public boolean stopCellEditing() {
-		clicked = false;
-		return super.stopCellEditing();
-	}
+							UsersController uc = new UsersController();
+							uc.Editar_clases(idclase);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Error al editar la clase.");
+						}
+					}
+				} else if (label.equals("Eliminar")) {
+					JDialog dialog = new JDialog((Frame) null, "Confirmar Eliminación", true);
+					dialog.setSize(400, 220);
+					dialog.setLocationRelativeTo(null);
+					dialog.setUndecorated(true);
+					dialog.setLayout(null);
 
-	@Override
-	protected void fireEditingStopped() {
-		super.fireEditingStopped();
+					JPanel confirmar_eliminacion = new JPanel();
+					confirmar_eliminacion.setBackground(Color.WHITE);
+					confirmar_eliminacion.setBounds(0, 0, 400, 220);
+					confirmar_eliminacion.setLayout(null);
+					dialog.add(confirmar_eliminacion);
+
+					JPanel panel_complemento = new JPanel();
+					panel_complemento.setBackground(new Color(81, 151, 255));
+					panel_complemento.setBounds(0, 0, 400, 33);
+					confirmar_eliminacion.add(panel_complemento);
+
+					JLabel pregunta = new JLabel(
+							"<html><div style='text-align: center;'>La clase se borrará permanentemente<br>¿Desea continuar?</div></html>");
+					pregunta.setFont(new Font("Anton", Font.PLAIN, 16));
+					pregunta.setBounds(66, 44, 346, 59);
+					confirmar_eliminacion.add(pregunta);
+
+					JButton boton_cancelar = new JButton("Cancelar");
+					boton_cancelar.setForeground(Color.WHITE);
+					boton_cancelar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_cancelar.setBackground(Color.RED);
+					boton_cancelar.setBounds(50, 140, 120, 35);
+					confirmar_eliminacion.add(boton_cancelar);
+
+					JButton boton_aceptar = new JButton("Aceptar");
+					boton_aceptar.setBackground(new Color(0, 206, 82));
+					boton_aceptar.setForeground(Color.WHITE);
+					boton_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+					boton_aceptar.setBounds(230, 140, 120, 35);
+					confirmar_eliminacion.add(boton_aceptar);
+
+					boton_cancelar.addActionListener(ev -> dialog.dispose());
+
+					boton_aceptar.addActionListener(ev -> {
+						dialog.dispose();
+						if (row >= 0 && row < table.getRowCount()) {
+							try {
+								int idClase = (int) table.getValueAt(row, 0);
+								ClaseModel modelClase = new ClaseModel(new ConectionModel().getConnection());
+								modelClase.eliminarClase(idClase);
+								debeEliminar = true;
+								JOptionPane.showMessageDialog(null, "Clase eliminada correctamente.");
+							} catch (Exception ex) {
+								ex.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Error al eliminar la clase.");
+							}
+						}
+					});
+
+					dialog.setVisible(true);
+				}
+			}
+
+			clicked = false;
+
+			if (debeEliminar && row >= 0 && row < table.getRowCount()) {
+				// Esperar a que Swing termine el ciclo de edición
+				SwingUtilities.invokeLater(() -> {
+					if (row >= 0 && row < table.getRowCount()) {
+						((DefaultTableModel) table.getModel()).removeRow(row);
+					}
+				});
+				debeEliminar = false;
+			}
+
+			return label;
+		}
+
+		@Override
+		public boolean stopCellEditing() {
+			clicked = false;
+			return super.stopCellEditing();
+		}
+
+		@Override
+		protected void fireEditingStopped() {
+			super.fireEditingStopped();
+		}
 	}
-}
 
 	public void Editar_clases(int idclase) {
 		try {
@@ -7430,8 +7416,6 @@ public class UsersView {
 		lblNewLabel_13.setBounds(58, 323, 179, 22);
 		panel_2.add(lblNewLabel_13);
 
-	
-
 		// comobox//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		UIManager.put("ComboBox.buttonBackground", new Color(255, 205, 17));
@@ -7486,56 +7470,52 @@ public class UsersView {
 			comboBox_dias.setSelectedItem(normalizarTexto(dia));
 		}
 
-
-
 		// botones de accion para el instructor
 		// ///////////////////////////////////////////////////////////////////////
 		JButton boton_guardar = new JButton("Guardar");
 		boton_guardar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nuevoNombre = Info_nombre1.getText().trim();
-		        String turno = comboBox_turno.getSelectedItem().toString();
-		        String dia = comboBox_dias.getSelectedItem().toString();
-		        String entrenador = comboBox_entrenador.getSelectedItem().toString();
+			public void actionPerformed(ActionEvent e) {
+				String nuevoNombre = Info_nombre1.getText().trim();
+				String turno = comboBox_turno.getSelectedItem().toString();
+				String dia = comboBox_dias.getSelectedItem().toString();
+				String entrenador = comboBox_entrenador.getSelectedItem().toString();
 
-		        if (nuevoNombre.isEmpty()) {
-		            JOptionPane.showMessageDialog(null, "El nombre de la clase no puede estar vacío.");
-		            return;
-		        }
+				if (nuevoNombre.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "El nombre de la clase no puede estar vacío.");
+					return;
+				}
 
-		        try {
-		            Connection conn = new ConectionModel().getConnection();
-		            ClaseModel model = new ClaseModel(conn);
+				try {
+					Connection conn = new ConectionModel().getConnection();
+					ClaseModel model = new ClaseModel(conn);
 
-		            // Obtener el ID del entrenador por nombre
-		            int idEntrenador = obtenerIdEntrenadorPorNombre(entrenador, conn);
+					// Obtener el ID del entrenador por nombre
+					int idEntrenador = obtenerIdEntrenadorPorNombre(entrenador, conn);
 
-		            // Actualizar clase principal
-		            boolean exito = model.actualizarClase(idclase, nuevoNombre, idEntrenador, turno, dia);
+					// Actualizar clase principal
+					boolean exito = model.actualizarClase(idclase, nuevoNombre, idEntrenador, turno, dia);
 
-		            if (exito) {
-		                JOptionPane.showMessageDialog(null, "Clase actualizada correctamente.");
-		                frame.dispose();
-		                HomeController hc = new HomeController();
-		                hc.Clases();
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo actualizar la clase.");
-		            }
+					if (exito) {
+						JOptionPane.showMessageDialog(null, "Clase actualizada correctamente.");
+						frame.dispose();
+						HomeController hc = new HomeController();
+						hc.Clases();
+					} else {
+						JOptionPane.showMessageDialog(null, "No se pudo actualizar la clase.");
+					}
 
-		        } catch (Exception ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error de base de datos.");
-		        }
-		    }
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error de base de datos.");
+				}
+			}
 		});
-		
 
 		boton_guardar.setForeground(new Color(255, 255, 255));
 		boton_guardar.setBackground(new Color(0, 206, 82));
 		boton_guardar.setFont(new Font("Anton", Font.PLAIN, 18));
 		boton_guardar.setBounds(748, 510, 160, 43);
 		panel_2.add(boton_guardar);
-		
 
 		JButton boton_cancelar = new JButton("Cancelar");
 		boton_cancelar.setForeground(new Color(255, 255, 255));
@@ -8070,7 +8050,7 @@ public class UsersView {
 				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
 
 				for (String dia : enumValues) {
-					comboBox.addItem(normalizarTexto(dia));  // 👈 se normaliza
+					comboBox.addItem(normalizarTexto(dia)); // 👈 se normaliza
 				}
 			}
 
@@ -8081,39 +8061,37 @@ public class UsersView {
 		}
 	}
 
-
 	private void cargarTurnoEnComboBox(JComboBox<String> comboBox) {
-	comboBox.removeAllItems(); // Limpiar opciones previas
-	comboBox.addItem("NINGUNO");
+		comboBox.removeAllItems(); // Limpiar opciones previas
+		comboBox.addItem("NINGUNO");
 
-	String sql = "SHOW COLUMNS FROM clase_horario LIKE 'turno'";
+		String sql = "SHOW COLUMNS FROM clase_horario LIKE 'turno'";
 
-	try {
-		ConectionModel conexion = new ConectionModel();
-		Connection conn = conexion.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
+		try {
+			ConectionModel conexion = new ConectionModel();
+			Connection conn = conexion.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
 
-		if (rs.next()) {
-			String enumDefinition = rs.getString("Type");
-			String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
+			if (rs.next()) {
+				String enumDefinition = rs.getString("Type");
+				String[] enumValues = enumDefinition.replaceAll("enum\\('|'\\)", "").split("','");
 
-			for (String turno : enumValues) {
-				comboBox.addItem(normalizarTexto(turno));  // 👈 se normaliza
+				for (String turno : enumValues) {
+					comboBox.addItem(normalizarTexto(turno)); // 👈 se normaliza
+				}
 			}
-		}
 
-		conexion.close();
-	} catch (SQLException e) {
-		System.err.println("Error al cargar turno: " + e.getMessage());
-		e.printStackTrace();
+			conexion.close();
+		} catch (SQLException e) {
+			System.err.println("Error al cargar turno: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
-}
 
 	private String normalizarTexto(String texto) {
 		return java.text.Normalizer.normalize(texto, java.text.Normalizer.Form.NFD)
-				.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "")
-				.toUpperCase();
+				.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "").toUpperCase();
 	}
 
 }
