@@ -19,7 +19,7 @@ Desarrollar un sistema para la gestión administrativa de un gimnasio, con una i
 
 ## Enlaces
 
-> [Ver diseño en Figma](https://www.figma.com/design/qN4ycFodER2JPA8satwUJq/Dise%C3%B1o-gimnasio?node-id=0-1&p=f&t=PwFf8Ui8qmQY6sBA-0)
+[Ver diseño en Figma](https://www.figma.com/design/qN4ycFodER2JPA8satwUJq/Dise%C3%B1o-gimnasio?node-id=0-1&p=f&t=PwFf8Ui8qmQY6sBA-0)
 
 Uso preferente para version [Java jdk 23](https://www.oracle.com/java/technologies/javase/jdk23-archive-downloads.html) o versiones posteriores
 
@@ -28,11 +28,14 @@ Uso preferente para version [Java jdk 23](https://www.oracle.com/java/technologi
 ## Instrucciones de uso
 
 1. Descargar el ejecutable .jar
-2. Ejecutar la aplicacion.
-3. Accede con las siguientes credenciales:
-Correo: jojo@gmail.com
 
-Contraseña: 12345
+2. Ejecutar la aplicacion.
+
+3. Accede con las siguientes credenciales:
+  
+    - **Correo:** jojo@gmail.com
+
+    - **Contraseña:** 12345
 
 ---
 
