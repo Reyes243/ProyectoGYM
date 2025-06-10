@@ -3283,6 +3283,9 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
@@ -3455,10 +3458,10 @@ public class UsersView {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("DESCRIPCION");// titulo de inicio
+		JLabel lblNewLabel = new JLabel("EDITAR TARIFA");// titulo de inicio
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(60, 11, 223, 28);
+		lblNewLabel.setBounds(60, 11, 300, 28);
 		panel_3.add(lblNewLabel);
 		// tarifas//////////////////////////////////////////////////////////////////////
 		JPanel plan_estandar = new JPanel();
@@ -3799,10 +3802,10 @@ public class UsersView {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("DESCRIPCION");// titulo de inicio
+		JLabel lblNewLabel = new JLabel("AÑADIR TARIFA");// titulo de inicio
 		lblNewLabel.setFont(new Font("Anton", Font.PLAIN, 26));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(60, 11, 223, 28);
+		lblNewLabel.setBounds(60, 11, 300, 28);
 		panel_3.add(lblNewLabel);
 		// tarifas//////////////////////////////////////////////////////////////////////
 		JPanel plan_estandar = new JPanel();
@@ -3959,6 +3962,9 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
@@ -4147,9 +4153,9 @@ public class UsersView {
 			User u = clientesFiltrados.get(i);
 			data[i][0] = u.getId();
 			data[i][1] = u.getNombre();
-			data[i][2] = u.getPrimer_apellido();
+			data[i][2] = u.getCorreo();
 			data[i][3] = u.getTelefono();
-			data[i][4] = u.getCorreo();
+			data[i][4] = u.getPrimer_apellido();
 		}
 
 		JScrollPane scrollPane_Usuario = new JScrollPane();// tabla del usario
@@ -4211,6 +4217,9 @@ public class UsersView {
 		boton_TARIFAS.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_TARIFAS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Tarifas();
 			}
 		});
 		boton_TARIFAS.setBounds(10, 250, 136, 71);
@@ -4409,7 +4418,7 @@ public class UsersView {
 
 		JLabel lblNewLabel_5 = new JLabel("ID Instructor: ");
 		lblNewLabel_5.setFont(new Font("Anton", Font.PLAIN, 20));
-		lblNewLabel_5.setBounds(235, 90, 85, 32);
+		lblNewLabel_5.setBounds(235, 90, 200, 32);
 		panel_2.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
@@ -4446,7 +4455,7 @@ public class UsersView {
 		JLabel Info_ID = new JLabel("");
 		Info_ID.setText(datosInstructor.get("id"));
 		Info_ID.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_ID.setBounds(321, 92, 46, 28);
+		Info_ID.setBounds(350, 92, 46, 28);
 		panel_2.add(Info_ID);
 
 		JLabel Info_nombre = new JLabel("");
@@ -4586,6 +4595,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -4836,6 +4848,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 
 			}
 		});
@@ -5247,6 +5262,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -5519,17 +5537,17 @@ public class UsersView {
 		panel_2.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_11 = new JLabel("Nombre:");
-		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_11.setFont(new Font("Anton", Font.PLAIN, 18));
 		lblNewLabel_11.setBounds(325, 160, 84, 32);
 		panel_2.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_10 = new JLabel("Especialidad:");
-		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_10.setFont(new Font("Anton", Font.PLAIN, 18));
 		lblNewLabel_10.setBounds(325, 230, 127, 32);
 		panel_2.add(lblNewLabel_10);
 
 		JLabel lblNewLabel_14 = new JLabel("Horarios: ");
-		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 20));
+		lblNewLabel_14.setFont(new Font("Anton", Font.PLAIN, 18));
 		lblNewLabel_14.setBounds(325, 300, 152, 32);
 		panel_2.add(lblNewLabel_14);
 
@@ -5552,20 +5570,20 @@ public class UsersView {
 		// instructor/////////////////////////////////////////////////////////////////////////////////////////////////
 		JLabel Info_nombre = new JLabel("");
 		Info_nombre.setText(datosInstructor.get("nombre"));
-		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 20));
-		Info_nombre.setBounds(399, 162, 152, 29);
+		Info_nombre.setFont(new Font("Anton", Font.PLAIN, 22));
+		Info_nombre.setBounds(325, 185, 152, 29);
 		panel_2.add(Info_nombre);
 
 		JLabel Info_especialidad = new JLabel("");
 		Info_especialidad.setText(datosInstructor.get("especialidad"));
 		Info_especialidad.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_especialidad.setBounds(340, 255, 300, 30);
+		Info_especialidad.setBounds(325, 255, 300, 30);
 		panel_2.add(Info_especialidad);
 
 		JLabel Info_horarios = new JLabel("");
 		Info_horarios.setText(datosInstructor.get("horarios"));
 		Info_horarios.setFont(new Font("Anton", Font.PLAIN, 22));
-		Info_horarios.setBounds(340, 325, 400, 30);
+		Info_horarios.setBounds(325, 325, 400, 30);
 		panel_2.add(Info_horarios);
 
 		JLabel Info_identificador = new JLabel("");
@@ -5648,6 +5666,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -6201,6 +6222,9 @@ public class UsersView {
 		boton_INSTRUCTORES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_INSTRUCTORES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Instructores();
 			}
 		});
 		boton_INSTRUCTORES.setBounds(10, 332, 136, 71);
@@ -6572,6 +6596,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 255, 255));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");
@@ -7054,6 +7085,13 @@ public class UsersView {
 		boton_CLASES.setBackground(new Color(255, 255, 255));
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.setBounds(10, 414, 136, 71);
+		boton_CLASES.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
+			}
+		});
 		panel.add(boton_CLASES);
 
 		JButton boton_CHECADOR = new JButton("CHECADOR");
@@ -7424,7 +7462,7 @@ public class UsersView {
 		JComboBox<String> comboBox_turno = new JComboBox();
 		comboBox_turno.setBackground(new Color(204, 204, 204));
 		comboBox_turno.setFont(new Font("Anton", Font.PLAIN, 20));
-		comboBox_turno.setBounds(123, 238, 200, 31);
+		comboBox_turno.setBounds(247, 238, 328, 31);
 		cargarTurnoEnComboBox(comboBox_turno);
 		panel_2.add(comboBox_turno);
 
@@ -7592,6 +7630,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);
@@ -7775,7 +7816,7 @@ public class UsersView {
 		JComboBox<String> comboBox_turno = new JComboBox();
 		comboBox_turno.setBackground(new Color(204, 204, 204));
 		comboBox_turno.setFont(new Font("Anton", Font.PLAIN, 20));
-		comboBox_turno.setBounds(123, 238, 200, 31);
+		comboBox_turno.setBounds(247, 238, 328, 31);
 		cargarTurnoEnComboBox(comboBox_turno);
 		panel_2.add(comboBox_turno);
 
@@ -7917,6 +7958,9 @@ public class UsersView {
 		boton_CLASES.setFont(new Font("Anton", Font.PLAIN, 16));
 		boton_CLASES.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.Clases();
 			}
 		});
 		boton_CLASES.setBounds(10, 414, 136, 71);

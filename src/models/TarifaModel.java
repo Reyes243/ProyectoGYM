@@ -10,6 +10,11 @@ import java.util.List;
 public class TarifaModel {
 
 	public boolean insertarTarifa(Tarifa tarifa) {
+		if (tarifa.getPrecio() < 0) {
+	        System.err.println("El precio no puede ser negativo.");
+	        return false;
+	    }
+		
 		ConectionModel conexion = new ConectionModel();
 		String sql = "INSERT INTO tarifa (nombre_tarifa, descripcion, precio) VALUES (?, ?, ?)";
 
@@ -106,6 +111,11 @@ public class TarifaModel {
 	    return null;
 	}
 	public boolean actualizarTarifa(String nombreOriginal, Tarifa nueva) {
+		
+		if (nueva.getPrecio() < 0) {
+	        System.err.println("El precio no puede ser negativo.");
+	        return false;
+	    }
 	    String sql = "UPDATE tarifa SET nombre_tarifa = ?, descripcion = ?, precio = ? WHERE nombre_tarifa = ?";
 
 	    try (Connection conn = new ConectionModel().getConnection();
@@ -123,5 +133,6 @@ public class TarifaModel {
 	        return false;
 	    }
 	}
+	
 	
 }
