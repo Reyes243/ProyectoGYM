@@ -1,6 +1,6 @@
-# Sistema de Gestión para Gimnasio
+# **Sistema de Gestión para Gimnasio**
 
-## Objetivo
+## **Objetivo**
 
 Desarrollar un sistema para la gestión administrativa de un gimnasio, con una interfaz visual clara, intuitiva y fácil de usar. Además, se utilizará una base de datos remota para almacenar la información de clientes e instructores. El enfoque principal está en:
 
@@ -10,14 +10,14 @@ Desarrollar un sistema para la gestión administrativa de un gimnasio, con una i
 
 ---
 
-## Tecnologías relacionadas
+## **Tecnologías relacionadas**
 
 - **Figma** (diseño de UI/UX)
 - **Java SE Development Kit 23**
 
 ---
 
-## Enlaces
+## **Enlaces**
 
 [Ver diseño en Figma](https://www.figma.com/design/qN4ycFodER2JPA8satwUJq/Dise%C3%B1o-gimnasio?node-id=0-1&p=f&t=PwFf8Ui8qmQY6sBA-0)
 
@@ -25,7 +25,7 @@ Uso preferente para version [Java jdk 23](https://www.oracle.com/java/technologi
 
 ---
 
-## Instrucciones de uso
+## **Instrucciones de uso**
 
 1. Descargar el ejecutable .jar
 
@@ -35,11 +35,11 @@ Uso preferente para version [Java jdk 23](https://www.oracle.com/java/technologi
   
     - **Correo:** jojo@gmail.com
 
-    - **Contraseña:** 12345
+    - **Contraseña:** 12345678
 
 ---
 
-## Autores
+## **Autores**
 
 -  Diseño: Brayan Federico López González
 -  Frontend: José Reyes Hinojosa Torres
@@ -49,7 +49,7 @@ Uso preferente para version [Java jdk 23](https://www.oracle.com/java/technologi
 
 ---
 
-## Licencia
+## **Licencia**
 
 Este proyecto está licenciado bajo [MIT](LICENSE) — libre para uso y modificación.
 
