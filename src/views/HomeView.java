@@ -41,10 +41,6 @@ import javax.swing.table.TableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import Vistas.Clases.ButtonEditor3;
-import Vistas.Clases.ButtonRenderer3;
-import Vistas.Instructores.ButtonEditor2;
-import Vistas.Instructores.ButtonRenderer2;
 import controllers.HomeController;
 import controllers.UsersController;
 import models.Clase;

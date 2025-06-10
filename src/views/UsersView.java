@@ -1190,19 +1190,6 @@ public class UsersView {
 		});
 		panel_2.add(boton_cancelar_volver);
 
-		JButton boton_cargar_foto = new JButton("Cargar foto");
-		boton_cargar_foto.setBackground(new Color(255, 205, 17));
-		boton_cargar_foto.setFont(new Font("Anton", Font.PLAIN, 12));
-		boton_cargar_foto.setBounds(15, 296, 132, 32);
-		boton_cargar_foto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel_2.add(boton_cargar_foto);
-
-		// combox de
-		// usario////////////////////////////////////////////////////////////////////////
-
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
 		JButton boton_INICIO = new JButton("INICIO");// boton de inicio
@@ -2808,12 +2795,6 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_cancelar);
-
-		JButton cargar_foto = new JButton("Cargar foto");
-		cargar_foto.setBackground(new Color(255, 205, 17));
-		cargar_foto.setFont(new Font("Anton", Font.PLAIN, 12));
-		cargar_foto.setBounds(15, 296, 132, 32);
-		panel_2.add(cargar_foto);
 
 		// Botones laterales
 		// //////////////////////////////////////////////////////////////////////////////////////////////
@@ -4788,7 +4769,7 @@ public class UsersView {
 		JButton boton_regresar = new JButton("Regresar");// boton regresar
 		boton_regresar.setFont(new Font("Anton", Font.PLAIN, 20));
 		boton_regresar.setBackground(new Color(255, 205, 17));
-		boton_regresar.setBounds(530, 503, 184, 50);
+		boton_regresar.setBounds(724, 503, 184, 50);
 		boton_regresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -4797,12 +4778,6 @@ public class UsersView {
 			}
 		});
 		panel_2.add(boton_regresar);
-
-		JButton boton_descargar_clase = new JButton("Descargar");
-		boton_descargar_clase.setFont(new Font("Anton", Font.PLAIN, 20));
-		boton_descargar_clase.setBackground(new Color(255, 205, 17));
-		boton_descargar_clase.setBounds(724, 503, 184, 50);
-		panel_2.add(boton_descargar_clase);
 
 		JButton boton_INICIO = new JButton("INICIO");
 		boton_INICIO.setBackground(new Color(255, 205, 17));
