@@ -348,7 +348,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
@@ -363,19 +363,19 @@ public class HomeView {
 		frame.setVisible(true);
 	}
 
-	private void closeSession(JFrame frame) {
+	private void alerta_adios(JFrame frame) {
 		new ConectionModel().close();
 
 		// Crear diálogo de despedida
-		JDialog goodbyeDialog = new JDialog(frame, "Sesión cerrada", true);
-		goodbyeDialog.setSize(400, 220);
-		goodbyeDialog.setLocationRelativeTo(frame);
-		goodbyeDialog.setUndecorated(true);
-		goodbyeDialog.setLayout(null);
+		JDialog adios_dialog = new JDialog(frame, "Sesión cerrada", true);
+		adios_dialog.setSize(400, 220);
+		adios_dialog.setLocationRelativeTo(frame);
+		adios_dialog.setUndecorated(true);
+		adios_dialog.setLayout(null);
 
-		JPanel goodbyePanel = new JPanel(null);
-		goodbyePanel.setBackground(Color.WHITE);
-		goodbyePanel.setBounds(0, 0, 400, 220);
+		JPanel adios_panel = new JPanel(null);
+		adios_panel.setBackground(Color.WHITE);
+		adios_panel.setBounds(0, 0, 400, 220);
 
 		// Panel superior azul
 		JPanel headerPanel = new JPanel();
@@ -383,21 +383,21 @@ public class HomeView {
 		headerPanel.setBounds(0, 0, 400, 33);
 
 		// Mensaje de despedida
-		JLabel goodbyeMessage = new JLabel(
+		JLabel mensaje_adios= new JLabel(
 				"<html><div style='text-align: center;'>Sesión cerrada correctamente.<br>Que tenga un buen día :)</div></html>");
-		goodbyeMessage.setFont(new Font("Anton", Font.PLAIN, 16));
-		goodbyeMessage.setBounds(80, 50, 300, 60);
+		mensaje_adios.setFont(new Font("Anton", Font.PLAIN, 16));
+		mensaje_adios.setBounds(80, 50, 300, 60);
 
 		// Botón Aceptar
-		JButton btnAccept = new JButton("Aceptar");
-		btnAccept.setBackground(new Color(0, 206, 82));
-		btnAccept.setForeground(Color.WHITE);
-		btnAccept.setFont(new Font("Anton", Font.PLAIN, 14));
-		btnAccept.setBounds(150, 140, 102, 33);
+		JButton btn_aceptar = new JButton("Aceptar");
+		btn_aceptar.setBackground(new Color(0, 206, 82));
+		btn_aceptar.setForeground(Color.WHITE);
+		btn_aceptar.setFont(new Font("Anton", Font.PLAIN, 14));
+		btn_aceptar.setBounds(150, 140, 102, 33);
 
 		// Acción del botón
-		btnAccept.addActionListener(e -> {
-			goodbyeDialog.dispose();
+		btn_aceptar.addActionListener(e -> {
+			adios_dialog.dispose();
 			frame.dispose();
 			SwingUtilities.invokeLater(() -> {
 				AuthView av = new AuthView();
@@ -406,12 +406,12 @@ public class HomeView {
 		});
 
 		// Añadir componentes
-		goodbyePanel.add(headerPanel);
-		goodbyePanel.add(goodbyeMessage);
-		goodbyePanel.add(btnAccept);
+		adios_panel.add(headerPanel);
+		adios_panel.add(mensaje_adios);
+		adios_panel.add(btn_aceptar);
 
-		goodbyeDialog.add(goodbyePanel);
-		goodbyeDialog.setVisible(true);
+		adios_dialog.add(adios_panel);
+		adios_dialog.setVisible(true);
 	}
 
 	public void Clientes(List<User> clientes) {
@@ -659,7 +659,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
@@ -1171,7 +1171,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
@@ -1435,7 +1435,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
@@ -1906,7 +1906,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
@@ -2526,7 +2526,7 @@ public class HomeView {
 			boton_cancelar.addActionListener(ev -> dialog.dispose());
 			boton_aceptar.addActionListener(ev -> {
 				dialog.dispose();
-				closeSession(frame);
+				alerta_adios(frame);
 			});
 
 			dialog.setVisible(true);
